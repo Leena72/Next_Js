@@ -1,0 +1,83 @@
+.login-container {
+    height: 100vh;
+}
+
+.login-header {
+    background: $blue;
+    height: 50vh;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    h1,
+    p {
+        color: $white;
+        text-align: center;
+        padding-top: 0.5em;
+    }
+
+    h1 {
+        font-size: $font-30;
+        font-family: $font-family-OpenSanaBold;
+
+        @include mquery(ipad) {
+            font-size: $font-40;
+        }
+    }
+
+    p {
+        font-size: $font-12;
+        font-family: $font-family-OpenSanaRegular;
+
+        @include mquery(ipad) {
+            font-size: $font-14;
+        }
+    }
+}
+
+.login-block {
+    height: 50vh;
+    padding: 2em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    .login-content {
+        padding-bottom: 1.5em;
+
+        label {
+            display: block;
+            padding-bottom: 0.5em;
+            font-size: $font-14;
+            color: $label-blue;
+            font-family: $font-family-OpenSanaRegular;
+
+        }
+
+        input {
+            padding: 1em;
+            width: 100%;
+            border: 1px solid $light-blue;
+            border-radius: 3px;
+            background: $light-blue;
+            font-size: $font-14;
+            color: $label-blue;
+            font-family: $font-family-OpenSanaRegular;
+
+        }
+    }
+
+    @include mquery(ipad) {
+        width: 40%;
+        margin: auto;
+    }
+
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
