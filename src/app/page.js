@@ -1,11 +1,11 @@
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import Login from "./login/page";
+import Dashboard from "./dashboard/page";
 
 export default function Home() {
   return (
     <main>
-      <Login />
+      <Dashboard />
       <ToastContainer
         className="toastContainer"
         autoClose={3000}
