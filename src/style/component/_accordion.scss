@@ -1,0 +1,84 @@
+.acc-container {
+    list-style-type: none;
+    margin-bottom: 1em;
+    cursor: pointer;
+}
+
+.acc-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    transition: all 0.3s ease-out;
+    @include mquery(desk) {
+        padding: 1em 2em;
+    }
+}
+
+.acc-active {
+    transition: 50px 0.3s ease-in-out;
+
+    background: $blue;
+}
+
+.acc-inActive {
+    background: $light-blue1;
+}
+
+.acc-activeText {
+    color: $white;
+}
+
+.acc-inActiveText {
+    color: $label-blue;
+}
+
+.acc-inActiveGreyText {
+    color: $grey6;
+}
+
+.acc-item {
+    display: flex;
+    align-items: center;
+}
+
+.acc-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+}
+
+.acc-content {
+    padding-left: 1em;
+
+    @include mquery(desk) {
+        padding-left: 1.5em;
+    }
+
+    p {
+        &:nth-of-type(1) {
+            font-size: $font-14;
+            font-family: $font-family-OpenSanaBold;
+
+            @include mquery(desk) {
+                font-size: $font-30;
+            }
+        }
+
+        &:nth-of-type(2) {
+            font-size: $font-12;
+            font-family: $font-family-OpenSanaRegular;
+            font-style: italic;
+
+            @include mquery(desk) {
+                font-size: $font-18;
+            }
+        }
+    }
+}
+
+.acc-show-content {
+    padding: 1em;
+    font-size: $font-14;
+    font-family: $font-family-OpenSanaRegular;
+}

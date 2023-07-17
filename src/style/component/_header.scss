@@ -3,6 +3,10 @@
     justify-content: space-between;
     padding: 10px;
     align-items: center;
+    position: fixed;
+    width: 100%;
+    background: $white;
+    box-shadow: $grey7 1px 2px 5px;
 }
 
 .header-logo {

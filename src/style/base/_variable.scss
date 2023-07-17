@@ -1,4 +1,3 @@
-
 // font-family
 
 @font-face {
@@ -39,7 +38,8 @@
 
 $font-family-OpenSanaRegular: "OpenSans";
 $font-family-OpenSanaBold: "OpenSansBold";
-$font-family-OpenSanaSemiBold: 'Open Sans', sans-serif;
+$font-family-OpenSanaSemiBold: 'Open Sans',
+sans-serif;
 
 // colors
 
@@ -47,11 +47,13 @@ $white:#ffffff;
 $black:#000000;
 
 $light-blue:#F5FAFE;
+$light-blue1:#F3FAFE;
 $label-blue:#015289;
 $blue:#005289;
 
 $red1:#D34057;
 $red2: #ff3333;
+$red3:#DD264F;
 
 $green1:#3F9B11;
 $green2:#8bc349;
@@ -61,7 +63,9 @@ $grey1:#DEE0DA;
 $grey2:#C6C6C6;
 $grey3:#C9CBCD;
 $grey4:#58595b;
-
+$grey5:#898989;
+$grey6:#666666;
+$grey7:#e2e2e2;
 
 // font-size
 
@@ -82,8 +86,9 @@ $font-28:28px;
 $font-30:30px;
 $font-32:32px;
 $font-34:34px;
+$font-35:35px;
 $font-36:36px;
-$font-38:36px;
+$font-38:38px;
 $font-40:40px;
 $font-42:42px;
 $font-44:44px;

@@ -1,0 +1,101 @@
+.banner-container {
+    background: $blue;
+    padding: 1em;
+    border-radius: 15px;
+
+    @include mquery(ipad) {
+        padding: 1.5em;
+    }
+}
+
+.banner-content {
+    .banner-header {
+        color: $white;
+
+        h1 {
+            font-size: $font-20;
+
+            @include mquery(ipad) {
+                font-size: $font-40;
+
+            }
+        }
+
+        p {
+            font-size: $font-14;
+            text-decoration: underline;
+            text-underline-offset: 10px;
+            font-family: $font-family-OpenSanaRegular;
+
+            @include mquery(ipad) {
+                font-size: $font-20;
+            }
+        }
+    }
+
+    .banner-main {
+        padding: 1.5em 0 0 0;
+
+        .banner-proName {
+            font-size: $font-14;
+            color: $white;
+            font-family: $font-family-OpenSanaRegular;
+
+            @include mquery(desk) {
+                font-size: $font-18;
+            }
+        }
+
+        .banner-card-container {
+            list-style-type: none;
+            display: flex;
+            flex-wrap: wrap;
+            width: 70%;
+        }
+
+        @include mquery(desk) {
+            padding: 2.5em 1em 0 1.5em;
+        }
+    }
+
+}
+
+.banner-card {
+    width: 40%;
+    margin: 0.2em;
+    background: #ffffff;
+    padding: 0.5em;
+    border-radius: 15px;
+
+    p {
+        text-align: center;
+
+        &:nth-of-type(1) {
+            font-size: $font-14;
+            font-family: $font-family-OpenSanaBold;
+            color: $red3;
+
+            @include mquery(desk) {
+                font-size: $font-30;
+            }
+        }
+
+        &:nth-of-type(2) {
+            font-size: $font-10;
+            font-family: $font-family-OpenSanaRegular;
+            color: $black;
+
+            @include mquery(desk) {
+                font-size: $font-12;
+            }
+        }
+    }
+
+    @include mquery(ipad) {
+        width: 45%;
+        margin: 0.5em;
+        padding: 1em;
+    }
+}
+
+.banner-img {}
