@@ -1,0 +1,54 @@
+.doc-container {
+}
+
+.doc-list {
+    list-style-type: none;
+    border-bottom: 1px solid $grey2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5em 0;
+
+    .doc-list-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .doc-dot {
+            display: block;
+            padding: 8px;
+            border-radius: 50px;
+            background: $red3;
+            margin-right: 1em;
+
+            @include mquery(desk) {
+                margin-right: 3em;
+            }
+        }
+
+        .doc-title,
+        .doc-sub-heading {
+            font-size: $font-14;
+            font-family: $font-family-OpenSanaSemiBold;
+
+            @include mquery(desk) {
+                font-size: $font-30;
+            }
+        }
+
+        .doc-title {
+            color: $black;
+        }
+
+        .doc-sub-heading {
+            color: $grey5;
+            padding-left: 10px;
+        }
+    }
+
+    .doc-img {}
+
+    &:last-of-type {
+        border: none;
+    }
+}

@@ -4,8 +4,8 @@ import React, { useState } from 'react'
 import { authenticate } from '../../utils/auth';
 import { useRouter } from 'next/navigation';
 import { toaster } from "../../utils/toaster";
-import Input from '@/component/Input'
-import Button from '@/component/Button'
+import Input from '../../component/Input'
+import Button from '../../component/Button'
 
 const Login = () => {
   const router = useRouter();
@@ -33,7 +33,7 @@ const Login = () => {
     <div className='login-container'>
       <div className='login-header'>
         <h1>Welcome to <br></br>
-          application tracker
+          Application Tracker
         </h1>
         <p>Track policy applications by entering the details</p>
       </div>

@@ -1,0 +1,25 @@
+.dashboard-container {
+    padding-top: 4.5em;
+
+    @include mquery(ipad) {
+        width: 85%;
+        margin: auto;
+        padding-top: 5.5em;
+    }
+}
+
+.doc-heading {
+    padding: 1.5em;
+    p {
+        font-size: $font-20;
+        color: $label-blue;
+        font-family: $font-family-OpenSanaBold;
+
+        @include mquery(desk) {
+            font-size: $font-35;
+        }
+    }
+    @include mquery(ipad) {
+    padding: 1.5em;  
+    }
+}
