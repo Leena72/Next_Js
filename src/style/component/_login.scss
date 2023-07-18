@@ -5,8 +5,7 @@
 
 .login-header {
     background: $blue;
-    height: 50vh;
-    padding: 2em;
+    padding: 3em 2em;
 
     h1,
     p {
@@ -27,6 +26,21 @@
     p {
         font-size: $font-16;
         font-family: $font-family-OpenSanaSemiBold;
+    }
+}
+
+.login-img {
+    width: 100%;
+    padding-top: 2em;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+
+    @include mquery(ipad) {
+        width: 50%;
+        margin: auto;
     }
 }
 
@@ -79,6 +93,7 @@
     justify-content: center;
     align-items: center;
     padding-top: 1em;
+
     @include mquery(ipad) {
         padding-top: 1.5em;
     }

@@ -1,4 +1,5 @@
 .doc-container {
+    padding: 0 1em;
 }
 
 .doc-list {
@@ -46,7 +47,22 @@
         }
     }
 
-    .doc-img {}
+    .doc-img {
+        .doc-img-link {
+            cursor: pointer;
+            text-decoration: none;
+
+            img {
+                width: 20px;
+                height: 20px;
+
+                @include mquery(ipad) {
+                    width: 38px;
+                    height: 38px;
+                }
+            }
+        }
+    }
 
     &:last-of-type {
         border: none;

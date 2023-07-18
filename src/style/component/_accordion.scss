@@ -10,8 +10,27 @@
     align-items: center;
     padding: 1em;
     transition: all 0.3s ease-out;
+    position: relative;
+
     @include mquery(desk) {
         padding: 1em 2em;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        background: #000;
+        width: 1px;
+        right: 23px;
+        height: 60px;
+        top: 50px;
+        z-index: 9;
+
+        @include mquery(desk) {
+            right: 38px;
+            height: 85px;
+            top: 62px;
+        }
     }
 }
 
@@ -81,4 +100,62 @@
     padding: 1em;
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
+}
+
+.acc-activeState {
+
+    .acc-default {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        display: block;
+        position: relative;
+        background: $grey2;
+
+        &:after {
+            content: "";
+            width: 25px;
+            height: 25px;
+            border: 2px solid $grey2;
+            position: absolute;
+            border-radius: 50px;
+            top: -7px;
+            left: -7px;
+        }
+
+        @include mquery(desk) {}
+    }
+
+    .acc-activeRed {
+        width: 15px;
+        height: 15px;
+        border-radius: 50px;
+        display: block;
+        position: relative;
+        background: $red4;
+
+        &:before {
+            content: "";
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            top: 5px;
+            left: 4px;
+            border-radius: 50%;
+            animation: circle 1s 1s infinite linear;
+            border: 1px solid $red4;
+        }
+    }
+
+    @keyframes circle {
+        from {
+            transform: scale(0);
+            opacity: 1;
+        }
+
+        to {
+            transform: scale(8);
+            opacity: 0;
+        }
+    }
 }

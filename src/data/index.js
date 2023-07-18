@@ -50,7 +50,7 @@ export const applicationData = [
     {
         id: 2,
         image: '',
-        heading: 'Proposal Form',
+        heading: 'Filling Form',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: '',
@@ -85,7 +85,7 @@ export const applicationData = [
     {
         id: 3,
         image: '',
-        heading: 'Insta Verify',
+        heading: 'Medical Requirement',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Click here to initiate the Video PIVC',
@@ -102,7 +102,7 @@ export const applicationData = [
     {
         id: 4,
         image: '',
-        heading: 'Customer Consent',
+        heading: 'Add Non-Medical',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -119,7 +119,7 @@ export const applicationData = [
     {
         id: 5,
         image: '',
-        heading: 'Payment',
+        heading: 'Revised Offer',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -136,7 +136,7 @@ export const applicationData = [
     {
         id: 6,
         image: '',
-        heading: 'Basic Document Upload',
+        heading: 'Payment Requirement',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -153,7 +153,7 @@ export const applicationData = [
     {
         id: 7,
         image: '',
-        heading: 'Proposal Submission',
+        heading: 'Quality Check',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -170,7 +170,7 @@ export const applicationData = [
     {
         id: 8,
         image: '',
-        heading: 'Medical Requirement',
+        heading: 'Medical Risk Verification',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -187,91 +187,6 @@ export const applicationData = [
     {
         id: 9,
         image: '',
-        heading: 'Add Non-Medical',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        content: [
-            {
-                id: 1,
-                msg: '',
-                heading: '',
-                subHeading: '',
-            },
-        ]
-    },
-    {
-        id: 10,
-        image: '',
-        heading: 'Revised Offer',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        content: [
-            {
-                id: 1,
-                msg: '',
-                heading: '',
-                subHeading: '',
-            },
-        ]
-    },
-    {
-        id: 11,
-        image: '',
-        heading: 'Payment Requirement',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        content: [
-            {
-                id: 1,
-                msg: '',
-                heading: '',
-                subHeading: '',
-            },
-        ]
-    },
-    {
-        id: 12,
-        image: '',
-        heading: 'Quality Check',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        content: [
-            {
-                id: 1,
-                msg: '',
-                heading: '',
-                subHeading: '',
-            },
-        ]
-    },
-    {
-        id: 13,
-        image: '',
-        heading: 'Medical Risk Verification',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        content: [
-            {
-                id: 1,
-                msg: '',
-                heading: '',
-                subHeading: '',
-            },
-        ]
-    },
-    {
-        id: 14,
-        image: '',
         heading: 'Financial and Medical Risk Verification',
         subHeading: 'Yet to start',
         completed: false,
@@ -287,7 +202,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 15,
+        id: 10,
         image: '',
         heading: 'Policy Status',
         subHeading: 'Yet to start',

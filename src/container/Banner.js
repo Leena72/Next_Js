@@ -1,6 +1,8 @@
 import React from 'react'
+import Image from 'next/image'
 import BannerCard from '../component/BannerCard'
 import { bannerData } from '../data'
+import loginImg from "../Assets/images/top_img.png";
 const Banner = () => {
     return (
         <div className='banner-container'>
@@ -18,7 +20,12 @@ const Banner = () => {
                     </ul>
                 </div>
             </div>
-            <div className='banner-img'></div>
+            <div className='banner-img'>
+            <Image
+                    src={loginImg}
+                    alt='loginImg'
+                />
+            </div>
         </div>
     )
 }

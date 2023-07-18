@@ -1,4 +1,4 @@
-.header-container{
+.header-container {
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -7,20 +7,31 @@
     width: 100%;
     background: $white;
     box-shadow: $grey7 1px 2px 5px;
+    z-index: 9999;
 }
 
 .header-logo {
-    img {}
+    img {
+        width: 115px;
+        height: 40px;
+
+        @include mquery(desk) {
+            width: 154px;
+            height: 58px;
+        }
+    }
 }
 
 .header-content {
     text-align: end;
+
     p {
         &:nth-of-type(1) {
             font-size: $font-13;
             color: $grey4;
             font-family: $font-family-OpenSanaRegular;
-            @include mquery(desk){
+
+            @include mquery(desk) {
                 font-size: $font-15;
             }
         }
@@ -29,8 +40,9 @@
             font-size: $font-15;
             color: $black;
             font-family: $font-family-OpenSanaBold;
-            @include mquery(desk){
-            font-size: $font-18;
+
+            @include mquery(desk) {
+                font-size: $font-18;
             }
         }
     }
