@@ -51,3 +51,12 @@ input:focus {
         font-size: $font-18;
     }
 }
+
+// show - hide
+
+.hide{
+    display: none;
+}
+.show{
+    display: block;
+}

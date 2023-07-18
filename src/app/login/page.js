@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { authenticate } from '../../utils/auth';
 import { useRouter } from 'next/navigation';
 import { toaster } from "../../utils/toaster";
 import Input from '../../component/Input'
 import Button from '../../component/Button'
-import Image from 'next/image'
 import loginImg from "../../Assets/images/prfress_img.png";
 
 const Login = () => {
@@ -29,8 +29,6 @@ const Login = () => {
       toaster("error");
     }
   }
-  // console.log('proposalNo:', proposalNo, ' DOB:', DOB)
-
   return (
     <div className='login-container'>
       <div className='login-header'>
