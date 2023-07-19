@@ -78,11 +78,11 @@ const Accordion = ({ data, index, toggleAcc }) => {
                       <div className='acc-dummy-content'>{ele.dummyContent}</div>
                       :
                       <ul className='acc-active-sub-container'>
-                        {ele.subContent.map((item)=>(
-                        <li key={item.id}>
-                          <p>{item.title}</p>
-                          <p>{item.subTitle}</p>
-                        </li>
+                        {ele.subContent.map((item) => (
+                          <li key={item.id}>
+                            <p>{item.title}</p>
+                            <p>{item.subTitle}</p>
+                          </li>
                         ))}
                       </ul>
                     }
@@ -93,7 +93,8 @@ const Accordion = ({ data, index, toggleAcc }) => {
               }
             </ul>
         }
-      </div>}
+      </div>
+      }
     </li>
   )
 };
