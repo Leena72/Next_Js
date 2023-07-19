@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Accordion = ({ data,index,toggleAcc }) => {
   const [isActive, setIsActive] = useState(false);
-
+console.log('>')
   return (
         <li className="acc-container">
           <div className={`acc-block ${isActive?'acc-active':'acc-inActive'}`} onClick={() => setIsActive(!isActive)}>
