@@ -1,11 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
-import { downloadData } from '../data/index'
 import dwnImg from "../Assets/images/pdf-dwn-arrow.png";
-const DownloadList = (props) => {
+const DownloadList = ({data}) => {
     return (
         <ul className='doc-container'>
-            {downloadData.map((item) => (
+            {data.map((item) => (
                 <li className='doc-list' key={item.id}>
                     <div className='doc-list-content'>
                         <span className='doc-dot'></span>

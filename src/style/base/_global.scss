@@ -54,9 +54,13 @@ input:focus {
 
 // show - hide
 
-.hide{
+.hide,.inactive{
     display: none;
 }
-.show{
+.show,.active{
     display: block;
+}
+
+.upArrow{
+    transform: rotate(180deg);
 }

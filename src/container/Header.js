@@ -13,7 +13,7 @@ const Header = (props) => {
                 />
             </div>
             {
-                // false &&
+                false &&
                 <div className='header-content'>
                     <p>Proposal Number</p>
                     <p>{123456}</p>

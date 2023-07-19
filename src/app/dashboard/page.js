@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import withAuth from '../../utils/withAuth';
 import Banner from '../../container/Banner';
-import Accordion from '../../component/Accordion'
+import MainAccordion from '../../container/Accordion/MainAccordion';
 import DownloadList from '../../component/DownloadList';
 import { applicationData, downloadData } from '../../data'
 
@@ -12,12 +12,9 @@ const Dashboard = () => {
         <div className='dashboard-container'>
             <Banner />
             <div className='doc-heading'><p>Application Status</p></div>
-            {data.map((item, index) => (
-                <Accordion data={item} index={index} />
-            ))
-            }
+            <MainAccordion data={data}/>
             <div className='doc-heading'> <p>Policy Related Documents</p></div>
-            <DownloadList />
+            <DownloadList data={downloadData}/>
         </div>
     )
 }
