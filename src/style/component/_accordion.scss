@@ -2,9 +2,10 @@
     list-style-type: none;
     margin-bottom: 1em;
     cursor: pointer;
-    &:last-of-type{
-        .acc-block{
-            &:after{
+
+    &:last-of-type {
+        .acc-block {
+            &:after {
                 content: '';
                 background: none;
             }
@@ -12,14 +13,16 @@
     }
 }
 
-.acc-after-container{
-    .acc-block{
-    &:after{
-        content: '';
-        background: none;
-    }}
+.acc-after-container {
+    .acc-block {
+        &:after {
+            content: '';
+            background: none;
+        }
+    }
 }
-.acc-after-container1{}
+
+.acc-after-container1 {}
 
 .acc-block {
     display: flex;
@@ -28,6 +31,7 @@
     padding: 1em;
     transition: all 0.3s ease-out;
     position: relative;
+    border-radius: 5px;
 
     @include mquery(desk) {
         padding: 1em 2em;
@@ -130,6 +134,10 @@
     padding: 1em;
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
+
+    @include mquery(ipad) {
+        padding: 1em 2em;
+    }
 }
 
 .acc-activeState {
@@ -210,5 +218,127 @@
     img {
         width: 15px;
         height: 13px;
+    }
+}
+
+// nested accordion
+
+.acc-dummy-content {}
+
+.acc-active-container {
+    list-style-type: none;
+
+}
+
+.acc-active-list {
+    list-style-type: none;
+    margin-bottom: 1em;
+    cursor: pointer;
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
+
+.acc-active-block {
+    width: 100%;
+    background: $acc-blue;
+    justify-content: space-between;
+    display: flex;
+    border-radius: 5px;
+    align-items: center;
+    padding: 1em;
+
+    .acc-active-item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .acc-active-img {
+            background: $blue;
+            border-radius: 50px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                width: 60%;
+                height: 60%;
+            }
+        }
+    }
+
+    .acc-active-content {
+        padding-left: 1.5em;
+
+        p {
+            &:nth-of-type(1) {
+                font-size: $font-16;
+                color: $label-blue;
+                font-family: $font-family-OpenSanaBold;
+
+                @include mquery(desk) {
+                    font-size: $font-20;
+                }
+            }
+
+            &:nth-of-type(2) {
+                font-size: $font-12;
+                color: $grey6;
+                font-family: $font-family-OpenSanaRegular;
+                font-style: italic;
+
+                @include mquery(desk) {
+                    font-size: $font-15;
+                }
+            }
+        }
+    }
+
+    .acc-active-icon {
+        img {
+            width: 15px;
+            height: 15px;
+
+            @include mquery(ipad) {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    }
+}
+
+// sub accordion
+.acc-show-sub-content{
+    padding: 1em 0;
+}
+.acc-active-sub-container {
+    list-style-type: none;
+    li {
+        padding: 1em;
+        background: $light-blue1;
+        border-radius: 5px;
+        margin-bottom: 1em;
+        p {
+            &:nth-of-type(1) {
+                font-size: $font-16;
+                color: $label-blue;
+                font-family: $font-family-OpenSanaSemiBold;
+                @include mquery(ipad) {
+                font-size: $font-18;
+                }
+            }
+            &:nth-of-type(2) {
+                color: $red3;
+                font-size: $font-15;
+                font-family: $font-family-OpenSanaRegular;
+                font-style: italic;
+            }
+        }
+        &:last-of-type{
+            margin-bottom:0;
+        }
     }
 }
