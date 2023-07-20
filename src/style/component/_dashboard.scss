@@ -1,10 +1,8 @@
 .dashboard-container {
-    padding-top: 5em;
 
     @include mquery(ipad) {
         width: 85%;
         margin: auto;
-        padding-top: 6.5em;
     }
 }
 

@@ -3,7 +3,7 @@
     padding: 1em;
     border-radius: 15px;
     position: relative;
-
+margin-top: 1em;
     @include mquery(ipad) {
         padding: 1.5em;
     }
