@@ -14,8 +14,8 @@ const Banner = () => {
                 <div className='banner-main'>
                     <p className='banner-proName'>Product Name- {'Elite Advantage'}</p>
                     <ul className='banner-card-container'>
-                        {bannerData.map((item) => (
-                            <BannerCard item={item} />
+                        {bannerData.map((item,i) => (
+                            <BannerCard key={i} item={item} />
                         ))}
                     </ul>
                 </div>
