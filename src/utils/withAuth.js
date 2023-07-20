@@ -5,14 +5,15 @@ import { useEffect } from 'react';
 export default function withAuth(Component) {
   return function ProtectedRoute({ ...props }) {
     const router = useRouter();
-    const proposalNo = JSON.parse(localStorage.getItem('proposalNo'));
-    const proposalNoIsAuthenticated = proposalNo !== null;
+
 
     useEffect(() => {
+      const proposalNo = JSON.parse(localStorage.getItem('proposalNo'));
+      const proposalNoIsAuthenticated = proposalNo !== null;
       if (!proposalNoIsAuthenticated) {
         router.push('/login');
       }
-    }, [proposalNoIsAuthenticated, router]);
+    }, [router]);
 
     return <Component {...props} />;
   };
