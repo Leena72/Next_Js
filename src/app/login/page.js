@@ -1,11 +1,13 @@
 'use client';
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import { authenticate } from '../../utils/auth';
 import { useRouter } from 'next/navigation';
 import { toaster } from "../../utils/toaster";
 import Input from '../../component/Input'
 import Button from '../../component/Button'
+import loginImg from "../../Assets/images/prfress_img.png";
 
 const Login = () => {
   const router = useRouter();
@@ -27,8 +29,6 @@ const Login = () => {
       toaster("error");
     }
   }
-  // console.log('proposalNo:', proposalNo, ' DOB:', DOB)
-
   return (
     <div className='login-container'>
       <div className='login-header'>
@@ -36,6 +36,12 @@ const Login = () => {
           Application Tracker
         </h1>
         <p>Track policy applications by entering the details</p>
+        <div className='login-img'>
+                <Image
+                    src={loginImg}
+                    alt='loginImg'
+                />
+            </div>
       </div>
       <div className='login-block'>
         <div className='login-content'>

@@ -1,6 +1,8 @@
 import React from 'react'
+import Image from 'next/image'
 import BannerCard from '../component/BannerCard'
 import { bannerData } from '../data'
+import loginImg from "../Assets/images/top_img.png";
 const Banner = () => {
     return (
         <div className='banner-container'>
@@ -12,13 +14,18 @@ const Banner = () => {
                 <div className='banner-main'>
                     <p className='banner-proName'>Product Name- {'Elite Advantage'}</p>
                     <ul className='banner-card-container'>
-                        {bannerData.map((item) => (
-                            <BannerCard item={item} />
+                        {bannerData.map((item,i) => (
+                            <BannerCard key={i} item={item} />
                         ))}
                     </ul>
                 </div>
             </div>
-            <div className='banner-img'></div>
+            <div className='banner-img'>
+            <Image
+                    src={loginImg}
+                    alt='loginImg'
+                />
+            </div>
         </div>
     )
 }
