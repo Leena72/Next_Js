@@ -14,6 +14,11 @@ WORKDIR /my-project
 ENV NODE_ENV production
 # If you are using a custom next.config.js file, uncomment this line.
 # COPY --from=builder /my-project/next.config.js ./
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+RUN apt update && apt install curl -y
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /opt/build/ /usr/share/nginx/html/app
+COPY --from=builder /opt/build/ /usr/share/nginx/html
 COPY --from=builder /my-project/public ./public
 COPY --from=builder /my-project/.next ./.next
 COPY --from=builder /my-project/node_modules ./node_modules
