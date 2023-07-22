@@ -1,8 +1,10 @@
 'use client';
 
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 import { authenticate } from '../../utils/auth';
+import login from '../../redux/action/login'
 import { useRouter } from 'next/navigation';
 import { toaster } from "../../utils/toaster";
 import Input from '../../component/Input'
@@ -13,6 +15,7 @@ const Login = () => {
   const router = useRouter();
   const [proposalNo, setProposalNo] = useState('')
   const [DOB, setDOB] = useState('')
+  const dispatch=useDispatch()
 
   const changeHandler = (e) => {
     let val = e.target.value;
@@ -21,6 +24,7 @@ const Login = () => {
     }
   }
   const clickHandler = () => {
+    dispatch(login())
     if (authenticate(proposalNo, DOB)) {
       toaster("success");
       router.push('/dashboard');
