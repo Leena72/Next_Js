@@ -82,7 +82,7 @@ export const applicationData = [
     {
         id: 2,
         heading: 'Filling Form',
-        subHeading: 'Yet to start' ,
+        subHeading: 'Yet to start',
         completed: false,
         dummyContent: '',
         contentStatus: true,
@@ -194,7 +194,7 @@ export const applicationData = [
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
-        contentStatus: false,
+        contentStatus: true,
         active_icon: activeImg_8,
         img: img_8,
         content: [
@@ -336,6 +336,208 @@ export const applicationData = [
         ]
     },
 ]
+
+// add non med req 
+
+export const questionnaireData = [
+    {
+        id: 1,
+        title: 'Alcohol Habit Questionnaire ',
+        formName:'alcohol'
+    },
+    {
+        id: 2,
+        title: 'Chest Pain Questionnaire',
+        formName:'chest'
+    },
+
+    {
+        id: 3,
+        title: 'Deformity Questionnaire',
+        formName:'deformity'
+    },
+    {
+        id: 4,
+        title: 'DIABETES Questionnaire',
+        formName:'diabetes'
+    },
+    {
+        id: 5,
+        title: 'Digestive Disorder Questionnaire',
+        formName:'digestive'
+    },
+    {
+        id: 6,
+        title: 'Epilepsy Questionnaire',
+        formName:'epilepsy'
+    },
+    {
+        id: 7,
+        title: 'Musculoskeletal Questionnaire',
+        formName:'musculoskeletal'
+    },
+    {
+        id: 8,
+        title: 'Nervous Disorder Questionnaire',
+        formName:'nervous'
+    },
+    {
+        id: 9,
+        title: 'Resipratory Disorder Questionnaire',
+        formName:'resipratory'
+    },
+    {
+        id: 10,
+        title: 'Thyroid Disorder Questionnaire',
+        formName:'thyroid'
+    },
+    {
+        id: 11,
+        title: 'Tumour Questionnaire',
+        formName:'tumour'
+    },
+]
+
+export const questions = {
+    "alcohol": [
+
+    ],
+    "chest": [
+        {
+            id: '1',
+            question: 'When did you suffer the ﬁrst attack of chest pain (date or at what age)?',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'State exact site of the pain (middle of the chest, left hand side, right hand side)',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'State character and severity of the pain For example burning, cramping, constricting, stabbing, crushing, vice like, dull.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '3',
+                    question: 'State character and severity of the pain For example burning, cramping, constricting, stabbing, crushing, vice like, dull.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
+        },
+        {
+            id: '2',
+            question: 'Did the pain radiate or spread outside the chest (e.g. to the arms, shoulders, jaw)?',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: true,
+            subQuestions: []
+        },
+        {
+            id: '3',
+            question: 'Did the pain occur suddenly or gradually? At rest or on exertion? Did it worsen with deep inspiration?',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: true,
+            subQuestions: []
+        },
+        {
+            id: '4',
+            question: 'How long did the chest pain last?',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '5',
+            question: 'When did you last have such symptoms or experience an attack?',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '6',
+            question: 'Were any investigations carried out (for example ECG, Echocardiogram)If so, please state',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Date when the investigation test was carried out.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Name and address of Doctor',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '3',
+                    question: 'THe findings.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
+        },
+        {
+            id: '7',
+            question: 'Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '8',
+            question: 'Is there any additional information you can provide, with regards the chest pain which will assist in processing your proposal?',
+            answer: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+    ],
+    "deformity": [],
+    "disbetes": [],
+    "digestive": [],
+    "epilepsy": [],
+    "musculoskeletal": [],
+    "nervous": [],
+    "respiratory": [],
+    "thyroid": [],
+    "tumour": [],
+}
+
+
 
 // Download Document Data
 

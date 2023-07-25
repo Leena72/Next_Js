@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import SuperSubAccordion from './SuperSubAccordion'
 import Image from 'next/image'
 import right from "../../Assets/images/right.png";
-import {scrollToTop} from '../../utils/utils'
+import AddNonMedReq from '../Add_Non_Med_Req'
+import { scrollToTop } from '../../utils/utils'
 
 const ParentAccordion = ({ items }) => {
   const [accordion, setaccordion] = useState(-1)
@@ -10,6 +11,17 @@ const ParentAccordion = ({ items }) => {
     scrollToTop(id)
     setaccordion(idx)
   }
+
+  const renderElement = (heading) => {
+   switch (heading) {
+    case 'Add Non-Medical':
+     return  <AddNonMedReq/>
+      break;
+    default:
+      break;
+   }
+  }
+
   return (
     <ul>
       {
@@ -55,11 +67,14 @@ const ParentAccordion = ({ items }) => {
 
               </div>
               {isActive && <div className={`acc-show-content`}>
-                {
+                {/* {
                   !item.contentStatus ?
                     <div className='acc-dummy-content'>{item.dummyContent}</div>
                     :
                     <SuperSubAccordion items={item.content} />
+                } */}
+                {
+                    renderElement(item.heading)
                 }
               </div>
               }
