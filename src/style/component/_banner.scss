@@ -1,11 +1,12 @@
 .banner-container {
     background: $blue;
-    padding: 1em;
+    padding: 10px;
     border-radius: 15px;
     position: relative;
-margin-top: 1em;
+    margin-top: 1em;
+
     @include mquery(ipad) {
-        padding: 1.5em;
+        padding: 20px;
     }
 }
 
@@ -40,7 +41,12 @@ margin-top: 1em;
         .banner-proName {
             font-size: $font-14;
             color: $white;
-            font-family: $font-family-OpenSanaRegular;
+            font-family: $font-family-OpenSanaBold;
+            background: $red3;
+            text-align: center;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 1em;
 
             @include mquery(desk) {
                 font-size: $font-18;
@@ -51,22 +57,35 @@ margin-top: 1em;
             list-style-type: none;
             display: flex;
             flex-wrap: wrap;
-            width: 70%;
+            justify-content: space-between;
+            // width: 70%;
+        }
+
+        .dsclmr {
+            font-size: $font-10;
+            font-family: $font-family-OpenSanaRegular;
+            color: $white;
+            span {
+                display: inline-block;
+                padding-right: 15px;
+            }
         }
 
         @include mquery(desk) {
-            padding: 2.5em 1em 0 1.5em;
+            padding: 1.5em 1em 0 0.8em;
+            width: 67%;
         }
     }
 
 }
 
 .banner-card {
-    width: 40%;
-    margin: 0.2em;
+    width: 49%;
+    margin-bottom: 8px;
     background: #ffffff;
     padding: 0.5em;
     border-radius: 15px;
+    height: 53px;
 
     p {
         text-align: center;
@@ -93,24 +112,27 @@ margin-top: 1em;
     }
 
     @include mquery(ipad) {
-        width: 45%;
-        margin: 0.5em;
-        padding: 1em;
+        margin-bottom: 15px;
+        height: 85px;
     }
 }
 
 .banner-img {
-    right: 0;
-    position: absolute;
-    bottom: -12px;
-    img{
-        width: 100%;
-        height: 10em;
-        @include mquery(desk){
-        height: 22em;
+    display: none;
+
+    @include mquery(desk) {
+        position: absolute;
+        bottom: -12px;
+        display: block;
+        height: 238px;
+        right: 2em;
+        bottom: 2em;
+        width: 223px;
+
+        img {
+            width: 100%;
+            height: 100%;
         }
+
     }
-    @include mquery(desk){
-        bottom: -18px;
-        }
 }
