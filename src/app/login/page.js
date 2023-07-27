@@ -38,9 +38,8 @@ const Login = () => {
 
 
   const clickHandler = () => {
-    console.log('proposalNo', proposalNo)
-    console.log('dob', DOB + ' ' + '00:00:00')
-    debugger
+    // console.log('proposalNo', proposalNo)
+    // console.log('dob', DOB + ' ' + '00:00:00')
     Axios({
       method: "post",
       mode: 'no-cors',
