@@ -2,9 +2,6 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import dwnArrow from "../../Assets/images/dwn-arw.png";
 import NonMedForm from './form.js'
-import { questions } from '../../data'
-import Input from '@/component/Input'
-
 
 const Health = ({ data }) => {
   const [openAcc, setOpenAcc] = useState(null)
@@ -34,8 +31,6 @@ const Health = ({ data }) => {
                 {
                   renderElement(item.formName)
                 }
-                {/* <div>{item.title}</div> */}
-
               </div>
               : ''
             }

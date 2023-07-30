@@ -24,8 +24,6 @@ import img_13 from "../Assets/images/13.png";
 import activeImg_15 from "../Assets/images/15active.png";
 import img_15 from "../Assets/images/15.png";
 
-
-
 // Banner Data
 
 export const bannerData = [
@@ -81,7 +79,7 @@ export const applicationData = [
     },
     {
         id: 2,
-        heading: 'Filling Form',
+        heading: 'Form Filling',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: '',
@@ -117,7 +115,6 @@ export const applicationData = [
                         title: 'Health Questionnaires section',
                         subTitle: 'Draft'
                     },
-
                 ]
             },
             {
@@ -190,7 +187,7 @@ export const applicationData = [
     },
     {
         id: 4,
-        heading: 'Add Non-Medical',
+        heading: 'Additional Non-Medical Requirements',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -232,7 +229,7 @@ export const applicationData = [
     },
     {
         id: 6,
-        heading: 'Payment Requirement',
+        heading: 'Payment Required',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -316,7 +313,28 @@ export const applicationData = [
     },
     {
         id: 10,
-        heading: 'Policy Status',
+        heading: 'Policy Decision',
+        subHeading: 'Yet to start',
+        completed: false,
+        dummyContent: 'Dummy Content',
+        contentStatus: false,
+        active_icon: activeImg_15,
+        img: img_15,
+        content: [
+            {
+                id: 1,
+                heading: '',
+                subHeading: '',
+                img: '',
+                dummyContent: '',
+                contentStatus: false,
+                subContent: []
+            },
+        ]
+    },
+    {
+        id: 11,
+        heading: 'Policy Related Document',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -408,6 +426,8 @@ export const questionnaireData = [
     }
 
 ]
+
+//form data
 
 export const questionnaireList = {
     "alcohol": [
@@ -1932,8 +1952,6 @@ export const questionnaireList = {
         },
     ],
 }
-
-
 
 // Download Document Data
 

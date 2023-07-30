@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
 import { questionnaireData } from '../../data'
-import Image from 'next/image'
-import dwnArrow from "../../Assets/images/dwn-arw.png";
 import Health from './Health'
-
+import Accordion2 from '../../component/Accordion/Accordion2';
 
 const AddNonMedReq = () => {
     const [openAccordion, setOpenAccordion] = useState(null)
@@ -26,27 +24,19 @@ const AddNonMedReq = () => {
                 questionnaireData.map(item => {
                     return (
                         <li className='' key={item.id} >
-                            <div className='acc-non-block' onClick={() => toggleAccordion(item.id)}>
-                                <div>{item.title}</div>
-                                <div className='acc-active-icon '>
-                                    <Image
-                                        className={openAccordion === item.id ? 'upArrow' : ''}
-                                        src={dwnArrow}
-                                        alt='icon'
-                                    />
-                                </div>
-                            </div>
+                            <Accordion2
+                            item={item}
+                            openAccordion={openAccordion}
+                            toggleAccordion={toggleAccordion}
+                            />
                             {openAccordion === item.id ?
                                 <div className='show'>
                                     {
                                         renderElement(item, item.title)
                                     }
-                                    {/* <div>{item.title}</div> */}
                                 </div>
                                 : ''
                             }
-
-
                         </li>
                     )
                 })
