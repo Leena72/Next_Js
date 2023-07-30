@@ -181,7 +181,7 @@
             left: 4px;
             border-radius: 50%;
             animation: circle 1s 1s infinite linear;
-            border: 1px solid $red2;
+            border: 1px solid $red4;
         }
     }
 
@@ -296,40 +296,45 @@
             }
         }
     }
+}
 
-    .acc-active-icon {
-        img {
-            width: 15px;
-            height: 15px;
+.acc-active-icon {
+    img {
+        width: 15px;
+        height: 15px;
 
-            @include mquery(ipad) {
-                width: 25px;
-                height: 25px;
-            }
+        @include mquery(ipad) {
+            width: 25px;
+            height: 25px;
         }
     }
 }
 
 // sub accordion
-.acc-show-sub-content{
+.acc-show-sub-content {
     padding: 1em 0;
 }
+
 .acc-active-sub-container {
     list-style-type: none;
+
     li {
         padding: 1em;
         background: $light-blue1;
         border-radius: 5px;
         margin-bottom: 1em;
+
         p {
             &:nth-of-type(1) {
                 font-size: $font-16;
                 color: $label-blue;
                 font-family: $font-family-OpenSanaSemiBold;
+
                 @include mquery(ipad) {
-                font-size: $font-18;
+                    font-size: $font-18;
                 }
             }
+
             &:nth-of-type(2) {
                 color: $red3;
                 font-size: $font-15;
@@ -337,8 +342,43 @@
                 font-style: italic;
             }
         }
-        &:last-of-type{
-            margin-bottom:0;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// add Non Med Accordion
+
+.addNonMedAcc {
+    list-style-type: none;
+
+    li {
+
+
+        .acc-non-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            padding: 8px;
+            border-radius: 5px;
+            background: #e0ebf5;
+
+            div {
+                &:nth-of-type(1) {
+                    font-size: $font-14;
+                    color: $label-blue;
+                    font-family: $font-family-OpenSanaBold;
+                }
+
+                &:nth-of-type(2) {}
+            }
+        }
+
+        &:last-of-type {
+            margin-bottom: 0;
         }
     }
 }

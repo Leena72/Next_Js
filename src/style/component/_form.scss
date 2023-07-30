@@ -1,0 +1,73 @@
+.form-container {
+    border: 1px solid;
+    padding: 1em;
+}
+
+.form-block {
+    border-bottom: 1px solid $label-blue;
+    // padding: 10px 0;
+}
+
+.form-declaration {
+    color: $black;
+    // padding-bottom: 20px;
+    font-size: $font-12;
+    font-family: $font-family-OpenSanaRegular;
+    @include mquery(desk){
+        font-size: $font-16;
+    }
+}
+
+.form-question {
+    font-size: $font-14;
+    color: $label-blue;
+    font-family: $font-family-OpenSanaSemiBold;
+    @include mquery(desk){
+        font-size: $font-16;
+    }
+}
+
+.form-answer {
+    textarea {
+        width: 100%;
+        border: 1px solid $grey8;
+        padding: 10px;
+        height: 80px;
+        font-size: $font-16;
+        color: $black;
+        border-radius: 10px;
+    }
+}
+
+.form-input {}
+
+.form-subBlock {}
+
+.form-btn {
+    text-align: center;
+    width: 90%;
+    margin: auto;
+
+    button {
+        width: 47%;
+        color: $white;
+        text-transform: uppercase;
+        font-size: $font-18;
+        border: none;
+        border-radius: 50px;
+        padding: 8px 10px;
+        font-family: $font-family-OpenSanaSemiBold;
+
+        &:nth-of-type(1) {
+            background: $red3;
+            margin-right: 10px;
+        }
+
+        &:nth-of-type(2) {
+            background: $label-blue;
+        }
+        @include mquery(desk){
+        font-size: $font-22;
+        }
+    }
+}
