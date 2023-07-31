@@ -32,6 +32,7 @@
     transition: all 0.3s ease-out;
     position: relative;
     border-radius: 5px;
+    width: 100%;
 
     @include mquery(desk) {
         padding: 1em 2em;
@@ -80,6 +81,7 @@
 .acc-item {
     display: flex;
     align-items: center;
+    width: 90%;
 }
 
 .acc-img {
@@ -343,6 +345,10 @@
             }
         }
 
+        &:first-of-type {
+            margin-top: 1em;
+        }
+
         &:last-of-type {
             margin-bottom: 0;
         }
@@ -371,6 +377,10 @@
                     font-size: $font-14;
                     color: $label-blue;
                     font-family: $font-family-OpenSanaBold;
+
+                    @include mquery(desk) {
+                        font-size: $font-20;
+                    }
                 }
 
                 &:nth-of-type(2) {}
@@ -380,5 +390,35 @@
         &:last-of-type {
             margin-bottom: 0;
         }
+    }
+}
+
+.nonMedListBlock {
+    list-style-type: none;
+    width: 97%;
+    margin: auto;
+}
+
+.non-block-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    padding: 8px;
+    border-radius: 5px;
+    background: #e0ebf5;
+
+    div {
+        &:nth-of-type(1) {
+            font-size: $font-14;
+            color: $label-blue;
+            font-family: $font-family-OpenSanaRegular;
+
+            @include mquery(desk) {
+                font-size: $font-20;
+            }
+        }
+
+        &:nth-of-type(2) {}
     }
 }

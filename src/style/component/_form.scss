@@ -1,19 +1,26 @@
 .form-container {
-    border: 1px solid;
-    padding: 1em;
+    border-bottom: 1px solid $label-blue;
+    padding: 1.25em;
+    position: relative;
+    top: -10px;
+    border-left: 1px solid $label-blue;
+    border-right: 1px solid $label-blue;
+    border-radius: 3px;
+    cursor: default;
 }
 
 .form-block {
     border-bottom: 1px solid $label-blue;
-    // padding: 10px 0;
+    padding-bottom: 10px;
 }
 
 .form-declaration {
     color: $black;
-    // padding-bottom: 20px;
+    padding-bottom: 16px;
     font-size: $font-12;
     font-family: $font-family-OpenSanaRegular;
-    @include mquery(desk){
+
+    @include mquery(desk) {
         font-size: $font-16;
     }
 }
@@ -22,7 +29,10 @@
     font-size: $font-14;
     color: $label-blue;
     font-family: $font-family-OpenSanaSemiBold;
-    @include mquery(desk){
+    padding: 10px 0;
+    margin-bottom: 10px;
+
+    @include mquery(desk) {
         font-size: $font-16;
     }
 }
@@ -32,10 +42,14 @@
         width: 100%;
         border: 1px solid $grey8;
         padding: 10px;
-        height: 80px;
+        height: 50px;
         font-size: $font-16;
         color: $black;
         border-radius: 10px;
+
+        @include mquery(desk) {
+            height: 80px;
+        }
     }
 }
 
@@ -45,8 +59,9 @@
 
 .form-btn {
     text-align: center;
-    width: 90%;
+    width: 100%;
     margin: auto;
+    padding: 1em 0;
 
     button {
         width: 47%;
@@ -55,7 +70,7 @@
         font-size: $font-18;
         border: none;
         border-radius: 50px;
-        padding: 8px 10px;
+        padding: 14px 10px;
         font-family: $font-family-OpenSanaSemiBold;
 
         &:nth-of-type(1) {
@@ -66,8 +81,14 @@
         &:nth-of-type(2) {
             background: $label-blue;
         }
-        @include mquery(desk){
-        font-size: $font-22;
+
+        @include mquery(desk) {
+            font-size: $font-22;
         }
+    }
+
+    @include mquery(desk) {
+        width: 53%;
+        padding: 2em 0;
     }
 }

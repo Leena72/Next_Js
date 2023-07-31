@@ -12,11 +12,11 @@ const Health = ({ data }) => {
     return <NonMedForm formName={formName} />
   }
   return (
-    <ul>
+    <ul className='nonMedListBlock'>
       {data.map(item => {
         return (
-          <li key={item.id} >
-            <div className='acc-non-block' onClick={() => toggleAccordion(item.id)}>
+          <li className='nonMedList' key={item.id} >
+            <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
               <div>{item.title}</div>
               <div className='acc-active-icon '>
                 <Image

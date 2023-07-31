@@ -60,7 +60,7 @@ export const applicationData = [
         id: 1,
         heading: 'Quote Generated',
         subHeading: 'Completed: 26 JUNE, 2023 | 09:06 PM',
-        completed: true,
+        completed: false,
         dummyContent: 'Content here',
         contentStatus: false,
         active_icon: activeImg_1,

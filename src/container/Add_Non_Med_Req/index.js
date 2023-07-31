@@ -23,7 +23,7 @@ const AddNonMedReq = () => {
             {
                 questionnaireData.map(item => {
                     return (
-                        <li className='' key={item.id} >
+                        <li className='addNonMedAccList' key={item.id} >
                             <Accordion2
                             item={item}
                             openAccordion={openAccordion}
