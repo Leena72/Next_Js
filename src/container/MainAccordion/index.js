@@ -3,8 +3,9 @@ import Image from 'next/image'
 import right from "../../Assets/images/right.png";
 import AddNonMedReq from '../Add_Non_Med_Req'
 import FormFilling from '../FormFilling'
+import Accordion3 from '../../component/Accordion/Accordion3';
 
-const MainAccordion = ({ data }) => {
+const MainAccordion = ({ data, downloadData }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
 
   const renderElement = (data, heading) => {
@@ -30,7 +31,7 @@ const MainAccordion = ({ data }) => {
       case 'Policy Decision':
         return <div>Policy Decision</div>
       case 'Policy Related Document':
-        return <div>Policy Related Document</div>
+        return <Accordion3 data={downloadData}/>
       default:
         break;
     }
