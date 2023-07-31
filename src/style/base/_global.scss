@@ -29,6 +29,11 @@ input:focus {
     box-shadow: 0px 0px 5px -2px $blue
 }
 
+textarea{
+    overflow: auto;
+    resize: vertical;
+}
+
 // button
 .blue-button {
     background: $blue;
