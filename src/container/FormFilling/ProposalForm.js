@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-const SubAccordion = ({ items }) => {
+const ProposalForm = ({data}) => {
     return (
         <ul className='acc-active-sub-container'>
             {
-                items.map((item,idx) => (
+                data.map((item, idx) => (
                     <li key={idx}>
                         <p>{item.title}</p>
                         <p>{item.subTitle}</p>
@@ -15,4 +15,4 @@ const SubAccordion = ({ items }) => {
     )
 }
 
-export default SubAccordion
+export default ProposalForm
