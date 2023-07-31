@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import withAuth from '../../utils/withAuth';
 import Banner from '../../container/Banner';
-import MainAccordion from '../../container/Accordion/MainAccordion';
+import MainAccordion from '../../container/MainAccordion';
 import DownloadList from '../../component/DownloadList';
 import { applicationData, downloadData } from '../../data'
 
