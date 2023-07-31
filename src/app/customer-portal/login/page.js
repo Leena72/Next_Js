@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Axios from "axios";
 import Image from 'next/image'
@@ -18,10 +18,15 @@ const Login = () => {
   const [DOB, setDOB] = useState('')
   const [errProposal, seterrProposal] = useState(false)
   const [errDOB, seterrDOB] = useState(false)
-  const [message, setMessage] = useState('')
-  const [showStatus, setshowStatus] = useState(false)
+  const [disabled, setdisabled] = useState(true)
   const dispatch = useDispatch()
 
+  useEffect(() => {
+   if(proposalNo.length!==10){
+
+   }
+  }, [proposalNo])
+  
   const proposalHandler = (e) => {
     let val = e.target.value
     if (!isNaN(val)) {
@@ -31,15 +36,26 @@ const Login = () => {
       setProposalNo(e.target.value)
     }
   }
+
   const dobHandler = (e) => {
     let val = e.target.value;
+    console.log('length',val.length)
+    if (val.length >= 11) {
+      return false
+    }
+    if (val.length === 10) {
+      seterrDOB(false)
+    }
+    else {
+      seterrDOB(true)
+    }
     setDOB(val.replace(/((\d{4})(?=[0-9]))/g, "$1-").replace(/(((\d{4})-(\d{2}))(?=[0-9]))/g, "$1-").slice(0, 10))
   }
 
 
   const clickHandler = () => {
-    console.log('proposalNo', proposalNo)
-    console.log('dob', DOB + ' ' + '00:00:00')
+    // console.log('proposalNo', proposalNo)
+    // console.log('dob', DOB + ' ' + '00:00:00')
     Axios({
       method: "post",
       mode: 'no-cors',
@@ -60,19 +76,16 @@ const Login = () => {
           localStorage.setItem('creationDate', res.data.body.creationDate)
           localStorage.setItem('expirationDate', res.data.body.expirationDate)
           localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
-          // toaster('success', res.data.message)
-          setMessage(res.data.message)
-          setshowStatus(false)
+          toaster('success', res.data.message)
           router.push('/dashboard');
         }
         else {
           // router.push('/login');
-          // toaster('error', res.data.message)
-          setshowStatus(true)
-          setMessage(res.data.message)
+          toaster('error', res.data.message)
         }
       })
   }
+  // console.log('errDOB',errDOB.length)
   return (
     <div className='login-container'>
       <div className='login-header'>
@@ -107,14 +120,14 @@ const Login = () => {
             changeHandler={dobHandler}
           />
         </div>
-        {showStatus && <p className='loginStatus'>{message}</p>}
+        {errDOB && <span>Please enter valid DOB. </span>}
         <div className='login-button'>
           <Button
             className='blue-button'
             clickHandler={clickHandler}
             type='button'
             buttonText={'Track Application'}
-            disabled={proposalNo.length === 0 || DOB.length === 0}
+            disabled={disabled}
           />
         </div>
       </div>

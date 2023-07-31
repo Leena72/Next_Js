@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import dwnImg from "../Assets/images/pdf-dwn-arrow.png";
-const DownloadList = ({data}) => {
+import dwnImg from "../../Assets/images/pdf-dwn-arrow.png";
+const Accordion3 = ({data}) => {
     return (
         <ul className='doc-container'>
             {data.map((item) => (
@@ -25,4 +25,4 @@ const DownloadList = ({data}) => {
     )
 }
 
-export default DownloadList
+export default Accordion3
