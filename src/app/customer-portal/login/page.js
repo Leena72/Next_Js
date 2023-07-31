@@ -4,12 +4,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Axios from "axios";
 import Image from 'next/image'
-import { authenticate } from '../../utils/auth';
 import { useRouter } from 'next/navigation';
-import { toaster } from "../../utils/toaster";
-import Input from '../../component/Input'
-import Button from '../../component/Button'
-import loginImg from "../../Assets/images/prfress_img.png";
+import { toaster } from "../../../utils/toaster";
+import Input from '../../../component/Input'
+import Button from '../../../component/Button'
+import loginImg from "../../../Assets/images/prfress_img.png";
 
 
 const Login = () => {
