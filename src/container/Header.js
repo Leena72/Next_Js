@@ -21,7 +21,7 @@ const Header = (props) => {
             {
               islogin &&
                 <div className='header-content'>
-                    <p>Proposal Number</p>
+                    {/* <p>Proposal Number</p> */}
                     {/* <p>{123456}</p> */}
                 </div>
             }
