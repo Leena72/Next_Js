@@ -52,6 +52,7 @@ textarea{
         background: $grey1;
         cursor: not-allowed;
     }
+
     @include mquery(desk) {
         font-size: $font-18;
     }
@@ -59,13 +60,27 @@ textarea{
 
 // show - hide
 
-.hide,.inactive{
+.hide,
+.inactive {
     display: none;
 }
-.show,.active{
+
+.show,
+.active {
     display: block;
 }
 
-.upArrow{
+.upArrow {
     transform: rotate(180deg);
+}
+
+//
+.Toastify__toast--error {
+    background-color: #f8ebee !important;
+    color: #000 !important;
+}
+
+.Toastify__toast--success {
+    background-color: #f3f9ec !important;
+    color: #000 !important;
 }
