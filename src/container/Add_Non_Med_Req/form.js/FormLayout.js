@@ -48,7 +48,7 @@ const Layout1 = ({formData}) => {
             <div className='form-question'>{item.heading}</div>
             {
               item.subQuestions.map(ele => (
-                <div className='form-quesAns'>
+                <div className='form-quesAns' key={ele.id}>
                   <div className='form-question'>{ele.question}</div>
                   <div className='form-answer'><textarea id={ele.id} /></div>
                 </div>
@@ -74,7 +74,7 @@ const Layout2 = ({formData}) => {
     {
       formData.map(item => {
         return (
-          <div className='form-block'>
+          <div className='form-block' key={item.id}>
             <div className='form-declaration'>{item.declaration}</div>
             <div className='form-quesAns'>
               <div className='form-question'>{item.question}</div>
@@ -82,7 +82,7 @@ const Layout2 = ({formData}) => {
             </div>
             {
               item.subQuestions.map(ele => (
-                <div className='form-quesAns'>
+                <div className='form-quesAns' key={ele.id}>
                   <div className='form-question'>{ele.question}</div>
                   <div className='form-answer'><textarea id={ele.id} /></div>
                 </div>
