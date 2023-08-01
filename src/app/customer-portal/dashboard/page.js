@@ -1,12 +1,12 @@
 'use client'
-import React, { useState } from 'react'
+import React from 'react'
 import withAuth from '../../../utils/withAuth';
 import Banner from '../../../container/Banner';
 import MainAccordion from '../../../container/MainAccordion';
 import { applicationData, downloadData } from '../../../data'
 
 const Dashboard = () => {
-    const [data, setData] = useState(applicationData)
+    const data=applicationData
     return (
         <div className='dashboard-container'>
             <Banner />

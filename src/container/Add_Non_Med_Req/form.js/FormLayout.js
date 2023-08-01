@@ -43,7 +43,7 @@ const Layout1 = ({formData}) => {
     {
       formData.map(item => {
         return (
-          <div className='form-block'>
+          <div className='form-block' key={item.id}>
             <div className='form-declaration'>{item.declaration}</div>
             <div className='form-question'>{item.heading}</div>
             {
