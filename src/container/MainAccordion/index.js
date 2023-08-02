@@ -4,6 +4,7 @@ import right from "../../Assets/images/right.png";
 import AddNonMedReq from '../Add_Non_Med_Req'
 import FormFilling from '../FormFilling'
 import Accordion3 from '../../component/Accordion/Accordion3';
+import CounterPage from '../counterPage';
 
 const MainAccordion = ({ data, downloadData }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
@@ -19,7 +20,7 @@ const MainAccordion = ({ data, downloadData }) => {
       case 'Additional Non-Medical Requirements':
         return <AddNonMedReq />
       case 'Revised Offer':
-        return <div>Revised Offer</div>
+        return <CounterPage/>
       case 'Payment Required':
         return <div>Payment Required</div>
       case 'Quality Check':
