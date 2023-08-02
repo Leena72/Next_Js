@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../../component/Button'
 
-const Consent = () => {
+const Consent = ({}) => {
     const clickHandler = () => { }
     return (
         <div className='consent-container'>

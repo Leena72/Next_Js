@@ -146,7 +146,7 @@ export const applicationData = [
             },
             {
                 id: 5,
-                heading: 'Basic Document Upload',
+                heading: 'Document Upload',
                 subHeading: 'Yet to start',
                 img: img_5,
                 dummyContent: '3',
@@ -1986,5 +1986,54 @@ export const downloadData = [
         title: 'Payment Receipt',
         msg: '',
     },
+]
+
+// consent data
+
+export const consentData = [
+    {
+        id: 1,
+        title: 'Proposed'
+    },
+    {
+        id: 2,
+        title: 'Insured'
+    }
+]
+
+// document upload
+
+export const uploadData = [
+    {
+        id: 1, upload: true ,title: 'Age Proof'
+    },
+    {
+        id: 2, upload: true,title: 'Identity Proof'
+    },
+    {
+        id: 3, upload: true ,title: 'Cash Authority Letter'
+    },
+    {
+        id: 4, upload: false ,title: 'Bank Statement'
+    },
+    {
+        id: 5, upload: false ,title: 'ITR'
+    },
+    {
+        id: 6, upload: false ,title: 'Salary Slip'
+    },
+]
+export const docData = [
+    {
+        id: 1, title: 'Financial Document'
+    }
+]
+export const viewData = [
+    {
+        id: 1, title: 'ICIC Bank'
+    },
+    {
+        id: 2, title: 'HDFC Bank'
+    }
 ]
 
