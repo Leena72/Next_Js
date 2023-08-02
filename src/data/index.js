@@ -332,27 +332,6 @@ export const applicationData = [
             },
         ]
     },
-    {
-        id: 11,
-        heading: 'Policy Related Document',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        active_icon: activeImg_15,
-        img: img_15,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
 ]
 
 // add non med req 
