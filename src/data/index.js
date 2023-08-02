@@ -229,6 +229,27 @@ export const applicationData = [
     },
     {
         id: 6,
+        heading: 'Consent for change in the application details',
+        subHeading: 'Yet to start',
+        completed: false,
+        dummyContent: 'Dummy Content',
+        contentStatus: false,
+        active_icon: activeImg_9,
+        img: img_9,
+        content: [
+            {
+                id: 1,
+                heading: '',
+                subHeading: '',
+                img: '',
+                dummyContent: '',
+                contentStatus: false,
+                subContent: []
+            },
+        ]
+    },
+    {
+        id: 7,
         heading: 'Payment Required',
         subHeading: 'Yet to start',
         completed: false,
@@ -249,7 +270,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 7,
+        id: 8,
         heading: 'Quality Check',
         subHeading: 'Yet to start',
         completed: false,
@@ -270,7 +291,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 8,
+        id: 9,
         heading: 'Medical Risk Verification',
         subHeading: 'Yet to start',
         completed: false,
@@ -291,7 +312,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 9,
+        id: 10,
         heading: 'Financial and Medical Risk Verification',
         subHeading: 'Yet to start',
         completed: false,
@@ -312,7 +333,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 10,
+        id: 11,
         heading: 'Policy Decision',
         subHeading: 'Yet to start',
         completed: false,

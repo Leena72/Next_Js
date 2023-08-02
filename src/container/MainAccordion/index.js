@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
 import right from "../../Assets/images/right.png";
-import AddNonMedReq from '../Add_Non_Med_Req'
-import FormFilling from '../FormFilling'
+import AddNonMedReq from '../Add_Non_Med_Req';
+import FormFilling from '../FormFilling';
+import Consent from '../Consent';
 
 const MainAccordion = ({ data, downloadData }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
@@ -19,6 +20,8 @@ const MainAccordion = ({ data, downloadData }) => {
         return <AddNonMedReq />
       case 'Revised Offer':
         return <div>Revised Offer</div>
+      case 'Consent for change in the application details':
+        return <Consent/>
       case 'Payment Required':
         return <div>Payment Required</div>
       case 'Quality Check':

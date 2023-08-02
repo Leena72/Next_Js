@@ -58,6 +58,25 @@ textarea{
     }
 }
 
+.activeBtn{
+    background: $acc-blue;
+    color: $label-blue;
+    font-size: $font-14;
+    text-align: center;
+    padding: 3px 10px;
+    border-radius: 10px;
+    border: 1px solid $label-blue;
+    cursor: pointer;
+    font-family: $font-family-OpenSanaSemiBold;
+    @include mquery(desk){
+    font-size: $font-20;
+    }
+    &:hover{
+        color: $white;
+    background: $label-blue;
+    }
+}
+
 // show - hide
 
 .hide,
