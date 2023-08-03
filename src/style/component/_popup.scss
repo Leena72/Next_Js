@@ -1,0 +1,74 @@
+.overlay {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(71, 86, 104, 0.8);
+    z-index: 99999;
+    // display: none;
+    .vrtclcntr_bx {
+        float: left;
+        width: 100%;
+        height: 100%;
+        display: table;
+        position: relative;
+        z-index: 70;
+        .vrtclcntr_bxinr {
+            display: table-cell;
+            vertical-align: middle;
+            .dcmnt_upload_popupinr {
+                margin: 0 auto;
+                width: 90%;
+                max-width: 600px;
+                border-radius: 30px;
+                position: relative;
+                padding: 20px;
+                background: #fff;
+                overflow: hidden;
+                color: $blue;
+                // min-height: 15rem;
+                .content-box{
+                    padding: 20px 0px;
+                }
+                .btn{
+                    display: flex;
+                    justify-content: center;
+                    cursor: none;
+                    border: none;
+                
+                .okbtnbx{
+                    display: inline-block;
+                    background: none;
+                    border: 0px;
+                    width: 100px;
+                    border-radius: 5px;
+                    padding: 8px 0px 8px 0px;
+                    color: #000;
+                    font-size: 16px;
+                    font-weight: 600;
+                    text-decoration: none;
+                    border: 1px solid $blue;
+                    text-align: center;
+                }
+            } 
+                .close_popup {
+                    position: absolute;
+                    right: 20px;
+                    top: 15px;
+                    width: 18px;
+                    img{
+                        height: 1.2rem;
+                        width: 100%;
+                    }
+                }
+                .hdng_bx {
+                    float: left;
+                    width: 100%;
+                    margin-bottom: 10px;
+                    padding-top: 10px;
+                }
+            }
+        }
+    }
+}
