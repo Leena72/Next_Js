@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Accordion1 from '../../component/Accordion/Accordion1';
 import ProposalForm from './ProposalForm';
 import DocumentUpload from '../Doc_Upload';
+import Payment from '@/component/Payment';
 
 const FormFilling = ({ data }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
@@ -17,9 +18,11 @@ const FormFilling = ({ data }) => {
             case 'Customer Consent':
                 return <div>Customer Consent</div>
             case 'Payment':
-                return <div>Payment</div>
+                return <Payment showOffline={true} isText={'Online Payment'}/>
             case 'Document Upload':
                 return <DocumentUpload/>
+            case 'Basic Document Upload':
+                return <div>Basic Document Upload</div>
             case 'Proposal Submission':
                 return <div>Proposal Submission</div>
             default:
