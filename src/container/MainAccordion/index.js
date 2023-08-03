@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image'
 import right from "../../Assets/images/right.png";
-import AddNonMedReq from '../Add_Non_Med_Req'
-import FormFilling from '../FormFilling'
+import AddNonMedReq from '../Add_Non_Med_Req';
+import FormFilling from '../FormFilling';
+import Consent from '../Consent';
 import Accordion3 from '../../component/Accordion/Accordion3';
+import CounterPage from '../counterPage';
+import Payment from '@/component/Payment';
 
 const MainAccordion = ({ data, downloadData }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
@@ -19,9 +22,11 @@ const MainAccordion = ({ data, downloadData }) => {
       case 'Additional Non-Medical Requirements':
         return <AddNonMedReq />
       case 'Revised Offer':
-        return <div>Revised Offer</div>
+        return <CounterPage/>
+      case 'Consent for change in the application details':
+        return <Consent/>
       case 'Payment Required':
-        return <div>Payment Required</div>
+        return <Payment/>
       case 'Quality Check':
         return <div>Quality Check</div>
       case 'Medical Risk Verification':
@@ -30,8 +35,6 @@ const MainAccordion = ({ data, downloadData }) => {
         return <div>Financial and Medical Risk Verification</div>
       case 'Policy Decision':
         return <div>Policy Decision</div>
-      case 'Policy Related Document':
-        return <Accordion3 data={downloadData}/>
       default:
         break;
     }

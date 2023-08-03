@@ -15,46 +15,61 @@ const Login = () => {
   const router = useRouter();
   const [proposalNo, setProposalNo] = useState('')
   const [DOB, setDOB] = useState('')
-  const [errProposal, seterrProposal] = useState(false)
-  const [errDOB, seterrDOB] = useState(false)
+  const [PAN, setPAN] = useState('')
+  const [isDob, setIsDob] = useState(false)
   const [disabled, setdisabled] = useState(true)
   const dispatch = useDispatch()
 
   useEffect(() => {
-   if(proposalNo.length!==10){
+    const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
+    if ((DOB.length === 10 || panReg.test(PAN)) && (proposalNo.length >= 10)) {
+      setdisabled(false)
+    }
+    else {
+      setdisabled(true)
+    }
+  }, [DOB, PAN, proposalNo])
 
-   }
-  }, [proposalNo])
-  
   const proposalHandler = (e) => {
     let val = e.target.value
     if (!isNaN(val)) {
-      if (val.length >= 11) {
+      if (val.length >= 21) {
         return false
       }
       setProposalNo(e.target.value)
-    }
   }
+}
 
-  const dobHandler = (e) => {
+  const dobPanHandler = (e) => {
     let val = e.target.value;
-    console.log('length',val.length)
-    if (val.length >= 11) {
-      return false
-    }
-    if (val.length === 10) {
-      seterrDOB(false)
+    const reg = /^[A-Za-z]/
+    if (reg.test(val.charAt(0))) {
+      setIsDob(false)
+      let value = val.toUpperCase()
+      if (val.length >= 11) {
+        return false
+      }
+      setPAN(value)
     }
     else {
-      seterrDOB(true)
+      if (val.length >= 11) {
+        return false
+      }
+      setIsDob(true)
+      let abcd = transformDateFormat(val)
+      setDOB(abcd)
     }
-    setDOB(val.replace(/((\d{4})(?=[0-9]))/g, "$1-").replace(/(((\d{4})-(\d{2}))(?=[0-9]))/g, "$1-").slice(0, 10))
+
   }
 
+  const transformDateFormat = (dateStr) => {
+    const pattern = /^(\d{2})(\d{2})(\d{4})$/;
+    const replacement = '$1-$2-$3';
+    const transformedDate = dateStr.replace(pattern, replacement);
+    return transformedDate;
+  }
 
   const clickHandler = () => {
-    // console.log('proposalNo', proposalNo)
-    // console.log('dob', DOB + ' ' + '00:00:00')
     Axios({
       method: "post",
       mode: 'no-cors',
@@ -63,8 +78,6 @@ const Login = () => {
         "Content-Type": "application/json",
       },
       data: {
-        // "input1": "3107423903",
-        // "input2": "2002-12-12 00:00:00"
         "input1": proposalNo,
         "input2": DOB + ' ' + '00:00:00'
       }
@@ -76,15 +89,14 @@ const Login = () => {
           localStorage.setItem('expirationDate', res.data.body.expirationDate)
           localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
           toaster('success', res.data.message)
-          router.push('/dashboard');
+          router.push('/customer-portal/dashboard');
         }
         else {
-          // router.push('/login');
           toaster('error', res.data.message)
         }
       })
   }
-  // console.log('errDOB',errDOB.length)
+
   return (
     <div className='login-container'>
       <div className='login-header'>
@@ -101,25 +113,23 @@ const Login = () => {
       </div>
       <div className='login-block'>
         <div className='login-content'>
-          <label>Propasal No./Quotation No./Policy No.</label>
+          <label>Proposal No./Quotation No./Policy No.</label>
           <Input
             type='tel'
             value={proposalNo}
             name='proposalNo'
             changeHandler={proposalHandler}
           />
-          {errProposal && <span>Please enter valid Propasal No./Quotation No./Policy No. </span>}
         </div>
         <div className='login-content'>
-          <label>DOB/PAN</label>
+          <label>Date of Birth/PAN</label>
           <Input
             type='text'
-            name='dob'
-            value={DOB}
-            changeHandler={dobHandler}
+            name={isDob ? 'dob' : 'pan'}
+            value={isDob ? DOB : PAN}
+            changeHandler={dobPanHandler}
           />
         </div>
-        {errDOB && <span>Please enter valid DOB. </span>}
         <div className='login-button'>
           <Button
             className='blue-button'
