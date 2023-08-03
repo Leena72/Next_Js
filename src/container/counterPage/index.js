@@ -1,5 +1,5 @@
-import Input from '@/component/Input'
 import React, { useState } from 'react';
+import Input from '@/component/Input'
 import OTPInput from '../OTPInput';
 import otpCross from "../../Assets/images/otp-cross-icon.png"
 import thankYou from "../../Assets/images/thank-you-bg.png";
