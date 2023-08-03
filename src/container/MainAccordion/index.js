@@ -6,7 +6,7 @@ import FormFilling from '../FormFilling';
 import Consent from '../Consent';
 import Accordion3 from '../../component/Accordion/Accordion3';
 import CounterPage from '../counterPage';
-import Payment from '@/component/Payment';
+import Payment from '../../container/Payment';
 
 const MainAccordion = ({ data, downloadData }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
