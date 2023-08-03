@@ -21,7 +21,7 @@ export const UploadDoc = ({ data,key }) => {
     )
 }
 
-export const Document = ({ data }) => {
+export const Document = ({ data,key }) => {
     return (
         <div className='upl-doc-container upl-doc' key={key}>
             <div className='upl-heading'>{data.title}</div>
@@ -29,7 +29,7 @@ export const Document = ({ data }) => {
     )
 }
 
-export const ViewDoc = ({ data }) => {
+export const ViewDoc = ({ data,key }) => {
     return (
         <div className='view-doc2-container' key={key}>
             <div className='view-heading'>{data.title}</div>
