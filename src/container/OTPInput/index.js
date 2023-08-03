@@ -20,7 +20,7 @@ export class OTPInput extends Component {
       this.timmer();
     }
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
     if (
       this.props.triggerTimer !== nextProps.triggerTimer &&
       nextProps.triggerTimer
