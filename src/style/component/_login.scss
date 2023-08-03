@@ -38,7 +38,7 @@
     }
 
     @include mquery(ipad) {
-        width: 50%;
+        width: 55%;
         margin: auto;
     }
 }
@@ -63,14 +63,15 @@
         }
 
         input {
-            padding: 1em;
             width: 100%;
-            border: 1px solid $light-blue;
-            border-radius: 3px;
             background: $light-blue;
             font-size: $font-16;
             color: $label-blue;
             font-family: $font-family-OpenSanaRegular;
+            border-radius: 10px;
+            padding: 7px 10px;
+            border: 0px;
+            height: 50px;
 
             @include mquery(desk) {
                 font-size: $font-18;
@@ -79,7 +80,7 @@
     }
 
     @include mquery(ipad) {
-        width: 40%;
+        width: 45%;
         margin: auto;
         padding: 5em 2em;
         height: auto;
