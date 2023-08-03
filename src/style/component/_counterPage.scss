@@ -123,17 +123,7 @@
         }
     }
 
-// overlay
-.overlay__popup_nw {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    z-index: 10;
-    display: none;
-  }
+
 //otp
 .header-otp-popup {
     display: none;

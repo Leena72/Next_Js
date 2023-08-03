@@ -21,7 +21,7 @@ const CounterPage = () => {
         setInputValue({
             [name]: value,
           });
-          if(value==='Accept the revised offer' || value=== 'Adjust the Sum Assured to match Existing Premium') setShowOtp(true)
+          if(value==='Accept the revised offer' || value=== 'Adjust the Sum Assured to match Existing Premium') {setShowOtp(true); setOverlay(true)}
           else setShowOtp(false)
           if(value==='Decline the revised offer') setDeclineCounter(true)
           else setDeclineCounter(false)
@@ -44,7 +44,6 @@ const CounterPage = () => {
         setShowThankyou(true)
         setShowOtp(false)
     }
-    console.log("klkl", inputValue, declineReason, showOtp)
   return (
     <div className='card-body'>
         <div className="rvsd_dwnld_outr">
@@ -114,10 +113,10 @@ const CounterPage = () => {
         {declineCounter && 
             <div className="box-wrap">
             <div className={`${reasonOne? 'declinebox-selected':'declinebox' }`}>
-              <p onClick={()=>{declineHandler(true, false); setShowOtp(false); setShowThankyou(true)}}>Not Interested to buy the policy</p>
+              <p onClick={()=>{declineHandler(true, false);  setShowOtp(true) ; setOverlay(true)}}>Not Interested to buy the policy</p>
             </div>
             <div className={`${reasonTwo? 'declinebox-selected':'declinebox' }`}>
-              <p onClick={()=>{declineHandler(false, true); setShowOtp(true)}}>Request for reconsidering the revised offer</p>
+              <p onClick={()=>{declineHandler(false, true); setShowOtp(true); setOverlay(true)}}>Request for reconsidering the revised offer</p>
             </div>
           </div>
         }
@@ -128,7 +127,7 @@ const CounterPage = () => {
             <h2> OTP </h2>
           </div>
           <div className="header-reject-popup-right">
-          <Image onClick={()=>setShowOtp(false)} src={otpCross} alt="otp-cross-icon"/> </div>
+          <Image onClick={()=>{setShowOtp(false); setOverlay(false)}} src={otpCross} alt="otp-cross-icon"/> </div>
         </div>
         
           <OTPInput
@@ -152,7 +151,7 @@ const CounterPage = () => {
         <div className={`popupcmn_otpthnks popupcmn ${showThankyou && 'active'}`}>
     <div className="header-otp-popup-head-thank-you">
       <div className="header-reject-popup-right">
-      <Image onClick={()=>setShowThankyou(false)} src={otpCross} alt="otp-cross-icon"/> </div>
+      <Image onClick={()=>{setShowThankyou(false);setOverlay(false)}} src={otpCross} alt="otp-cross-icon"/> </div>
     </div>
     <div className="header-otp-popup-content pt-4 pl-5 pr-5 pb-3">
       <div className="row">
