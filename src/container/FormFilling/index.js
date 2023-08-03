@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Accordion1 from '../../component/Accordion/Accordion1';
 import ProposalForm from './ProposalForm';
 import DocumentUpload from '../Doc_Upload';
-import Payment from '@/component/Payment';
+import Payment from '../../container/Payment';
 
 const FormFilling = ({ data }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
