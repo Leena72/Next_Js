@@ -234,8 +234,8 @@ export const applicationData = [
         completed: false,
         dummyContent: 'Dummy Content',
         contentStatus: false,
-        active_icon: activeImg_9,
-        img: img_9,
+        active_icon: activeImg_12,
+        img: img_12,
         content: [
             {
                 id: 1,
@@ -1993,7 +1993,7 @@ export const downloadData = [
 export const consentData = [
     {
         id: 1,
-        title: 'Proposed'
+        title: 'Proposer'
     },
     {
         id: 2,
