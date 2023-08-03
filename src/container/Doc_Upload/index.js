@@ -11,7 +11,7 @@ const DocumentUpload = () => {
     }
     const renderElement = (title) => {
         switch (title) {
-            case 'Proposed':
+            case 'Proposer':
                 return <ProposedAcc />
             case 'Insured':
                 return <ProposedAcc />
