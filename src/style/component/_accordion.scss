@@ -45,15 +45,15 @@
         position: absolute;
         background: #000;
         width: 1px;
-        right: 23px;
+        right: 25px;
         height: 60px;
-        top: 50px;
+        top: 46px;
         z-index: 9;
 
         @include mquery(desk) {
             right: 45px;
-            height: 87px;
-            top: 65px;
+            height: 90px;
+            top: 63px;
         }
     }
 }
@@ -162,8 +162,8 @@
             border: 2px solid $grey2;
             position: absolute;
             border-radius: 50px;
-            top: -7px;
-            left: -7px;
+            top: -5px;
+            left: -5px;
         }
 
         @include mquery(desk) {}
