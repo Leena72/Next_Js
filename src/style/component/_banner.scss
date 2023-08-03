@@ -111,7 +111,7 @@
         }
     }
 
-    @include mquery(ipad) {
+    @include mquery(desk) {
         margin-bottom: 15px;
         height: 85px;
     }

@@ -1,0 +1,18 @@
+.consent-container {
+    background: $light-blue1;
+    padding: 10px 15px;
+    text-align: center;
+    border-radius: 15px;
+    padding-bottom: 20px;
+
+    p {
+        padding-bottom: 20px;
+        font-size: $font-14;
+        color: $label-blue;
+        font-family: $font-family-OpenSanaRegular;
+
+        @include mquery(ipad) {
+            font-size: $font-20;
+        }
+    }
+}

@@ -146,7 +146,7 @@ export const applicationData = [
             },
             {
                 id: 5,
-                heading: 'Basic Document Upload',
+                heading: 'Document Upload',
                 subHeading: 'Yet to start',
                 img: img_5,
                 dummyContent: '3',
@@ -229,6 +229,27 @@ export const applicationData = [
     },
     {
         id: 6,
+        heading: 'Consent for change in the application details',
+        subHeading: 'Yet to start',
+        completed: false,
+        dummyContent: 'Dummy Content',
+        contentStatus: false,
+        active_icon: activeImg_9,
+        img: img_9,
+        content: [
+            {
+                id: 1,
+                heading: '',
+                subHeading: '',
+                img: '',
+                dummyContent: '',
+                contentStatus: false,
+                subContent: []
+            },
+        ]
+    },
+    {
+        id: 7,
         heading: 'Payment Required',
         subHeading: 'Yet to start',
         completed: false,
@@ -249,7 +270,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 7,
+        id: 8,
         heading: 'Quality Check',
         subHeading: 'Yet to start',
         completed: false,
@@ -270,7 +291,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 8,
+        id: 9,
         heading: 'Medical Risk Verification',
         subHeading: 'Yet to start',
         completed: false,
@@ -291,7 +312,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 9,
+        id: 10,
         heading: 'Financial and Medical Risk Verification',
         subHeading: 'Yet to start',
         completed: false,
@@ -312,29 +333,8 @@ export const applicationData = [
         ]
     },
     {
-        id: 10,
-        heading: 'Policy Decision',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        active_icon: activeImg_15,
-        img: img_15,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
-    {
         id: 11,
-        heading: 'Policy Related Document',
+        heading: 'Policy Decision',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -1986,5 +1986,54 @@ export const downloadData = [
         title: 'Payment Receipt',
         msg: '',
     },
+]
+
+// consent data
+
+export const consentData = [
+    {
+        id: 1,
+        title: 'Proposed'
+    },
+    {
+        id: 2,
+        title: 'Insured'
+    }
+]
+
+// document upload
+
+export const uploadData = [
+    {
+        id: 1, upload: true ,title: 'Age Proof'
+    },
+    {
+        id: 2, upload: true,title: 'Identity Proof'
+    },
+    {
+        id: 3, upload: true ,title: 'Cash Authority Letter'
+    },
+    {
+        id: 4, upload: false ,title: 'Bank Statement'
+    },
+    {
+        id: 5, upload: false ,title: 'ITR'
+    },
+    {
+        id: 6, upload: false ,title: 'Salary Slip'
+    },
+]
+export const docData = [
+    {
+        id: 1, title: 'Financial Document'
+    }
+]
+export const viewData = [
+    {
+        id: 1, title: 'ICIC Bank'
+    },
+    {
+        id: 2, title: 'HDFC Bank'
+    }
 ]
 

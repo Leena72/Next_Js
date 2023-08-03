@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { questionnaireData } from '../../data'
 import Health from './Health'
 import Accordion2 from '../../component/Accordion/Accordion2';
+import DocumentUpload from '../Doc_Upload';
 
 const AddNonMedReq = () => {
     const [openAccordion, setOpenAccordion] = useState(null)
@@ -10,7 +11,7 @@ const AddNonMedReq = () => {
             case 'Health and Lifestyle Questionnaire':
                 return <Health data={data.list} />
             case 'Documents':
-                return <div>abcd</div>
+                return <DocumentUpload/>
             default:
                 break;
         }
