@@ -8,7 +8,7 @@ const Header = (props) => {
     useEffect(() => {
         let test= localStorage.getItem('isLogin')
         setislogin(test)
-    })
+    },[])
     
     return (
         <div className='header-container'>

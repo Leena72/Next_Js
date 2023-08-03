@@ -7,13 +7,13 @@ const PopUpPage = (props) => {
         props.onClose();
     }
   return (
-    <div class={`overlay ${props.addCss}`} >
-    <div class="vrtclcntr_bx">
-      <div class="vrtclcntr_bxinr">
-        <div class="dcmnt_upload_popupinr">
-          <div onClick={closeHandler} class="close_popup"><Image src={close} alt="cross" /></div>
+    <div className={`overlay ${props.addCss}`} >
+    <div className="vrtclcntr_bx">
+      <div className="vrtclcntr_bxinr">
+        <div className="dcmnt_upload_popupinr">
+          <div onClick={closeHandler} className="close_popup"><Image src={close} alt="cross" /></div>
           {props.removeHeader ? null : 
-           <div class="hdng_bx">
+           <div className="hdng_bx">
               <h2>{props.heading?props.heading:null }</h2>
            </div>
           }  

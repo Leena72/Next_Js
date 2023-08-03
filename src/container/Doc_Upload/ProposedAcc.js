@@ -6,18 +6,21 @@ const ProposedAcc = () => {
         <div className='nonMedListBlock'>
             {uploadData.map(item =>
                 <UploadDoc
+                    key={item.id}
                     data={item}
                 />
             )
             }
             {docData.map(item =>
                 <Document
+                    key={item.id}
                     data={item}
                 />
             )
             }
             {viewData.map(item =>
                 <ViewDoc
+                    key={item.id}
                     data={item}
                 />
             )

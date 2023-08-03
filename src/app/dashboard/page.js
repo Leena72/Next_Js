@@ -1,12 +1,12 @@
 'use client'
 import React,{useState} from 'react'
-import withAuth from '../../../utils/withAuth';
-import Banner from '../../../container/Banner';
-import MainAccordion from '../../../container/MainAccordion';
-import { applicationData, downloadData } from '../../../data'
+import withAuth from '../../utils/withAuth';
+import Banner from '../../container/Banner';
+import MainAccordion from '../../container/MainAccordion';
+import { applicationData, downloadData } from '../../data'
 import Accordion3 from '@/component/Accordion/Accordion3';
 import Image from 'next/image'
-import dwnArrow from "../../../Assets/images/dwn-arw.png";
+import dwnArrow from "../../Assets/images/dwn-arw.png";
 
 const Dashboard = () => {
     const data = applicationData

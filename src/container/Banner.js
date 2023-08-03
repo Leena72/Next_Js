@@ -18,7 +18,7 @@ const Banner = () => {
                             <BannerCard key={i} item={item} />
                         ))}
                     </ul>
-                    <div class="dsclmr">
+                    <div className="dsclmr">
                         <span>*Dummy text for one star</span>
                         <span>**Dummy text for two star</span>
                     </div>

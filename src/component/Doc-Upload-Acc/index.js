@@ -5,9 +5,9 @@ import previewImg from "../../Assets/images/preview.png"
 import deleteImg from "../../Assets/images/delete.png"
 
 
-export const UploadDoc = ({ data }) => {
+export const UploadDoc = ({ data,key }) => {
     return (
-        <div className={`upl-doc-container ${data.upload ? 'upl-doc' : 'upl-blk'}`} key={data.id}>
+        <div className={`upl-doc-container ${data.upload ? 'upl-doc' : 'upl-blk'}`} key={key}>
             <div className='upl-heading'>{data.title}</div>
             <div className='upl-img'>
                 <a className='upl-img-link'>
@@ -23,7 +23,7 @@ export const UploadDoc = ({ data }) => {
 
 export const Document = ({ data }) => {
     return (
-        <div className='upl-doc-container upl-doc' key={data.id}>
+        <div className='upl-doc-container upl-doc' key={key}>
             <div className='upl-heading'>{data.title}</div>
         </div>
     )
@@ -31,7 +31,7 @@ export const Document = ({ data }) => {
 
 export const ViewDoc = ({ data }) => {
     return (
-        <div className='view-doc2-container' key={data.id}>
+        <div className='view-doc2-container' key={key}>
             <div className='view-heading'>{data.title}</div>
             <div className='view-img'>
                 <a className='view-img-link'>

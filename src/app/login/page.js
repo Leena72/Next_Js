@@ -5,10 +5,10 @@ import { useDispatch } from 'react-redux'
 import Axios from "axios";
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
-import { toaster } from "../../../utils/toaster";
-import Input from '../../../component/Input'
-import Button from '../../../component/Button'
-import loginImg from "../../../Assets/images/prfress_img.png";
+import { toaster } from  "../../utils/toaster"
+import Input from "../../component/Input"
+import Button from '../../component/Button'
+import loginImg from "../../Assets/images/prfress_img.png";
 
 
 const Login = () => {
@@ -89,7 +89,7 @@ const Login = () => {
           localStorage.setItem('expirationDate', res.data.body.expirationDate)
           localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
           toaster('success', res.data.message)
-          router.push('/customer-portal/dashboard');
+          router.push('/dashboard');
         }
         else {
           toaster('error', res.data.message)
