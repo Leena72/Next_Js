@@ -1,7 +1,7 @@
 # Stage 1: Building the Next.js app and its dependencies
 FROM node:lts as dependencies
 WORKDIR /my-project
-COPY package.json yarn.lock ./
+COPY package.json ./
 RUN yarn install --frozen-lockfile
 
 FROM node:lts as builder
