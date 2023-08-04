@@ -1,32 +1,28 @@
-# Use an official Node.js runtime as the base image
-FROM node:14 AS build
+FROM node:lts as dependencies
+WORKDIR /my-project
+COPY package.json  ./
+RUN yarn install --frozen-lockfile
 
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy package.json and package-lock.json to the container
-COPY package*.json ./
-
-# Install dependencies
-RUN npm install
-
-# Copy the rest of the application code to the container
+FROM node:lts as builder
+WORKDIR /my-project
 COPY . .
+COPY --from=dependencies /my-project/node_modules ./node_modules
+RUN yarn build
 
-# Build the Next.js application
-RUN npm run build
+FROM node:lts as runner
+WORKDIR /my-project
+ENV NODE_ENV production
+# If you are using a custom next.config.js file, uncomment this line.
+# COPY --from=builder /my-project/next.config.js ./
+#COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+#RUN apt update && apt install curl -y
+#RUN rm -rf /usr/share/nginx/html/*
+#COPY --from=builder /opt/build/ /usr/share/nginx/html/app
+#COPY --from=builder /opt/build/ /usr/share/nginx/html
+COPY --from=builder /my-project/public ./public
+COPY --from=builder /my-project/.next ./.next
+COPY --from=builder /my-project/node_modules ./node_modules
+COPY --from=builder /my-project/package.json ./package.json
 
-# Create a new stage with a smaller base image
-FROM nginx:alpine
-
-# Copy the build output from the previous stage to the nginx html directory
-COPY --from=build /app/.next /usr/share/nginx/html
-
-# Copy your custom nginx configuration to the container
-COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-
-# Expose port 80
-EXPOSE 80
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 3000
+CMD ["yarn", "start"]
