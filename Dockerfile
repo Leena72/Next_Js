@@ -23,7 +23,7 @@ FROM nginx:alpine
 COPY --from=build /app/.next /usr/share/nginx/html
 
 # Copy your custom nginx configuration to the container
-COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 
 # Expose port 80
 EXPOSE 80
