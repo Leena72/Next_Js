@@ -1,6 +1,7 @@
+# Stage 1: Building the Next.js app and its dependencies
 FROM node:lts as dependencies
 WORKDIR /my-project
-COPY package.json  ./
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 FROM node:lts as builder
@@ -9,20 +10,20 @@ COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN yarn build
 
-FROM node:lts as runner
-WORKDIR /my-project
-ENV NODE_ENV production
-# If you are using a custom next.config.js file, uncomment this line.
-# COPY --from=builder /my-project/next.config.js ./
-#COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-#RUN apt update && apt install curl -y
-#RUN rm -rf /usr/share/nginx/html/*
-#COPY --from=builder /opt/build/ /usr/share/nginx/html/app
-#COPY --from=builder /opt/build/ /usr/share/nginx/html
-COPY --from=builder /my-project/public ./public
-COPY --from=builder /my-project/.next ./.next
-COPY --from=builder /my-project/node_modules ./node_modules
-COPY --from=builder /my-project/package.json ./package.json
+# Stage 2: Setting up Nginx and serving the Next.js app
+FROM xqdocker/ubuntu-nginx
 
-EXPOSE 3000
-CMD ["yarn", "start"]
+# Install curl in the Nginx container
+RUN apt update && apt install curl -y
+
+# Clear default Nginx configuration and copy custom configuration
+RUN rm -rf /etc/nginx/conf.d/default.conf
+COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+
+# Clear default Nginx HTML directory and copy built Next.js app
+RUN rm -rf /usr/share/nginx/html/*
+COPY --from=builder /my-project/.next/ /usr/share/nginx/html/
+
+# Start Nginx with daemon off
+CMD ["nginx", "-g", "daemon off;"]
+
