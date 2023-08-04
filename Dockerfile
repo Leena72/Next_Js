@@ -8,6 +8,7 @@ FROM node:lts as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
+EXPOSE 80
 RUN yarn build
 
 # Stage 2: Setting up Nginx and serving the Next.js app
