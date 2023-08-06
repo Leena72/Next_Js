@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import dwnImg from "../../Assets/images/pdf-dwn-arrow.png";
-const Accordion3 = ({data}) => {
+const Accordion3 = ({ data }) => {
     return (
         <ul className='doc-container'>
             {data.map((item) => (
@@ -12,12 +12,29 @@ const Accordion3 = ({data}) => {
                         <span className='doc-sub-heading'>{item.msg ? `(${item.msg})` : ''}</span>
                     </div>
                     <div className='doc-img'>
-                        <a className='doc-img-link'>
-                            <Image
-                                src={dwnImg}
-                                alt='dwnImg'
-                            />
-                        </a>
+                        {item.downloadStatus ?
+                            <>
+                                <a className='doc-img-link'>
+                                    <Image
+                                        src={dwnImg}
+                                        alt='dwnImg'
+                                    />
+                                </a>
+                                <a className='doc-img-link'>
+                                    <Image
+                                        src={dwnImg}
+                                        alt='dwnImg'
+                                    />
+                                </a>
+                            </>
+                            :
+                            <a className='doc-img-link'>
+                                <Image
+                                    src={dwnImg}
+                                    alt='dwnImg'
+                                />
+                            </a>
+                        }
                     </div>
                 </li>
             ))}

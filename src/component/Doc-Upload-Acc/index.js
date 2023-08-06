@@ -5,9 +5,10 @@ import previewImg from "../../Assets/images/preview.png"
 import deleteImg from "../../Assets/images/delete.png"
 
 
-export const UploadDoc = ({ data,key }) => {
+export const UploadDoc = ({ data,key,clickHandler }) => {
     return (
-        <div className={`upl-doc-container ${data.upload ? 'upl-doc' : 'upl-blk'}`} key={key}>
+        <div className={`upl-doc-container ${data.upload ? 'upl-doc' : 'upl-blk'}`} 
+        key={key} onClick={()=>clickHandler(data.id,data.popUp)}>
             <div className='upl-heading'>{data.title}</div>
             <div className='upl-img'>
                 <a className='upl-img-link'>
@@ -21,17 +22,17 @@ export const UploadDoc = ({ data,key }) => {
     )
 }
 
-export const Document = ({ data,key }) => {
+export const Document = ({ data,key,clickHandler }) => {
     return (
-        <div className='upl-doc-container upl-doc' key={key}>
+        <div className='upl-doc-container upl-doc' key={key} onClick={()=>clickHandler(data.id)}>
             <div className='upl-heading'>{data.title}</div>
         </div>
     )
 }
 
-export const ViewDoc = ({ data,key }) => {
+export const ViewDoc = ({ data,key,clickHandler }) => {
     return (
-        <div className='view-doc2-container' key={key}>
+        <div className='view-doc2-container' key={key} >
             <div className='view-heading'>{data.title}</div>
             <div className='view-img'>
                 <a className='view-img-link'>
