@@ -28,6 +28,7 @@
             text-decoration: underline;
             text-underline-offset: 10px;
             font-family: $font-family-OpenSanaRegular;
+            padding-top: 5px;
 
             @include mquery(ipad) {
                 font-size: $font-20;
@@ -65,6 +66,7 @@
             font-size: $font-10;
             font-family: $font-family-OpenSanaRegular;
             color: $white;
+
             span {
                 display: inline-block;
                 padding-right: 15px;
@@ -87,6 +89,11 @@
     border-radius: 15px;
     height: 53px;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
     p {
         text-align: center;
 
@@ -94,6 +101,7 @@
             font-size: $font-14;
             font-family: $font-family-OpenSanaBold;
             color: $red3;
+            padding-bottom: 5px;
 
             @include mquery(desk) {
                 font-size: $font-30;

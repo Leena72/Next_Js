@@ -116,6 +116,7 @@
         &:nth-of-type(1) {
             font-size: $font-13;
             font-family: $font-family-OpenSanaBold;
+            padding-bottom: 5px;
 
             @include mquery(desk) {
                 font-size: $font-30;
