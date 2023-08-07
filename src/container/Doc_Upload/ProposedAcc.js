@@ -53,7 +53,7 @@ const ProposedAcc = () => {
             <AccPopUp
                 heading={'Select Permanent Address Proof'}
                 subheading={'Any one document is mandatory'}
-                children={uploadDocument}
+                content={uploadDocument}
                 clickHandler={accPopUpHandler}
                 onClose={() => setopenUploadModal(false)}
             />}
@@ -67,7 +67,7 @@ const ProposedAcc = () => {
         {
             openDocModal && <AccDocModal
                 heading={'Financial Document'}
-                children={documentsUplaod}
+                content={documentsUplaod}
                 clickHandler={accDocModalHandler}
                 onClose={docClickHandler}
             />

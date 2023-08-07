@@ -19,7 +19,7 @@ const AccDocModal = (props) => {
                         }
                         <div className='content-box doc-content'>
                             {
-                                props.children.map(data => (
+                                props.content.map(data => (
                                     <div key={data.id} onClick={() => props.clickHandler(data.id)}>
                                         <div className='chk-list'>
                                             <input type="checkbox" id={data.id} />

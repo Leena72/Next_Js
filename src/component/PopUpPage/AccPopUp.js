@@ -20,7 +20,7 @@ const AccPopUp = (props) => {
                         <div className='sub-heading-bx'>{props.subheading ? props.subheading : null}</div>
                         <div className='content-box'>
                             {
-                                props.children.map(data => (
+                                props.content.map(data => (
                                     <div className={`upl-doc-container upl-doc`}
                                         key={data.id} onClick={() => props.clickHandler(data.id)}>
                                         <div className='upl-heading'>{data.title}</div>
