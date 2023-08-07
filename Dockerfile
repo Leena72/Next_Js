@@ -1,28 +1,15 @@
-FROM node:lts as dependencies
+FROM node:lts 
 WORKDIR /my-project
-COPY package.json  ./
+COPY package.json ./
 RUN yarn install --frozen-lockfile
-
-FROM node:lts as builder
-WORKDIR /my-project
 COPY . .
-COPY --from=dependencies /my-project/node_modules ./node_modules
+COPY script.sh /my-project/script.sh
 RUN yarn build
-
-FROM node:lts as runner
-WORKDIR /my-project
 ENV NODE_ENV production
-# If you are using a custom next.config.js file, uncomment this line.
-# COPY --from=builder /my-project/next.config.js ./
-#COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
-#RUN apt update && apt install curl -y
-#RUN rm -rf /usr/share/nginx/html/*
-#COPY --from=builder /opt/build/ /usr/share/nginx/html/app
-#COPY --from=builder /opt/build/ /usr/share/nginx/html
-COPY --from=builder /my-project/public ./public
-COPY --from=builder /my-project/.next ./.next
-COPY --from=builder /my-project/node_modules ./node_modules
-COPY --from=builder /my-project/package.json ./package.json
-
-EXPOSE 3000
-CMD ["yarn", "start"]
+RUN apt update -y
+RUN apt install nginx -y
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+#RUN nginx -s reload
+RUN chmod +x script.sh
+RUN rm -rf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+ENTRYPOINT ["/my-project/script.sh"]
