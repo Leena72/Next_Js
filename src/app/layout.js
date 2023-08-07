@@ -3,7 +3,7 @@ import { Providers } from "../redux/Provider";
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { Inter } from 'next/font/google';
-import '../style/App.scss';
+import '@/style/App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
