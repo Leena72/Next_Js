@@ -27,6 +27,7 @@
                 background: #fff;
                 overflow: hidden;
                 color: $blue;
+                cursor: default;
                 // min-height: 15rem;
                 .content-box{
                     padding: 20px 0px;
@@ -65,8 +66,14 @@
                 .hdng_bx {
                     float: left;
                     width: 100%;
-                    margin-bottom: 10px;
                     padding-top: 10px;
+                    h2{
+                        font-size: $font-18;
+                        font-family: $font-family-OpenSanaSemiBold;
+                        @include mquery(desk){
+                            font-size: $font-24;
+                            }
+                    }
                 }
             }
         }

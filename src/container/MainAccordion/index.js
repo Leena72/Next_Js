@@ -7,6 +7,7 @@ import Consent from '../Consent';
 import Accordion3 from '../../component/Accordion/Accordion3';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
+import {scrollToTop} from '../../utils/utils'
 
 const MainAccordion = ({ data, downloadData }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
@@ -40,6 +41,7 @@ const MainAccordion = ({ data, downloadData }) => {
     }
   }
   const toggleAccordion = (id) => {
+    scrollToTop(id)
     setOpenAccordion(openAccordion === id ? null : id)
   }
   return (
