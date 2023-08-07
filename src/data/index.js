@@ -1960,43 +1960,43 @@ export const downloadData = [
         id: 1,
         title: 'Benefit Illustration',
         msg: '',
-        downloadStatus:false, 
-        label:''
+        downloadStatus: false,
+        label: ''
     },
     {
         id: 2,
         title: 'Financial Needs Analysis',
         msg: '',
-        downloadStatus:false, 
-        label:''
+        downloadStatus: false,
+        label: ''
     },
     {
         id: 3,
         title: 'COVID Questionnaire',
         msg: '',
-        downloadStatus:true, 
-        label:''
+        downloadStatus: true,
+        label: ''
     },
     {
         id: 4,
         title: 'Proposal Form',
         msg: '',
-        downloadStatus:false, 
-        label:''
+        downloadStatus: false,
+        label: ''
     },
     {
         id: 5,
         title: 'Form 60',
         msg: 'if PAN not available',
-        downloadStatus:true, 
-        label:''
-        
+        downloadStatus: true,
+        label: ''
+
     },
     {
         id: 1,
         title: 'Payment Receipt',
         msg: '',
-        downloadStatus:false, 
+        downloadStatus: false,
     },
 ]
 
@@ -2037,7 +2037,7 @@ export const uploadData = [
 ]
 export const docData = [
     {
-        id: 1, title: 'Financial Document' , popUp: true
+        id: 1, title: 'Financial Document', popUp: true
     }
 ]
 export const viewData = [
@@ -2082,7 +2082,7 @@ export const uploadDocument = [
     },
 ]
 
-export const documentsUplaod=[
+export const documentsUplaod = [
     {
         id: '1',
         title: 'Bank Statement'
