@@ -11,7 +11,7 @@ export default function withAuth(Component) {
       const proposalNo = JSON.parse(localStorage.getItem('proposalNo'));
       const proposalNoIsAuthenticated = proposalNo !== null;
       if (!proposalNoIsAuthenticated) {
-        router.push('/customer-portal/login');
+        router.push('/customer-portal');
       }
     }, [router]);
 
