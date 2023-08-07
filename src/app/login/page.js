@@ -89,7 +89,7 @@ const Login = () => {
           localStorage.setItem('expirationDate', res.data.body.expirationDate)
           localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
           toaster('success', res.data.message)
-          router.push('/dashboard');
+          router.push('/customer-portal/dashboard');
         }
         else {
           toaster('error', res.data.message)
