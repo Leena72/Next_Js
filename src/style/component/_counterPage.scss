@@ -3,8 +3,11 @@
     .rvsd_dwnld_outr{
         padding-bottom: 15px;
         .rvsd_dwnld{
-            font-size: 20px;
+            font-size: 14px;
             color: $blue;
+            @include mquery(desk){
+            font-size: 20px;
+            }
         }
         .lnktxtbx{
             display: inline-block;
@@ -15,12 +18,23 @@
             transition: all 0.3s ease-out;
             background: #e0ebf5;
             margin-right: 0.5rem;
+            margin-bottom: 10px;
             &:hover{
                 background: $blue;
                 color: $white;
             }
+            img{
+              width: 20px;
+              height: auto;
+              margin-left: 15px;
+              cursor: pointer;
+            }
+            @include mquery(desk){
+            }
         }
-
+    }
+    .revised-list{
+      display: flex;
     }
     .list{
         display: inline-block;
@@ -37,6 +51,7 @@
             // font-weight: 600;
             padding-left: 15px;
             font-size: 16px;
+            line-height: 1.2;
             // margin-top: -0.2rem;
             
         }
