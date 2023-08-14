@@ -2,10 +2,9 @@
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import Axios from "axios";
+import {loginHandler} from '../../redux/action/login-action'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
-import { toaster } from  "../../utils/toaster"
 import Input from "../../component/Input"
 import Button from '../../component/Button'
 import loginImg from "../../Assets/images/prfress_img.png";
@@ -70,31 +69,9 @@ const Login = () => {
   }
 
   const clickHandler = () => {
-    Axios({
-      method: "post",
-      mode: 'no-cors',
-      url: `https://dev-api-auth.bhartiaxa.com/public/api/v1/auth/customer`,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: {
-        "input1": proposalNo,
-        "input2": DOB + ' ' + '00:00:00'
-      }
-    })
-      .then((res) => {
-        if (res.data.status === 'OK') {
-          localStorage.setItem('accessToken', res.data.body.accessToken)
-          localStorage.setItem('creationDate', res.data.body.creationDate)
-          localStorage.setItem('expirationDate', res.data.body.expirationDate)
-          localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
-          toaster('success', res.data.message)
-          router.push('/customer-portal/dashboard');
-        }
-        else {
-          toaster('error', res.data.message)
-        }
-      })
+    dispatch(loginHandler(proposalNo,DOB,()=>{
+      router.push('/customer-portal/dashboard');
+    }))
   }
 
   return (
