@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import close from "../../Assets/images/close.png"
 import Image from 'next/image';
 import Button from '../Button';
@@ -6,8 +6,14 @@ import cameraImg from '../../Assets/images/camera.png'
 import uploadImg from '../../Assets/images/upload_icon.png'
 
 const UploadDocModal = (props) => {
+    const [showImg, setshowImg] = useState(false)
     const closeHandler = () => {
         props.onClose();
+    }
+    const clickHandler = () => {
+    }
+    const fileUpload = () => {
+
     }
     return (
         <div className={`overlay ${props.addCss}`} >
@@ -22,24 +28,41 @@ const UploadDocModal = (props) => {
                         }
                         <div className='sub-heading-bx'>{props.subheading ? props.subheading : null}</div>
                         <div className='content-box upload-content-bx'>
-                            <Image
-                                src={uploadImg}
-                                alt='uplImg'
-                            />
-                            <Image
-                                src={cameraImg}
-                                alt='cmImg'
-                            />
+                            <div>
+                                <div>
+                                    <Image
+                                        src={uploadImg}
+                                        alt='uplImg'
+                                    />
+                                    <input type="file" onChange={fileUpload} />
+                                </div>
+                                <div>
+                                    <Image
+                                        src={cameraImg}
+                                        alt='cmImg'
+                                    />
+                                    <input type="file" onChange={fileUpload} />
+                                </div>
+                            </div>
+                            {showImg && 
+                            <div>
+                                <Image
+                                        src={''}
+                                        alt='cmImg'
+                                    />
+                            </div>
+                            }
                         </div>
                         <div className='add-more-btn'>
                             <Button
                                 buttonText={'Add more'}
                             />
                         </div>
-                            <Button
-                                buttonText={'SUBMIT'}
-                                className={'blue-button'}
-                            />
+                        <Button
+                            buttonText={'SUBMIT'}
+                            className={'blue-button'}
+                            clickHandler={clickHandler}
+                        />
                     </div>
                 </div>
             </div>
