@@ -1,10 +1,15 @@
 import React from 'react'
+import Layout1 from './Layout1'
+import Layout2 from './Layout2'
 
-export const FormLayout = ({ formName, formData }) => {
+const FormLayout = ({ formName, formData, formChangeHandler }) => {
   const renderFormLayout = (formName) => {
     switch (formName) {
       case 'alcohol':
-        return <Layout1 formData={formData} />
+        return <Layout1
+          formName={formName}
+          formData={formData} 
+          formChangeHandler={formChangeHandler} />
       case 'chest':
         return <Layout2 formData={formData} />
       case 'deformity':
@@ -36,67 +41,4 @@ export const FormLayout = ({ formName, formData }) => {
   )
 }
 
-// alcohol-------
-const Layout1 = ({ formData }) => {
-const changeHandler =(e)=>{
-console.log('e',e.target.value)
-}
-  return (
-    <>
-      {
-        formData.map(item => {
-          return (
-            <div className='form-block' key={item.id}>
-              <div className='form-declaration'>{item.declaration}</div>
-              <div className='form-question'>{item.heading}</div>
-              {
-                item.subQuestions.map(ele => (
-                  <div className='form-quesAns' key={ele.id}>
-                    <div className='form-question'>{ele.question}</div>
-                    <div className='form-answer'>
-                      <textarea id={ele.id} onChange={()=>changeHandler()} />
-                    </div>
-                  </div>
-                ))
-              }
-              <div className='form-quesAns'>
-                <div className='form-question'>{item.question}</div>
-                <div className='form-answer'><textarea id={item.id} /></div>
-              </div>
-            </div>
-          )
-        })
-      }
-    </>
-  )
-}
-
-// chest------
-
-const Layout2 = ({ formData }) => {
-  return (
-    <>
-      {
-        formData.map(item => {
-          return (
-            <div className='form-block' key={item.id}>
-              <div className='form-declaration'>{item.declaration}</div>
-              <div className='form-quesAns'>
-                <div className='form-question'>{item.question}</div>
-                <div className='form-answer'><textarea id={item.id} /></div>
-              </div>
-              {
-                item.subQuestions.map(ele => (
-                  <div className='form-quesAns' key={ele.id}>
-                    <div className='form-question'>{ele.question}</div>
-                    <div className='form-answer'><textarea id={ele.id} /></div>
-                  </div>
-                ))
-              }
-            </div>
-          )
-        })
-      }
-    </>
-  )
-}
+export default FormLayout
