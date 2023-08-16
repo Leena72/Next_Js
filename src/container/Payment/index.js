@@ -74,7 +74,7 @@ const Payment = (props) => {
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, data, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": localStorage.getItem('accessToken'),
+        "Authorization":'Bearer'+' '+localStorage.getItem("accessToken")
       },
     })
       .then((resp) => {
@@ -121,7 +121,7 @@ const Payment = (props) => {
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": localStorage.getItem('accessToken'),
+        "Authorization": 'Bearer'+' '+localStorage.getItem("accessToken")
       },
     })
       .then((resp) => {

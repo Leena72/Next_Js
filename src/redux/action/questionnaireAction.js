@@ -11,7 +11,7 @@ export const questionnaireAction = (additionalQuestionnaire, cb) => (dispatch) =
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
-            "Authorization": 'Bearer' + ' ' + 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMTA3NDIzOTAyIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNVU1RPTUVSIn1dLCJpYXQiOjE2OTIxNzkzODQsImV4cCI6MTY5MjI2NTc4NH0.bN6P1GI5C-jveLMH-QByOUIVqoXSVMnrcannc85orFY4OMFzUpFli2QvdP-FRCgZ7JWUPSX4heM59QVMg9ZmSw'
+            "Authorization":'Bearer'+' '+localStorage.getItem("accessToken")
         },
         data: {
             "workFlowStage": "ADDITIONAL_QUESTIONNAIRE",

@@ -13,22 +13,21 @@ const Dashboard = () => {
     const data = applicationData
     const [openAccordion, setOpenAccordion] = useState(false)
     // console.log('localStorage.getItem("accessToken")',localStorage.getItem("accessToken"))
-    useEffect(() => {
-    let proposalNo='3107423903'
-
-        Axios({
-            method: "get",
-            url: `https://dev-api-tracker.bhartiaxa.com/public/api/v1/tracker/proposalDetails?proposalNumber=3107423902`,
-            headers: {
-                'Accept': 'application/json',
-                // 'Content-Type': 'application/json',
-                "Authorization": 'Bearer'+' '+'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMTA3NDIzOTAyIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNVU1RPTUVSIn1dLCJpYXQiOjE2OTE0MDE1NDAsImV4cCI6MTY5MTQ4Nzk0MH0.dv2VBC6fgvsjiKIEX7PCytA2Lcv9NxVtoCcBCxG_5V68SlvboIzj2zK0aNlanWInOHo_T_RgoMug6xX9Jm6f3Q'
-            }
-        })
-            .then((res) => {
-                console.log('res>>>',res)
-            })
-    }, [])
+    // useEffect(() => {
+    // let proposalNo='3107423903'
+    //     Axios({
+    //         method: "get",
+    //         url: `https://dev-api-tracker.bhartiaxa.com/public/api/v1/tracker/proposalDetails?proposalNumber=3107423902`,
+    //         headers: {
+    //             'Accept': 'application/json',
+    //             // 'Content-Type': 'application/json',
+    //             "Authorization": localStorage.getItem("accessToken")
+    //         }
+    //     })
+    //         .then((res) => {
+    //             console.log('res>>>',res)
+    //         })
+    // }, [])
 
     return (
         <div className='dashboard-container'>
