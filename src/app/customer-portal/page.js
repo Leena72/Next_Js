@@ -84,10 +84,10 @@ const Login = () => {
     })
       .then((res) => {
         if (res.data.status === 'OK') {
-          localStorage.setItem('accessToken', res.data.body.accessToken)
+          localStorage.setItem('accessToken', res.data.body.tokenType + " " + res.data.body.accessToken)
           localStorage.setItem('creationDate', res.data.body.creationDate)
           localStorage.setItem('expirationDate', res.data.body.expirationDate)
-          localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
+          localStorage.setItem('proposalNo', res.data.body.user.code);
           toaster('success', res.data.message)
           router.push('/customer-portal/dashboard');
         }

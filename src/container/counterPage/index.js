@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '@/component/Input'
 import OTPInput from '../OTPInput';
 import otpCross from "../../Assets/images/otp-cross-icon.png"
 import thankYou from "../../Assets/images/thank-you-bg.png";
 import questionMark from "../../Assets/images/qstn.png"
 import Image from 'next/image';
+import Axios from "axios";
+import { toaster } from '@/utils/toaster';
 
 const CounterPage = () => {
     const[inputValue, setInputValue]= useState('');
@@ -15,13 +17,21 @@ const CounterPage = () => {
     const [declineReason, setDeclineReason] = useState('');
     const [otp, setOtp]= useState('');
     const[showThankyou, setShowThankyou] = useState();
-    const[overlay, setOverlay] = useState(false)
+    const[overlay, setOverlay] = useState(false);
+    const [refId, setRefId] = useState();
+
+    useEffect(()=>{
+      if(declineReason || (!declineReason && inputValue && inputValue.counterReason!=='Decline the revised offer')){
+        sendOtp();
+        setOverlay(true)
+      }  
+    }, [declineReason, inputValue])
 
     const changeHandler = (name, value)=>{
         setInputValue({
             [name]: value,
           });
-          if(value==='Accept the revised offer' || value=== 'Adjust the Sum Assured to match Existing Premium') {setShowOtp(true); setOverlay(true)}
+          if(value==='Accept the revised offer' || value=== 'Adjust the Sum Assured to match Existing Premium') {setReasonOne(''); setReasonTwo('')}
           else setShowOtp(false)
           if(value==='Decline the revised offer') setDeclineCounter(true)
           else setDeclineCounter(false)
@@ -41,8 +51,70 @@ const CounterPage = () => {
     }
 
     const submitHandler =()=>{
-        setShowThankyou(true)
-        setShowOtp(false)
+        verifyOtp();
+    }
+
+    const sendOtp = ()=>{
+      const data ={
+        "consentType": "COUNTER_OFFER",
+        "proposalNumber": localStorage.getItem("proposalNo"),
+        "consentAction":"ACCEPTED",
+        "rejectionReason" : declineReason
+      }
+      Axios
+      .post(
+        "https://dev-api-proposal.bhartiaxa.com/public/api/v1/customer-portal/customerConsent",data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization":localStorage.getItem("accessToken")            
+          },
+        }
+      )
+      .then((resp) => {
+        toaster('success', resp?.data?.message);
+        setRefId(resp?.data?.body?.body.refId)
+        setShowOtp(true); 
+        setOverlay(true)
+      })
+      .catch((err) => {
+        toaster('error', err?.message);
+
+      });
+    }
+    
+    const verifyOtp =()=>{
+      const data ={
+        "otp": otp,
+        "refId": refId,
+        "key": "COUNTER_OFFER"      
+      }
+      let proposalNo = localStorage.getItem("proposalNo")
+      Axios
+      .post(
+        `https://dev-api-proposal.bhartiaxa.com/public/api/v1/customer-portal/validateOtp?proposalNumber=${proposalNo}`,data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization":localStorage.getItem("accessToken")
+          },
+        }
+      )
+      .then((resp) => {
+        if (resp?.data?.body) {
+          toaster('success', resp?.data?.message);
+          setOtp("")
+          setShowOtp(false); 
+          setShowThankyou(true)
+        }else{
+          toaster('error', resp?.data?.message);
+          setOtp('')
+        }
+      })
+      .catch((err) => {
+        toaster('error', err?.message);
+
+      });
     }
   return (
     <div className='card-body'>
@@ -113,10 +185,10 @@ const CounterPage = () => {
         {declineCounter && 
             <div className="box-wrap">
             <div className={`${reasonOne? 'declinebox-selected':'declinebox' }`}>
-              <p onClick={()=>{declineHandler(true, false);  setShowOtp(true) ; setOverlay(true)}}>Not Interested to buy the policy</p>
+              <p onClick={()=>{declineHandler(true, false);}}>Not Interested to buy the policy</p>
             </div>
             <div className={`${reasonTwo? 'declinebox-selected':'declinebox' }`}>
-              <p onClick={()=>{declineHandler(false, true); setShowOtp(true); setOverlay(true)}}>Request for reconsidering the revised offer</p>
+              <p onClick={()=>{declineHandler(false, true); }}>Request for reconsidering the revised offer</p>
             </div>
           </div>
         }
@@ -134,6 +206,7 @@ const CounterPage = () => {
             otp={otp}
             resendFunc={() => {
             setOtp('')
+            sendOtp()
             //    this.showOtpHandler();
             }}
             //  triggerTimmer={this.state.showOTP}
