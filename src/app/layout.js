@@ -17,6 +17,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
+         {/* uat billdesk links  */}
+	  <script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
+    <script async nomodule="" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
+    <link href="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet"/>
+    
+     {/* prod billdesk links  */}
+  	{/* <script type="module" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
+    <script async nomodule="" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
+    <link href="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet"/> */}
+
+
         <link rel="shortcut icon" href="/bharti_axa_logo.ico" />
       </head>
       <body>

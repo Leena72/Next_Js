@@ -47,6 +47,7 @@ const Payment = (props) => {
       }
       setValidationInput(value)
       setPan(value)
+      return
     }
     else {
       if (val.length >= 11) {
@@ -66,6 +67,143 @@ const Payment = (props) => {
     return transformedDate;
   }
 
+  const getBillDeskRequest = (data, cb) => () => {
+    // dispatch({
+    //   type: actionTypes.loadingOn
+    // });
+    Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, data, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accessToken'),
+      },
+    })
+      .then((resp) => {
+        if (cb) {
+          cb(resp.data.body)
+        }
+        // dispatch({
+        //   type: actionTypes.loadingOff
+        // });
+      })
+      .catch((err) => {
+        // if (err.status == '401') {
+        //   window.location.href = apiConstants.TRACKER_URL
+        // }
+        if (err.response && err.response.data) {
+          toaster("error", err.response.data.errors && err.response.data.errors.length > 0 &&
+            err.response.data.errors[0]);
+        } else {
+          toaster("error", err.data && err.data.message);
+        }
+        // dispatch({
+        //   type: actionTypes.loadingOff
+        // });
+      });
+  }
+  const openBillDesk = (txAmount, emandate, onlyMandate) => {
+    // this.setState({
+    //     payNowBtnHide:true
+    // })
+    // openBillDesk = (txAmount) => {
+    let billDeskReqData = {
+        currencyType: "INR",
+        // onlyMandate? !emandate: emandate,
+        onlyMandate: onlyMandate ? onlyMandate : false,
+        customerEmailId:"ok@gmail.com",
+        customerMobileNo:"9897043791",
+        proposalId: "3816986",
+        proposalNumber:localStorage.getItem("proposalNo"),
+        // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
+        paymentMethod: "ONLINE_BILL_DESK",
+        txAmount: '12344',
+        userAgent: navigator.userAgent,
+    };
+    Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('accessToken'),
+      },
+    })
+      .then((resp) => {
+        if (cb) {
+          cb(resp.data.body)
+        }
+        // dispatch({
+        //   type: actionTypes.loadingOff
+        // });
+      })
+      .catch((err) => {
+        // if (err.status == '401') {
+        //   window.location.href = apiConstants.TRACKER_URL
+        // }
+        if (err.response && err.response.data) {
+          toaster("error", err.response.data.errors && err.response.data.errors.length > 0 &&
+            err.response.data.errors[0]);
+        } else {
+          toaster("error", err.data && err.data.message);
+        }
+        // dispatch({
+        //   type: actionTypes.loadingOff
+        // });
+      });
+    // getBillDeskRequest(billDeskReqData, (data) => {
+    //     let flow_config = {
+    //         merchantId: data.options.merchantId,
+    //         bdOrderId: data.options.bdOrderId,
+    //         authToken: data.options.orderToken,
+    //         childWindow: true,
+    //         retryCount: data.options.retryCount,
+    //         prefs: {}
+    //         // prefs: { payment_categories: ["card", "nb", "upi", "wallets", "gpay"] },
+    //     };
+    //     /*if(emandate == true || onlyMandate == true){
+    //         flow_config.prefs = { payment_categories: ["card"]}
+    //     }*/
+
+    //     let mandate_flow_config = {
+    //         merchantId: data.options.merchantId,
+    //         mandateTokenId: data.options.mandateTokenId,
+    //         authToken: data.options.orderToken,
+    //         childWindow: true,
+    //         retryCount: data.options.retryCount,
+    //     }
+    //     let config = {
+    //         // responseHandler: (txn) => {
+    //         //     this.props.getProposalDetails(this.props.proposalDetails.proposalId, (data) => {
+    //         //         this.setState({
+    //         //             payNowBtnHide:false
+    //         //         })
+    //         //         //let payment = data.paymentDetails.methodsOfPayments.find(item => item?.orderId == txn.txnResponse?.orderid);
+    //         //         let payment = data?.paymentDetails?.methodsOfPayments && data?.paymentDetails?.methodsOfPayments.length > 0
+    //         //             && data?.paymentDetails?.methodsOfPayments[data.paymentDetails.methodsOfPayments.length - 1]
+    //         //         if (payment && payment.orderId && payment.txPaymentStatus === "COMPLETED") {
+    //         //             lmSMTObj.track("orderCompleted", {
+    //         //                 paymentMethod: "Online Payment",
+    //         //                 orderId: payment.orderId + "",
+    //         //                 "products": [
+    //         //                     {
+    //         //                         "product_name": this.props.proposalDetails.basicDetails.coverageDetails.coverageName,
+    //         //                         "product_shortName": getProductShortName(this.props.proposalDetails.basicDetails.coverageDetails.coverageName)
+    //         //                     }
+    //         //                 ]
+    //         //             });
+    //         //         }
+    //         //     });
+    //         //     if (this.state.showPaymentModal) {
+    //         //         this.setState({
+    //         //             showPaymentModal: !this.state.showPaymentModal,
+    //         //         });
+    //         //     }
+    //         // },
+    //         merchantLogo: logo,
+    //         flowConfig: data.options.onlyMandate ? mandate_flow_config : flow_config,
+    //         // flowConfig:  flow_config,
+    //         flowType: data.options.onlyMandate ? "emandate" : "payments",
+    //         // flowType: "payments",
+    //     };
+    //     window.loadBillDeskSdk(config);
+    // });
+};
   const validatePaymentLink = (query) => {
     Axios
       .get(
@@ -78,21 +216,31 @@ const Payment = (props) => {
       )
       .then((resp) => {
         if (resp.data.body.DateValidate || resp.data.body.PanValidate) {
+          setValidationInput('')
           setShowOnlinePopup(false)
           // this.openPaymentOption();
         }
+        else if(resp.data.body.DateValidate === false){
+          toaster("error", "Please enter valid DOB")
+          setValidationInput('')
+        }
+        else if(resp.data.body.PanValidate === false){
+          toaster("error", "Please enter valid PAN")
+          setValidationInput('')
+        }
       })
       .catch((err) => {
-        toaster('error', err?.message);
+        dobPanHandler('error', err?.message);
 
       });
   }
   const validateData = () => {
     let query;
-    let proposalNo = "3107424841"
+    let proposalNo = localStorage.getItem("proposalNo")
     if (dob) {
       query = `proposalNumber=${proposalNo}&dateOfBirth=${validationInput}&panNumber`;
       validatePaymentLink(query);
+      openBillDesk();
     } else {
       query = `proposalNumber=${proposalNo}&panNumber=${validationInput}&dateOfBirth`;
       validatePaymentLink(query);
