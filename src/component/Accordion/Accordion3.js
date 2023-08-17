@@ -1,7 +1,16 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 import dwnImg from "../../Assets/images/pdf-dwn-arrow.png";
+import { downloadAction } from '../../redux/action/downloadAction';
 const Accordion3 = ({ data }) => {
+    const dispatch = useDispatch()
+
+    const downloadHandler = () => {
+        let proposalNo = localStorage.getItem("proposalNo")
+        let file = '3107423902FNA.pdf'
+        dispatch(downloadAction(proposalNo, file))
+    }
     return (
         <ul className='doc-container'>
             {data.map((item) => (
@@ -14,13 +23,13 @@ const Accordion3 = ({ data }) => {
                     <div className='doc-img'>
                         {item.downloadStatus ?
                             <>
-                                <a className='doc-img-link'>
+                                <a className='doc-img-link' onClick={downloadHandler}>
                                     <Image
                                         src={dwnImg}
                                         alt='dwnImg'
                                     />
                                 </a>
-                                <a className='doc-img-link'>
+                                <a className='doc-img-link' onClick={downloadHandler}>
                                     <Image
                                         src={dwnImg}
                                         alt='dwnImg'
@@ -28,7 +37,7 @@ const Accordion3 = ({ data }) => {
                                 </a>
                             </>
                             :
-                            <a className='doc-img-link'>
+                            <a className='doc-img-link' onClick={downloadHandler}>
                                 <Image
                                     src={dwnImg}
                                     alt='dwnImg'
