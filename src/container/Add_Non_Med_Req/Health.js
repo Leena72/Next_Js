@@ -4,12 +4,15 @@ import dwnArrow from "../../Assets/images/dwn-arw.png";
 import NonMedForm from './form.js'
 
 const Health = ({ data }) => {
+  const [formValues, setFormValues] = useState({})
   const [openAcc, setOpenAcc] = useState(null)
   const toggleAccordion = (id) => {
     setOpenAcc(openAcc === id ? null : id)
   }
   const renderElement = (formName) => {
-    return <NonMedForm formName={formName} />
+    return <NonMedForm formName={formName} 
+    formValues={formValues} 
+    setFormValues={setFormValues} />
   }
   return (
     <ul className='nonMedListBlock'>
