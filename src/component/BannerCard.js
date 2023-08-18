@@ -1,13 +1,13 @@
 import React from 'react'
 
-const BannerCard = ({ item }) => {
+const BannerCard = ({ customerData }) => {
   return (
-    <li className='banner-card'>
+    <div className='banner-card'>
       <p>
-        {item.rupeeSign && <>&#8377;</>}{item.number}
+        {false && <>&#8377;</>}{customerData}
       </p>
-      <p>{item.title}</p>
-    </li>
+      <p>{'Policy Term(In Year)'}</p>
+    </div>
   )
 }
 

@@ -3,20 +3,42 @@ import Image from 'next/image'
 import BannerCard from '../component/BannerCard'
 import { bannerData } from '../data'
 import loginImg from "../Assets/images/top_img_new.png";
-const Banner = () => {
+const Banner = ({ customerData }) => {
+    console.log('customerData', customerData)
     return (
         <div className='banner-container'>
             <div className='banner-content'>
                 <div className='banner-header'>
-                    <h1>Hello {'Abhishek Arora!'}</h1>
+                    <h1>Hello {customerData?.customerName}</h1>
                     <p>Please find below the details of your plan</p>
                 </div>
                 <div className='banner-main'>
-                    <p className='banner-proName'>Product Name- {'Elite Advantage'}</p>
+                    <p className='banner-proName'>Product Name- {customerData?.planName}</p>
                     <ul className='banner-card-container'>
-                        {bannerData.map((item, i) => (
-                            <BannerCard key={i} item={item} />
-                        ))}
+                        <div className='banner-card'>
+                            <p>
+                                {customerData?.policyTerm}
+                            </p>
+                            <p>{'Policy Term(In Year)'}</p>
+                        </div>
+                        <div className='banner-card'>
+                            <p>
+                                {customerData?.premiumPaymentTerm}
+                            </p>
+                            <p>{'Premium Payment Term(In Year)'}</p>
+                        </div>
+                        <div className='banner-card'>
+                            <p>
+                                {<>&#8377;</>}{customerData?.premium}
+                            </p>
+                            <p>{'Premium to Pay(inc GST)'}</p>
+                        </div>
+                        <div className='banner-card'>
+                            <p>
+                                {<>&#8377;</>}{customerData?.sumAssured}
+                            </p>
+                            <p>{'Sum Assured'}</p>
+                        </div>
                     </ul>
                     <div className="dsclmr">
                         <span>*Dummy text for one star</span>

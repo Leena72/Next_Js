@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import withAuth from '../../../utils/withAuth';
 import Axios from "axios";
 import Banner from '../../../container/Banner';
@@ -8,31 +9,36 @@ import { applicationData, downloadData } from '../../../data'
 import Accordion3 from '@/component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
+import { dashboardAction } from '../../../redux/action/dashboardAction'
+import { customerDetailAction } from '../../../redux/action/customerDetailAction'
+
 
 const Dashboard = () => {
     const data = applicationData
     const [openAccordion, setOpenAccordion] = useState(false)
+    const [customerData, setcustomerData] = useState(null)
+    const dispatch = useDispatch()
     // console.log('localStorage.getItem("accessToken")',localStorage.getItem("accessToken"))
     useEffect(() => {
-    let proposalNo='3107423903'
-
-        Axios({
-            method: "get",
-            url: `https://dev-api-tracker.bhartiaxa.com/public/api/v1/tracker/proposalDetails?proposalNumber=3107423902`,
-            headers: {
-                'Accept': 'application/json',
-                // 'Content-Type': 'application/json',
-                "Authorization": 'Bearer'+' '+'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIzMTA3NDIzOTAyIiwiYXV0aG9yaXRpZXMiOlt7ImF1dGhvcml0eSI6IkNVU1RPTUVSIn1dLCJpYXQiOjE2OTE0MDE1NDAsImV4cCI6MTY5MTQ4Nzk0MH0.dv2VBC6fgvsjiKIEX7PCytA2Lcv9NxVtoCcBCxG_5V68SlvboIzj2zK0aNlanWInOHo_T_RgoMug6xX9Jm6f3Q'
-            }
-        })
-            .then((res) => {
-                console.log('res>>>',res)
-            })
+        let proposalNo = localStorage.getItem("proposalNo")
+        dispatch(customerDetailAction(proposalNo, (res) => {
+            console.log('res', res)
+            setcustomerData(res)
+        }))
+        dispatch(dashboardAction(proposalNo, (res) => {
+            console.log('res', res)
+        }))
     }, [])
-
+    // console.log('customerData', customerData)
     return (
         <div className='dashboard-container'>
-            <Banner />
+            <div className='header-container-no'>
+                <p>Proposal Number</p>
+                <p>{customerData?.proposalNo}</p>
+            </div>
+            <Banner
+                customerData={customerData}
+            />
             <div className='doc-heading'><p>Application Status</p></div>
             <MainAccordion data={data} />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
