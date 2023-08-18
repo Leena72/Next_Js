@@ -340,7 +340,6 @@ ul {
   border-radius: 10px;
   width: 96%;
   margin: auto;
-
   p {
     color: $label-blue;
     font-size: $font-14;
@@ -349,6 +348,9 @@ ul {
     @include mquery(ipad){
     font-size: $font-16;
     }
+    @include mquery(desk){
+      font-size: $font-18;
+      }
   }
   button{
     border: 1px solid $label-blue;
@@ -358,5 +360,53 @@ ul {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
+    &:hover{
+      color: $white;
+      background-color: $blue;
+    }
+    @include mquery(ipad){
+      font-size: $font-16;
+      }
+      @include mquery(desk){
+        font-size: $font-18;
+        }
+  }
+}
+.quote{
+  background: $light-blue1;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
+  margin: auto;
+  .quote-text{
+    color: $label-blue;
+    font-size: $font-14;
+    font-family: $font-family-OpenSanaRegular;
+    text-decoration: underline;
+    @include mquery(ipad){
+      font-size: $font-16;
+      }
+      @include mquery(desk){
+        font-size: $font-18;
+        }
+  }
+  .quote-btn{
+    border: 1px solid $label-blue;
+    color: $label-blue;
+    background: $light-blue1;
+    font-size: $font-14;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    &:hover{
+      color: $white;
+      background-color: $blue;
+    }
+    @include mquery(ipad){
+      font-size: $font-16;
+      }
+      @include mquery(desk){
+        font-size: $font-18;
+        }
   }
 }

@@ -7,7 +7,8 @@ import Consent from '../Consent';
 import Accordion3 from '../../component/Accordion/Accordion3';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import {scrollToTop} from '../../utils/utils'
+import {scrollToTop} from '../../utils/utils';
+import QuoteGenerated from "../../component/QuoteGenerated/index"
 
 const MainAccordion = ({ data, downloadData }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
@@ -15,7 +16,7 @@ const MainAccordion = ({ data, downloadData }) => {
   const renderElement = (data, heading) => {
     switch (heading) {
       case 'Quote Generated':
-        return <div>Quote Generated</div>
+        return <QuoteGenerated/>
       case 'Form Filling':
         return <FormFilling data={data.content} />
       case 'Medical Requirement':
