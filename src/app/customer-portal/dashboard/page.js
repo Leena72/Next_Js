@@ -9,23 +9,36 @@ import { applicationData, downloadData } from '../../../data'
 import Accordion3 from '@/component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
-import {dashboardAction} from '../../../redux/action/dashboardAction'
+import { dashboardAction } from '../../../redux/action/dashboardAction'
+import { customerDetailAction } from '../../../redux/action/customerDetailAction'
+
 
 const Dashboard = () => {
     const data = applicationData
     const [openAccordion, setOpenAccordion] = useState(false)
+    const [customerData, setcustomerData] = useState(null)
     const dispatch = useDispatch()
     // console.log('localStorage.getItem("accessToken")',localStorage.getItem("accessToken"))
     useEffect(() => {
-    let proposalNo=localStorage.getItem("proposalNo")
-      dispatch(dashboardAction(proposalNo,(res)=>{
-        console.log('res',res)
-      }))
+        let proposalNo = localStorage.getItem("proposalNo")
+        dispatch(customerDetailAction(proposalNo, (res) => {
+            console.log('res', res)
+            setcustomerData(res)
+        }))
+        dispatch(dashboardAction(proposalNo, (res) => {
+            console.log('res', res)
+        }))
     }, [])
-
+    // console.log('customerData', customerData)
     return (
         <div className='dashboard-container'>
-            <Banner />
+            <div className='header-container-no'>
+                <p>Proposal Number</p>
+                <p>{customerData?.proposalNo}</p>
+            </div>
+            <Banner
+                customerData={customerData}
+            />
             <div className='doc-heading'><p>Application Status</p></div>
             <MainAccordion data={data} />
             <div className='doc-heading'><p>Policy Related Documents</p></div>

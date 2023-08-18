@@ -9,6 +9,8 @@ import otpCross from "../../../Assets/images/otp-cross-icon.png"
 import thankYou from "../../../Assets/images/thank-you-bg.png";
 import { sendOTPAction, verifyOTPAction } from '../../../redux/action/OTPAction'
 import { questionnaireAction } from '../../../redux/action/questionnaireAction'
+import { toaster } from '@/utils/toaster';
+
 
 const NonMedForm = ({ formName, formValues, setFormValues }) => {
     // const [formValues, setFormValues] = useState({});
@@ -94,17 +96,18 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
         />
     }
     const formSubmitHandler = () => {
-        let payload={}
-        Object.keys(formValues)?.map((item) => {
-            payload[item]=Object.values(formValues[item])
-        })
-console.log('form payload>>',payload)
+        // let payload = {}
+        // Object.keys(formValues)?.map((item) => {
+        //     payload[item] = Object.values(formValues[item])
+        // })
+        // ----------------------
+        // console.log('form payload>>', payload)
         // let payload = {
         //     "ALCOHOL_HABIT_QUESTION": [formValues]
         // }
         // console.log('payload', payload)
-        // sendOtp()
-        // setShowOtp(true)
+        sendOtp()
+        setShowOtp(true)
 
         // dispatch(questionnaireAction(payload, () => {
 
@@ -113,12 +116,12 @@ console.log('form payload>>',payload)
     }
 
     const formvalidate = () => {
-        let payload = {
-            "ALCOHOL_HABIT_QUESTION": [formValues]
-        }
-        console.log('payload', payload)
+       
+         let payload = {}
+        Object.keys(formValues)?.map((item) => {
+            payload[item] = Object.values(formValues[item])
+        })
         dispatch(questionnaireAction(payload, () => {
-
             // setShowOtp(true)
         }))
     }
@@ -128,12 +131,11 @@ console.log('form payload>>',payload)
             "consentType": "ADDITIONAL_QUESTIONNAIRE",
             "proposalNumber": localStorage.getItem("proposalNo"),
             "consentAction": "ACCEPTED",
-            "rejectionReason": ''
         }
 
         dispatch(sendOTPAction(data, (resp) => {
-            // console.log('res', resp)
-            setRefId(resp?.data?.body?.body.refId)
+            console.log('resp?.data?.body?.body?.refId', resp?.body?.body?.refId)
+            setRefId(resp?.body?.body?.refId)
             setShowOtp(true);
             setOverlay(true)
         }))
@@ -142,18 +144,22 @@ console.log('form payload>>',payload)
         const data = {
             "otp": otp,
             "refId": refId,
-            "key": "COUNTER_OFFER"
+            "key": "ADDITIONAL_QUESTIONNAIRE"
         }
         let proposalNo = localStorage.getItem("proposalNo")
-        // setShowThankyou(true)
-
+        // formvalidate()
         dispatch(verifyOTPAction(data, proposalNo, (resp) => {
             // console.log('resp',resp.data.body)
-            setOtp("")
-            setShowOtp(false);
-            setShowThankyou(true)
-            setOverlay(false)
-            formvalidate()
+            if (resp?.body?.body) {
+                toaster('success', resp?.body?.message);
+                setOtp("")
+                setShowOtp(false); 
+                setShowThankyou(true)
+                formvalidate()
+              }else{
+                toaster('error', resp?.body?.message);
+                setOtp('')
+              }
         }))
     }
     const submitHandler = () => {

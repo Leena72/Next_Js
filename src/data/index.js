@@ -48,7 +48,7 @@ export const bannerData = [
     {
         id: 1,
         number: '90,000**',
-        title: 'Policy Term(in Year)',
+        title: 'Sum Assured',
         rupeeSign: true
     },
 ]

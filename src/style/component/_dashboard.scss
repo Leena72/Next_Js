@@ -1,4 +1,5 @@
 .dashboard-container {
+    position: relative;
 
     @include mquery(ipad) {
         width: 85%;
@@ -6,8 +7,35 @@
     }
 }
 
+.header-container-no {
+    position: absolute;
+    z-index: 1;
+    right: 10px;
+    text-align: end;
+    top: -64px;
+    p{font-size: $font-13;
+        &:nth-of-type(1){
+            color: $grey4;
+            font-family: $font-family-OpenSanaRegular;
+            margin-bottom: 5px;
+        }
+        &:nth-of-type(2){
+            color: $black;
+            font-family: $font-family-OpenSanaBold;
+        }
+    }
+    @include mquery(desk){
+        right: -64px;
+        top: -74px;
+        p{
+            font-size: $font-16;
+        }
+    }
+}
+
 .doc-heading {
     padding: 1.5em;
+
     p {
         font-size: $font-20;
         color: $label-blue;
@@ -17,7 +45,8 @@
             font-size: $font-35;
         }
     }
+
     @include mquery(ipad) {
-    padding: 1.5em;  
+        padding: 1.5em;
     }
 }
