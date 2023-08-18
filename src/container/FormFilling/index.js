@@ -3,24 +3,33 @@ import Accordion1 from '../../component/Accordion/Accordion1';
 import ProposalForm from './ProposalForm';
 import DocumentUpload from '../Doc_Upload';
 import Payment from '../../container/Payment';
+import FormFieldConsent from '../../component/FormFieldConsent'
 
 const FormFilling = ({ data }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
+    const videoPIVCHandler = () => { }
+    const consentHandler = () => { }
     const renderElement = (data, title) => {
 
         switch (title) {
             case 'Proposal Form':
                 return <ProposalForm data={data.subContent} />
             case 'Insta Verify':
-                return <div>Insta Verify</div>
-            case 'Insta Verify':
-                return <div>Insta Verify</div>
+                return <FormFieldConsent
+                    text='To initiate the Video PIVC'
+                    buttonText='Click Here'
+                    clickHandler={videoPIVCHandler}
+                />
             case 'Customer Consent':
-                return <div>Customer Consent</div>
+                return <FormFieldConsent
+                    text='To initiate the Customer Consent '
+                    buttonText='Click Here'
+                    clickHandler={consentHandler}
+                />
             case 'Payment':
-                return <Payment showOffline={true} isText={'Online Payment'}/>
+                return <Payment showOffline={true} isText={'Online Payment'} />
             case 'Document Upload':
-                return <DocumentUpload/>
+                return <DocumentUpload />
             case 'Basic Document Upload':
                 return <div>Basic Document Upload</div>
             case 'Proposal Submission':

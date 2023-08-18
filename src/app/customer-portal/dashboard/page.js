@@ -1,5 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import withAuth from '../../../utils/withAuth';
 import Axios from "axios";
 import Banner from '../../../container/Banner';
@@ -8,26 +9,19 @@ import { applicationData, downloadData } from '../../../data'
 import Accordion3 from '@/component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
+import {dashboardAction} from '../../../redux/action/dashboardAction'
 
 const Dashboard = () => {
     const data = applicationData
     const [openAccordion, setOpenAccordion] = useState(false)
+    const dispatch = useDispatch()
     // console.log('localStorage.getItem("accessToken")',localStorage.getItem("accessToken"))
-    // useEffect(() => {
-    // let proposalNo='3107423903'
-    //     Axios({
-    //         method: "get",
-    //         url: `https://dev-api-tracker.bhartiaxa.com/public/api/v1/tracker/proposalDetails?proposalNumber=3107423902`,
-    //         headers: {
-    //             'Accept': 'application/json',
-    //             // 'Content-Type': 'application/json',
-    //             "Authorization": localStorage.getItem("accessToken")
-    //         }
-    //     })
-    //         .then((res) => {
-    //             console.log('res>>>',res)
-    //         })
-    // }, [])
+    useEffect(() => {
+    let proposalNo=localStorage.getItem("proposalNo")
+      dispatch(dashboardAction(proposalNo,(res)=>{
+        console.log('res',res)
+      }))
+    }, [])
 
     return (
         <div className='dashboard-container'>
