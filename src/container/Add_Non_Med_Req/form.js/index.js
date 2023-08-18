@@ -28,7 +28,6 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
         let formField
         let subQuesFields
         if (quesData.type === 'ques') {
-
             formField = {
                 questionId: quesData.ques.id,
                 questionSetCD: '',
@@ -38,13 +37,14 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
                 question: quesData.ques.question,
                 details: 'testDeatils',
                 rowGuid: 'testRowGuide',
-                subQuestions: formValues?.[quesData.ques.id]?.subQuestions || [],
+                subQuestions: formValues?.[formName]?.[quesData.ques.id]?.subQuestions || [],
                 editable: true
             }
-            setFormValues({ ...formValues, ...{ [quesData.ques.id]: formField } });
+            let currentFormValue = formValues?.[formName] || {}
+            setFormValues({ ...formValues, ...{ [formName]: { ...currentFormValue, [quesData.ques.id]: formField } } });
         }
         else if (quesData.type === 'subQues') {
-            if (!formValues?.[quesData.parent.id]) {
+            if (!formValues?.[formName]?.[quesData.parent.id]) {
                 formField = {
                     questionId: quesData.parent.id,
                     questionSetCD: '',
@@ -59,7 +59,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
                 }
             }
             else {
-                formField = formValues[quesData.parent.id]
+                formField = formValues?.[formName][quesData.parent.id]
             }
             subQuesFields = {
                 questionId: quesData.ques.id,
@@ -73,14 +73,18 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
                 editable: true
             }
 
-            let prevSubQues = formValues?.[quesData.parent.id]?.subQuestions?.filter(item => item.questionId != quesData.ques.id) || []
+            let prevSubQues = formValues?.[formName]?.[quesData.parent.id]?.subQuestions?.filter(item => item.questionId != quesData.ques.id) || []
             formField.subQuestions = [...prevSubQues, subQuesFields]
 
-            setFormValues({ ...formValues, ...{ [quesData.parent.id]: formField } });
+            let currentFormValue = formValues?.[formName] || {}
+            // setFormValues({ ...formValues, ...{ [quesData.parent.id]: formField } });
+            setFormValues({ ...formValues, ...{ [formName]: { ...currentFormValue, [quesData.parent.id]: formField } } });
+
         }
 
 
     }
+    console.log('formvalues', formValues)
     const renderElement = (formName, formValues) => {
         return <FormLayout
             formName={formName}
@@ -90,12 +94,17 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
         />
     }
     const formSubmitHandler = () => {
+        let payload={}
+        Object.keys(formValues)?.map((item) => {
+            payload[item]=Object.values(formValues[item])
+        })
+console.log('form payload>>',payload)
         // let payload = {
         //     "ALCOHOL_HABIT_QUESTION": [formValues]
         // }
         // console.log('payload', payload)
-        sendOtp()
-        setShowOtp(true)
+        // sendOtp()
+        // setShowOtp(true)
 
         // dispatch(questionnaireAction(payload, () => {
 

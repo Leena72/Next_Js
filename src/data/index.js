@@ -365,17 +365,17 @@ export const questionnaireData = [
             {
                 id: 1,
                 title: 'Alcohol Habit Questionnaire ',
-                formName: 'alcohol'
+                formName: 'ALCOHOL_HABIT_QUESTION'
             },
             {
                 id: 2,
                 title: 'Chest Pain Questionnaire',
-                formName: 'chest'
+                formName: 'CHEST_PAIN_QUESTION'
             },
             {
                 id: 3,
                 title: 'Deformity Questionnaire',
-                formName: 'deformity'
+                formName: 'DEFORMITY_QUESTION'
             },
             {
                 id: 4,
@@ -385,32 +385,32 @@ export const questionnaireData = [
             {
                 id: 5,
                 title: 'Digestive Disorder Questionnaire',
-                formName: 'digestive'
+                formName: 'DIGESTIVE_DISORDER_QUESTION'
             },
             {
                 id: 6,
                 title: 'Epilepsy Questionnaire',
-                formName: 'epilepsy'
+                formName: 'EPILEPSY_QUESTION'
             },
             {
                 id: 7,
                 title: 'Musculoskeletal Questionnaire',
-                formName: 'musculoskeletal'
+                formName: 'MUSCULO_SKELETAL_DISORDERS_QUESTION'
             },
             {
                 id: 8,
                 title: 'Nervous Disorder Questionnaire',
-                formName: 'nervous'
+                formName: 'NERVOUS_DISORDER_QUESTION'
             },
             {
                 id: 9,
                 title: 'Resipratory Disorder Questionnaire',
-                formName: 'resipratory'
+                formName: 'RESPIRATORY_DISORDER_QUESTION'
             },
             {
                 id: 10,
                 title: 'Thyroid Disorder Questionnaire',
-                formName: 'thyroid'
+                formName: 'THYROID_DISORDER_QUESTION'
             },
             {
                 id: 11,
@@ -430,7 +430,7 @@ export const questionnaireData = [
 //form data
 
 export const questionnaireList = {
-    "alcohol": [
+    "ALCOHOL_HABIT_QUESTION": [
         {
             id: '1',
             question: '',
@@ -438,7 +438,7 @@ export const questionnaireList = {
             name: 'ques1',
             declaration: 'I hereby agree that the statements below shall form part of my proposal for insurance and I declare that such statements together with the said proposal and declaration shall be the basis of the contract between Bharti AXA Life Insurance Company Limited and myself.',
             heading: 'What are your habits as regards the consumption of alcohol?',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -551,7 +551,7 @@ export const questionnaireList = {
         },
 
     ],
-    "chest": [
+    "CHEST_PAIN_QUESTION": [
         {
             id: '1',
             question: 'When did you suffer the ﬁrst attack of chest pain (date or at what age)?',
@@ -691,7 +691,7 @@ export const questionnaireList = {
             subQuestions: []
         },
     ],
-    "deformity": [
+    "DEFORMITY_QUESTION": [
         {
             id: '1',
             question: '',
@@ -880,7 +880,7 @@ export const questionnaireList = {
             subQuestions: []
         },
     ],
-    "digestive": [
+    "DIGESTIVE_DISORDER_QUESTION": [
         {
             id: '1',
             question: 'Please provide the date and age at which you suffered the first attack of any of the above ailments?',
@@ -1095,7 +1095,7 @@ export const questionnaireList = {
             subQuestions: []
         },
     ],
-    "epilepsy": [
+    "EPILEPSY_QUESTION": [
         {
             id: '1',
             question: 'At what age did the attacks first commence?',
@@ -1245,7 +1245,7 @@ export const questionnaireList = {
             ]
         },
     ],
-    "musculoskeletal": [
+    "MUSCULO_SKELETAL_DISORDERS_QUESTION": [
         {
             id: '1',
             question: 'What was the precise diagnosis of your condition?',
@@ -1396,7 +1396,7 @@ export const questionnaireList = {
             subQuestions: []
         },
     ],
-    "nervous": [
+    "NERVOUS_DISORDER_QUESTION": [
         {
             id: '1',
             question: 'Please state the date and age when the episodes of Nervous tension/Depression/Insomnia/Anxiety/Stress first commence',
@@ -1569,7 +1569,7 @@ export const questionnaireList = {
             subQuestions: []
         },
     ],
-    "resipratory": [
+    "RESPIRATORY_DISORDER_QUESTION": [
         {
             id: '1',
             question: 'Have you ever been diagnosed with any respiratory disease such as asthma, bronchitis, emphysema, etc? If “YES” please provide details below',
@@ -1698,7 +1698,7 @@ export const questionnaireList = {
             subQuestions: []
         }
     ],
-    "thyroid": [
+    "THYROID_DISORDER_QUESTION": [
         {
             id: '1',
             question: 'Have you ever been diagnosed for thyroid disorder?',

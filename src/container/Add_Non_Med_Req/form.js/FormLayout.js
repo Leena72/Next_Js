@@ -5,28 +5,31 @@ import Layout2 from './Layout2'
 const FormLayout = ({ formName, formData, formChangeHandler }) => {
   const renderFormLayout = (formName) => {
     switch (formName) {
-      case 'alcohol':
+      case 'ALCOHOL_HABIT_QUESTION':
         return <Layout1
           formName={formName}
           formData={formData} 
           formChangeHandler={formChangeHandler} />
-      case 'chest':
+      case 'CHEST_PAIN_QUESTION':
         return <Layout2 formData={formData} />
-      case 'deformity':
-        return <Layout1 formData={formData} />
+      case 'DEFORMITY_QUESTION':
+        return <Layout1 formData={formData} 
+        formName={formName}
+        formChangeHandler={formChangeHandler}
+        />
       case 'diabetes':
         return <div>diabetes</div>
-      case 'digestive':
+      case 'DIGESTIVE_DISORDER_QUESTION':
         return <Layout1 formData={formData} />
-      case 'epilepsy':
+      case 'EPILEPSY_QUESTION':
         return <Layout1 formData={formData} />
-      case 'musculoskeletal':
+      case 'MUSCULO_SKELETAL_DISORDERS_QUESTION':
         return <Layout1 formData={formData} />
-      case 'nervous':
+      case 'NERVOUS_DISORDER_QUESTION':
         return <Layout1 formData={formData} />
-      case 'resipratory':
+      case 'RESPIRATORY_DISORDER_QUESTION':
         return <Layout1 formData={formData} />
-      case 'thyroid':
+      case 'THYROID_DISORDER_QUESTION':
         return <Layout1 formData={formData} />
       case 'tumour':
         return <Layout1 formData={formData} />

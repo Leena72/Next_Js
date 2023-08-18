@@ -1,36 +1,6 @@
 import Axios from "axios";
 import { toaster } from "../../utils/toaster"
 
-export function downloadFile(data, filename, mime) {
-    const blob = new Blob([data], { type: mime || 'application/octet-stream' });
-    if (typeof window.navigator.msSaveBlob !== 'undefined') {
-        window.navigator.msSaveBlob(blob, filename);
-        return;
-    }
-    if (isIOSTWA()) {
-        const pdfData = new Blob([data], { type: mime || 'application/octet-stream' });
-        const fileUrl = window.URL.createObjectURL(pdfData);
-
-        // Create a functional component for the PDF viewer
-        return fileUrl;
-    }
-    // For other browsers and Android, perform the regular file download
-    const blobURL = window.URL.createObjectURL(blob);
-    const tempLink = document.createElement('a');
-    tempLink.style.display = 'none';
-    tempLink.href = blobURL;
-    tempLink.setAttribute('download', filename);
-    if (typeof tempLink.download === 'undefined') {
-        tempLink.setAttribute('target', '_blank');
-    }
-    document.body.appendChild(tempLink);
-    tempLink.click();
-    document.body.removeChild(tempLink);
-    setTimeout(() => {
-        window.URL.revokeObjectURL(blobURL);
-    }, 100);
-}
-
 export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
     Axios({
         method: "get",
@@ -43,17 +13,37 @@ export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
         responseType: "blob",
     })
         .then((res) => {
-            console.log('res',res)
-            let d = new Date()
-            let dformat = [d.getDate(),
-            (d.getMonth() + 1).toString().padStart(2, '0'),
-            d.getFullYear(),
-            d.getHours(),
-            d.getMinutes(),
-            d.getSeconds()].join('');
-            downloadFile(res.data, `receipt_${dformat}.pdf`);
+            // console.log('res', res)
+            let blobURL;
+            var downloadLink = document.createElement("a");
+            downloadLink.target = "_blank";
 
+            // convert downloaded data to a Blob
+            // var blob = new Blob([res.data], { type: "application/octet-stream" });
+            var blob = new Blob([res.data], { type: "application/pdf" });
+
+            // create an object URL from the Blob
+            var URL = window.URL || window.webkitURL;
+            var downloadUrl = URL.createObjectURL(blob);
+
+            // set object URL as the anchor's href
+            downloadLink.href = downloadUrl;
+
+            // append the anchor to document body
+            document.body.appendChild(downloadLink);
+
+            // fire a click event on the anchor
+            downloadLink.click();
+
+            // cleanup: remove element and revoke object URL
+            document.body.removeChild(downloadLink);
+            // URL.revokeObjectURL(downloadUrl);
+            setTimeout(() => {
+                // For Firefox it is necessary to delay revoking the ObjectURL
+                window.URL.revokeObjectURL(blobURL);
+            }, 100);
         })
         .catch((error) => {
         });
 };
+
