@@ -9,7 +9,7 @@ const Accordion3 = ({ data }) => {
     const downloadHandler = () => {
         let proposalNo = localStorage.getItem("proposalNo")
         let file = '3107423902FNA.pdf'
-        dispatch(downloadAction(proposalNo, file))
+        dispatch(downloadAction('3107423902', file))
     }
     return (
         <ul className='doc-container'>
