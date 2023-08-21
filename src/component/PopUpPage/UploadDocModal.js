@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Button from '../Button';
 import cameraImg from '../../Assets/images/camera.png'
 import uploadImg from '../../Assets/images/upload_icon.png'
-import { uploadFormAction, uploadAction } from '../../redux/action/uploadAction'
 
 const UploadDocModal = (props) => {
     const dispatch = useDispatch()
@@ -15,48 +14,14 @@ const UploadDocModal = (props) => {
     const closeHandler = () => {
         props.onClose();
     }
-    const uploadDocandler = () => {
-        let file = fileValue[0]
-        let fileSize = file.size
-        let fileName = file.name
-        let fileExt = fileValue.split('.').pop();
-        let formData = new FormData();
-        formData.append("file", file);
-        // formData.append("fileName", fileName);
-        // formData.append("extension", fileExt);
-       
-        // debugger
-        console.log('formData', formData)
-        const headerData = {
-            documentCategory: 'Age Proof',
-            documentType: 'PAN Card',
-            partyType: 'OWNER',
-            documentSide: "",
-            policyNo: "",
-            documentNumber: "",
-            proposalNo: localStorage.getItem('proposalNo')
-        };
-        console.log('headerData,formData', headerData, formData)
-
-
-        if (props.label === 'form-filling') {
-            dispatch(uploadFormAction(headerData, formData, (res) => {
-                toaster('success', res.description)
-            }))
-        }
-        else{
-            dispatch(uploadAction(headerData, formData, (res) => {
-                toaster('success', res.description)
-            }))   
-        }
+    const uploadDocHandler = () => {
+        props.uploadDocHandler(fileValue)
     }
 
     const fileUploadHandler = (event,) => {
-        let fileValue = event.target.value
+        let fileValue = event.target.files[0]
         setFileValue(fileValue)
     }
-    console.log('>> label', props.label)
-
     return (
         <div className={`overlay ${props.addCss}`} >
             <div className="vrtclcntr_bx">
@@ -103,7 +68,8 @@ const UploadDocModal = (props) => {
                         <Button
                             buttonText={'SUBMIT'}
                             className={'blue-button'}
-                            clickHandler={uploadDocandler}
+                            clickHandler={uploadDocHandler}
+                            // disabled={fileValue?.name?.length==0}
                         />
                     </div>
                 </div>

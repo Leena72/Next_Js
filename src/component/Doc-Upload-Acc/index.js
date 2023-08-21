@@ -30,7 +30,7 @@ export const Document = ({ data,key,clickHandler }) => {
     )
 }
 
-export const ViewDoc = ({ data,key,clickHandler }) => {
+export const ViewDoc = ({ data,key,deleteDocHandler }) => {
     return (
         <div className='view-doc2-container' key={key} >
             <div className='view-heading'>{data.title}</div>
@@ -41,7 +41,9 @@ export const ViewDoc = ({ data,key,clickHandler }) => {
                         alt='uplImg'
                     />
                 </a>
-                <a className='view-img-link'>
+                <a className='view-img-link' 
+                            onClick={deleteDocHandler}
+                >
                     <Image
                         src={deleteImg}
                         alt='uplImg'

@@ -48,13 +48,46 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
 
       .then((res) => {
           console.log('res', res)
-          if (res.data.status === "NOT_ACCEPTABLE") {
+          if(res.data.body){
+            cb(res.data.body)
+          }
+          else if (res.data.status === "LOCKED") {
               toaster("error", res.data.message);
-            }
-            if (cb) {
-              cb(res.data.body);
+            cb(res.data)
+
             }
       })
       .catch((error) => {
       });
 };
+
+
+// delete doc
+
+export const deleteDoc =
+  (fileName, proposalNumber, name, docCatg, type, cb) => (dispatch) => {
+    axios
+      .delete(
+        `https://dev-api-proposal.bhartiaxa.com/public/api/v1/proposal/document/delete?file=${fileName}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            documentCategory: 'Age Proof',
+            documentType: 'PAN Card',
+            partyType: 'OWNER',
+            documentSide: "",
+            policyNo: "",
+            documentNumber: "",
+            proposalNo: localStorage.getItem('proposalNo')
+          },
+        }
+      )
+      .then((resp) => {
+        if (cb) {
+          cb();
+        }
+      })
+      .catch((err) => {
+  console.log('err',err)
+      });
+  };
