@@ -6,7 +6,7 @@ import AccDocModal from '../../component/PopUpPage/AccDocModal'
 import UploadDocModal from '../../component/PopUpPage/UploadDocModal'
 
 
-const ProposedAcc = () => {
+const ProposedAcc = ({label}) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [openDocModal, setopenDocModal] = useState(false)
     const [uploadDocModal, setuploadDocModal] = useState(false)
@@ -62,6 +62,7 @@ const ProposedAcc = () => {
                 heading={'Upload Abhishek Arora’s'}
                 subheading={'Passport'}
                 onClose={() => setuploadDocModal(false)}
+                label={label}
             />
         }
         {

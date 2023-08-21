@@ -4,7 +4,7 @@ import dwnArrow from "../../Assets/images/dwn-arw.png";
 import ProposedAcc from './ProposedAcc'
 import { consentData } from '../../data'
 
-const DocumentUpload = () => {
+const DocumentUpload = ({label}) => {
     const [openAcc, setOpenAcc] = useState(null)
     const toggleAccordion = (id) => {
         setOpenAcc(openAcc === id ? null : id)
@@ -12,9 +12,9 @@ const DocumentUpload = () => {
     const renderElement = (title) => {
         switch (title) {
             case 'Proposer':
-                return <ProposedAcc />
+                return <ProposedAcc label={label}/>
             case 'Insured':
-                return <ProposedAcc />
+                return <ProposedAcc label={label}/>
             default:
                 break;
         }

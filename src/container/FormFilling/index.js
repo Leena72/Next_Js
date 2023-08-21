@@ -76,7 +76,7 @@ const FormFilling = ({ data }) => {
             case 'Payment':
                 return <Payment showOffline={true} isText={'Online Payment'} />
             case 'Document Upload':
-                return <DocumentUpload />
+                return <DocumentUpload label='form-filling' />
             case 'Basic Document Upload':
                 return <div>Basic Document Upload</div>
             case 'Proposal Submission':

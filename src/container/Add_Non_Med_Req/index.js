@@ -11,7 +11,7 @@ const AddNonMedReq = () => {
             case 'Health and Lifestyle Questionnaire':
                 return <Health data={data.list} />
             case 'Documents':
-                return <DocumentUpload/>
+                return <DocumentUpload label={'add-form'}/>
             default:
                 break;
         }
