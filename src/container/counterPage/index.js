@@ -34,7 +34,7 @@ const CounterPage = () => {
     setInputValue({
       [name]: value,
     });
-    if (value === 'Accept the revised offer' || value === 'Adjust the Sum Assured to match Existing Premium') { setReasonOne(''); setReasonTwo('') }
+    if (value === 'Accept the revised offer' || value === 'Adjust the Sum Assured to match Existing Premium') { setReasonOne(''); setReasonTwo(''); setDeclineReason('')}
     else setShowOtp(false)
     if (value === 'Decline the revised offer') setDeclineCounter(true)
     else setDeclineCounter(false)
