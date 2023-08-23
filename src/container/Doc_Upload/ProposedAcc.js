@@ -31,7 +31,6 @@ const ProposedAcc = ({label}) => {
         let file = fileValue
         let formData = new FormData();
         formData.append("file", file);
-        console.log('formData', formData)
         const headerData = {
             documentCategory: 'Age Proof',
             documentType: 'PAN Card',
@@ -41,8 +40,7 @@ const ProposedAcc = ({label}) => {
             documentNumber: "",
             proposalNo: localStorage.getItem('proposalNo')
         };
-        // console.log('headerData,formData', headerData, formData)
-
+        
         if (label === 'form-filling') {
             dispatch(uploadFormAction(headerData, formData, (res) => {
                 toaster('success', res.description)

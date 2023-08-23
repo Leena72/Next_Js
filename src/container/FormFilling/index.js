@@ -7,7 +7,7 @@ import FormFieldConsent from '../../component/FormFieldConsent';
 import axios from 'axios';
 import { toaster } from '@/utils/toaster';
 
-const FormFilling = ({ data }) => {
+const FormFilling = ({ data,formFillingData,proposalDetail,accDetails }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
     const videoPIVCHandler = () => { 
         const payload = {
@@ -56,11 +56,10 @@ const FormFilling = ({ data }) => {
             }
           })
      }
-    const renderElement = (data, title) => {
-
+    const renderElement = (data, title) => { 
         switch (title) {
-            case 'Proposal Form':
-                return <ProposalForm data={data.subContent} />
+            case 'PROPOSAL_FORM':
+                return <ProposalForm data={data.subContent} proposalDetail={proposalDetail} />
             case 'Insta Verify':
                 return <FormFieldConsent
                     text='To initiate the Video PIVC'
@@ -79,8 +78,10 @@ const FormFilling = ({ data }) => {
                 return <DocumentUpload label='form-filling' />
             case 'Basic Document Upload':
                 return <div>Basic Document Upload</div>
-            case 'Proposal Submission':
-                return <div>Proposal Submission</div>
+            case 'PROPOSAL_SUBMISSION':
+                return (data.subStatus==="PENDING" ?<div>Yet to create</div> :<div>
+                  <p>Policy Number: {accDetails?.policyNumber}</p>
+                </div>)
             default:
                 break;
         }
@@ -91,7 +92,7 @@ const FormFilling = ({ data }) => {
     return (
         <ul className='acc-active-container'>
             {
-                data.map((item, idx) => {
+                formFillingData && formFillingData.map((item, idx) => {
                     return (
                         <li className={`acc-active-list`}
                             key={idx} >
@@ -100,10 +101,10 @@ const FormFilling = ({ data }) => {
                                 item={item}
                                 toggleAccordion={toggleAccordion}
                             />
-                            {openAccordion === item.id ?
+                            {openAccordion === item?.id ?
                                 <div className='show'>
                                     {
-                                        renderElement(item, item.heading)
+                                        renderElement(item, item.status)
                                     }
                                 </div>
                                 : ''

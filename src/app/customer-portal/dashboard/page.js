@@ -18,18 +18,12 @@ const Dashboard = () => {
     const [openAccordion, setOpenAccordion] = useState(false)
     const [customerData, setcustomerData] = useState(null)
     const dispatch = useDispatch()
-    // console.log('localStorage.getItem("accessToken")',localStorage.getItem("accessToken"))
     useEffect(() => {
         let proposalNo = localStorage.getItem("proposalNo")
-        dispatch(customerDetailAction(proposalNo, (res) => {
-            console.log('res', res)
+        dispatch(dashboardAction(proposalNo, (res) => {
             setcustomerData(res)
         }))
-        dispatch(dashboardAction(proposalNo, (res) => {
-            console.log('res', res)
-        }))
     }, [])
-    // console.log('customerData', customerData)
     return (
         <div className='dashboard-container'>
             <div className='header-container-no'>
@@ -40,7 +34,10 @@ const Dashboard = () => {
                 customerData={customerData}
             />
             <div className='doc-heading'><p>Application Status</p></div>
-            <MainAccordion data={data} />
+            <MainAccordion 
+            data={data} 
+            accDetails={customerData} 
+            />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
             <div className='dashboard-acc'>
                 <div className='acc-non-block' onClick={() => setOpenAccordion(!openAccordion)}>

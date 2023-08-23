@@ -1,4 +1,5 @@
 import Axios from "axios";
+import apiConstants from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 
@@ -6,7 +7,7 @@ export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `https://dev-api-auth.bhartiaxa.com/public/api/v1/auth/customer`,
+        url: `${apiConstants.API_URL}auth/customer`,
         headers: {
             "Content-Type": "application/json",
         },

@@ -24,7 +24,6 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
 
     let formData = questionnaireList[formName]
     const dispatch = useDispatch()
-    console.log('formValues', formValues)
 
     const formChangeHandler = ({ name, value, quesData, formName }) => {
         let formField
@@ -86,7 +85,6 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
 
 
     }
-    console.log('formvalues', formValues)
     const renderElement = (formName, formValues) => {
         return <FormLayout
             formName={formName}
@@ -96,23 +94,9 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
         />
     }
     const formSubmitHandler = () => {
-        // let payload = {}
-        // Object.keys(formValues)?.map((item) => {
-        //     payload[item] = Object.values(formValues[item])
-        // })
-        // ----------------------
-        // console.log('form payload>>', payload)
-        // let payload = {
-        //     "ALCOHOL_HABIT_QUESTION": [formValues]
-        // }
-        // console.log('payload', payload)
         sendOtp()
         setShowOtp(true)
 
-        // dispatch(questionnaireAction(payload, () => {
-
-        //     setShowOtp(true)
-        // }))
     }
 
     const formvalidate = () => {
@@ -147,9 +131,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             "key": "ADDITIONAL_QUESTIONNAIRE"
         }
         let proposalNo = localStorage.getItem("proposalNo")
-        // formvalidate()
         dispatch(verifyOTPAction(data, proposalNo, (resp) => {
-            // console.log('resp',resp.data.body)
             if (resp?.body?.body) {
                 toaster('success', resp?.body?.message);
                 setOtp("")
@@ -166,7 +148,6 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
         verifyOtp();
     }
 
-    // console.log('formValues', formValues)
     return (
         <>
             <div className='form-container'>

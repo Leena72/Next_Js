@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image'
 import right from "../../Assets/images/right.png";
 import AddNonMedReq from '../Add_Non_Med_Req';
@@ -7,29 +7,69 @@ import Consent from '../Consent';
 import Accordion3 from '../../component/Accordion/Accordion3';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import {scrollToTop} from '../../utils/utils';
+import { scrollToTop } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
 
-const MainAccordion = ({ data, downloadData }) => {
+const MainAccordion = ({ data, downloadData, accDetails }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
-
+  let accordionDetails = accDetails?.newgenStatusResponseDTOList
   const renderElement = (data, heading) => {
     switch (heading) {
       case 'Quote Generated':
-        return <QuoteGenerated/>
+        let quoteDetail;
+        quoteDetail = accordionDetails && accordionDetails?.filter(item => {
+          return item.status === 'QUOTE';
+        });
+        return <QuoteGenerated
+          quoteDetail={quoteDetail && quoteDetail[0]}
+        />
       case 'Form Filling':
-        return <FormFilling data={data.content} />
+        let formFillingData = []
+        let proposalSubmission = accordionDetails && accordionDetails?.filter(item => {
+          return item.status === 'PROPOSAL_SUBMISSION';
+        });
+        let payment = accordionDetails && accordionDetails?.filter(item => {
+          return item.status === 'PAYMENT';
+        });
+        let proposalData = {
+          actual_status: '',
+          createdOn: '',
+          id: '',
+          status: 'PROPOSAL_FORM',
+          subStatus: '',
+          updatedOn: ''
+        }
+        let proposalDetail = accordionDetails && accordionDetails?.filter(item => {
+          return item.status === 'PROPOSAL';
+        });
+        formFillingData.push(proposalData, proposalSubmission && proposalSubmission[0], payment && payment[0])
+
+        return <FormFilling
+          accDetails={accDetails}
+          data={data.content}
+          formFillingData={formFillingData}
+          proposalDetail={proposalDetail}
+        />
+
       case 'Medical Requirement':
         return <div>Medical Requirement</div>
       case 'Additional Non-Medical Requirements':
-        return <AddNonMedReq />
+        let addNonMedDetail;
+        addNonMedDetail = accordionDetails && accordionDetails.filter(item => {
+          return item.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT';
+        });
+        return <AddNonMedReq addNonMedDetail={addNonMedDetail} />
       case 'Revised Offer':
-        return <CounterPage/>
+        return <CounterPage />
       case 'Consent for change in the application details':
-        return <Consent/>
+        return <Consent />
       case 'Payment Required':
-        return <Payment/>
-      case 'Quality Check':
+        return <Payment />
+      case 'Quality Check': "Quality_Check"
+        let qualityChkDetail;
+        qualityChkDetail = accordionDetails && accordionDetails.filter(item => {
+          return item.status === 'Quality_Check';
+        });
         return <div>Quality Check</div>
       case 'Medical Risk Verification':
         return <div>Medical Risk Verification</div>
@@ -70,7 +110,7 @@ const MainAccordion = ({ data, downloadData }) => {
                   </div>
                 </div>
                 <div className='acc-activeState'>
-                  {item.completed ?
+                  {item.actual_status === 'COMPLETED' ?
                     <div className='acc-completed'>
                       <Image
                         src={right}

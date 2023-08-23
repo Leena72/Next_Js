@@ -1,4 +1,5 @@
 import Axios from "axios";
+import apiConstants from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 import axios from "axios";
 
@@ -6,7 +7,7 @@ import axios from "axios";
 export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
     axios
     .post(
-      `https://dev-api-proposal.bhartiaxa.com/public/api/v1/proposal/document/addInfo/uploadFile?documentCd=${data.documentCd}&docCategoryCd=${data.docCategoryCd}&documentSide=FRONT_SIDE&docCategoryTypeCd=${data.docCategoryTypeCd}&documentNumber=${docNumber}&partyType=${this.state.docType}&proposalNo=${this.props.data && this.props.data.proposalNumber}&policyNo=${localStorage.getItem('policyNumberTpa')}&serviceDocListId=${data.id}&uwId=${this.props.data.id}`,
+      `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${data.documentCd}&docCategoryCd=${data.docCategoryCd}&documentSide=FRONT_SIDE&docCategoryTypeCd=${data.docCategoryTypeCd}&documentNumber=${docNumber}&partyType=${this.state.docType}&proposalNo=${this.props.data && this.props.data.proposalNumber}&policyNo=${localStorage.getItem('policyNumberTpa')}&serviceDocListId=${data.id}&uwId=${this.props.data.id}`,
       fileData,
       {
         headers: {
@@ -18,7 +19,6 @@ export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
     )
 
         .then((res) => {
-            console.log('res', res)
             if (res.data.status === "NOT_ACCEPTABLE") {
                 toaster("error", res.data.message);
               }
@@ -35,7 +35,7 @@ export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
 export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => { 
   axios
   .post(
-    `https://dev-api-proposal.bhartiaxa.com/public/api/v1/proposal/document/uploadFile`,
+    `${apiConstants.API_URL}proposal/document/uploadFile`,
     fileData,
     {
       headers: {
@@ -47,7 +47,6 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
   )
 
       .then((res) => {
-          console.log('res', res)
           if(res.data.body){
             cb(res.data.body)
           }
@@ -68,7 +67,7 @@ export const deleteDoc =
   (fileName, proposalNumber, name, docCatg, type, cb) => (dispatch) => {
     axios
       .delete(
-        `https://dev-api-proposal.bhartiaxa.com/public/api/v1/proposal/document/delete?file=${fileName}`,
+        `${apiConstants.API_URL}proposal/document/delete?file=${fileName}`,
         {
           headers: {
             "Content-Type": "application/json",

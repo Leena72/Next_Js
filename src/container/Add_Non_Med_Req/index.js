@@ -4,7 +4,7 @@ import Health from './Health'
 import Accordion2 from '../../component/Accordion/Accordion2';
 import DocumentUpload from '../Doc_Upload';
 
-const AddNonMedReq = () => {
+const AddNonMedReq = ({addNonMedDetail}) => {
     const [openAccordion, setOpenAccordion] = useState(null)
     const renderElement = (data, title) => {
         switch (title) {
