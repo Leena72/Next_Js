@@ -1,5 +1,5 @@
 import Axios from "axios";
-import apiConstants from "../../constants/apiConstants";
+import {apiConstants , loginAPIConstant} from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 
@@ -7,7 +7,7 @@ export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `${apiConstants.API_URL}auth/customer`,
+        url: `${loginAPIConstant.API_URL}auth/customer`,
         headers: {
             "Content-Type": "application/json",
         },
