@@ -10,7 +10,7 @@ import Accordion3 from '@/component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
 import { dashboardAction } from '../../../redux/action/dashboardAction'
-import { customerDetailAction } from '../../../redux/action/customerDetailAction' // not on used
+import { customerDetailAction } from '../../../redux/action/customerDetailAction' // not in used
 
 
 const Dashboard = () => {

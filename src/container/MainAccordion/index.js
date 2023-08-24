@@ -13,25 +13,38 @@ import QuoteGenerated from "../../component/QuoteGenerated/index"
 const MainAccordion = ({ data, downloadData, accDetails }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
+  const policyDocuments=accDetails?.policyDocuments
+  const formFillDocDownload =accDetails?.requiredDocuments
+
+  // console.log('formFillDocDownload',formFillDocDownload)
+  // console.log('accDetails', accDetails)
+  // console.log('policyDocuments',policyDocuments)
+  // console.log('accordionDetails', accordionDetails)
+  // console.log('data',data)
 
   const renderElement = (data, heading) => {
     switch (heading) {
       case 'Quote Generated':
-        if (accordionDetails.length !== 0) {
           let quoteDetail=accordionDetails && accordionDetails?.filter(item => {
             return item.status === 'QUOTE';
           });
-          return <QuoteGenerated
+          return (quoteDetail.length!==0 ? 
+          <QuoteGenerated
             quoteDetail={quoteDetail && quoteDetail[0]}
+            policyDocumentFile={policyDocuments['BI_TAG_NAME']}
           />
-        }
-        else {
-          return <div>{data.subHeading}</div>
-        }
+          :
+          <div className='blue-block-container'>
+            <p>Quote not available!</p>
+          </div>
+          )
+        
       case 'Form Filling':
           return <FormFilling
-            accDetails={accDetails}
-            data={data.content}
+            accDetails={accDetails} //whole data
+            accordionDetails={accordionDetails} //status data
+            data={data.content} // accordion data
+            formFillDocDownload={formFillDocDownload} //download doc data
           />
 
       case 'Medical Requirement':

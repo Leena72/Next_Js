@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { UploadDoc, Document, ViewDoc } from '../../component/Doc-Upload-Acc'
 import { uploadData, docData, viewData, uploadDocument, documentsUplaod } from '../../data'
 import AccPopUp from '../../component/PopUpPage/AccPopUp'
@@ -8,20 +8,34 @@ import UploadDocModal from '../../component/PopUpPage/UploadDocModal'
 import { uploadFormAction, uploadAction,deleteDoc } from '../../redux/action/uploadAction'
 
 
-const ProposedAcc = ({label}) => {
+const ProposedAcc = ({label,title,formFillDocDownload}) => {
+    const proposedDocList=formFillDocDownload?.list?.filter(item=> {
+        return item.name === 'OWNER';
+      })
+      const insuredDocList=formFillDocDownload?.list?.filter(item=> {
+        return item.name === 'INSURED';
+      })
+
+    const customerDetail = useSelector((state)=>state.customerDetailReducer.body)
     const dispatch = useDispatch()
 
     const [openUploadModal, setopenUploadModal] = useState(false)
+    const [modalHeading, setmodalHeading] = useState('')
+    const [uploadModalHeading, setuploadModalHeading] = useState('')
+    const [documentList, setdocumentList] = useState(null)
     const [openDocModal, setopenDocModal] = useState(false)
     const [uploadDocModal, setuploadDocModal] = useState(false)
 
-    const clickHandler = (id, popUp) => {
-        popUp && setopenUploadModal(!openUploadModal)
+    const clickHandler = (heading,documentList) => {
+        setmodalHeading(heading)
+        setdocumentList(documentList)
+         setopenUploadModal(!openUploadModal)
     }
     const docClickHandler = (id) => {
         setopenDocModal(!openDocModal)
     }
-    const accPopUpHandler = () => {
+    const accPopUpHandler = (data) => {
+        setuploadModalHeading(data)
         setopenUploadModal(false)
         setuploadDocModal(true)
     }
@@ -57,20 +71,20 @@ const ProposedAcc = ({label}) => {
     const deleteDocHandler=()=>{
         let fileName='camera.png'
         dispatch(deleteDoc(fileName,()=>{
-
         }))
     }
     return (<>
         <div className='nonMedListBlock'>
-            {uploadData.map(item =>
+            {proposedDocList && proposedDocList[0]?.documentList?.map((item,idx) =>
+            
                 <UploadDoc
-                    key={item.id}
+                    key={item.idx}
                     data={item}
                     clickHandler={clickHandler}
                 />
             )
             }
-            {docData.map(item =>
+            {/* {docData.map(item =>
                 <Document
                     key={item.id}
                     data={item}
@@ -85,20 +99,21 @@ const ProposedAcc = ({label}) => {
                     deleteDocHandler={deleteDocHandler}
                 />
             )
-            }
+            } */}
         </div>
         {openUploadModal &&
             <AccPopUp
-                heading={'Select Permanent Address Proof'}
+                heading={`Select ${modalHeading}`}
                 subheading={'Any one document is mandatory'}
+                documentList={documentList}
                 content={uploadDocument}
                 clickHandler={accPopUpHandler}
                 onClose={() => setopenUploadModal(false)}
             />}
         {
             uploadDocModal && <UploadDocModal
-                heading={'Upload Abhishek Arora’s'}
-                subheading={'Passport'}
+                heading={`Upload ${customerDetail?.customerName}’s`}
+                subheading={uploadModalHeading}
                 onClose={() => setuploadDocModal(false)}
                 label={label}
                 uploadDocHandler={uploadDocHandler}

@@ -8,9 +8,9 @@ import FormFieldConsent from '../../component/FormFieldConsent';
 import { videoPIVCAction } from '../../redux/action/videoPIVCAction'
 import { consentHandlerAction } from '../../redux/action/consentHandlerAction'
 
-const FormFilling = ({ data, accDetails }) => {
+const FormFilling = ({ data, accDetails, accordionDetails, formFillDocDownload }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
-  const accordionDetails = accDetails?.newgenStatusResponseDTOList
+
   const dispatch = useDispatch()
 
   const videoPIVCHandler = () => {
@@ -35,7 +35,12 @@ const FormFilling = ({ data, accDetails }) => {
         let proposalFormList = accordionDetails && accordionDetails?.filter(item => {
           return item.status === 'PROPOSAL';
         });
-        return <ProposalForm data={data.subContent} proposalFormList={proposalFormList} />
+        return (proposalFormList.length !== 0 ?
+          <ProposalForm data={data.subContent} proposalFormList={proposalFormList} />
+          :
+          <div className='blue-block-container'>
+            <p>Proposal forms not available!</p>
+          </div>)
       case 'Insta Verify':
         return <FormFieldConsent
           text='To initiate the Video PIVC'
@@ -51,22 +56,22 @@ const FormFilling = ({ data, accDetails }) => {
       case 'Payment':
         return <Payment showOffline={true} isText={'Online Payment'} />
       case 'Document Upload':
-        return <DocumentUpload label='form-filling' />
+        return <DocumentUpload label='form-filling' formFillDocDownload={formFillDocDownload} />
       case 'Basic Document Upload':
         return <div>Basic Document Upload</div>
       case 'Proposal Submission':
         let proposalSub = accordionDetails && accordionDetails?.filter(item => {
           return item.status === 'PROPOSAL_SUBMISSION';
         });
-        console.log('proposalSub', proposalSub)
-        return (proposalSub[0].subStatus === "PENDING" ?
+        return (proposalSub[0]?.subStatus === "PENDING" ?
           <div className='blue-block-container'>
             <p>{proposalSub[0].subStatus}</p>
           </div>
           :
           <div className='blue-block-container'>
             <p>Policy Number: {accDetails?.policyNumber}</p>
-          </div>)
+          </div>
+        )
       default:
         break;
     }

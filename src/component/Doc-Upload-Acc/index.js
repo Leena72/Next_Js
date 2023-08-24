@@ -7,9 +7,15 @@ import deleteImg from "../../Assets/images/delete.png"
 
 export const UploadDoc = ({ data,key,clickHandler }) => {
     return (
-        <div className={`upl-doc-container ${data.upload ? 'upl-doc' : 'upl-blk'}`} 
-        key={key} onClick={()=>clickHandler(data.id,data.popUp)}>
-            <div className='upl-heading'>{data.title}</div>
+        <div 
+        className={`upl-doc-container upl-doc`} 
+        // className={`upl-doc-container 
+        // ${data.upload ? 'upl-doc' : 'upl-blk'}
+        // `} 
+        key={key} 
+        onClick={()=>clickHandler(data.indexValue,data.documents)}
+        >
+            <div className='upl-heading'>{data.indexValue}</div>
             <div className='upl-img'>
                 <a className='upl-img-link'>
                     <Image

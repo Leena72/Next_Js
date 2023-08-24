@@ -2,14 +2,13 @@ import React from 'react'
 import { downloadAction } from "../../redux/action/downloadAction";
 import { useDispatch } from 'react-redux';
 import {dateFormat} from '../../utils/utils'
-const QuoteGenerated = ({ quoteDetail }) => {
+const QuoteGenerated = ({ quoteDetail,policyDocumentFile }) => {
   const dispatch = useDispatch()
   const downloadHandler = () => {
     let proposalNo = localStorage.getItem("proposalNo")
-    let file = '3107423902FNA.pdf'
+    let file = policyDocumentFile
     dispatch(downloadAction(proposalNo, file))
   }
-  // console.log('quoteDetail',quoteDetail)
   return (
           <div className='quote text-center'>
             <div className='mb-3 quote-text'>

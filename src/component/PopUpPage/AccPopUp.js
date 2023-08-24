@@ -6,6 +6,7 @@ const AccPopUp = (props) => {
     const closeHandler = () => {
         props.onClose();
     }
+    const docList= Object.values(props.documentList)
     return (
         <div className={`overlay ${props.addCss}`} >
             <div className="vrtclcntr_bx">
@@ -20,10 +21,10 @@ const AccPopUp = (props) => {
                         <div className='sub-heading-bx'>{props.subheading ? props.subheading : null}</div>
                         <div className='content-box'>
                             {
-                                props.content.map(data => (
+                                docList && docList[0].map((data,idx) => (
                                     <div className={`upl-doc-container upl-doc`}
-                                        key={data.id} onClick={() => props.clickHandler(data.id)}>
-                                        <div className='upl-heading'>{data.title}</div>
+                                        key={idx} onClick={() => props.clickHandler(data)}>
+                                        <div className='upl-heading'>{data}</div>
                                         <div className='upl-img'>
                                             <a className='upl-img-link'>
                                                 <Image

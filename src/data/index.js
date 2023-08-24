@@ -2110,36 +2110,37 @@ export const documentsUplaod = [
 
 // status api data
 
-export const statusApi = {
-    "proposalId": 3821154,
+export const statusApi = 
+{
+    "proposalId": 3842398,
     "customerId": null,
-    "quoteId": 3821153,
-    "quoteRefNumber": "70000620224",
-    "customerName": "Prachi Bhinge",
-    "firstName": "Prachi",
+    "quoteId": 3842397,
+    "quoteRefNumber": "23750071864230823",
+    "customerName": "TESR ",
+    "firstName": "TESR",
     "middleName": "",
-    "lastName": "Bhinge",
-    "planName": "Bharti AXA Life Guaranteed Income Pro",
-    "sumAssured": 5676014,
-    "proposalNumber": "3208405306",
-    "premium": null,
-    "journeyStatus": "QUOTE",
+    "lastName": "",
+    "planName": "Bharti AXA Life Secure Income Plan",
+    "sumAssured": 89084,
+    "proposalNumber": "3108426548",
+    "premium": 150000,
+    "journeyStatus": "UNDERWRITING_SUBMITTED",
     "agentCode": null,
-    "emailId": "abc@gmail.com",
-    "mobileNo": "9022313330",
-    "dateOfBirth": "29-12-1964",
-    "channelName": "FC",
-    "subChannelName": "FC",
+    "emailId": "OK@OK.COM",
+    "mobileNo": "8826979056",
+    "dateOfBirth": "11-05-1994",
+    "channelName": "",
+    "subChannelName": "",
     "sourceName": "MSell",
-    "policyFor": "SELF",
-    "quotationRefNum": "70000620224",
-    "policyNumber": null,
-    "overallUWDecisionCd": null,
-    "uniqueProposalId": "c045djI0ZFpMbzM5Tno2VTVpMG5Pdz09",
+    "policyFor": "OTHER",
+    "quotationRefNum": "23750071864230823",
+    "policyNumber": "506-8151504",
+    "overallUWDecisionCd": "Counter Offer",
+    "uniqueProposalId": "ajkxMnN4bVlxM0Q4c3I5R2xyalNuUT09",
     "workFlowStage": null,
     "pasaCase": false,
     "premiumPaymentTerm": 5,
-    "policyTerm": 10,
+    "policyTerm": 15,
     "newgenStatusResponseDTOList": [
         {
             "id": 3821155,
@@ -2422,12 +2423,11 @@ export const statusApi = {
             "createdOn": "2023-08-17 07:59:44"
         }
     ],
-    // "newgenStatusResponseDTOList":[],
     "requiredDocuments": {
         "list": [
             {
                 "name": "OWNER",
-                "personName": "SUMIT ",
+                "personName": "TESR ",
                 "documentList": [
                     {
                         "mandatoryDoc": "1",
@@ -2435,7 +2435,7 @@ export const statusApi = {
                         "indexValue": "Age Proof",
                         "documents": {
                             "Age Proof": [
-                                "School/College Certificate"
+                                "PAN Card"
                             ]
                         }
                     },
@@ -2445,7 +2445,17 @@ export const statusApi = {
                         "indexValue": "Identity Proof",
                         "documents": {
                             "Identity Proof": [
-                                "UIDAI Letter"
+                                "PAN Card"
+                            ]
+                        }
+                    },
+                    {
+                        "mandatoryDoc": "1",
+                        "category": "Initial Payment Instrument Scan",
+                        "indexValue": "Other Documents",
+                        "documents": {
+                            "Initial Payment Instrument Scan": [
+                                "Initial Payment Cheque Scan"
                             ]
                         }
                     },
@@ -2496,11 +2506,16 @@ export const statusApi = {
         ]
     },
     "policyDocuments": {
-
+        "BI_TAG_NAME": "23750071864230823.pdf",
+        "CDF_TAG_NAME": "3108426548CDF.pdf",
+        "FNA_TAG_NAME": "3108426548FNA.pdf",
+        "PDF_TAG_NAME": "3108426548_PF.pdf",
+        "COVID_TAG_NAME_2": "3108426548InsuredCovid19.pdf",
+        "NEW_ACR_TAG_NAME": "506-8151504_ACR.pdf",
+        "NEW_COVID_TAG_NAME_2": "3108426548covid_19.pdf",
+        "AGENT_CONFIDENTIAL_REPORT": "AgentConfidentialReport.pdf"
     },
-    "paymentReceipts": [
-
-    ],
+    "paymentReceipts": [],
     "additionalInfoDocs": {
         "proposerDocumentDetail": {
             "guid": "3308301537P",
@@ -2529,5 +2544,36 @@ export const statusApi = {
         },
         "primaryInsuredDocumentDetail": null,
         "jointLifeDocumentDetail": null
+    },
+    "instaDetails": null,
+    "consentDetail": {
+        "whatsAppOpt": false,
+        "whatsAppCommunicationAgree": false,
+        "mobileCommunicationAgree": true,
+        "ecdfFormAgree": false,
+        "policyDocumentOnEmailAgree": false,
+        "digiLockerAgree": false,
+        "proposalNumber": null,
+        "proposalFormLink": null,
+        "cdfFormLink": null,
+        "policyDocumentLink": null,
+        "accepted": null,
+        "rejectedReason": null,
+        "fincareConsentLink": null,
+        "customerConsentLink": null,
+        "agentConsentLink": null,
+        "agentConsent": false,
+        "tpaConsentLink": "https://dev-onboarding.bhartiaxa.com/mcustomer/app?pn=MzEwODQyNjU0OA==&et=TW9uIEF1ZyAyOCAxMDowNzowNyBVVEMgMjAyMw==",
+        "refNumber": null,
+        "verificationDate": null,
+        "otp": null,
+        "verified": null,
+        "otpTimeStamp": null,
+        "insta2ConsentSent": null,
+        "insta2MessageSent": null,
+        "customerConsentRequired": false,
+        "agentConsentRequired": false,
+        "customerConsentRejectedReason": null,
+        "customerConsentRejected": false
     }
 }
