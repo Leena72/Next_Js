@@ -45,6 +45,7 @@ export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
             }, 100);
         })
         .catch((error) => {
+            toaster('error', error.message);
         });
 };
 

@@ -7,13 +7,14 @@ const QuoteGenerated = ({ quoteDetail }) => {
   const downloadHandler = () => {
     let proposalNo = localStorage.getItem("proposalNo")
     let file = '3107423902FNA.pdf'
-    dispatch(downloadAction('3107423902', file))
+    dispatch(downloadAction(proposalNo, file))
   }
+  // console.log('quoteDetail',quoteDetail)
   return (
           <div className='quote text-center'>
             <div className='mb-3 quote-text'>
               {/* 26 JUNE, 2023 | 09:06 PM */}
-              {dateFormat(quoteDetail.createdOn)}
+              {dateFormat(quoteDetail?.createdOn)}
             </div>
             <button onClick={downloadHandler} className='quote-btn'>Download BI</button>
           </div>

@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import withAuth from '../../../utils/withAuth';
 import Axios from "axios";
 import Banner from '../../../container/Banner';
@@ -10,7 +10,7 @@ import Accordion3 from '@/component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
 import { dashboardAction } from '../../../redux/action/dashboardAction'
-import { customerDetailAction } from '../../../redux/action/customerDetailAction'
+import { customerDetailAction } from '../../../redux/action/customerDetailAction' // not on used
 
 
 const Dashboard = () => {
@@ -24,19 +24,27 @@ const Dashboard = () => {
             setcustomerData(res)
         }))
     }, [])
+    const showLoader = useSelector((state) => state.loaderReducer);
+    // const storeState = useSelector((state) => state);
+    // console.log('storeState', storeState)
     return (
         <div className='dashboard-container'>
+            {showLoader["isLoaderOn"] && (
+                <div className="loader-overlay">
+                    <div className="loader-img"></div>
+                </div>
+            )}
             <div className='header-container-no'>
                 <p>Proposal Number</p>
-                <p>{customerData?.proposalNo}</p>
+                <p>{customerData?.proposalNumber}</p>
             </div>
             <Banner
                 customerData={customerData}
             />
             <div className='doc-heading'><p>Application Status</p></div>
-            <MainAccordion 
-            data={data} 
-            accDetails={customerData} 
+            <MainAccordion
+                data={data}
+                accDetails={customerData}
             />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
             <div className='dashboard-acc'>

@@ -2107,3 +2107,427 @@ export const documentsUplaod = [
         title: 'Salary Slip'
     },
 ]
+
+// status api data
+
+export const statusApi = {
+    "proposalId": 3821154,
+    "customerId": null,
+    "quoteId": 3821153,
+    "quoteRefNumber": "70000620224",
+    "customerName": "Prachi Bhinge",
+    "firstName": "Prachi",
+    "middleName": "",
+    "lastName": "Bhinge",
+    "planName": "Bharti AXA Life Guaranteed Income Pro",
+    "sumAssured": 5676014,
+    "proposalNumber": "3208405306",
+    "premium": null,
+    "journeyStatus": "QUOTE",
+    "agentCode": null,
+    "emailId": "abc@gmail.com",
+    "mobileNo": "9022313330",
+    "dateOfBirth": "29-12-1964",
+    "channelName": "FC",
+    "subChannelName": "FC",
+    "sourceName": "MSell",
+    "policyFor": "SELF",
+    "quotationRefNum": "70000620224",
+    "policyNumber": null,
+    "overallUWDecisionCd": null,
+    "uniqueProposalId": "c045djI0ZFpMbzM5Tno2VTVpMG5Pdz09",
+    "workFlowStage": null,
+    "pasaCase": false,
+    "premiumPaymentTerm": 5,
+    "policyTerm": 10,
+    "newgenStatusResponseDTOList": [
+        {
+            "id": 3821155,
+            "status": "QUOTE",
+            "subStatus": "QUOTE",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821160,
+            "status": "PROPOSAL_SUBMISSION",
+            "subStatus": "PENDING",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821161,
+            "status": "MEDICAL_REQUIREMENT",
+            "subStatus": "Waiting for Issuance",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821166,
+            "status": "Revised_Offer",
+            "subStatus": "Pending for Counter Offer",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821167,
+            "status": "PAYMENT_REQUIREMENT",
+            "subStatus": "Pending for Short Premium",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821179,
+            "status": "MEDICAL_RISK_VERIFICATION",
+            "subStatus": "Pending with TPA",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821180,
+            "status": "FINANCIAL_AND_MEDICAL_RISK_VERIFICATION",
+            "subStatus": " Pending for UW",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821156,
+            "status": "PROPOSAL",
+            "subStatus": "Personal_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821157,
+            "status": "PROPOSAL",
+            "subStatus": "Nominee_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821158,
+            "status": "PROPOSAL",
+            "subStatus": "Health_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821159,
+            "status": "PROPOSAL",
+            "subStatus": "Insured_Proposer_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821162,
+            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
+            "subStatus": "Pending for Requirements (Med Requirement)",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821163,
+            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
+            "subStatus": "Pending for Requirements (Non-Med Requirement)",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821164,
+            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
+            "subStatus": "Pending for Requirements (Basic Requirement/Document)",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821165,
+            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
+            "subStatus": "Pending for Requirements (Additional Requirement/Informations)",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821168,
+            "status": "Quality_Check",
+            "subStatus": "Pending for Auto UW",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821169,
+            "status": "Quality_Check",
+            "subStatus": "Pending for Requirement (Document required from Sales)",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821170,
+            "status": "Quality_Check",
+            "subStatus": "Pending for Branch QC",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821171,
+            "status": "Quality_Check",
+            "subStatus": "Pending for Central QC",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821172,
+            "status": "Quality_Check",
+            "subStatus": "Pending for Receipting (Payment acknowledgement)",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821173,
+            "status": "Quality_Check",
+            "subStatus": "Pending for RCU",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821174,
+            "status": "Quality_Check",
+            "subStatus": "Pending for Compliance/ FCU Decision",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821175,
+            "status": "Quality_Check",
+            "subStatus": "Pending for PIVC decision",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821176,
+            "status": "Quality_Check",
+            "subStatus": "Pending for cheque Clearance",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821177,
+            "status": "Quality_Check",
+            "subStatus": "PDQC",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821178,
+            "status": "Quality_Check",
+            "subStatus": "Pending for PIVC/FT fund clearance/Direct Debit clearance/NEFT clearance",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821181,
+            "status": "POLICY",
+            "subStatus": "Waiting for Issuance",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821182,
+            "status": "POLICY",
+            "subStatus": "Approved",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821183,
+            "status": "POLICY",
+            "subStatus": "Issued",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821184,
+            "status": "POLICY",
+            "subStatus": "Declined",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821185,
+            "status": "POLICY",
+            "subStatus": "Postponed",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821186,
+            "status": "POLICY",
+            "subStatus": "Rejected",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821187,
+            "status": "POLICY",
+            "subStatus": "Cancelled",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821188,
+            "status": "POLICY",
+            "subStatus": "PDQC",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        },
+        {
+            "id": 3821189,
+            "status": "POLICY",
+            "subStatus": "Dispatched",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-08-17 07:59:44",
+            "createdOn": "2023-08-17 07:59:44"
+        }
+    ],
+    // "newgenStatusResponseDTOList":[],
+    "requiredDocuments": {
+        "list": [
+            {
+                "name": "OWNER",
+                "personName": "SUMIT ",
+                "documentList": [
+                    {
+                        "mandatoryDoc": "1",
+                        "category": "Age Proof",
+                        "indexValue": "Age Proof",
+                        "documents": {
+                            "Age Proof": [
+                                "School/College Certificate"
+                            ]
+                        }
+                    },
+                    {
+                        "mandatoryDoc": "1",
+                        "category": "Identity Proof",
+                        "indexValue": "Identity Proof",
+                        "documents": {
+                            "Identity Proof": [
+                                "UIDAI Letter"
+                            ]
+                        }
+                    },
+                    {
+                        "mandatoryDoc": "1",
+                        "category": "Permanent Address proof",
+                        "indexValue": "Permanent Address Proof",
+                        "documents": {
+                            "Permanent Address proof": [
+                                "Passport",
+                                "Voters Id",
+                                "Driving License",
+                                "NREGA Job card signed by officer of State Government",
+                                "Aadhaar Card",
+                                "National Population Register",
+                                "Letter issued by the Unique identification Authority of lndia"
+                            ]
+                        }
+                    },
+                    {
+                        "mandatoryDoc": "3",
+                        "category": "Documents",
+                        "indexValue": "Cancelled Cheque Copy",
+                        "documents": {
+                            "Documents": [
+                                "Cancelled Cheque or Bank Statement",
+                                "PAN or Form 60",
+                                "Recent Colour Photograph"
+                            ]
+                        }
+                    },
+                    {
+                        "mandatoryDoc": "0",
+                        "category": "Other Document",
+                        "indexValue": "OTHERS",
+                        "documents": {
+                            "Other Document": [
+                                "Other Document 1",
+                                "Other Document 2",
+                                "Other Document 3",
+                                "Other Document 4",
+                                "Other Document 5"
+                            ]
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "policyDocuments": {
+
+    },
+    "paymentReceipts": [
+
+    ],
+    "additionalInfoDocs": {
+        "proposerDocumentDetail": {
+            "guid": "3308301537P",
+            "id": "136311",
+            "medicalScheduling": false,
+            "ServiceDocumentList": [
+                {
+                    "id": 1,
+                    "proposalNumber": null,
+                    "partyType": "OWNER",
+                    "docCategoryTypeCd": "OTH",
+                    "docCategoryCd": "OTHER",
+                    "documentCd": null,
+                    "docCategoryTypeCdValue": null,
+                    "docCategoryCdValue": null,
+                    "documentCdValue": null,
+                    "mandatoryDoc": null,
+                    "indexValue": "Age Proof",
+                    "url": "owner_other_oth_1692695144825_front_side.pdf",
+                    "side": null,
+                    "documentNumber": null,
+                    "isAutoGeneratedFl": "YES",
+                    "documentMovedStatus": false
+                }
+            ]
+        },
+        "primaryInsuredDocumentDetail": null,
+        "jointLifeDocumentDetail": null
+    }
+}

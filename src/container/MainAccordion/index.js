@@ -1,55 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image'
 import right from "../../Assets/images/right.png";
 import AddNonMedReq from '../Add_Non_Med_Req';
 import FormFilling from '../FormFilling';
 import Consent from '../Consent';
-import Accordion3 from '../../component/Accordion/Accordion3';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import { scrollToTop } from '../../utils/utils';
+import { scrollToTop, dateFormat } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
 
 const MainAccordion = ({ data, downloadData, accDetails }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
-  let accordionDetails = accDetails?.newgenStatusResponseDTOList
+  const accordionDetails = accDetails?.newgenStatusResponseDTOList
+
   const renderElement = (data, heading) => {
     switch (heading) {
       case 'Quote Generated':
-        let quoteDetail;
-        quoteDetail = accordionDetails && accordionDetails?.filter(item => {
-          return item.status === 'QUOTE';
-        });
-        return <QuoteGenerated
-          quoteDetail={quoteDetail && quoteDetail[0]}
-        />
-      case 'Form Filling':
-        let formFillingData = []
-        let proposalSubmission = accordionDetails && accordionDetails?.filter(item => {
-          return item.status === 'PROPOSAL_SUBMISSION';
-        });
-        let payment = accordionDetails && accordionDetails?.filter(item => {
-          return item.status === 'PAYMENT';
-        });
-        let proposalData = {
-          actual_status: '',
-          createdOn: '',
-          id: '',
-          status: 'PROPOSAL_FORM',
-          subStatus: '',
-          updatedOn: ''
+        if (accordionDetails.length !== 0) {
+          let quoteDetail=accordionDetails && accordionDetails?.filter(item => {
+            return item.status === 'QUOTE';
+          });
+          return <QuoteGenerated
+            quoteDetail={quoteDetail && quoteDetail[0]}
+          />
         }
-        let proposalDetail = accordionDetails && accordionDetails?.filter(item => {
-          return item.status === 'PROPOSAL';
-        });
-        formFillingData.push(proposalData, proposalSubmission && proposalSubmission[0], payment && payment[0])
-
-        return <FormFilling
-          accDetails={accDetails}
-          data={data.content}
-          formFillingData={formFillingData}
-          proposalDetail={proposalDetail}
-        />
+        else {
+          return <div>{data.subHeading}</div>
+        }
+      case 'Form Filling':
+          return <FormFilling
+            accDetails={accDetails}
+            data={data.content}
+          />
 
       case 'Medical Requirement':
         return <div>Medical Requirement</div>
@@ -65,7 +48,7 @@ const MainAccordion = ({ data, downloadData, accDetails }) => {
         return <Consent />
       case 'Payment Required':
         return <Payment />
-      case 'Quality Check': "Quality_Check"
+      case 'Quality Check':
         let qualityChkDetail;
         qualityChkDetail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'Quality_Check';
@@ -81,6 +64,10 @@ const MainAccordion = ({ data, downloadData, accDetails }) => {
         break;
     }
   }
+
+  const renderCreateOn = (heading) => {
+  }
+
   const toggleAccordion = (id) => {
     scrollToTop(id)
     setOpenAccordion(openAccordion === id ? null : id)
@@ -106,7 +93,7 @@ const MainAccordion = ({ data, downloadData, accDetails }) => {
                   </div>
                   <div className='acc-content'>
                     <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>{item.heading}</p>
-                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>{item.subHeading}</p>
+                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>{renderCreateOn(item.heading)}</p>
                   </div>
                 </div>
                 <div className='acc-activeState'>
@@ -127,11 +114,12 @@ const MainAccordion = ({ data, downloadData, accDetails }) => {
                   }
                 </div>
               </div>
-              {openAccordion === item.id && <div className={`acc-show-content`}>
-                {
-                  renderElement(item, item.heading)
-                }
-              </div>
+              {openAccordion === item.id &&
+                <div className={`acc-show-content`}>
+                  {
+                    renderElement(item, item.heading)
+                  }
+                </div>
               }
             </li>
           )

@@ -100,8 +100,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
     }
 
     const formvalidate = () => {
-       
-         let payload = {}
+        let payload = {}
         Object.keys(formValues)?.map((item) => {
             payload[item] = Object.values(formValues[item])
         })
@@ -118,7 +117,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
         }
 
         dispatch(sendOTPAction(data, (resp) => {
-            console.log('resp?.data?.body?.body?.refId', resp?.body?.body?.refId)
+            // console.log('resp?.data?.body?.body?.refId', resp?.body?.body?.refId)
             setRefId(resp?.body?.body?.refId)
             setShowOtp(true);
             setOverlay(true)
@@ -135,13 +134,13 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             if (resp?.body?.body) {
                 toaster('success', resp?.body?.message);
                 setOtp("")
-                setShowOtp(false); 
+                setShowOtp(false);
                 setShowThankyou(true)
                 formvalidate()
-              }else{
+            } else {
                 toaster('error', resp?.body?.message);
                 setOtp('')
-              }
+            }
         }))
     }
     const submitHandler = () => {

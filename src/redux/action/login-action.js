@@ -4,6 +4,9 @@ import { toaster } from "../../utils/toaster"
 
 
 export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+      });
     Axios({
         method: "post",
         mode: "no-cors",
@@ -29,8 +32,14 @@ export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
         else {
             toaster('error', res.data.message)
         }
+        dispatch({
+            type: "LOADER_OFF",
+          });
     })
     .catch((error) => {
-        console.log('>>')
+        // console.log('>>')
+        dispatch({
+            type: "LOADER_OFF",
+        });
     });
 };

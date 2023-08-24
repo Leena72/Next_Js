@@ -7,7 +7,7 @@ import axios from "axios";
 export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
     axios
     .post(
-      `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${data.documentCd}&docCategoryCd=${data.docCategoryCd}&documentSide=FRONT_SIDE&docCategoryTypeCd=${data.docCategoryTypeCd}&documentNumber=${docNumber}&partyType=${this.state.docType}&proposalNo=${this.props.data && this.props.data.proposalNumber}&policyNo=${localStorage.getItem('policyNumberTpa')}&serviceDocListId=${data.id}&uwId=${this.props.data.id}`,
+      `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${''}&docCategoryCd=${'COCL'}&docCategoryTypeCd=${'CO'}&documentSide=FRONT_SIDE&documentNumber=${''}&partyType=${'OWNER'}&proposalNo=${'3108426548'}&policyNo=${''}&serviceDocListId=${'1'}&uwId=${'46914'}`,
       fileData,
       {
         headers: {
@@ -87,6 +87,6 @@ export const deleteDoc =
         }
       })
       .catch((err) => {
-  console.log('err',err)
+  // console.log('err',err)
       });
   };

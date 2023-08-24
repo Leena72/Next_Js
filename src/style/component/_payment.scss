@@ -42,16 +42,26 @@
     .pan-dob-wrapper{
         text-align: center;
         font-size: 20px;
-        padding: 2rem;
+        // padding: 2rem 0 1em;
         // background-color: red !important;
+    
+    .heading{
+        // padding-top: 1.5em;
+        margin-top: 1em;
     }
     input{
-        height: 2rem;
-        font-size: 15px;
-        padding: 0.5rem;
+        width: 100%;
+        background: $light-blue;
+        font-size: $font-16;
+        color: $label-blue;
+        font-family: $font-family-OpenSanaRegular;
+        border-radius: 10px;
+        padding: 7px 10px;
+        border: 0px;
+        height: 50px;
+        margin: 1em 0;
     }
-    
- 
+} 
 }
 .content{
     padding: 20px 0px;
