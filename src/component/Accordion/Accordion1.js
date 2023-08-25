@@ -17,6 +17,7 @@ const Accordion1 = ({ openAccordion, item, toggleAccordion }) => {
                     />
                 </div>
                 <div className='acc-active-content'>
+                    {/* <p>{item.status.split('_').join(' ')}</p> */}
                     <p>{item.heading}</p>
                     <p>{item.subHeading}</p>
                 </div>

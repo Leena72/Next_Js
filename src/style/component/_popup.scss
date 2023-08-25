@@ -30,7 +30,7 @@
                 cursor: default;
                 // min-height: 15rem;
                 .content-box{
-                    padding: 20px 0px;
+                    // padding: 20px 0px;
                 }
                 .btn{
                     display: flex;
@@ -55,21 +55,28 @@
             } 
                 .close_popup {
                     position: absolute;
-                    right: 20px;
-                    top: 15px;
-                    width: 18px;
+                    right: 13px;
+                    top: 13px;
+                    width: 16px;
                     cursor: pointer;
                     img{
                         height: 1.2rem;
                         width: 100%;
                     }
+                    @include mquery(desk){
+                        right: 20px;
+                        top: 20px;   
+                    }
                 }
                 .hdng_bx {
-                    float: left;
+                    // float: left;
                     width: 100%;
-                    padding-top: 10px;
+                    // padding-top: 30px;
+                    text-align: center;
+                    margin-top: 1.5em;
+
                     h2{
-                        font-size: $font-18;
+                        font-size: $font-16;
                         font-family: $font-family-OpenSanaSemiBold;
                         @include mquery(desk){
                             font-size: $font-24;

@@ -1,4 +1,5 @@
 import Axios from "axios";
+import {apiConstants} from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 
@@ -6,7 +7,7 @@ export const sendOTPAction = (data, cb) => (dispatch) => {
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `https://dev-api-proposal.bhartiaxa.com/public/api/v1/customer-portal/customerConsent`,
+        url: `${apiConstants.API_URL}customer-portal/customerConsent`,
         headers: {
             "Content-Type": "application/json",
             "Authorization":'Bearer'+' '+localStorage.getItem("accessToken")
@@ -22,11 +23,11 @@ export const sendOTPAction = (data, cb) => (dispatch) => {
         });
 };
 
-export const verifyOTPAction = (data,proposalNo, cb) => (dispatch) => {
+export const verifyOTPAction = (data,proposalNo,fileName, cb) => (dispatch) => {
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `https://dev-api-proposal.bhartiaxa.com/public/api/v1/customer-portal/validateOtp?proposalNumber=${proposalNo}`,
+        url: `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName}`,
         headers: {
             "Content-Type": "application/json",
             "Authorization":'Bearer'+' '+localStorage.getItem("accessToken")

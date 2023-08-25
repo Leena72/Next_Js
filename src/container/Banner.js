@@ -4,7 +4,6 @@ import BannerCard from '../component/BannerCard'
 import { bannerData } from '../data'
 import loginImg from "../Assets/images/top_img_new.png";
 const Banner = ({ customerData }) => {
-    console.log('customerData', customerData)
     return (
         <div className='banner-container'>
             <div className='banner-content'>

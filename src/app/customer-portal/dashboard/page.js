@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import withAuth from '../../../utils/withAuth';
 import Axios from "axios";
 import Banner from '../../../container/Banner';
@@ -10,7 +10,7 @@ import Accordion3 from '@/component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
 import { dashboardAction } from '../../../redux/action/dashboardAction'
-import { customerDetailAction } from '../../../redux/action/customerDetailAction'
+import { customerDetailAction } from '../../../redux/action/customerDetailAction' // not in used
 
 
 const Dashboard = () => {
@@ -18,29 +18,34 @@ const Dashboard = () => {
     const [openAccordion, setOpenAccordion] = useState(false)
     const [customerData, setcustomerData] = useState(null)
     const dispatch = useDispatch()
-    // console.log('localStorage.getItem("accessToken")',localStorage.getItem("accessToken"))
     useEffect(() => {
         let proposalNo = localStorage.getItem("proposalNo")
-        dispatch(customerDetailAction(proposalNo, (res) => {
-            console.log('res', res)
+        dispatch(dashboardAction(proposalNo, (res) => {
             setcustomerData(res)
         }))
-        dispatch(dashboardAction(proposalNo, (res) => {
-            console.log('res', res)
-        }))
     }, [])
-    // console.log('customerData', customerData)
+    const showLoader = useSelector((state) => state.loaderReducer);
+    // const storeState = useSelector((state) => state);
+    // console.log('storeState', storeState)
     return (
         <div className='dashboard-container'>
+            {showLoader["isLoaderOn"] && (
+                <div className="loader-overlay">
+                    <div className="loader-img"></div>
+                </div>
+            )}
             <div className='header-container-no'>
                 <p>Proposal Number</p>
-                <p>{customerData?.proposalNo}</p>
+                <p>{customerData?.proposalNumber}</p>
             </div>
             <Banner
                 customerData={customerData}
             />
             <div className='doc-heading'><p>Application Status</p></div>
-            <MainAccordion data={data} />
+            <MainAccordion
+                data={data}
+                accDetails={customerData}
+            />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
             <div className='dashboard-acc'>
                 <div className='acc-non-block' onClick={() => setOpenAccordion(!openAccordion)}>
@@ -56,7 +61,7 @@ const Dashboard = () => {
             </div>
             {
                 openAccordion &&
-                <Accordion3 data={downloadData} />
+                <Accordion3 data={downloadData} documentList={customerData?.policyDocuments}/>
             }
         </div>
     )

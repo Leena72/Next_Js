@@ -1,11 +1,12 @@
 import Axios from "axios";
+import {apiConstants} from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
     Axios({
         method: "get",
         mode: "no-cors",
-        url: `https://dev-api-proposal.bhartiaxa.com/public/api/v1/proposal/document/download?proposalNo=${proposalNo}&file=${file}`,
+        url: `${apiConstants.API_URL}proposal/document/download?proposalNo=${proposalNo}&file=${file}`,
         headers: {
             "Content-Type": "application/json",
             "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
@@ -44,6 +45,7 @@ export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
             }, 100);
         })
         .catch((error) => {
+            toaster('error', error.message);
         });
 };
 

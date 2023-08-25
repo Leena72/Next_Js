@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../Button'
 const FormFieldConsent = (props) => {
     return (
-        <div className='FormFieldConsent-container'>
+        <div className='blue-block-container'>
             <p>{props.text}</p>
             <Button
                 className=''

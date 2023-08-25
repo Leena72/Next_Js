@@ -1,35 +1,78 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image'
 import right from "../../Assets/images/right.png";
 import AddNonMedReq from '../Add_Non_Med_Req';
 import FormFilling from '../FormFilling';
 import Consent from '../Consent';
-import Accordion3 from '../../component/Accordion/Accordion3';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import {scrollToTop} from '../../utils/utils';
+import { scrollToTop, dateFormat } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
 
-const MainAccordion = ({ data, downloadData }) => {
+const MainAccordion = ({ data, downloadData, accDetails }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
+  const accordionDetails = accDetails?.newgenStatusResponseDTOList
+  const policyDocuments = accDetails?.policyDocuments
+  const formFillDocDownload = accDetails?.requiredDocuments
+
+  // console.log('formFillDocDownload',formFillDocDownload)
+  // console.log('accDetails', accDetails)
+  // console.log('policyDocuments',policyDocuments)
+  // console.log('accordionDetails', accordionDetails)
+  // console.log('statusDetail', statusDetail)
 
   const renderElement = (data, heading) => {
     switch (heading) {
       case 'Quote Generated':
-        return <QuoteGenerated/>
+        let quoteDetail = accordionDetails && accordionDetails?.filter(item => {
+          return item.status === 'QUOTE';
+        });
+        return (quoteDetail.length !== 0 ?
+          <QuoteGenerated
+            quoteDetail={quoteDetail && quoteDetail[0]}
+            policyDocumentFile={policyDocuments['BI_TAG_NAME']}
+          />
+          :
+          <div className='blue-block-container'>
+            <p>Quote not available!</p>
+          </div>
+        )
+
       case 'Form Filling':
-        return <FormFilling data={data.content} />
+        return <FormFilling
+          accDetails={accDetails} //whole data
+          accordionDetails={accordionDetails} //status data
+          data={data.content} // accordion data
+          formFillDocDownload={formFillDocDownload} //download doc data
+        />
+
       case 'Medical Requirement':
-        return <div>Medical Requirement</div>
+        let medReq = accordionDetails && accordionDetails?.filter(item => {
+          return item.status === 'MEDICAL_RISK_VERIFICATION';
+        });
+        return (
+          <div className='blue-block-container'>
+            <p>{medReq && medReq[0].subStatus}</p>
+          </div>
+        )
       case 'Additional Non-Medical Requirements':
-        return <AddNonMedReq />
+        let addNonMedDetail;
+        addNonMedDetail = accordionDetails && accordionDetails.filter(item => {
+          return item.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT';
+        });
+        return <AddNonMedReq addNonMedDetail={addNonMedDetail} />
       case 'Revised Offer':
-        return <CounterPage/>
+        return <CounterPage />
       case 'Consent for change in the application details':
-        return <Consent/>
+        return <Consent />
       case 'Payment Required':
-        return <Payment/>
+        return <Payment />
       case 'Quality Check':
+        let qualityChkDetail;
+        qualityChkDetail = accordionDetails && accordionDetails.filter(item => {
+          return item.status === 'Quality_Check';
+        });
         return <div>Quality Check</div>
       case 'Medical Risk Verification':
         return <div>Medical Risk Verification</div>
@@ -41,6 +84,20 @@ const MainAccordion = ({ data, downloadData }) => {
         break;
     }
   }
+
+  const renderCreateOn = (heading) => {
+    switch (heading) {
+      case 'Quote Generated':
+        // let quoteDetail = accordionDetails && accordionDetails?.filter(item => {
+        //   return item.status === 'QUOTE';
+        // });
+        // console.log('quoteDetail',quoteDetail?.quoteDetail[0]?.quoteDetail[0].updatedOn)
+        // return
+      default:
+        break;
+    }
+  }
+
   const toggleAccordion = (id) => {
     scrollToTop(id)
     setOpenAccordion(openAccordion === id ? null : id)
@@ -66,11 +123,11 @@ const MainAccordion = ({ data, downloadData }) => {
                   </div>
                   <div className='acc-content'>
                     <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>{item.heading}</p>
-                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>{item.subHeading}</p>
+                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>{renderCreateOn(item.heading)}</p>
                   </div>
                 </div>
                 <div className='acc-activeState'>
-                  {item.completed ?
+                  {item.actual_status === 'COMPLETED' ?
                     <div className='acc-completed'>
                       <Image
                         src={right}
@@ -87,11 +144,12 @@ const MainAccordion = ({ data, downloadData }) => {
                   }
                 </div>
               </div>
-              {openAccordion === item.id && <div className={`acc-show-content`}>
-                {
-                  renderElement(item, item.heading)
-                }
-              </div>
+              {openAccordion === item.id &&
+                <div className={`acc-show-content`}>
+                  {
+                    renderElement(item, item.heading)
+                  }
+                </div>
               }
             </li>
           )

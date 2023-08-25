@@ -282,10 +282,10 @@ const Payment = (props) => {
           addCss={'pan-dob'}
         >
           <div className='pan-dob-wrapper'>
-            <div>PAN/DOB(DD-MM-YYYY)</div>
+            <p className='heading'>PAN/DOB(DD-MM-YYYY)</p>
             <Input
               type="text"
-              placeholder=""
+              placeholder="DD-MM-YYYY"
               cssClass="panDobInput"
               label="PAN/DOB(DD-MM-YYYY)"
               value={validationInput}

@@ -1,20 +1,40 @@
 import Axios from "axios";
+import { apiConstants } from "../../constants/apiConstants";
+import actionTypes from "./actionTypes/actionTypes";
 import { toaster } from "../../utils/toaster"
 
+
 export const dashboardAction = (proposalNo, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+    });
     Axios({
         method: "get",
         mode: "no-cors",
-        url: `https://dev-api-proposal.bhartiaxa.com/public/api/v1/customer-portal/status?proposalNumber=${proposalNo}`,
+        url: `${apiConstants.API_URL}customer-portal/status?proposalNumber=${proposalNo}`,
         headers: {
             "Content-Type": "application/json",
             "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
         },
     })
         .then((res) => {
-            console.log('res',res)
+            dispatch({
+                type: actionTypes.customerInfoSuccess,
+                info: res.data,
+            });
+            dispatch({
+                type: "LOADER_OFF",
+            });
+            if (res.data.status === 'OK') {
+                toaster('success', res?.data?.message);
+                cb(res.data.body)
+            }
         })
         .catch((error) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
+            toaster('error', error.message);
         });
 };
 

@@ -1,8 +1,7 @@
 'use client';
-
 import React, { useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import {loginHandler} from '../../redux/action/login-action'
+import { useDispatch, useSelector } from "react-redux";
+import { loginHandler } from '../../redux/action/login-action'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
 import Input from "../../component/Input"
@@ -18,6 +17,7 @@ const Login = () => {
   const [isDob, setIsDob] = useState(false)
   const [disabled, setdisabled] = useState(true)
   const dispatch = useDispatch()
+  const showLoader = useSelector((state) => state.loaderReducer);
 
   useEffect(() => {
     const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
@@ -36,8 +36,8 @@ const Login = () => {
         return false
       }
       setProposalNo(e.target.value)
+    }
   }
-}
 
   const dobPanHandler = (e) => {
     let val = e.target.value;
@@ -69,13 +69,17 @@ const Login = () => {
   }
 
   const clickHandler = () => {
-    dispatch(loginHandler(proposalNo,DOB,()=>{
+    dispatch(loginHandler(proposalNo, DOB, () => {
       router.push('/customer-portal/dashboard');
     }))
   }
-
   return (
     <div className='login-container'>
+      {showLoader["isLoaderOn"] && (
+        <div className="loader-overlay">
+          <div className="loader-img"></div>
+        </div>
+      )}
       <div className='login-header'>
         <h1>Welcome to <br></br>
           Application Tracker

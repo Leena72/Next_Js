@@ -1,13 +1,13 @@
 import React from 'react'
-
-const ProposalForm = ({data}) => {
+import {dateFormat} from '../../utils/utils'
+const ProposalForm = ({data,proposalFormList}) => {
     return (
         <ul className='acc-active-sub-container'>
             {
-                data.map((item, idx) => (
+                proposalFormList && proposalFormList.map((item, idx) => (
                     <li key={idx}>
-                        <p>{item.title}</p>
-                        <p>{item.subTitle}</p>
+                        <p>{item.subStatus.split('_').join(' ')}</p>
+                        <p>{dateFormat(item.createdOn)}</p>                     
                     </li>
                 ))
             }

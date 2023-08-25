@@ -20,11 +20,10 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
     const [overlay, setOverlay] = useState(false);
     const [refId, setRefId] = useState();
     const [showThankyou, setShowThankyou] = useState();
-
+    const [fileName, setFileName] = useState('')
 
     let formData = questionnaireList[formName]
     const dispatch = useDispatch()
-    console.log('formValues', formValues)
 
     const formChangeHandler = ({ name, value, quesData, formName }) => {
         let formField
@@ -86,7 +85,6 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
 
 
     }
-    console.log('formvalues', formValues)
     const renderElement = (formName, formValues) => {
         return <FormLayout
             formName={formName}
@@ -95,34 +93,20 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             formChangeHandler={formChangeHandler}
         />
     }
-    const formSubmitHandler = () => {
-        // let payload = {}
-        // Object.keys(formValues)?.map((item) => {
-        //     payload[item] = Object.values(formValues[item])
-        // })
-        // ----------------------
-        // console.log('form payload>>', payload)
-        // let payload = {
-        //     "ALCOHOL_HABIT_QUESTION": [formValues]
-        // }
-        // console.log('payload', payload)
+    const formvalidate = () => {
         sendOtp()
         setShowOtp(true)
-
-        // dispatch(questionnaireAction(payload, () => {
-
-        //     setShowOtp(true)
-        // }))
     }
 
-    const formvalidate = () => {
-       
-         let payload = {}
+    const  formSubmitHandler = () => {
+        let payload = {}
         Object.keys(formValues)?.map((item) => {
             payload[item] = Object.values(formValues[item])
         })
-        dispatch(questionnaireAction(payload, () => {
+        dispatch(questionnaireAction(payload, (res) => {
             // setShowOtp(true)
+            setFileName(res.body.fileName)
+            formvalidate()
         }))
     }
 
@@ -134,7 +118,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
         }
 
         dispatch(sendOTPAction(data, (resp) => {
-            console.log('resp?.data?.body?.body?.refId', resp?.body?.body?.refId)
+            // console.log('resp?.data?.body?.body?.refId', resp?.body?.body?.refId)
             setRefId(resp?.body?.body?.refId)
             setShowOtp(true);
             setOverlay(true)
@@ -147,26 +131,23 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             "key": "ADDITIONAL_QUESTIONNAIRE"
         }
         let proposalNo = localStorage.getItem("proposalNo")
-        // formvalidate()
-        dispatch(verifyOTPAction(data, proposalNo, (resp) => {
-            // console.log('resp',resp.data.body)
+        dispatch(verifyOTPAction(data, proposalNo,fileName, (resp) => {
             if (resp?.body?.body) {
                 toaster('success', resp?.body?.message);
                 setOtp("")
-                setShowOtp(false); 
+                setShowOtp(false);
                 setShowThankyou(true)
-                formvalidate()
-              }else{
+
+            } else {
                 toaster('error', resp?.body?.message);
                 setOtp('')
-              }
+            }
         }))
     }
     const submitHandler = () => {
         verifyOtp();
     }
 
-    // console.log('formValues', formValues)
     return (
         <>
             <div className='form-container'>

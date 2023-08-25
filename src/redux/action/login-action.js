@@ -1,12 +1,16 @@
 import Axios from "axios";
+import {apiConstants , loginAPIConstant} from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 
 export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+      });
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `https://dev-api-auth.bhartiaxa.com/public/api/v1/auth/customer`,
+        url: `${loginAPIConstant.API_URL}auth/customer`,
         headers: {
             "Content-Type": "application/json",
         },
@@ -28,8 +32,14 @@ export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
         else {
             toaster('error', res.data.message)
         }
+        dispatch({
+            type: "LOADER_OFF",
+          });
     })
     .catch((error) => {
-        console.log('>>')
+        // console.log('>>')
+        dispatch({
+            type: "LOADER_OFF",
+        });
     });
 };

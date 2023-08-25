@@ -7,9 +7,15 @@ import deleteImg from "../../Assets/images/delete.png"
 
 export const UploadDoc = ({ data,key,clickHandler }) => {
     return (
-        <div className={`upl-doc-container ${data.upload ? 'upl-doc' : 'upl-blk'}`} 
-        key={key} onClick={()=>clickHandler(data.id,data.popUp)}>
-            <div className='upl-heading'>{data.title}</div>
+        <div 
+        className={`upl-doc-container upl-doc`} 
+        // className={`upl-doc-container 
+        // ${data.upload ? 'upl-doc' : 'upl-blk'}
+        // `} 
+        key={key} 
+        onClick={()=>clickHandler(data.indexValue,data.documents)}
+        >
+            <div className='upl-heading'>{data.indexValue}</div>
             <div className='upl-img'>
                 <a className='upl-img-link'>
                     <Image
@@ -30,7 +36,7 @@ export const Document = ({ data,key,clickHandler }) => {
     )
 }
 
-export const ViewDoc = ({ data,key,clickHandler }) => {
+export const ViewDoc = ({ data,key,deleteDocHandler }) => {
     return (
         <div className='view-doc2-container' key={key} >
             <div className='view-heading'>{data.title}</div>
@@ -41,7 +47,9 @@ export const ViewDoc = ({ data,key,clickHandler }) => {
                         alt='uplImg'
                     />
                 </a>
-                <a className='view-img-link'>
+                <a className='view-img-link' 
+                            onClick={deleteDocHandler}
+                >
                     <Image
                         src={deleteImg}
                         alt='uplImg'

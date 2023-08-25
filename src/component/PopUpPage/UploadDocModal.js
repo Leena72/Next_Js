@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Button from '../Button';
 import cameraImg from '../../Assets/images/camera.png'
 import uploadImg from '../../Assets/images/upload_icon.png'
-import { uploadAction } from '../../redux/action/uploadAction'
 
 const UploadDocModal = (props) => {
     const dispatch = useDispatch()
@@ -15,38 +14,14 @@ const UploadDocModal = (props) => {
     const closeHandler = () => {
         props.onClose();
     }
-    const uploadDocandler = () => {
-        let file = fileValue[0]
-        let fileSize = file.size
-        let fileName = file.name
-        let fileExt = fileValue.split('.').pop();
-        let formData = new FormData();
-        formData.append("file", file);
-        // formData.append("fileName", fileName);
-        // formData.append("extension", fileExt);
-        console.log('formData', formData)
-        const headerData = {
-            documentCategory: 'Age Proof',
-            documentType: 'PAN Card',
-            partyType: 'OWNER',
-            documentSide: "",
-            policyNo: "",
-            documentNumber: "",
-            proposalNo: localStorage.getItem('proposalNo')
-        };
-        console.log('headerData,formData', headerData, formData)
-        
-        dispatch(uploadAction(headerData, formData, (res) => {
-            toaster('success', res.description)
-        }))
+    const uploadDocHandler = () => {
+        props.uploadDocHandler(fileValue)
     }
 
     const fileUploadHandler = (event,) => {
-        let fileValue = event.target.value
+        let fileValue = event.target.files[0]
         setFileValue(fileValue)
     }
-
-
     return (
         <div className={`overlay ${props.addCss}`} >
             <div className="vrtclcntr_bx">
@@ -60,19 +35,19 @@ const UploadDocModal = (props) => {
                         }
                         <div className='sub-heading-bx'>{props.subheading ? props.subheading : null}</div>
                         <div className='content-box upload-content-bx'>
-                            <div>
-                                <div>
-                                    <Image
+                            <div className='upload-block'>
+                                <div className='upload-pin-blk'>
+                                    {/* <Image
                                         src={uploadImg}
                                         alt='uplImg'
-                                    />
+                                    /> */}
                                     <input type="file" onChange={fileUploadHandler} />
                                 </div>
-                                <div>
-                                    <Image
+                                <div className='upload-camera-blk'>
+                                    {/* <Image
                                         src={cameraImg}
                                         alt='cmImg'
-                                    />
+                                    /> */}
                                     <input type="file" onChange={fileUploadHandler} />
                                 </div>
                             </div>
@@ -93,7 +68,8 @@ const UploadDocModal = (props) => {
                         <Button
                             buttonText={'SUBMIT'}
                             className={'blue-button'}
-                            clickHandler={uploadDocandler}
+                            clickHandler={uploadDocHandler}
+                            // disabled={fileValue?.name?.length==0}
                         />
                     </div>
                 </div>
