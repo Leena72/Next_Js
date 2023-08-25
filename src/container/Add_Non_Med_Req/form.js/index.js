@@ -20,7 +20,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
     const [overlay, setOverlay] = useState(false);
     const [refId, setRefId] = useState();
     const [showThankyou, setShowThankyou] = useState();
-
+    const [fileName, setFileName] = useState('')
 
     let formData = questionnaireList[formName]
     const dispatch = useDispatch()
@@ -93,19 +93,20 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             formChangeHandler={formChangeHandler}
         />
     }
-    const formSubmitHandler = () => {
+    const formvalidate = () => {
         sendOtp()
         setShowOtp(true)
-
     }
 
-    const formvalidate = () => {
+    const  formSubmitHandler = () => {
         let payload = {}
         Object.keys(formValues)?.map((item) => {
             payload[item] = Object.values(formValues[item])
         })
-        dispatch(questionnaireAction(payload, () => {
+        dispatch(questionnaireAction(payload, (res) => {
             // setShowOtp(true)
+            setFileName(res.body.fileName)
+            formvalidate()
         }))
     }
 
@@ -130,13 +131,13 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             "key": "ADDITIONAL_QUESTIONNAIRE"
         }
         let proposalNo = localStorage.getItem("proposalNo")
-        dispatch(verifyOTPAction(data, proposalNo, (resp) => {
+        dispatch(verifyOTPAction(data, proposalNo,fileName, (resp) => {
             if (resp?.body?.body) {
                 toaster('success', resp?.body?.message);
                 setOtp("")
                 setShowOtp(false);
                 setShowThankyou(true)
-                formvalidate()
+
             } else {
                 toaster('error', resp?.body?.message);
                 setOtp('')

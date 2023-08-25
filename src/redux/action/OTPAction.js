@@ -23,11 +23,11 @@ export const sendOTPAction = (data, cb) => (dispatch) => {
         });
 };
 
-export const verifyOTPAction = (data,proposalNo, cb) => (dispatch) => {
+export const verifyOTPAction = (data,proposalNo,fileName, cb) => (dispatch) => {
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}`,
+        url: `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName}`,
         headers: {
             "Content-Type": "application/json",
             "Authorization":'Bearer'+' '+localStorage.getItem("accessToken")

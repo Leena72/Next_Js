@@ -1972,21 +1972,21 @@ export const downloadData = [
         title: 'Benefit Illustration',
         msg: '',
         downloadStatus: false,
-        label: ''
+        label: 'BI_TAG_NAME'
     },
     {
         id: 2,
         title: 'Financial Needs Analysis',
         msg: '',
         downloadStatus: false,
-        label: ''
+        label: 'FNA_TAG_NAME'
     },
     {
         id: 3,
         title: 'COVID Questionnaire',
         msg: '',
         downloadStatus: true,
-        label: ''
+        label: 'COVID_TAG_NAME_2'
     },
     {
         id: 4,

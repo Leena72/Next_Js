@@ -13,7 +13,7 @@ const QuoteGenerated = ({ quoteDetail,policyDocumentFile }) => {
           <div className='quote text-center'>
             <div className='mb-3 quote-text'>
               {/* 26 JUNE, 2023 | 09:06 PM */}
-              {dateFormat(quoteDetail?.createdOn)}
+              {dateFormat(quoteDetail?.updatedOn)}
             </div>
             <button onClick={downloadHandler} className='quote-btn'>Download BI</button>
           </div>

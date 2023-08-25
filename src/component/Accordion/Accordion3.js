@@ -3,13 +3,14 @@ import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 import dwnImg from "../../Assets/images/pdf-dwn-arrow.png";
 import { downloadAction } from '../../redux/action/downloadAction';
-const Accordion3 = ({ data }) => {
+const Accordion3 = ({ data,documentList }) => {
+    // console.log('documentList',data,documentList)
     const dispatch = useDispatch()
 
     const downloadHandler = () => {
         let proposalNo = localStorage.getItem("proposalNo")
         let file = '3107423902FNA.pdf'
-        dispatch(downloadAction('3107423902', file))
+        dispatch(downloadAction(proposalNo, file))
     }
     return (
         <ul className='doc-container'>

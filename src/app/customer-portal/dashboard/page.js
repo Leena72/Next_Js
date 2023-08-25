@@ -61,7 +61,7 @@ const Dashboard = () => {
             </div>
             {
                 openAccordion &&
-                <Accordion3 data={downloadData} />
+                <Accordion3 data={downloadData} documentList={customerData?.policyDocuments}/>
             }
         </div>
     )
