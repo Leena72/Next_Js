@@ -498,7 +498,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -510,7 +510,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -522,7 +522,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -534,7 +534,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -546,10 +546,9 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
-
     ],
     "CHEST_PAIN_QUESTION": [
         {
@@ -578,14 +577,6 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '3',
-                    question: 'State character and severity of the pain For example burning, cramping, constricting, stabbing, crushing, vice like, dull.',
-                    answer: '',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
             ]
         },
         {
@@ -596,7 +587,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -607,7 +598,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -634,11 +625,11 @@ export const questionnaireList = {
         },
         {
             id: '6',
-            question: 'Were any investigations carried out (for example ECG, Echocardiogram)If so, please state',
+            question: '',
             answer: '',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Were any investigations carried out (for example ECG, Echocardiogram)If so, please state',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -660,7 +651,7 @@ export const questionnaireList = {
                 },
                 {
                     id: '3',
-                    question: 'THe findings.',
+                    question: 'The findings.',
                     answer: '',
                     type: 'textbox',
                     validation: '',
@@ -670,7 +661,7 @@ export const questionnaireList = {
         },
         {
             id: '7',
-            question: 'Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.',
+            question: 'Were you on any treatment? If so, please provide details including the name of the medication.',
             answer: '',
             declaration: '',
             heading: '',
@@ -681,6 +672,17 @@ export const questionnaireList = {
         },
         {
             id: '8',
+            question: 'Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '9',
             question: 'Is there any additional information you can provide, with regards the chest pain which will assist in processing your proposal?',
             answer: '',
             declaration: '',
@@ -698,7 +700,7 @@ export const questionnaireList = {
             answer: '',
             declaration: 'I hereby agree that the statements below shall form part of my proposal for insurance and I declare that such statements together with the said proposal and declaration shall be the basis of the contract between Bharti AXA Life Insurance Company Limited and myself.',
             heading: 'Underlying cause of the deformity:',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -736,7 +738,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -747,7 +749,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -758,7 +760,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -769,7 +771,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -778,7 +780,7 @@ export const questionnaireList = {
             answer: '',
             declaration: '',
             heading: 'What part (s) of the body are affected by the deformity? (Please do provide detailed information)',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -822,7 +824,7 @@ export const questionnaireList = {
             answer: '',
             declaration: '',
             heading: 'Occupational details:',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -852,7 +854,7 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
         {
@@ -863,14 +865,366 @@ export const questionnaireList = {
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: true,
+            ansBtn: false,
             subQuestions: []
         },
     ],
     "diabetes": [
         {
             id: '1',
-            question: '5',
+            question: 'Have you ever been diagnosed as a diabetic?',
+            answer: '',
+            declaration: 'I hereby agree that the statements below shall form part of my proposal for insurance and I declare that such statements together with the said proposal and declaration shall be the basis of the contract between Bharti AXA Life Insurance Company Limited and myself.',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: true,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Please state the date when diabetes was first diagnosed (DD/MM/YY)',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Please state the type of Diabetes (Type I or Type II)',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
+        },
+        {
+            id: '2',
+            question: '',
+            answer: '',
+            declaration: '',
+            heading: 'Please provide the name and address of the doctor or clinic supervising your treatment',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
+            addMore: true,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Name of doctor, hospital or clinic',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Address',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '3',
+                    question: 'Date of last consult',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
+        },
+        {
+            id: '3',
+            question: '',
+            answer: '',
+            declaration: '',
+            heading: 'Kindly provide details of any medication/Therapy that you are taking in relation to your diabetes',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
+            addMore: true,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Name of medication/therapy',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Dose',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '3',
+                    question: 'Frequency',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
+        },
+        {
+            id: '4',
+            question: 'Has your treatment been changed in last one year?',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: true,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'If yes, please provide details including dates and durations:',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
+        },
+        {
+            id: '5',
+            question: 'Please provide us the frequencies of medical check up you undergo in a month. ( Viz: Once,twice,thrice,etc)',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '6',
+            question: 'How often do you test your blood and/or urine for glucose (Frequency per month)',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '7',
+            question: 'When your urine was last tested?',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '8',
+            question: 'Were there any abnormalities? (E.g., ketone, glucose or protein.)',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '9',
+            question: 'Last result (FBS & Hba1c)',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '10',
+            question: 'Latest result of Urininalysis (Ketone, Glucose, Protein, RBC’s)',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '11',
+            question: '',
+            answer: '',
+            declaration: '',
+            heading: 'Have you ever experienced or treated for:',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Eye problems?',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                },
+                {
+                    id: '2',
+                    question: 'Heart or circulatory problems?',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                },
+                {
+                    id: '3',
+                    question: 'High blood pressure?',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                },
+                {
+                    id: '4',
+                    question: 'Hyperlipidemia',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                },
+                {
+                    id: '5',
+                    question: 'Kidney problems (including protein or albumin in your urine)?',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                },
+                {
+                    id: '6',
+                    question: 'Sensory problems (Numbness or tingling in the feet or legs)?',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                },
+                {
+                    id: '7',
+                    question: 'Amputation or history of abscess',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                },
+                {
+                    id: '8',
+                    question: 'Any other complication?',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'input',
+                    validation: '',
+                    ansBtn: true,
+                }
+            ]
+        },
+        {
+            id: '12',
+            question: 'Have you ever taken time off work because of your diabetes?',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: true,
+            subQuestions: []
+        },
+        {
+            id: '13',
+            question: 'Have you ever been admitted to hospital or required emergency care?',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: true,
+            subQuestions: []
+        },
+        {
+            id: '14',
+            question: '',
+            answer: '',
+            declaration: '',
+            heading: 'If yes, please provide details along with all the hospitalization reports.',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
+            addMore: true,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Reason',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Name of doctor, hospital or clinic',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '3',
+                    question: 'Address',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '4',
+                    question: 'Dates',
+                    answer: '',
+                    name: 'subQues',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
+        },
+        {
+            id: '15',
+            question: 'Please provide any additional information that you feel is important:',
             answer: '',
             declaration: '',
             heading: '',
@@ -898,7 +1252,7 @@ export const questionnaireList = {
             answer: '',
             declaration: '',
             heading: '',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -934,7 +1288,7 @@ export const questionnaireList = {
             answer: '',
             declaration: '',
             heading: 'Details of attacks:',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -970,7 +1324,7 @@ export const questionnaireList = {
             answer: '',
             declaration: '',
             heading: 'Did the attacks ever produce any',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -998,6 +1352,14 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
+                {
+                    id: '4',
+                    question: 'Are the attacks related to meals?',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
             ]
         },
         {
@@ -1005,8 +1367,8 @@ export const questionnaireList = {
             question: '',
             answer: '',
             declaration: '',
-            heading: 'Are the attacks related to meals? If so, state',
-            type: 'textbox',
+            heading: 'If so, state',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1045,7 +1407,7 @@ export const questionnaireList = {
             answer: '',
             declaration: '',
             heading: 'Has an X ray/Ultra Sonography of the stomach or other investigation ever been done? If so, please state',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1075,7 +1437,7 @@ export const questionnaireList = {
                 },
                 {
                     id: '4',
-                    question: 'Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.',
+                    question: 'Have you had a barium meal or any other investigation like endoscopy? If so, please provide the details including date and result of the investigation.',
                     answer: '',
                     type: 'textbox',
                     validation: '',
@@ -1085,7 +1447,7 @@ export const questionnaireList = {
         },
         {
             id: '8',
-            question: 'Is there any additional information you can provide, with regards the chest pain which will assist in processing your proposal?',
+            question: 'Have you had an operation for this or is an operation being considered? If so, please provide the complete details including name and address of the doctor, and discharge summary (if any).',
             answer: '',
             declaration: '',
             heading: '',
@@ -1094,6 +1456,45 @@ export const questionnaireList = {
             ansBtn: false,
             subQuestions: []
         },
+        {
+            id: '9',
+            question: 'Have you experienced any problems or complications following surgery? If so, please provide details.',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '10',
+            question: '',
+            answer: '',
+            declaration: '',
+            heading: 'Please provide details of your treatment. Include name of medication, dosage and how often taken.',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Currently:',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'In the past:',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
+        }
     ],
     "EPILEPSY_QUESTION": [
         {
@@ -1109,11 +1510,11 @@ export const questionnaireList = {
         },
         {
             id: '2',
-            question: 'At what age did the attacks first commence?',
+            question: '',
             answer: '',
             declaration: '',
             heading: 'Have the attack ever been described as of a particular type? For example. Grandmal, Petitmal.',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1129,14 +1530,31 @@ export const questionnaireList = {
         },
         {
             id: '3',
-            question: 'State the frequency of the attacks: In the last 12 months Duration of each attack',
+            question: '',
             answer: '',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'State the frequency of the attacks:',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'In the last 12 months.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Duration of each attack',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '4',
@@ -1151,14 +1569,31 @@ export const questionnaireList = {
         },
         {
             id: '5',
-            question: 'Do the attacks happen at day or at night? Are you aware of any specific provoking cause for your attacks? If so, please provide complete details.',
+            question: '',
             answer: '',
             declaration: '',
             heading: '',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Do the attacks happen at day or at night?',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Are you aware of any specific provoking cause for your attacks? If so, please provide complete details.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '6',
@@ -1173,7 +1608,7 @@ export const questionnaireList = {
         },
         {
             id: '7',
-            question: 'Are you taking drugs to prevent the attacks? If so, please provide the details.',
+            question: 'Do you ever bite your tongue during an attack?',
             answer: '',
             declaration: '',
             heading: '',
@@ -1184,7 +1619,7 @@ export const questionnaireList = {
         },
         {
             id: '8',
-            question: 'Have you ever in the past had a head injury? If so, please describe the severity',
+            question: 'Are you taking drugs to prevent the attacks? If so, please provide the details.',
             answer: '',
             declaration: '',
             heading: '',
@@ -1195,7 +1630,7 @@ export const questionnaireList = {
         },
         {
             id: '9',
-            question: 'Was an X ray or scan of your head ever been carried out? If so, please give details of the report / investigation and name and address of the consulting doctor.',
+            question: 'Have you ever in the past had a head injury? If so, please describe the severity',
             answer: '',
             declaration: '',
             heading: '',
@@ -1206,7 +1641,7 @@ export const questionnaireList = {
         },
         {
             id: '10',
-            question: 'Have you lost significant time off work due to this condition? If so, please provide details including dates and time duration taken off work.',
+            question: 'Was an X ray or scan of your head ever been carried out? If so, please give details of the report / investigation and name and address of the consulting doctor.',
             answer: '',
             declaration: '',
             heading: '',
@@ -1217,12 +1652,23 @@ export const questionnaireList = {
         },
         {
             id: '11',
+            question: 'Have you lost significant time off work due to this condition? If so, please provide details including dates and time duration taken off work.',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '12',
             question: '',
             answer: '',
             declaration: '',
             heading: '',
             heading: 'Additional Information:',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1314,11 +1760,11 @@ export const questionnaireList = {
         },
         {
             id: '7',
-            question: 'Please provide details of your treatment. Please specify the names of medication (e.g. Brufen, Indocid, Naprosyn etc), dosage and how often taken. Include details of any injections:',
+            question: '',
             answer: '',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Please provide details of your treatment. Please specify the names of medication (e.g. Brufen, Indocid, Naprosyn etc), dosage and how often taken. Include details of any injections:',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1465,28 +1911,17 @@ export const questionnaireList = {
         },
         {
             id: '7',
-            question: 'Were the episodes severe? Did they necessitate absence from work? If so, how long were you absent from work?',
-            answer: '',
-            declaration: '',
-            heading: '',
-            type: 'textbox',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
-        },
-        {
-            id: '8',
             question: '',
             answer: '',
             declaration: '',
-            heading: 'What form of treatment was given and for what period? Please provide',
-            type: 'textbox',
+            heading: 'Were the episodes severe?',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
                 {
-                    id: '1',
-                    question: 'complete details (name and dosage of medicines) with dates.',
+                    id: '2',
+                    question: 'Did they necessitate absence from work? ',
                     answer: '',
                     type: 'textbox',
                     validation: '',
@@ -1494,7 +1929,35 @@ export const questionnaireList = {
                 },
                 {
                     id: '2',
-                    question: 'details of old treatment if the treatment has been changed by your consulting doctor',
+                    question: 'If so, how long were you absent from work?',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
+        },
+        {
+            id: '8',
+            question: '',
+            answer: '',
+            declaration: '',
+            heading: 'What form of treatment was given and for what period? Please provide',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Complete details (name and dosage of medicines) with dates.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Details of old treatment if the treatment has been changed by your consulting doctor',
                     answer: '',
                     type: 'textbox',
                     validation: '',
@@ -1508,7 +1971,7 @@ export const questionnaireList = {
             answer: '',
             declaration: '',
             heading: 'Has an MRI/CT scan or other investigation ever been done? If so, please provide the following:',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1605,14 +2068,31 @@ export const questionnaireList = {
         },
         {
             id: '4',
-            question: 'Has your chest ever been X rayed or you have undergone pulmonary function tests (PFT’s)? If so, what were the results? Please enclose the copy of above reports – if available.',
+            question: '',
             answer: '',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Has your chest ever been X rayed or you have undergone pulmonary function tests (PFT’s)? ',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'If so, what were the results?',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Please enclose the copy of above reports – if available.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '5',
@@ -1638,14 +2118,23 @@ export const questionnaireList = {
         },
         {
             id: '7',
-            question: 'How severe are the attacks. Have they necessitated sitting up in bed or an absence from work? Have you ever been hospitalised? If so please give full details.',
+            question: '',
             answer: '',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'How severe are the attacks. Have they necessitated sitting up in bed or an absence from work?',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Have you ever been hospitalised? If so please give full details.',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
         },
         {
             id: '8',
@@ -1665,6 +2154,17 @@ export const questionnaireList = {
             declaration: '',
             heading: '',
             type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '10',
+            question: '',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1687,7 +2187,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '10',
+            id: '11',
             question: 'Please provide additional information, if any, with regards the respiratory disorder which will assist in processing your proposal.',
             answer: '',
             declaration: '',
@@ -1701,28 +2201,26 @@ export const questionnaireList = {
     "THYROID_DISORDER_QUESTION": [
         {
             id: '1',
-            question: 'Have you ever been diagnosed for thyroid disorder?',
+            question: '',
             answer: '',
             declaration: 'I hereby agree that the statements below shall form part of my proposal for life insurance and I declare that such statements together with the said proposal and declaration shall be the basis of the contract between Bharti AXA Life Insurance Company Limited and myself.',
-            heading: '',
-            type: 'textbox',
+            heading: 'Have you ever been diagnosed for thyroid disorder?',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'If so, please provide details below',
+                    answer: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                }
+            ]
         },
         {
             id: '2',
-            question: 'If so, please provide details below',
-            answer: '',
-            declaration: '',
-            heading: '',
-            type: 'textbox',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
-        },
-        {
-            id: '3',
             question: 'What is the type of thyroid disorder. Hypothyroidism/Hyperthyroidism/ Thyroiditis/Goitre',
             answer: '',
             declaration: '',
@@ -1733,7 +2231,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '4',
+            id: '3',
             question: 'When were you first diagnosed with this condition?',
             answer: '',
             declaration: '',
@@ -1744,12 +2242,12 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '5',
+            id: '4',
             question: '',
             answer: '',
             declaration: '',
-            heading: 'Were any investigations carried out? For example thyroid function tests, ultrasonography, scintigraphy, etc.) If so, Please provide the following: • Date of the investigation or test • Name and address of Doctor • Details of findings',
-            type: 'textbox',
+            heading: 'Were any investigations carried out? For example thyroid function tests, ultrasonography, scintigraphy, etc.) If so, Please provide the following:',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1780,7 +2278,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '6',
+            id: '5',
             question: 'Have you ever had any operation for your thyroid disorder (e.g. thyroidectomy)? If so, please provide full details with copies of any reports in your possession (date of operation, type of operation, findings etc).',
             answer: '',
             declaration: '',
@@ -1791,7 +2289,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '7',
+            id: '6',
             question: 'Provide treatment details (name and dosage of the medicines)',
             answer: '',
             declaration: '',
@@ -1802,7 +2300,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '8',
+            id: '7',
             question: 'Do you have heart related problems arising out of thyroid disorder? If so, please provide details',
             answer: '',
             declaration: '',
@@ -1813,7 +2311,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '8',
             question: 'Do you have visual defect, loss of appetite, diarrhoea, tremor of hands, increased perspiration due to the thyroid disorder? If so, please provide details.',
             answer: '',
             declaration: '',
@@ -1824,7 +2322,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '10',
+            id: '9',
             question: 'Please do provide additional information, if any, with regards the thyroid disorder which will assist in processing your proposal.',
             answer: '',
             declaration: '',
@@ -1876,7 +2374,7 @@ export const questionnaireList = {
             declaration: '',
             heading: '',
             heading: 'Were any investigations carried out (e.g chest x-ray, blood tests, MRI/CT/PET scan, etc.)If so, please state',
-            type: 'textbox',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
             subQuestions: [
@@ -1930,18 +2428,18 @@ export const questionnaireList = {
         },
         {
             id: '7',
-            question: 'Have you had an operation for the removal of the tumour/growth/lump or cyst? Or has any surgery been suggested by your consulting doctor? If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
+            question: 'Have you had an operation for the removal of the tumour/growth/lump or cyst? Or has any surgery been suggested by your consulting doctor? ',
             answer: '',
             declaration: '',
             heading: '',
             type: 'textbox',
             validation: '',
-            ansBtn: false,
+            ansBtn: true,
             subQuestions: []
         },
         {
             id: '8',
-            question: 'Have you ever lost significant time off work due to this condition? If so please provide details including dates and time spent off work',
+            question: 'If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
             answer: '',
             declaration: '',
             heading: '',
@@ -1952,6 +2450,17 @@ export const questionnaireList = {
         },
         {
             id: '9',
+            question: 'Have you ever lost significant time off work due to this condition? If so please provide details including dates and time spent off work',
+            answer: '',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: true,
+            subQuestions: []
+        },
+        {
+            id: '10',
             question: 'Is there any additional information you can provide, with regards to this condition which will assist in processing your proposal?',
             answer: '',
             declaration: '',
@@ -2110,7 +2619,7 @@ export const documentsUplaod = [
 
 // status api data
 
-export const statusApi = 
+export const statusApi =
 {
     "proposalId": 3842398,
     "customerId": null,

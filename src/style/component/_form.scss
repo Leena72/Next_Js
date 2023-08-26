@@ -11,29 +11,33 @@
 
 .form-block {
     border-bottom: 1px solid $label-blue;
-    padding-bottom: 10px;
+    padding: 20px 0;
 }
 
 .form-declaration {
     color: $black;
     padding-bottom: 16px;
     font-size: $font-12;
+    line-height: 18px;
     font-family: $font-family-OpenSanaRegular;
 
-    @include mquery(desk) {
+    @include mquery(ipad) {
         font-size: $font-16;
+        line-height: 20px;
     }
 }
 
 .form-question {
+    line-height: 18px;
     font-size: $font-14;
     color: $label-blue;
     font-family: $font-family-OpenSanaSemiBold;
     padding: 10px 0;
     margin-bottom: 10px;
 
-    @include mquery(desk) {
+    @include mquery(ipad) {
         font-size: $font-16;
+        line-height: 20px;
     }
 }
 
@@ -61,7 +65,7 @@
     text-align: center;
     width: 100%;
     margin: auto;
-    padding: 1em 0;
+    padding: 1em 0 0;
 
     button {
         width: 47%;
@@ -89,6 +93,41 @@
 
     @include mquery(desk) {
         width: 53%;
-        padding: 2em 0;
+    }
+}
+
+.form-quesbtn {
+    display: flex;
+    margin: auto;
+    width: 70%;
+
+    button {
+        width: 48%;
+        margin-right: 3%;
+        background: $white;
+        border: 1px solid $grey8;
+        border-radius: 10px;
+        padding: 10px;
+        color: $label-blue;
+        font-family: $font-family-OpenSanaSemiBold;
+        font-size: $font-24;
+        text-align: center;
+    }
+}
+
+.form-inputbtn {
+    display: flex;
+
+    .radio {
+        width: 15%;
+
+        input {}
+
+        label {
+            margin-left: 10px;
+            color: $label-blue;
+            font-family: $font-family-OpenSanaSemiBold;
+            font-size: $font-14;
+        }
     }
 }
