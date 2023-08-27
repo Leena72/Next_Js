@@ -3086,3 +3086,267 @@ export const statusApi =
         "customerConsentRejected": false
     }
 }
+
+
+// consent data
+
+export const consentForChangeData = [
+    {
+        id: 1,
+        title: 'Proposer’s Detail',
+        detail: [
+            {
+                id: 1,
+                title: 'Pincode',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 2,
+                title: 'PFP',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 3,
+                title: 'Any ealth Questionnaire',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 4,
+                title: 'Residential Country',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 5,
+                title: 'Age proof',
+                oldDetail: '',
+                reviseDetail: ''
+            },
+            {
+                id: 6,
+                title: 'Fund details',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 7,
+                title: 'Title',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 8,
+                title: 'Name',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 9,
+                title: 'Date of Birth',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 10,
+                title: 'Age',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 11,
+                title: 'Gender',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+        ]
+    },
+    {
+        id: 2,
+        title: 'Insured’s Detail',
+        detail: [
+            {
+                id: 1,
+                title: 'Pincode',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 2,
+                title: 'PFP',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 3,
+                title: 'Any ealth Questionnaire',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 4,
+                title: 'Residential Country',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 5,
+                title: 'Age proof',
+                oldDetail: '',
+                reviseDetail: ''
+            },
+            {
+                id: 6,
+                title: 'Fund details',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 7,
+                title: 'Title',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 8,
+                title: 'Name',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 9,
+                title: 'Date of Birth',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 10,
+                title: 'Age',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 11,
+                title: 'Gender',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+        ]
+    },
+    {
+        id: 3,
+        title: 'Plan Detail',
+        detail: [
+            {
+                id: 1,
+                title: 'Plan option',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 2,
+                title: 'Base Sum Assured',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 3,
+                title: 'Base Premium Term',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 4,
+                title: 'Base Policy Term',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 5,
+                title: 'Base Modal Premium',
+                oldDetail: '',
+                reviseDetail: ''
+            },
+            {
+                id: 6,
+                title: 'Payement Frequency',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 7,
+                title: 'Premium Payment Mode',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 8,
+                title: 'Premium Payment Method',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 9,
+                title: 'Existing Bharti Axa Customer',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 10,
+                title: 'Employee Discount',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 11,
+                title: 'Rider Name',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 12,
+                title: 'Rider Sum Assured',
+                oldDetail: '',
+                reviseDetail: ''
+            },
+            {
+                id: 13,
+                title: 'Rider Policy Term',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 14,
+                title: 'Rider Premium Term',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 15,
+                title: 'Top Up Premium',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 16,
+                title: 'Loading Premium',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 17,
+                title: 'Payout Type',
+                oldDetail: '',
+                revisedDetail: ''
+            },
+            {
+                id: 11,
+                title: 'Payout Frequency',
+                oldDetail: '',
+                revisedDetail: ''
+            }
+        ]
+    }
+]

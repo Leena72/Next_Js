@@ -131,3 +131,81 @@
         }
     }
 }
+
+// consent table
+
+.form-table {
+    width: 100%;
+
+    thead {
+        tr {
+            border-bottom: none;
+        }
+
+        th {
+            padding: 10px 0;
+            font-size: $font-14;
+            font-family: $font-family-OpenSanaBold;
+        }
+    }
+
+    tbody {
+        tr {
+            border-bottom: 1px solid $grey8;
+        }
+
+        td {
+            padding: 10px;
+            font-size: $font-14;
+            color: $black;
+
+            input {
+                width: 90%;
+                border: 1px solid $grey8;
+                padding: 10px;
+                font-size: $font-14;
+                color: $black;
+                border-radius: 10px
+            }
+        }
+    }
+}
+
+.consent-blk {
+    background: $light-blue1;
+
+    label {
+        width: 100%;
+        font-size: $font-14;
+        color: $black;
+        padding: 0 20px 10px;
+
+        span {
+            padding-left: 10px;
+        }
+    }
+}
+
+.consent-btn {
+padding: 10px 30px 20px;
+    button {
+        display: inline-block;
+        border: 0px;
+        background-size: 20px;
+        border-radius: 5px;
+        padding: 10px 40px 10px 60px;
+        font-size: $font-18;
+        font-weight: 600;
+        text-decoration: none;
+        &:nth-of-type(1) {
+            background: $label-blue;;
+            color: $white;
+            margin-right: 20px;
+        }    
+        &:nth-of-type(2) {
+            background: $white;
+            color: $black;
+            border: $red1 solid 1px;
+        }
+    }
+}
