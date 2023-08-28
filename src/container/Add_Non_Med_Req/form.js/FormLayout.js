@@ -2,21 +2,14 @@ import React from 'react'
 import Layout1 from './Layout1'
 import Layout2 from './Layout2'
 
-const FormLayout = ({ formName, formData, formChangeHandler }) => {
+const FormLayout = (props) => {
+  const {formName}=props
   const renderFormLayout = (formName) => {
-    if(formName!=='diabetes'){
-    return  <Layout1
-      formName={formName}
-          formData={formData}
-          formChangeHandler={formChangeHandler}
-      />
+    if (formName !== 'diabetes') {
+      return <Layout1 {...props}/>
     }
-    else{
-     return <Layout2
-      formName={formName}
-          formData={formData}
-          formChangeHandler={formChangeHandler}
-      />
+    else {
+      return <Layout2 {...props}/>
     }
   }
   return (

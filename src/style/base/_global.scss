@@ -436,3 +436,11 @@ ul {
     position: absolute;
   }
 }
+
+.error-msg{
+  color: $red1;
+  font-size: $font-12;
+  @include mquery(desk){
+  font-size: $font-14;
+  }
+}
