@@ -19,12 +19,12 @@ export default function RootLayout({ children }) {
       <head>
          {/* uat billdesk links  */}
 	  <script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
-    <script async nomodule="" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
+    <script async noModule="" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
     <link href="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet"/>
     
      {/* prod billdesk links  */}
   	{/* <script type="module" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
-    <script async nomodule="" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
+    <script async noModule="" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
     <link href="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet"/> */}
 
 

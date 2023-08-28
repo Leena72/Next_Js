@@ -52,8 +52,12 @@
                     border: 1px solid $blue;
                     text-align: center;
                 }
+                .payofline_close{
+                    cursor: pointer;
+                }
             } 
                 .close_popup {
+                    cursor: pointer;
                     position: absolute;
                     right: 13px;
                     top: 13px;
