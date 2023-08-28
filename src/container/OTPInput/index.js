@@ -87,7 +87,7 @@ export class OTPInput extends Component {
   render() {
     const { isError } = this.state;
     return (
-        <div className="header-otp-popup-content p-4">
+        <div className="header-otp-popup-content">
         <div className="row pt-2">
         <div className="col-md-4 col-4">
         <div className="enter-otp-popup">
@@ -117,8 +117,8 @@ export class OTPInput extends Component {
           )}
       
         </div>
-        <div className="row">
-            <div className="col-md-12 pt-3 pb-3">
+        {/* <div className="row">
+            <div className="col-md-12 pt-3 pb-3"> */}
                 <div className="otp-input-wrapper" onKeyDown={(e) => this.keyDown(e)}>
                     <OtpInput
                         value={this.state.otp}
@@ -132,8 +132,8 @@ export class OTPInput extends Component {
                         renderInput={(props) => <input {...props} />}
                     />
                </div>
-            </div>
-        </div>
+            {/* </div>
+        </div> */}
       </div>
     );
   }

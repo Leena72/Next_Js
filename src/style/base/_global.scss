@@ -100,6 +100,9 @@ ul {
   transform: rotate(180deg);
 }
 
+.display_flex{
+  display: flex;
+}
 //
 .Toastify__toast--error {
   background-color: #f8ebee !important;
@@ -164,6 +167,35 @@ ul {
   //     }
 }
 
+.otp-input-wrapper  {
+  padding: 20px 0 10px;
+  div{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include mquery(desk){
+      width: 80%;
+      margin: auto;
+    }
+  }
+  input{
+    width: 1em;
+    text-align: center;
+    color: #000;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 4px;
+    text-align: center;
+    background: unset;
+    border: #969696 solid 1px;
+    padding: 15px 0px;
+    width: 45px !important;
+    display: inline-block;
+    // margin-right: 5px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .header-otp-popup {
     width: 90%;
@@ -176,7 +208,7 @@ ul {
   }
 
   .otp-input-wrapper input {
-    width: 2.5rem !important;
+    // width: 2.5rem !important;
     // margin-right: 1.5rem;
   }
 }
@@ -184,7 +216,7 @@ ul {
 @media screen and (max-width: 450px) {
   .otp-input-wrapper input {
     // width: 2.5rem !important;
-    margin-right: 1.2rem;
+    // margin-right: 1.2rem;
   }
 }
 
@@ -230,8 +262,9 @@ ul {
 }
 
 .header-otp-popup-content {
-  padding-left: 3rem;
-  padding-right: 3rem;
+  // padding-left: 3rem;
+  // padding-right: 3rem;
+  padding: 10px;
 }
 
 .header-reject-popup-content-fot {
@@ -444,3 +477,4 @@ ul {
   font-size: $font-14;
   }
 }
+
