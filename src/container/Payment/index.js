@@ -124,14 +124,39 @@ const Payment = (props) => {
         "Authorization": 'Bearer'+' '+localStorage.getItem("accessToken")
       },
     })
-      .then((resp) => {
-        if (cb) {
-          cb(resp.data.body)
-        }
-        // dispatch({
-        //   type: actionTypes.loadingOff
-        // });
-      })
+    .then((resp) => {
+      let flow_config = {
+                merchantId: resp.data.body.options.merchantId,
+                bdOrderId: resp.data.body.options.bdOrderId,
+                authToken: resp.data.body.options.orderToken,
+                childWindow: true,
+                retryCount: resp.data.body.options.retryCount,
+                prefs: {}
+            };
+       let mandate_flow_config = {
+                      merchantId: resp.data.body.options.merchantId,
+                      mandateTokenId: resp.data.body.options.mandateTokenId,
+                      authToken: resp.data.body.options.orderToken,
+                      childWindow: true,
+                      retryCount: resp.data.body.options.retryCount,
+                  }
+                  console.log("test>>>>", flow_config)
+                  let config = {
+                            responseHandler: (txn) => {
+                              // console.log("test222",txn)
+                              ()=>{}
+                            },
+                            merchantLogo: "/logo_2x.png",
+                            flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
+                            flowType: resp.data.body.options.onlyMandate ? "emandate" : "payments",
+                        };
+                        console.log('window',window.loadBillDeskSdk)
+                        window.loadBillDeskSdk(config);
+
+      // dispatch({
+      //   type: actionTypes.loadingOff
+      // });
+    })
       .catch((err) => {
         // if (err.status == '401') {
         //   window.location.href = apiConstants.TRACKER_URL
@@ -217,16 +242,22 @@ const Payment = (props) => {
       .then((resp) => {
         if (resp.data.body.DateValidate || resp.data.body.PanValidate) {
           setValidationInput('')
+          setDob('')
+          setPan('')
           setShowOnlinePopup(false)
-          // this.openPaymentOption();
+          openBillDesk();
         }
         else if(resp.data.body.DateValidate === false){
           toaster("error", "Please enter valid DOB")
           setValidationInput('')
+          setDob('')
+          setPan('')
         }
         else if(resp.data.body.PanValidate === false){
           toaster("error", "Please enter valid PAN")
           setValidationInput('')
+          setDob('')
+          setPan('')
         }
       })
       .catch((err) => {
@@ -237,11 +268,10 @@ const Payment = (props) => {
   const validateData = () => {
     let query;
     let proposalNo = localStorage.getItem("proposalNo")
-    if (dob) {
+    if (dob && dob.length === 10) {
       query = `proposalNumber=${proposalNo}&dateOfBirth=${validationInput}&panNumber`;
       validatePaymentLink(query);
-      openBillDesk();
-    } else {
+    } else if(pan && pan.length === 10) {
       query = `proposalNumber=${proposalNo}&panNumber=${validationInput}&dateOfBirth`;
       validatePaymentLink(query);
     }
