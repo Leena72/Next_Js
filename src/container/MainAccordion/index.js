@@ -85,16 +85,57 @@ const MainAccordion = ({ data, downloadData, accDetails }) => {
     }
   }
 
+  const dateRender = (status,) => {
+    let detail = accordionDetails && accordionDetails?.filter(item => {
+      return item.status === status;
+    });
+    let date = detail && detail[0]?.updatedOn
+    if (date?.length > 0) {
+      let newdate = dateFormat(date)
+      return newdate
+    }
+    else {
+      return <div>Yet to start</div>
+    }
+  }
+
   const renderCreateOn = (heading) => {
+    let date
     switch (heading) {
       case 'Quote Generated':
-        // let quoteDetail = accordionDetails && accordionDetails?.filter(item => {
-        //   return item.status === 'QUOTE';
-        // });
-        // console.log('quoteDetail',quoteDetail?.quoteDetail[0]?.quoteDetail[0].updatedOn)
-        // return
-      default:
-        break;
+        date = dateRender('QUOTE')
+        return date
+      case 'Form Filling':
+        date = dateRender('PROPOSAL_SUBMISSION')
+        return date
+      case 'Medical Requirement':
+        date = dateRender('MEDICAL_REQUIREMENT')
+        return date
+      case 'Additional Non-Medical Requirements':
+        date = dateRender('ADDITIONAL_NON_MEDICAL_REQUIREMENT')
+        return date
+      case 'Revised Offer':
+        date = dateRender('REVISED_OFFER')
+        return date
+        case 'Consent for change in the application details':
+          return ''
+        case 'Payment Required':
+        date = dateRender('PAYMENT_REQUIREMENT')
+        return date
+        case 'Quality Check':
+          date = dateRender('QUALITY_CHECK')
+          return date
+        case 'Medical Risk Verification':
+        date = dateRender('MEDICAL_RISK_VERIFICATION')
+        return date
+        case 'Financial and Medical Risk Verification':
+          date = dateRender('FINANCIAL_AND_MEDICAL_RISK_VERIFICATION')
+        return date
+        case 'Policy Decision':
+          date = dateRender('POLICY_STATUS')
+          return date
+        default:
+          break;
     }
   }
 

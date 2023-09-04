@@ -7,6 +7,7 @@ import Payment from '../../container/Payment';
 import FormFieldConsent from '../../component/FormFieldConsent';
 import { videoPIVCAction } from '../../redux/action/videoPIVCAction'
 import { consentHandlerAction } from '../../redux/action/consentHandlerAction'
+import { dateFormat } from '../../utils/utils';
 
 const FormFilling = ({ data, accDetails, accordionDetails, formFillDocDownload }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
@@ -35,6 +36,7 @@ const FormFilling = ({ data, accDetails, accordionDetails, formFillDocDownload }
         let proposalFormList = accordionDetails && accordionDetails?.filter(item => {
           return item.status === 'PROPOSAL';
         });
+        // console.log('proposalFormList', proposalFormList)
         return (proposalFormList.length !== 0 ?
           <ProposalForm data={data.subContent} proposalFormList={proposalFormList} />
           :
@@ -76,6 +78,66 @@ const FormFilling = ({ data, accDetails, accordionDetails, formFillDocDownload }
         break;
     }
   }
+
+  const dateRender = (status) => {
+    let detail = accordionDetails && accordionDetails?.filter(item => {
+      return item.status === status;
+    });
+    if (status === 'PROPOSAL') {
+      // console.log('detail',detail)
+      let propDetail = detail && detail?.filter(item => {
+        return item.subStatus === 'Health_Details';
+      });
+      let date = propDetail && propDetail[0]?.updatedOn
+      if (date?.length > 0) {
+        let newdate = dateFormat(date)
+        return newdate
+      }
+      else {
+        return <div>Yet to start</div>
+      }
+    }
+    else {
+      let date = detail && detail[0]?.updatedOn
+      if (date?.length > 0) {
+        let newdate = dateFormat(date)
+        return newdate
+      }
+      else {
+        return <div>Yet to start</div>
+      }
+    }
+  }
+
+  const renderCreateOn = (heading) => {
+    let date
+    switch (heading) {
+      case 'Proposal Form':
+        date = dateRender('PROPOSAL')
+        console.log('date', date)
+        return date
+      case 'Insta Verify':
+        date = dateRender('')
+        return date
+      case 'Customer Consent':
+        date = dateRender('')
+        return date
+      case 'Payment':
+        date = dateRender('PAYMENT')
+        return date
+      case 'Document Upload':
+        date = dateRender('')
+        return date
+      case 'Basic Document Upload':
+        return ''
+      case 'Proposal Submission':
+        date = dateRender('PROPOSAL_SUBMISSION')
+        return date
+      default:
+        break;
+    }
+  }
+
   const toggleAccordion = (id) => {
     setOpenAccordion(openAccordion === id ? null : id)
   }
@@ -89,6 +151,7 @@ const FormFilling = ({ data, accDetails, accordionDetails, formFillDocDownload }
               <Accordion1
                 openAccordion={openAccordion}
                 item={item}
+                renderCreateOn={renderCreateOn}
                 toggleAccordion={toggleAccordion}
               />
               {openAccordion === item?.id ?

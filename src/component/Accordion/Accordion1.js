@@ -2,7 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 import dwnArrow from "../../Assets/images/dwn-arw.png";
 
-const Accordion1 = ({ openAccordion, item, toggleAccordion }) => {
+const Accordion1 = ({ openAccordion, item, toggleAccordion,renderCreateOn }) => {
+    const renderCreateOnDate=(heading)=>{
+       return renderCreateOn(heading)
+    }
     return (
         <div className={`acc-active-block ${openAccordion === item.id ? 'active' : ''}`}
             id={item.id}
@@ -19,7 +22,7 @@ const Accordion1 = ({ openAccordion, item, toggleAccordion }) => {
                 <div className='acc-active-content'>
                     {/* <p>{item.status.split('_').join(' ')}</p> */}
                     <p>{item.heading}</p>
-                    <p>{item.subHeading}</p>
+                    <p>{renderCreateOnDate(item.heading)}</p>
                 </div>
             </div>
             <div className='acc-active-icon'>

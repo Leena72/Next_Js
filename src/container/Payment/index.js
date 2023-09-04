@@ -140,7 +140,7 @@ const Payment = (props) => {
                       childWindow: true,
                       retryCount: resp.data.body.options.retryCount,
                   }
-                  console.log("test>>>>", flow_config)
+                  // console.log("test>>>>", flow_config)
                   let config = {
                             responseHandler: (txn) => {
                               // console.log("test222",txn)
@@ -150,7 +150,7 @@ const Payment = (props) => {
                             flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
                             flowType: resp.data.body.options.onlyMandate ? "emandate" : "payments",
                         };
-                        console.log('window',window.loadBillDeskSdk)
+                        // console.log('window',window.loadBillDeskSdk)
                         window.loadBillDeskSdk(config);
 
       // dispatch({

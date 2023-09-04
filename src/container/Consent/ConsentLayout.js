@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import Input from '@/component/Input'
 const ConsentLayout = ({ data, title }) => {
-    console.log('consentForChangeData', data, title)
-
     return (
         <div className='form-container'>
             <table className='form-table'>

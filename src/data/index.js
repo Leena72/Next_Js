@@ -3064,42 +3064,57 @@ export const downloadData = [
         title: 'Benefit Illustration',
         msg: '',
         downloadStatus: false,
-        label: 'BI_TAG_NAME'
+        proposer:'BI_TAG_NAME',
+        insured:''
     },
     {
         id: 2,
         title: 'Financial Needs Analysis',
         msg: '',
         downloadStatus: false,
-        label: 'FNA_TAG_NAME'
+        proposer:'FNA_TAG_NAME',
+        insured:''
     },
     {
         id: 3,
         title: 'COVID Questionnaire',
         msg: '',
         downloadStatus: true,
-        label: 'COVID_TAG_NAME_2'
+        proposer:'COVID_TAG_NAME_1',
+        insured:'NEW_COVID_TAG_NAME_2'
+        
     },
     {
         id: 4,
         title: 'Proposal Form',
         msg: '',
         downloadStatus: false,
-        label: ''
+        proposer:'PDF_TAG_NAME',
+        insured:''
     },
     {
         id: 5,
         title: 'Form 60',
-        msg: 'if PAN not available',
+        msg: '',
         downloadStatus: true,
-        label: ''
-
+        proposer:'FORM60_TAG_NAME',
+        insured:'NEW_FORM60_TAG_NAME'
     },
     {
-        id: 1,
+        id: 6,
         title: 'Payment Receipt',
         msg: '',
         downloadStatus: false,
+        proposer:'',
+        insured:''
+    },
+    {
+        id: 7,
+        title: 'CDF',
+        msg: '',
+        downloadStatus: false,
+        proposer:'CDF_TAG_NAME',
+        insured:''
     },
 ]
 
