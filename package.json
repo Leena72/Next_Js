@@ -14,7 +14,7 @@
     "bootstrap": "^5.3.1",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.9",
-    "formik": "^2.4.3",
+    "formik": "^2.4.4",
     "next": "13.4.9",
     "next-redux-wrapper": "^8.1.0",
     "node": "^20.5.0",

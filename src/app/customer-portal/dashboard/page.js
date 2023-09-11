@@ -24,10 +24,10 @@ const Dashboard = () => {
 
     useEffect(() => {
         let proposalNo = localStorage.getItem("proposalNo")
-        dispatch(dashboardAction(proposalNo, (res) => {
-            setcustomerData(res)
-        }))
-        // setcustomerData(statusApi) // static data
+        // dispatch(dashboardAction(proposalNo, (res) => {
+        //     setcustomerData(res)
+        // }))
+        setcustomerData(statusApi) // static data
     }, [])
 
     return (
