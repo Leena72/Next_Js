@@ -5,7 +5,8 @@
     width: 100%;
     height: 100%;
     background: rgba(71, 86, 104, 0.8);
-    z-index: 99999;
+    z-index: 99;
+
     // display: none;
     .vrtclcntr_bx {
         float: left;
@@ -14,9 +15,11 @@
         display: table;
         position: relative;
         z-index: 70;
+
         .vrtclcntr_bxinr {
             display: table-cell;
             vertical-align: middle;
+
             .dcmnt_upload_popupinr {
                 margin: 0 auto;
                 width: 90%;
@@ -28,34 +31,38 @@
                 overflow: hidden;
                 color: $blue;
                 cursor: default;
+
                 // min-height: 15rem;
-                .content-box{
+                .content-box {
                     // padding: 20px 0px;
                 }
-                .btn{
+
+                .btn {
                     display: flex;
                     justify-content: center;
                     cursor: none;
                     border: none;
-                
-                .okbtnbx{
-                    display: inline-block;
-                    background: none;
-                    border: 0px;
-                    width: 100px;
-                    border-radius: 5px;
-                    padding: 8px 0px 8px 0px;
-                    color: #000;
-                    font-size: 16px;
-                    font-weight: 600;
-                    text-decoration: none;
-                    border: 1px solid $blue;
-                    text-align: center;
+
+                    .okbtnbx {
+                        display: inline-block;
+                        background: none;
+                        border: 0px;
+                        width: 100px;
+                        border-radius: 5px;
+                        padding: 8px 0px 8px 0px;
+                        color: #000;
+                        font-size: 16px;
+                        font-weight: 600;
+                        text-decoration: none;
+                        border: 1px solid $blue;
+                        text-align: center;
+                    }
+
+                    .payofline_close {
+                        cursor: pointer;
+                    }
                 }
-                .payofline_close{
-                    cursor: pointer;
-                }
-            } 
+
                 .close_popup {
                     cursor: pointer;
                     position: absolute;
@@ -63,15 +70,18 @@
                     top: 13px;
                     width: 16px;
                     cursor: pointer;
-                    img{
+
+                    img {
                         height: 1.2rem;
                         width: 100%;
                     }
-                    @include mquery(desk){
+
+                    @include mquery(desk) {
                         right: 20px;
-                        top: 20px;   
+                        top: 20px;
                     }
                 }
+
                 .hdng_bx {
                     // float: left;
                     width: 100%;
@@ -79,12 +89,13 @@
                     text-align: center;
                     margin-top: 1.5em;
 
-                    h2{
+                    h2 {
                         font-size: $font-16;
                         font-family: $font-family-OpenSanaSemiBold;
-                        @include mquery(desk){
+
+                        @include mquery(desk) {
                             font-size: $font-24;
-                            }
+                        }
                     }
                 }
             }

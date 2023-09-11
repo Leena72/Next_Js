@@ -8,8 +8,10 @@ import uploadImg from '../../Assets/images/upload_icon.png'
 
 const UploadDocModal = (props) => {
     const dispatch = useDispatch()
-    const [showImg, setshowImg] = useState(false)
+    const [showImg, setshowImg] = useState(true)
     const [fileValue, setFileValue] = useState({})
+    const [fileImg, setfile] = useState('')
+    const [disabled, setdisabled] = useState(true)
 
     const closeHandler = () => {
         props.onClose();
@@ -18,9 +20,14 @@ const UploadDocModal = (props) => {
         props.uploadDocHandler(fileValue)
     }
 
-    const fileUploadHandler = (event,) => {
+    const fileUploadHandler = (event) => {
         let fileValue = event.target.files[0]
-        setFileValue(fileValue)
+        if (fileValue.name !== '') {
+            setdisabled(false)
+            setfile(fileValue.name)
+            setshowImg(false)
+            setFileValue(fileValue)
+        }
     }
     return (
         <div className={`overlay ${props.addCss}`} >
@@ -30,12 +37,12 @@ const UploadDocModal = (props) => {
                         <div onClick={closeHandler} className="close_popup"><Image src={close} alt="cross" /></div>
                         {props.removeHeader ? null :
                             <div className="hdng_bx">
-                                <h2>{props.heading ? props.heading : null}</h2>
+                                <h2>{props.label==='form-filling'? props.heading : 'Upload'}</h2>
                             </div>
                         }
                         <div className='sub-heading-bx'>{props.subheading ? props.subheading : null}</div>
                         <div className='content-box upload-content-bx'>
-                            <div className='upload-block'>
+                        {showImg ?   <div className='upload-block'>
                                 <div className='upload-pin-blk'>
                                     {/* <Image
                                         src={uploadImg}
@@ -51,25 +58,27 @@ const UploadDocModal = (props) => {
                                     <input type="file" onChange={fileUploadHandler} />
                                 </div>
                             </div>
-                            {showImg &&
+                            :
                                 <div>
-                                    <Image
-                                        src={''}
+                                    {/* <Image
+                                        src={fileImg}
                                         alt='cmImg'
-                                    />
+                                    /> */}
+                                    <p>{fileImg}</p>
                                 </div>
                             }
                         </div>
                         <div className='add-more-btn'>
-                            <Button
+                            {/* <Button
                                 buttonText={'Add more'}
-                            />
+                            /> */}
                         </div>
                         <Button
                             buttonText={'SUBMIT'}
                             className={'blue-button'}
                             clickHandler={uploadDocHandler}
-                            // disabled={fileValue?.name?.length==0}
+                            disabled={disabled}
+                        // disabled={fileValue?.name?.length==0}
                         />
                     </div>
                 </div>

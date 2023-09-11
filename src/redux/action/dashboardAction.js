@@ -26,7 +26,6 @@ export const dashboardAction = (proposalNo, cb) => (dispatch) => {
                 type: "LOADER_OFF",
             });
             if (res.data.status === 'OK') {
-                toaster('success', res?.data?.message);
                 cb(res.data.body)
             }
         })

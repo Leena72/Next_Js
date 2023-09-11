@@ -1,15 +1,19 @@
-.card-body{
+.card-body {
+
     // padding: 1.25rem;
-    .rvsd_dwnld_outr{
+    .rvsd_dwnld_outr {
         padding-bottom: 15px;
-        .rvsd_dwnld{
+
+        .rvsd_dwnld {
             font-size: 14px;
             color: $blue;
-            @include mquery(desk){
-            font-size: 20px;
+
+            @include mquery(desk) {
+                font-size: 20px;
             }
         }
-        .lnktxtbx{
+
+        .lnktxtbx {
             display: inline-block;
             padding: 5px 15px;
             border: 1px solid $blue;
@@ -19,85 +23,98 @@
             background: #e0ebf5;
             margin-right: 0.5rem;
             margin-bottom: 10px;
-            &:hover{
+
+            &:hover {
                 background: $blue;
                 color: $white;
             }
-            img{
-              width: 20px;
-              height: auto;
-              margin-left: 15px;
-              cursor: pointer;
+
+            img {
+                width: 20px;
+                height: auto;
+                margin-left: 15px;
+                cursor: pointer;
             }
-            @include mquery(desk){
-            }
+
+            @include mquery(desk) {}
         }
     }
-    .revised-list{
-      display: flex;
+
+    .revised-list {
+        display: flex;
     }
-    .list{
+
+    .list {
         display: inline-block;
+
         input[type=radio] {
             accent-color: $blue;
             height: 1.2rem;
             width: 1.2rem;
-         }
+        }
     }
-        .label{
-            margin-bottom: 1rem;
-            display: inline-block;
-            color: $label-blue;
-            // font-weight: 600;
-            padding-left: 15px;
-            font-size: 16px;
-            line-height: 1.2;
-            // margin-top: -0.2rem;
-            
-        }
-        .tooltipbx{
-            display: inline-block;
-            position: relative;
-            margin-left: 0.2rem;
-            margin-top: -0.1rem;
-            // &:hover :nth-child(1) {
-            //     visibility: visible;
-            //     // display: block;
-            //     border: 2px solid red;
-            //     // .tooltiptext{
-            //     //     visibility: none;
-            //     // }
-            
-            //     }
-             .tooltiptext {
-                visibility: hidden;
-                // display:none;
-                width: 200px;
-                background-color: $blue;
-                color: #fff;
-                font-size: 12px;
-                text-align: center;
-                border-radius: 6px;
-                padding: 7px 7px 7px 7px;
-                position: absolute;
-                z-index: 1;
-                bottom: 150%;
-                left: 50%;
-                margin-left: -100px;
-                height: auto;
-                line-height: normal;
-                font-style: italic;
+
+    .label {
+        margin-bottom: 1rem;
+        display: inline-block;
+        color: $label-blue;
+        // font-weight: 600;
+        padding-left: 15px;
+        font-size: 16px;
+        line-height: 1.2;
+        // margin-top: -0.2rem;
+
+    }
+
+    .tooltipbx {
+        display: inline-block;
+        position: relative;
+        margin-left: 0.2rem;
+        margin-top: -0.1rem;
+        // &:hover :nth-child(1) {
+        //     visibility: visible;
+        //     // display: block;
+        //     border: 2px solid red;
+        //     // .tooltiptext{
+        //     //     visibility: none;
+        //     // }
+
+        //     }
+        .tooltiptext {
+            visibility: hidden;
+            // display:none;
+            width: 300px;
+            background-color: $blue;
+            color: #fff;
+            font-size: 12px;
+            text-align: center;
+            border-radius: 6px;
+            padding: 7px 7px 7px 7px;
+            position: absolute;
+            z-index: 1;
+            right: 20px;
+            top: -40px;
+            margin-left: -100px;
+            height: auto;
+            line-height: normal;
+            font-style: italic;
+            @include mquery(desk){
+                left: 11em;
+                top: -18px;
+                width: 370px;
             }
         }
-        
-        .tooltipbx:hover{
-            .tooltiptext{
-                visibility: visible;
-            }
+    }
+
+    .tooltipbx:hover {
+        .tooltiptext {
+            visibility: visible;
         }
-    .box-wrap{
+    }
+
+    .box-wrap {
         // padding: 20px 10px;
-    
+
         display: flex;
         flex-wrap: nowrap;
         width: 100%;
@@ -105,7 +122,8 @@
         margin: auto;
         padding: unset;
         height: 5.5rem;
-        .declinebox{
+
+        .declinebox {
             width: 50%;
             height: 4.5rem;
             border-radius: 15px;
@@ -119,9 +137,10 @@
             margin-bottom: 0px;
             padding: 20px 25px 7px;
             text-align: center;
-            box-shadow: 0px 0px 12px -1px rgba(0,0,0,0.32);
+            box-shadow: 0px 0px 12px -1px rgba(0, 0, 0, 0.32);
         }
-        .declinebox-selected{
+
+        .declinebox-selected {
             width: 50%;
             height: 4.5rem;
             border-radius: 15px;
@@ -138,4 +157,29 @@
         }
     }
 
-  }
+}
+
+.rvsd-conatiner {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    .rvsd_blk {
+        display: flex;
+        width: 90%;
+
+        @include mquery(desk) {
+            width: 40%;
+        }
+    }
+
+    .rvsd_blk-tooltip {
+        width: 10%;
+        text-align: end;
+
+        @include mquery(desk) {
+            width: 60%;
+            text-align: start
+        }
+    }
+}

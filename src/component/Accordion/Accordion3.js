@@ -1,20 +1,26 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image'
 import dwnImg from "../../Assets/images/pdf-dwn-arrow.png";
 import { downloadAction } from '../../redux/action/downloadAction';
-const Accordion3 = ({ data,documentList }) => {
-    // console.log('documentList',data,documentList)
-    const dispatch = useDispatch()
 
-    const downloadHandler = () => {
+const Accordion3 = ({ data }) => {
+    const dispatch = useDispatch()
+    const customerDetail = useSelector((state) => state.customerDetailReducer);
+    const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments);
+
+    const downloadHandler = (file) => {
         let proposalNo = localStorage.getItem("proposalNo")
-        let file = '3107423902FNA.pdf'
+        // let proposalNo="3108426548"
         dispatch(downloadAction(proposalNo, file))
     }
-    return (
-        <ul className='doc-container'>
-            {data.map((item) => (
+
+    const renderElement = (item) => {
+        let docExist1 = item.proposer in documentList
+        let proposerFile = documentList[item.proposer]
+        let insuredFile = documentList[item.insured]
+        if (docExist1) {
+            return (
                 <li className='doc-list' key={item.id}>
                     <div className='doc-list-content'>
                         <span className='doc-dot'></span>
@@ -22,31 +28,30 @@ const Accordion3 = ({ data,documentList }) => {
                         <span className='doc-sub-heading'>{item.msg ? `(${item.msg})` : ''}</span>
                     </div>
                     <div className='doc-img'>
-                        {item.downloadStatus ?
-                            <>
-                                <a className='doc-img-link' onClick={downloadHandler}>
-                                    <Image
-                                        src={dwnImg}
-                                        alt='dwnImg'
-                                    />
-                                </a>
-                                <a className='doc-img-link' onClick={downloadHandler}>
-                                    <Image
-                                        src={dwnImg}
-                                        alt='dwnImg'
-                                    />
-                                </a>
-                            </>
-                            :
-                            <a className='doc-img-link' onClick={downloadHandler}>
-                                <Image
-                                    src={dwnImg}
-                                    alt='dwnImg'
-                                />
-                            </a>
-                        }
+                        {item.proposer && <a className='doc-img-link' onClick={() => downloadHandler(proposerFile)}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                            />
+                            {item.title === 'COVID Questionnaire' && <span>{customerDetail?.proposerName}</span>}
+                        </a>}
+                        {item.insured && <a className='doc-img-link' onClick={() => downloadHandler(insuredFile)}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                            />
+                            {item.title === 'COVID Questionnaire' && <span>{!customerDetail?.insuredName?'INSURER':customerDetail?.insuredName}</span>}
+                        </a>}
                     </div>
                 </li>
+            )
+        }
+    }
+
+    return (
+        <ul className='doc-container'>
+            {data.map((item) => (
+                renderElement(item)
             ))}
         </ul>
     )

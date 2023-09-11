@@ -2,14 +2,14 @@ import Axios from "axios";
 import { apiConstants } from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
-export const videoPIVCAction = (data, linkTo, cb) => (dispatch) => {
+export const videoPIVCAction = (data, cb) => (dispatch) => {
     dispatch({
         type: "LOADER_ON",
     });
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `${apiConstants.API_URL}proposal/send/${linkTo}Link`,
+        url: `${apiConstants.API_URL}proposal/insta2-notification/${data.proposalNumber}`,
         headers: {
             "Content-Type": "application/json",
             "agentCode": localStorage.getItem('agentCode'),

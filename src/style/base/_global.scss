@@ -100,10 +100,19 @@ ul {
   transform: rotate(180deg);
 }
 
+.display_flex {
+  display: flex;
+}
+
 //
+.Toastify__toast-container {
+  z-index: 99999;
+}
+
 .Toastify__toast--error {
   background-color: #f8ebee !important;
   color: #000 !important;
+
 }
 
 .Toastify__toast--success {
@@ -164,6 +173,38 @@ ul {
   //     }
 }
 
+.otp-input-wrapper {
+  padding: 20px 0 10px;
+
+  div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include mquery(desk) {
+      width: 80%;
+      margin: auto;
+    }
+  }
+
+  input {
+    width: 1em;
+    text-align: center;
+    color: #000;
+    font-weight: 600;
+    font-size: 15px;
+    border-radius: 4px;
+    text-align: center;
+    background: unset;
+    border: #969696 solid 1px;
+    padding: 15px 0px;
+    width: 45px !important;
+    display: inline-block;
+    // margin-right: 5px;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .header-otp-popup {
     width: 90%;
@@ -176,7 +217,7 @@ ul {
   }
 
   .otp-input-wrapper input {
-    width: 2.5rem !important;
+    // width: 2.5rem !important;
     // margin-right: 1.5rem;
   }
 }
@@ -184,7 +225,7 @@ ul {
 @media screen and (max-width: 450px) {
   .otp-input-wrapper input {
     // width: 2.5rem !important;
-    margin-right: 1.2rem;
+    // margin-right: 1.2rem;
   }
 }
 
@@ -213,7 +254,7 @@ ul {
     font-weight: 600;
     padding-top: 6px;
     padding-left: 5px;
-    color: #07559b;
+    color: $label-blue;
     font-size: 15px;
   }
 }
@@ -230,8 +271,9 @@ ul {
 }
 
 .header-otp-popup-content {
-  padding-left: 3rem;
-  padding-right: 3rem;
+  // padding-left: 3rem;
+  // padding-right: 3rem;
+  padding: 10px;
 }
 
 .header-reject-popup-content-fot {
@@ -340,19 +382,23 @@ ul {
   border-radius: 10px;
   width: 96%;
   margin: auto;
+
   p {
     color: $label-blue;
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
     margin-right: 10px;
-    @include mquery(ipad){
-    font-size: $font-16;
+
+    @include mquery(ipad) {
+      font-size: $font-16;
     }
-    @include mquery(desk){
+
+    @include mquery(desk) {
       font-size: $font-18;
-      }
+    }
   }
-  button{
+
+  button {
     border: 1px solid $label-blue;
     color: $label-blue;
     background: $light-blue1;
@@ -360,38 +406,46 @@ ul {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    &:hover{
+
+    &:hover {
       color: $white;
       background-color: $blue;
     }
-    @include mquery(ipad){
+
+    @include mquery(ipad) {
       font-size: $font-16;
-      }
-      @include mquery(desk){
-        font-size: $font-18;
-        }
+    }
+
+    @include mquery(desk) {
+      font-size: $font-18;
+    }
   }
 }
-.quote{
+
+.quote {
   background: $light-blue1;
   padding: 10px;
   border-radius: 10px;
   width: 100%;
   margin: auto;
-  .quote-text{
+
+  .quote-text {
     color: $label-blue;
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
     text-decoration: underline;
     text-transform: uppercase;
-    @include mquery(ipad){
+
+    @include mquery(ipad) {
       font-size: $font-16;
-      }
-      @include mquery(desk){
-        font-size: $font-18;
-        }
+    }
+
+    @include mquery(desk) {
+      font-size: $font-18;
+    }
   }
-  .quote-btn{
+
+  .quote-btn {
     border: 1px solid $label-blue;
     color: $label-blue;
     background: $light-blue1;
@@ -399,16 +453,19 @@ ul {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    &:hover{
+
+    &:hover {
       color: $white;
       background-color: $blue;
     }
-    @include mquery(ipad){
+
+    @include mquery(ipad) {
       font-size: $font-16;
-      }
-      @include mquery(desk){
-        font-size: $font-18;
-        }
+    }
+
+    @include mquery(desk) {
+      font-size: $font-18;
+    }
   }
 }
 
@@ -434,5 +491,14 @@ ul {
     margin-left: -32px;
     margin-top: -32px;
     position: absolute;
+  }
+}
+
+.error-msg {
+  color: $red1;
+  font-size: $font-12;
+
+  @include mquery(desk) {
+    font-size: $font-14;
   }
 }

@@ -109,13 +109,14 @@ const Payment = (props) => {
         currencyType: "INR",
         // onlyMandate? !emandate: emandate,
         onlyMandate: onlyMandate ? onlyMandate : false,
-        customerEmailId:"ok@gmail.com",
-        customerMobileNo:"9897043791",
-        proposalId: "3816986",
-        proposalNumber:localStorage.getItem("proposalNo"),
+        customerEmailId:props.accDetails?.emailId,
+        customerMobileNo:props.accDetails?.mobileNo,
+        proposalId: props.accDetails?.proposalId,
+        proposalNumber:props.accDetails?.proposalNumber,
         // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
         paymentMethod: "ONLINE_BILL_DESK",
-        txAmount: '12344',
+        // txAmount: '11287.05',
+        txAmount: props.paymentValue,
         userAgent: navigator.userAgent,
     };
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
@@ -140,7 +141,7 @@ const Payment = (props) => {
                       childWindow: true,
                       retryCount: resp.data.body.options.retryCount,
                   }
-                  console.log("test>>>>", flow_config)
+                  // console.log("test>>>>", flow_config)
                   let config = {
                             responseHandler: (txn) => {
                               // console.log("test222",txn)
@@ -150,7 +151,7 @@ const Payment = (props) => {
                             flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
                             flowType: resp.data.body.options.onlyMandate ? "emandate" : "payments",
                         };
-                        console.log('window',window.loadBillDeskSdk)
+                        // console.log('window',window.loadBillDeskSdk)
                         window.loadBillDeskSdk(config);
 
       // dispatch({
@@ -241,6 +242,7 @@ const Payment = (props) => {
       )
       .then((resp) => {
         if (resp.data.body.DateValidate || resp.data.body.PanValidate) {
+          toaster("success", "Successfully validated")
           setValidationInput('')
           setDob('')
           setPan('')

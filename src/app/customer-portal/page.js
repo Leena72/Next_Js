@@ -31,12 +31,13 @@ const Login = () => {
 
   const proposalHandler = (e) => {
     let val = e.target.value
-    if (!isNaN(val)) {
+    const re = /^[0-9\-/]+$/;
+    // if (!isNaN(val)) {
       if (val.length >= 21) {
         return false
       }
       setProposalNo(e.target.value)
-    }
+    // }
   }
 
   const dobPanHandler = (e) => {
@@ -51,14 +52,37 @@ const Login = () => {
       setPAN(value)
     }
     else {
-      if (val.length >= 11) {
-        return false
-      }
       setIsDob(true)
-      let abcd = transformDateFormat(val)
-      setDOB(abcd)
+      formatDate(val);
+      // if (val.length >= 11) {
+      //   return false
+      // }
+      
+      // let abcd = transformDateFormat(val)
+      // setDOB(abcd)
     }
+  }
 
+
+  const formatDate=(input)=>{ 
+    const cleanedInput = input.replace(/\D/g, '');
+    const match = cleanedInput.match(/^(\d{0,2})(\d{0,2})(\d{0,4})$/);
+    if (match) {
+      const [, day, month, year] = match;
+      let formatted = '';
+      if (day) {
+        formatted += day;
+        if (day.length === 2 && month) formatted += '-';
+      }
+      if (month) {
+        formatted += month;
+        if (month.length === 2 && year) formatted += '-';
+      }
+      if (year) {
+        formatted += year;
+      }
+      setDOB(formatted);
+    }
   }
 
   const transformDateFormat = (dateStr) => {
@@ -99,6 +123,7 @@ const Login = () => {
             type='tel'
             value={proposalNo}
             name='proposalNo'
+            placeholder='xxxxxxxxxx'
             changeHandler={proposalHandler}
           />
         </div>
@@ -108,6 +133,7 @@ const Login = () => {
             type='text'
             name={isDob ? 'dob' : 'pan'}
             value={isDob ? DOB : PAN}
+            placeholder={'DD-MM-YYYY'}
             changeHandler={dobPanHandler}
           />
         </div>

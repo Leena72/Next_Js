@@ -75,13 +75,41 @@ export const dateFormat = (createdOn) => {
   const monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-  let date = createdOn.slice(0, 10)
-  let reverseDate = date.split('-').reverse().join('-')
-  let dd = reverseDate.slice(0, 2);
-  let mmr = parseInt(reverseDate.slice(3, 5)) - 1
-  let mm = monthNames[mmr];
-  let yy = reverseDate.slice(6, 10)
-  let time = createdOn.slice(11)
-  let newDateFormat = dd + ' ' + mm + ', ' + yy + ' | ' + time
-  return newDateFormat
+  // let text = '9/2/2023, 5:58:31 PM';
+  let text = createdOn;
+  let dateArr;
+  let date; let arr1; let ddd; let mmm; let month; let yyy;
+  let snd; let arr2; let hr; let min; let sec;
+  let newDateFormat;
+
+  //date
+  if (!!createdOn) {
+    dateArr = text.split(",");
+    date = dateArr[0];
+    arr1 = date.split("/");
+    mmm = arr1[1]?.length === 1 ? '0' + arr1?.[0] : arr1?.[0]
+    ddd = arr1[0]?.length === 1 ? '0' + arr1?.[1] : arr1?.[1]
+    month = monthNames[mmm - 1]
+    yyy = arr1[2]
+
+    //time
+    snd = dateArr[1];
+    arr2 = snd?.split(":");
+    hr = arr2?.[0]
+    min = arr2?.[1]
+    sec = arr2?.[2].split(" ")
+    newDateFormat = ddd + ' ' + month + ', ' + yyy + ' ' + '|' + ' ' + hr + ':' + min + ' ' + sec?.[1]
+    return newDateFormat
+  }
+}
+
+// date convert to ist
+
+export const convertToIST = (date) => {
+  const inputDate = new Date(date);
+  const istOffsetMilliseconds = 5 * 60 * 60 * 1000 + 30 * 60 * 1000; // 5 hours and 30 minutes
+  const istTime = new Date(inputDate.getTime() + istOffsetMilliseconds);
+  const formatedDate = istTime.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' })
+  const dateForm = dateFormat(formatedDate)
+  return dateForm;
 }
