@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import Input from '@/component/Input'
 import OTPInput from '../OTPInput';
 import otpCross from "../../Assets/images/otp-cross-icon.png"
@@ -7,6 +7,7 @@ import thankYou from "../../Assets/images/thank-you-bg.png";
 import questionMark from "../../Assets/images/qstn.png"
 import Image from 'next/image';
 import { downloadAction } from '../../redux/action/downloadAction';
+import { downloadData } from '../../data'
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 
 const CounterPage = () => {
@@ -21,6 +22,10 @@ const CounterPage = () => {
   const [showThankyou, setShowThankyou] = useState();
   const [overlay, setOverlay] = useState(false);
   const [refId, setRefId] = useState();
+  const [revisedAction, serevisedActiont] = useState('')
+
+  const customerDetail = useSelector((state) => state.customerDetailReducer);
+  const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments)
 
   useEffect(() => {
     if (declineReason || (!declineReason && inputValue && inputValue.counterReason !== 'Decline the revised offer')) {
@@ -33,10 +38,23 @@ const CounterPage = () => {
     setInputValue({
       [name]: value,
     });
-    if (value === 'Accept the revised offer' || value === 'Adjust the Sum Assured to match Existing Premium') { setReasonOne(''); setReasonTwo(''); setDeclineReason('') }
+    if (value === 'Accept the revised offer' || value === 'Adjust the Sum Assured to match Existing Premium') {
+      setReasonOne(''); setReasonTwo(''); setDeclineReason('')
+    }
     else setShowOtp(false)
     if (value === 'Decline the revised offer') setDeclineCounter(true)
     else setDeclineCounter(false)
+
+    if(value === 'Accept the revised offer' ){
+      serevisedActiont('ACCEPTED')
+    }
+    else if(value ==='Adjust the Sum Assured to match Existing Premium')
+    {
+      serevisedActiont('ADJUST_SUM_ASSURED')
+    }
+    else if(value==='Decline the revised offer'){
+      serevisedActiont('REJECTED')
+    }
   }
 
   const declineHandler = (value1, value2) => {
@@ -76,28 +94,30 @@ const CounterPage = () => {
     const data = {
       "otp": otp,
       "refId": refId,
-      "key": "REVISED_OFFER"
+      "key": "REVISED_OFFER",
+      "action": revisedAction
     }
     let proposalNo = localStorage.getItem("proposalNo")
-    let fileName=''
-    dispatch(verifyOTPAction(data, proposalNo,fileName,(resp) => {
+    let fileName = ''
+    dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
       // console.log('resp',resp.data.body)
       setOtp("")
       setShowOtp(false);
       setShowThankyou(true)
     }))
   }
-const downloadHandler=()=>{
-  let proposalNo = localStorage.getItem("proposalNo")
-  let file="3108426724FNA.pdf"
-  dispatch(downloadAction(proposalNo, file))
-}
+  const downloadHandler = (fileName) => {
+    let proposalNo = localStorage.getItem("proposalNo")
+    // let file = "3108426724FNA.pdf"
+    let file =documentList[fileName]
+    dispatch(downloadAction(proposalNo, file))
+  }
   return (
     <div className='card-body'>
       <div className="rvsd_dwnld_outr">
         <div className="rvsd_dwnld" >Please download the below documents to check your revised offer <br /><br />
-          <span className="lnktxtbx" onClick={downloadHandler}>Counter Offer Letter</span>
-          <span className="lnktxtbx" onClick={downloadHandler}>Revised Benefit Illustration</span>
+          <span className="lnktxtbx" onClick={()=>downloadHandler('Revised_Offer_Doc')}>Counter Offer Letter</span>
+          <span className="lnktxtbx" onClick={()=>downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
 

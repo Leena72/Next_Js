@@ -106,7 +106,7 @@ const FormFilling = ({ data, label }) => {
         return showElement
       case 'Document Upload':
         if (label === 'form-filling') {
-          showElement = formFillDocDownload?.list.length !== 0
+          showElement = !!formFillDocDownload?.list
             ?
             <DocumentUpload
               label='form-filling'

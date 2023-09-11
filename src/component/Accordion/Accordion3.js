@@ -33,14 +33,14 @@ const Accordion3 = ({ data }) => {
                                 src={dwnImg}
                                 alt='dwnImg'
                             />
-                            {item.title === 'COVID Questionnaire' && <span>{customerDetail?.proposerName}</span>}
+                            {item.title === 'COVID Questionnaire' && item.title==='Form 60' && <span>{customerDetail?.proposerName}</span>}
                         </a>}
                         {item.insured && <a className='doc-img-link' onClick={() => downloadHandler(insuredFile)}>
                             <Image
                                 src={dwnImg}
                                 alt='dwnImg'
                             />
-                            {item.title === 'COVID Questionnaire' && <span>{!customerDetail?.insuredName?'INSURER':customerDetail?.insuredName}</span>}
+                            {item.title === 'COVID Questionnaire' && item.title==='Form 60' && <span>{!customerDetail?.insuredName?'INSURER':customerDetail?.insuredName}</span>}
                         </a>}
                     </div>
                 </li>

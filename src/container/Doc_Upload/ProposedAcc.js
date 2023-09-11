@@ -15,6 +15,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
     const [openDocModal, setopenDocModal] = useState(false)
     const [uploadDocModal, setuploadDocModal] = useState(false)
     const [proposedDocList, setproposedDocList] = useState(null)
+    const [showViewDelete, setshowViewDelete] = useState(false)
     const customerDetail = useSelector((state) => state.customerDetailReducer.body)
     const dispatch = useDispatch()
 
@@ -30,17 +31,17 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             proposedDocList = formFillDocDownload?.list?.filter(item => {
                 return item.name === 'OWNER';
             })
-        }    
+        }
         setproposedDocList(proposedDocList)
     }, [title])
-    
+
 
     let demoDoc
     if (label === 'add-form') {
-         demoDoc = addNonupload?.filter(item => item.questionnaire === false)
+        demoDoc = addNonupload?.filter(item => item.questionnaire === false)
         // console.log('demoDoc',demoDoc)
     }
- 
+
 
 
     const clickHandler = (heading, documentList) => {
@@ -49,7 +50,6 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
         setopenUploadModal(!openUploadModal)
     }
     const clickHandleraddNon = () => {
-        // uploadDocHandler()
         setuploadDocModal(true)
 
     }
@@ -77,16 +77,20 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 documentSide: "",
                 policyNo: "",
                 documentNumber: "",
-                // proposalNo: localStorage.getItem('proposalNo')
-                proposalNo:"3108426548"
+                proposalNo: localStorage.getItem('proposalNo')
+                // proposalNo:"3108426548"
             };
             dispatch(uploadFormAction(headerData, formData, (res) => {
                 // toaster('success', res.description)
-                setuploadDocModal(false)
+                if (res.status === 'OK') {
+                    setuploadDocModal(false)
+                    showViewDelete(true)
+                }
+
             }))
         }
         else {
-            headerData={
+            headerData = {
                 documentCd: demoDoc[0].documentCd,
                 docCategoryCd: demoDoc[0].docCategoryCd,
                 docCategoryTypeCd: demoDoc[0].docCategoryTypeCd,
@@ -98,11 +102,14 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 documentNumber: "",
                 proposalNo: localStorage.getItem('proposalNo')
             };
-            
+
             dispatch(uploadAction(headerData, formData, (res) => {
                 // console.log('res',res)
-                setuploadDocModal(false)
+                if (res.status === 'OK') {
 
+                    setuploadDocModal(false)
+                    showViewDelete(true)
+                }
                 // toaster('success', res.description)
             }))
         }
@@ -116,13 +123,12 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
     return (<>
         <div className='nonMedListBlock'>
             {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>
-
                 <UploadDoc
                     label={label}
                     key={item.idx}
                     data={item}
+                    showViewDelete={showViewDelete}
                     clickHandler={clickHandler}
-
                 />
             )
             }
@@ -133,7 +139,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                         label={label}
                         key={item.idx}
                         data={item}
-                        // clickHandler={clickHandler}
+                        showViewDelete={showViewDelete}
                         clickHandleraddNon={clickHandleraddNon}
                     />
                 )
