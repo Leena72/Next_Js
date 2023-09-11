@@ -60,6 +60,7 @@ export const applicationData = [
     {
         id: 1,
         heading: 'Quote Generated',
+        title:'QUOTE',
         subHeading: 'Completed: 26 JUNE, 2023 | 09:06 PM',
         completed: false,
         dummyContent: 'Content here',
@@ -81,6 +82,7 @@ export const applicationData = [
     {
         id: 2,
         heading: 'Form Filling',
+        title:'FORM_FILLING',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: '',
@@ -91,6 +93,7 @@ export const applicationData = [
             {
                 id: 1,
                 heading: 'Proposal Form',
+                title:'PROPOSAL',
                 subHeading: 'Yet to start',
                 img: img_22,
                 dummyContent: '',
@@ -121,6 +124,7 @@ export const applicationData = [
             {
                 id: 2,
                 heading: 'Insta Verify',
+                title:'INSTA_VERIFY',
                 subHeading: 'Yet to start',
                 img: img_2,
                 dummyContent: 'Dummy Content',
@@ -130,6 +134,7 @@ export const applicationData = [
             {
                 id: 3,
                 heading: 'Customer Consent',
+                title:'CUSTOMER_CONSENT',
                 subHeading: 'Yet to start',
                 img: img_3,
                 dummyContent: '3',
@@ -139,6 +144,7 @@ export const applicationData = [
             {
                 id: 4,
                 heading: 'Payment',
+                title:'PAYMENT',
                 subHeading: 'Yet to start',
                 img: img_4,
                 dummyContent: '3',
@@ -148,6 +154,7 @@ export const applicationData = [
             {
                 id: 5,
                 heading: 'Document Upload',
+                title:'DOC_UPLOAD',
                 subHeading: 'Yet to start',
                 img: img_5,
                 dummyContent: '3',
@@ -157,6 +164,7 @@ export const applicationData = [
             {
                 id: 6,
                 heading: 'Proposal Submission',
+                title:'PROPOSAL_SUBMISSION',
                 subHeading: 'Yet to start',
                 img: img_6,
                 dummyContent: '3',
@@ -168,6 +176,7 @@ export const applicationData = [
     {
         id: 3,
         heading: 'Medical Requirement',
+        title:'MEDICAL_REQUIREMENT',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -189,6 +198,7 @@ export const applicationData = [
     {
         id: 4,
         heading: 'Additional Non-Medical Requirements',
+        title:'ADDITIONAL_NON_MEDICAL_REQUIREMENT',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -210,6 +220,7 @@ export const applicationData = [
     {
         id: 5,
         heading: 'Revised Offer',
+        title:'REVISED_OFFER',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -231,6 +242,7 @@ export const applicationData = [
     {
         id: 6,
         heading: 'Consent for change in the application details',
+        title:'DATA_CHANGE',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -252,6 +264,7 @@ export const applicationData = [
     {
         id: 7,
         heading: 'Payment Required',
+        title:'PAYMENT_REQUIREMENT',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -273,6 +286,7 @@ export const applicationData = [
     {
         id: 8,
         heading: 'Quality Check',
+        title:'QUALITY_CHECK',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -294,6 +308,7 @@ export const applicationData = [
     {
         id: 9,
         heading: 'Medical Risk Verification',
+        title:'MEDICAL_RISK_VERIFICATION',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -315,6 +330,7 @@ export const applicationData = [
     {
         id: 10,
         heading: 'Financial and Medical Risk Verification',
+        title:'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -336,6 +352,7 @@ export const applicationData = [
     {
         id: 11,
         heading: 'Policy Decision',
+        title:'POLICY_STATUS',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -525,38 +542,38 @@ export const formikValidationSchema = {
     },
     "diabetes": {
         validationSchema: Yup.object().shape({
-            diagnosed:validateReq,
-            date_diabetes:validateReq,
-            type_diabetes:validateReq,
-            doctor_name:validateReq,
-            address:validateReq,
-            date_consult:validateReq,
-            medication:validateReq,
-            dose:validateReq,
-            frequency:validateReq,
-            treatment:validateReq,
-            details:validateReq,
-            frequencies:validateReq,
-            blood_test:validateReq,
-            last_tested:validateReq,
-            abnormalities:validateReq,
-            last_result:validateReq,
-            urininalysis:validateReq,
-            eye_problem:validateReq,
-            circulatory:validateReq,
-            blood_pressure:validateReq,
-            hyperlipidemia:validateReq,
-            kidney:validateReq,
-            sensory:validateReq,
-            amputation:validateReq,
-            complication:validateReq,
-            time_off:validateReq,
-            admitted:validateReq,
-            reason:validateReq,
-            name_doctor:validateReq,
-            add_doctor:validateReq,
-            date_doc:validateReq,
-            add_info:validateReq, 
+            diagnosed: validateReq,
+            date_diabetes: validateReq,
+            type_diabetes: validateReq,
+            doctor_name: validateReq,
+            address: validateReq,
+            date_consult: validateReq,
+            medication: validateReq,
+            dose: validateReq,
+            frequency: validateReq,
+            treatment: validateReq,
+            details: validateReq,
+            frequencies: validateReq,
+            blood_test: validateReq,
+            last_tested: validateReq,
+            abnormalities: validateReq,
+            last_result: validateReq,
+            urininalysis: validateReq,
+            eye_problem: validateReq,
+            circulatory: validateReq,
+            blood_pressure: validateReq,
+            hyperlipidemia: validateReq,
+            kidney: validateReq,
+            sensory: validateReq,
+            amputation: validateReq,
+            complication: validateReq,
+            time_off: validateReq,
+            admitted: validateReq,
+            reason: validateReq,
+            name_doctor: validateReq,
+            add_doctor: validateReq,
+            date_doc: validateReq,
+            add_info: validateReq,
         }),
         initialValues: {
             diagnosed: '',
@@ -3064,57 +3081,65 @@ export const downloadData = [
         title: 'Benefit Illustration',
         msg: '',
         downloadStatus: false,
-        proposer:'BI_TAG_NAME',
-        insured:''
+        proposer: 'BI_TAG_NAME',
+        insured: ''
     },
     {
         id: 2,
         title: 'Financial Needs Analysis',
         msg: '',
         downloadStatus: false,
-        proposer:'FNA_TAG_NAME',
-        insured:''
+        proposer: 'FNA_TAG_NAME',
+        insured: ''
     },
     {
         id: 3,
         title: 'COVID Questionnaire',
         msg: '',
         downloadStatus: true,
-        proposer:'COVID_TAG_NAME_1',
-        insured:'NEW_COVID_TAG_NAME_2'
-        
+        proposer: 'NEW_COVID_TAG_NAME_2',
+        insured: 'COVID_TAG_NAME_2'
+
     },
     {
         id: 4,
         title: 'Proposal Form',
         msg: '',
         downloadStatus: false,
-        proposer:'PDF_TAG_NAME',
-        insured:''
+        proposer: 'PDF_TAG_NAME',
+        insured: ''
     },
     {
         id: 5,
         title: 'Form 60',
         msg: '',
         downloadStatus: true,
-        proposer:'FORM60_TAG_NAME',
-        insured:'NEW_FORM60_TAG_NAME'
+        proposer: 'FORM60_TAG_NAME',
+        insured: 'NEW_FORM60_TAG_NAME'
     },
     {
         id: 6,
         title: 'Payment Receipt',
         msg: '',
         downloadStatus: false,
-        proposer:'',
-        insured:''
+        proposer: '',
+        insured: ''
     },
     {
         id: 7,
         title: 'CDF',
         msg: '',
         downloadStatus: false,
-        proposer:'CDF_TAG_NAME',
-        insured:''
+        proposer: 'CDF_TAG_NAME',
+        insured: ''
+    },
+    {
+        id: 8,
+        title: 'Counter Offer',
+        msg: '',
+        downloadStatus: false,
+        proposer: 'Revised_Offer_Doc',
+        insured: ''
     },
 ]
 
@@ -3250,284 +3275,147 @@ export const statusApi =
     "policyTerm": 15,
     "newgenStatusResponseDTOList": [
         {
-            "id": 3821155,
+            "id": 3865816,
+            "status": "DATA_CHANGE",
+            "subStatus": 'AD',
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-02 12:28:31",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865814,
+            "status": "FINANCIAL_AND_MEDICAL_RISK_VERIFICATION",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-02 12:28:31",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865813,
+            "status": "MEDICAL_RISK_VERIFICATION",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-02 12:28:31",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865811,
+            "status": "PAYMENT_REQUIREMENT",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-02 12:28:31",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865810,
+            "status": "PAYMENT",
+            "subStatus": "PAYMENT",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-02 07:02:00",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865807,
+            "status": "MEDICAL_REQUIREMENT",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-02 12:28:31",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865805,
+            "status": "PROPOSAL",
+            "subStatus": "Health_Details",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-02 07:01:13",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865804,
+            "status": "PROPOSAL",
+            "subStatus": "Nominee_Details",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-02 06:59:39",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3823063,
+            "status": "PROPOSAL",
+            "subStatus": "Insured_Proposer_Details",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-08-17 15:32:46",
+            "createdOn": "2023-08-17 15:32:46"
+        }, 
+        {
+            "id": 3865803,
+            "status": "PROPOSAL",
+            "subStatus": "Personal_Details",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-02 06:59:15",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865802,
             "status": "QUOTE",
             "subStatus": "QUOTE",
             "actual_status": "COMPLETED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
+            "updatedOn": "2023-09-02 12:28:31",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
         },
         {
-            "id": 3821160,
+            "id": 3865808,
+            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
+            "subStatus": 'AR',
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-02 12:28:31",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865809,
+            "status": "REVISED_OFFER",
+            "subStatus": "CO",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-07 06:48:54",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": "{\"id\": null, \"pt\": \"10\", \"sa\": \"SA\", \"ppt\": \"20\", \"smoker\": \"YES\", \"planName\": \"test Pan\", \"loadingType\": \":LoadingType\", \"riderStatus\": [{\"status\": \"Axctive\", \"partyRole\": \"20\", \"riderName\": \"10\"}], \"tempLoading\": \"testtemLoading\", \"medicalLoading\": null, \"revisedPremium\": 20000, \"shortfallPremium\": 100, \"counterOfferReason\": \"testC ounter Offer\", \"tempLoadingDuration\": \"testeLoaduruation\"}"
+        },
+        {
+            "id": 3865815,
+            "status": "POLICY_STATUS",
+            "subStatus": "PI",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-02 08:46:58",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
+        },
+        {
+            "id": 3865806,
             "status": "PROPOSAL_SUBMISSION",
-            "subStatus": "PENDING",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
+            "subStatus": "COMPLETED",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-07 06:54:21",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
         },
         {
-            "id": 3821161,
-            "status": "MEDICAL_REQUIREMENT",
-            "subStatus": "Waiting for Issuance",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821166,
-            "status": "Revised_Offer",
-            "subStatus": "Pending for Counter Offer",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821167,
-            "status": "PAYMENT_REQUIREMENT",
-            "subStatus": "Pending for Short Premium",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821179,
-            "status": "MEDICAL_RISK_VERIFICATION",
-            "subStatus": "Pending with TPA",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821180,
-            "status": "FINANCIAL_AND_MEDICAL_RISK_VERIFICATION",
-            "subStatus": " Pending for UW",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821156,
-            "status": "PROPOSAL",
-            "subStatus": "Personal_Details",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821157,
-            "status": "PROPOSAL",
-            "subStatus": "Nominee_Details",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821158,
-            "status": "PROPOSAL",
-            "subStatus": "Health_Details",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821159,
-            "status": "PROPOSAL",
-            "subStatus": "Insured_Proposer_Details",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821162,
-            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
-            "subStatus": "Pending for Requirements (Med Requirement)",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821163,
-            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
-            "subStatus": "Pending for Requirements (Non-Med Requirement)",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821164,
-            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
-            "subStatus": "Pending for Requirements (Basic Requirement/Document)",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821165,
-            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
-            "subStatus": "Pending for Requirements (Additional Requirement/Informations)",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821168,
-            "status": "Quality_Check",
-            "subStatus": "Pending for Auto UW",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821169,
-            "status": "Quality_Check",
-            "subStatus": "Pending for Requirement (Document required from Sales)",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821170,
-            "status": "Quality_Check",
-            "subStatus": "Pending for Branch QC",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821171,
-            "status": "Quality_Check",
-            "subStatus": "Pending for Central QC",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821172,
-            "status": "Quality_Check",
-            "subStatus": "Pending for Receipting (Payment acknowledgement)",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821173,
-            "status": "Quality_Check",
-            "subStatus": "Pending for RCU",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821174,
-            "status": "Quality_Check",
-            "subStatus": "Pending for Compliance/ FCU Decision",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821175,
-            "status": "Quality_Check",
-            "subStatus": "Pending for PIVC decision",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821176,
-            "status": "Quality_Check",
-            "subStatus": "Pending for cheque Clearance",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821177,
-            "status": "Quality_Check",
-            "subStatus": "PDQC",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821178,
-            "status": "Quality_Check",
-            "subStatus": "Pending for PIVC/FT fund clearance/Direct Debit clearance/NEFT clearance",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821181,
-            "status": "POLICY",
-            "subStatus": "Waiting for Issuance",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821182,
-            "status": "POLICY",
-            "subStatus": "Approved",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821183,
-            "status": "POLICY",
-            "subStatus": "Issued",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821184,
-            "status": "POLICY",
-            "subStatus": "Declined",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821185,
-            "status": "POLICY",
-            "subStatus": "Postponed",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821186,
-            "status": "POLICY",
-            "subStatus": "Rejected",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821187,
-            "status": "POLICY",
-            "subStatus": "Cancelled",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821188,
-            "status": "POLICY",
-            "subStatus": "PDQC",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
-        },
-        {
-            "id": 3821189,
-            "status": "POLICY",
-            "subStatus": "Dispatched",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-08-17 07:59:44",
-            "createdOn": "2023-08-17 07:59:44"
+            "id": 3865812,
+            "status": "QUALITY_CHECK",
+            "subStatus": null,
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-02 09:05:35",
+            "createdOn": "2023-09-02 06:58:31",
+            "additionalInfo": null
         }
     ],
     "requiredDocuments": {
@@ -3609,7 +3497,24 @@ export const statusApi =
                         }
                     }
                 ]
-            }
+            },
+            {
+                "name": "INSURER",
+                "personName": "TESR ",
+                "documentList": [
+                    {
+                        "mandatoryDoc": "1",
+                        "category": "Age Proof",
+                        "indexValue": "Age Proof",
+                        "documents": {
+                            "Age Proof": [
+                                "PAN Card"
+                            ]
+                        }
+                    },
+                ]
+            },
+
         ]
     },
     "policyDocuments": {
@@ -3624,32 +3529,116 @@ export const statusApi =
     },
     "paymentReceipts": [],
     "additionalInfoDocs": {
+        "uwId": 48521,
         "proposerDocumentDetail": {
-            "guid": "3308301537P",
-            "id": "136311",
+            "guid": null,
+            "id": null,
             "medicalScheduling": false,
             "ServiceDocumentList": [
                 {
                     "id": 1,
                     "proposalNumber": null,
                     "partyType": "OWNER",
-                    "docCategoryTypeCd": "OTH",
-                    "docCategoryCd": "OTHER",
-                    "documentCd": null,
+                    "docCategoryTypeCd": "QUES",
+                    "docCategoryCd": "HYPER",
+                    "documentCd": "HYPER",
                     "docCategoryTypeCdValue": null,
                     "docCategoryCdValue": null,
-                    "documentCdValue": null,
-                    "mandatoryDoc": null,
-                    "indexValue": "Age Proof",
-                    "url": "owner_other_oth_1692695144825_front_side.pdf",
+                    "documentCdValue": "Hypertension Questionnaire",
+                    "mandatoryDoc": "true",
+                    "indexValue": "Medical Questionnaire",
+                    "url": "owner_hyper_ques_1693909784441_front_side.pdf",
                     "side": null,
                     "documentNumber": null,
-                    "isAutoGeneratedFl": "YES",
-                    "documentMovedStatus": false
+                    "isAutoGeneratedFl": "true",
+                    "documentMovedStatus": false,
+                    "questions": [
+                        {
+                            "questionId": null,
+                            "questionSetCD": null,
+                            "questionTypeCD": null,
+                            "dataElementCD": null,
+                            "answer": "testAnswer1",
+                            "question": "testQuestions1",
+                            "details": null,
+                            "rowGuid": null,
+                            "subQuestions": null,
+                            "editable": null
+                        },
+                        {
+                            "questionId": null,
+                            "questionSetCD": null,
+                            "questionTypeCD": null,
+                            "dataElementCD": null,
+                            "answer": "testAnswer2",
+                            "question": "testQuestions2",
+                            "details": null,
+                            "rowGuid": null,
+                            "subQuestions": null,
+                            "editable": null
+                        },
+                        {
+                            "questionId": null,
+                            "questionSetCD": null,
+                            "questionTypeCD": null,
+                            "dataElementCD": null,
+                            "answer": "testAnswer3",
+                            "question": "testQuestions3",
+                            "details": null,
+                            "rowGuid": null,
+                            "subQuestions": null,
+                            "editable": null
+                        }
+                    ],
+                    "questionnaire": true
+                },
+                {
+                    "id": 2,
+                    "proposalNumber": null,
+                    "partyType": "OWNER",
+                    "docCategoryTypeCd": "PAN",
+                    "docCategoryCd": "PANAP",
+                    "documentCd": "PAN",
+                    "docCategoryTypeCdValue": null,
+                    "docCategoryCdValue": null,
+                    "documentCdValue": "PAN Card",
+                    "mandatoryDoc": "true",
+                    "indexValue": "Age Proof",
+                    "url": null,
+                    "side": null,
+                    "documentNumber": null,
+                    "isAutoGeneratedFl": "true",
+                    "documentMovedStatus": false,
+                    "questionnaire": false
                 }
             ]
         },
-        "primaryInsuredDocumentDetail": null,
+        "primaryInsuredDocumentDetail": {
+            "guid": null,
+            "id": null,
+            "medicalScheduling": false,
+            "ServiceDocumentList": [
+                {
+                    "id": 3,
+                    "proposalNumber": null,
+                    "partyType": "INSURER",
+                    "docCategoryTypeCd": "PAN",
+                    "docCategoryCd": "PANAP",
+                    "documentCd": "PAN",
+                    "docCategoryTypeCdValue": null,
+                    "docCategoryCdValue": null,
+                    "documentCdValue": "PAN Card",
+                    "mandatoryDoc": "true",
+                    "indexValue": "Age Proof",
+                    "url": null,
+                    "side": null,
+                    "documentNumber": null,
+                    "isAutoGeneratedFl": "true",
+                    "documentMovedStatus": false,
+                    "questionnaire": false
+                }
+            ]
+        },
         "jointLifeDocumentDetail": null
     },
     "instaDetails": null,
@@ -3682,7 +3671,12 @@ export const statusApi =
         "agentConsentRequired": false,
         "customerConsentRejectedReason": null,
         "customerConsentRejected": false
-    }
+    },
+    "customerConsentRequired": false,
+    "agentConsentRequired": false,
+    "instaRequired": true,
+    "proposerName": "ONEE",
+    "insuredName": null
 }
 
 
@@ -3948,3 +3942,15 @@ export const consentForChangeData = [
         ]
     }
 ]
+
+
+const PolicySubStatus = {
+    "PM":"Policy Approved",
+    "PI": "Policy Issued",
+    "PD": "Policy declined",
+    "PP": "policy postponed",
+    "PR": "policy rejected",
+    "PC": "Policy cancelled",
+    "PW": "Policy in WIP for dispatch",
+    "PT": "Policy Dispatched",
+}

@@ -1,28 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useDispatch } from 'react-redux'
-import { questionnaireList,formikValidationSchema } from '../../../data'
+import { useDispatch, useSelector } from 'react-redux'
+import { questionnaireList, formikValidationSchema } from '../../../data'
 import OTPInput from '../../OTPInput'
 import Button from '@/component/Button'
 import FormLayout from './FormLayout'
 
-import { sendOTPAction, verifyOTPAction } from '../../../redux/action/OTPAction'
-import { questionnaireAction } from '../../../redux/action/questionnaireAction'
+import { questionnaireAction, saveQuestionnaireAction } from '../../../redux/action/questionnaireAction'
 import { toaster } from '@/utils/toaster';
 
 
 const NonMedForm = ({ formName, formValues, setFormValues }) => {
-    const [otp, setOtp] = useState('');
-    const [refId, setRefId] = useState();
-    const [fileName, setFileName] = useState('')
+    const accDetails = useSelector((state) => state.customerDetailReducer);
 
     let formData = questionnaireList[formName]
-    let validationSchema=formikValidationSchema[formName].validationSchema
-    let initialValues=formikValidationSchema[formName].initialValues
+    let validationSchema = formikValidationSchema[formName].validationSchema
+    let initialValues = formikValidationSchema[formName].initialValues
 
     const dispatch = useDispatch()
-
     const formChangeHandler = ({ name, value, quesData, formName, formData }) => {
         // console.log('name, value, quesData, formName', name, value, quesData, formName, formData)
         let formField
@@ -84,7 +80,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
 
 
     }
-    const renderElement = (formName, formValues,formik) => {
+    const renderElement = (formName, formValues, formik) => {
         return <FormLayout
             formName={formName}
             formData={formData}
@@ -93,73 +89,46 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             formChangeHandler={formChangeHandler}
         />
     }
-    const formvalidate = () => {
-        sendOtp()
-        setShowOtp(true)
-    }
 
-    const formSubmitHandler = () => {
-        let payload = {}
-        Object.keys(formValues)?.map((item) => {
-            payload[item] = Object.values(formValues[item])
-        })
-        dispatch(questionnaireAction(payload, (res) => {
-            // setShowOtp(true)
-            setFileName(res.body.fileName)
-            formvalidate()
-        }))
-    }
 
-    const sendOtp = () => {
-        const data = {
-            "consentType": "ADDITIONAL_QUESTIONNAIRE",
-            "proposalNumber": localStorage.getItem("proposalNo"),
-            "consentAction": "ACCEPTED",
+    const formSaveHandler = (e, formName) => {
+        console.log('formValues', formValues[formName], Object.values(formValues[formName]))
+        let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
+        let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
+        console.log('docQuesList',docQuesList)
+        let data = Object.values(formValues[formName])
+        let payload = {
+            "policyNumber": accDetails?.policyNumber,
+            "proposalNumber": accDetails?.proposalNumber,
+            "uwId": accDetails?.additionalInfoDocs?.uwId,
+            "additionalQuestionnaire": [
+                {
+                    "docCategoryCd": docQuesList[0].docCategoryCd,
+                    "docCategoryTypeCd": docQuesList[0].docCategoryTypeCd,
+                    "documentCd": docQuesList[0].documentCd,
+                    "partyType": docQuesList[0].partyType,
+                    "serviceDocListId": docQuesList[0].id,
+                    "data": data
+                }
+            ]
         }
-
-        dispatch(sendOTPAction(data, (resp) => {
-            // console.log('resp?.data?.body?.body?.refId', resp?.body?.body?.refId)
-            setRefId(resp?.body?.body?.refId)
-            setShowOtp(true);
-            setOverlay(true)
+        console.log('payload', payload)
+        dispatch(saveQuestionnaireAction(payload, res => {
+            console.log('res', res)
         }))
-    }
-    const verifyOtp = () => {
-        const data = {
-            "otp": otp,
-            "refId": refId,
-            "key": "ADDITIONAL_QUESTIONNAIRE"
-        }
-        let proposalNo = localStorage.getItem("proposalNo")
-        dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
-            if (resp?.body?.body) {
-                toaster('success', resp?.body?.message);
-                setOtp("")
-                setShowOtp(false);
-                setShowThankyou(true)
-
-            } else {
-                toaster('error', resp?.body?.message);
-                setOtp('')
-            }
-        }))
-    }
-    const submitHandler = () => {
-        verifyOtp();
     }
     return (
         <div className='form-container'>
-            <Formik 
-            initialValues={initialValues}
+            <Formik
+                initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={values => {
-                    // same shape as initial values
-                    console.log('values>>>',values);
-                  }}
+                    // console.log('values>>>',values);
+                }}
             >
                 {(formik) => (
                     <Form>
-                        {renderElement(formName, formValues,formik)}
+                        {renderElement(formName, formValues, formik)}
 
                         <div className='form-btn'>
                             <Button
@@ -172,7 +141,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
                             <Button
                                 className={'props.className'}
                                 disabled={!(formik.dirty && formik.isValid)}
-                                clickHandler={formSubmitHandler}
+                                clickHandler={(e) => formSaveHandler(e, formName)}
                                 type={''}
                                 buttonText={'Save'}
                             />

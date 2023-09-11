@@ -6,8 +6,7 @@ import otpCross from "../../Assets/images/otp-cross-icon.png"
 import thankYou from "../../Assets/images/thank-you-bg.png";
 import questionMark from "../../Assets/images/qstn.png"
 import Image from 'next/image';
-import Axios from "axios";
-import { toaster } from '@/utils/toaster';
+import { downloadAction } from '../../redux/action/downloadAction';
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 
 const CounterPage = () => {
@@ -59,7 +58,7 @@ const CounterPage = () => {
 
   const sendOtp = () => {
     const data = {
-      "consentType": "COUNTER_OFFER",
+      "consentType": "REVISED_OFFER",
       "proposalNumber": localStorage.getItem("proposalNo"),
       "consentAction": "ACCEPTED",
       "rejectionReason": declineReason
@@ -77,22 +76,28 @@ const CounterPage = () => {
     const data = {
       "otp": otp,
       "refId": refId,
-      "key": "COUNTER_OFFER"
+      "key": "REVISED_OFFER"
     }
     let proposalNo = localStorage.getItem("proposalNo")
-    dispatch(verifyOTPAction(data, proposalNo, (resp) => {
+    let fileName=''
+    dispatch(verifyOTPAction(data, proposalNo,fileName,(resp) => {
       // console.log('resp',resp.data.body)
       setOtp("")
       setShowOtp(false);
       setShowThankyou(true)
     }))
   }
+const downloadHandler=()=>{
+  let proposalNo = localStorage.getItem("proposalNo")
+  let file="3108426724FNA.pdf"
+  dispatch(downloadAction(proposalNo, file))
+}
   return (
     <div className='card-body'>
       <div className="rvsd_dwnld_outr">
         <div className="rvsd_dwnld" >Please download the below documents to check your revised offer <br /><br />
-          <span className="lnktxtbx">Counter Offer Letter</span>
-          <span className="lnktxtbx">Revised Benefit Illustration</span>
+          <span className="lnktxtbx" onClick={downloadHandler}>Counter Offer Letter</span>
+          <span className="lnktxtbx" onClick={downloadHandler}>Revised Benefit Illustration</span>
         </div>
       </div>
 

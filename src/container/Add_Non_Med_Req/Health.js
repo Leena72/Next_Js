@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
 import NonMedForm from './form.js'
 import Button from '../../component/Button'
-// import otpCross from "../..Assets/images/otp-cross-icon.png"
+import otpCross from "../../Assets/images/otp-cross-icon.png"
 import thankYou from "../../Assets/images/thank-you-bg.png";
 import dwnArrow from "../../Assets/images/dwn-arw.png";
+import OTPInput from '../OTPInput'
+import { questionnaireAction, saveQuestionnaireAction } from '../../redux/action/questionnaireAction'
 
+import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
+
+import { toaster } from '@/utils/toaster';
 
 const Health = ({ data }) => {
   const [formValues, setFormValues] = useState({})
@@ -13,17 +19,82 @@ const Health = ({ data }) => {
   const [showOtp, setShowOtp] = useState(false);
   const [showThankyou, setShowThankyou] = useState();
   const [overlay, setOverlay] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [refId, setRefId] = useState();
+  const [fileName, setFileName] = useState('')
+  
+  const accDetails = useSelector((state) => state.customerDetailReducer);
+  let uwId = accDetails?.additionalInfoDocs?.uwId
 
+  const dispatch = useDispatch()
   const toggleAccordion = (id) => {
     setOpenAcc(openAcc === id ? null : id)
   }
   const renderElement = (formName) => {
     return <NonMedForm formName={formName}
-    formValues={formValues} 
-    setFormValues={setFormValues}
+      formValues={formValues}
+      accDetails={accDetails}
+      setFormValues={setFormValues}
     />
   }
   // console.log('formValues',formValues)
+  const sendOtp = () => {
+    const data = {
+      "consentType": "ADDITIONAL_QUESTIONNAIRE",
+      "proposalNumber": localStorage.getItem("proposalNo"),
+      "consentAction": "ACCEPTED",
+    }
+
+    dispatch(sendOTPAction(data, (resp) => {
+      // console.log('resp?.data?.body?.body?.refId', resp?.body?.body?.refId)
+      setRefId(resp?.body?.body?.refId)
+      setShowOtp(true);
+      setOverlay(true)
+      // verifyOtp()
+    }))
+  }
+
+  const finalFormSubmit = () => {
+    sendOtp()
+  }
+
+  const verifyOtp = () => {
+    const data = {
+      "otp": otp,
+      "refId": refId,
+      "key": "ADDITIONAL_QUESTIONNAIRE"
+    }
+    let proposalNo = localStorage.getItem("proposalNo")
+    dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
+      if (resp?.body?.body) {
+        toaster('success', resp?.body?.message);
+        setOtp("")
+        formSubmitHandler()
+        setShowOtp(false);
+        setShowThankyou(true)
+
+      } else {
+        toaster('error', resp?.body?.message);
+        setOtp('')
+      }
+    }))
+  }
+  const otpSubmitHandler = () => {
+    verifyOtp()
+  }
+
+  const formSubmitHandler = () => {
+    let payload = {
+      "proposalNumber": accDetails?.proposalNumber,  
+      "policyNumber": accDetails?.policyNumber,  
+      "uwId": uwId,  
+      "otp": otp
+  }
+    dispatch(questionnaireAction(payload,(res) => {
+      setFileName(res.body.fileName)
+      formvalidate()
+    }))
+  }
 
   return (
     <>
@@ -59,13 +130,14 @@ const Health = ({ data }) => {
         })}
       </ul>
 
-      <div className='consent-blk'>
-        <div className='consent-btn'>
+      <div className='consent-blk submit-consent-btn'>
+        <div className='form-btn'>
           <Button
             className={'activeBtn'}
-            clickHandler={''}
+            clickHandler={finalFormSubmit}
             type='button'
             buttonText={'Submit'}
+          // disabled={'true'}
           />
         </div>
       </div>
@@ -93,7 +165,7 @@ const Health = ({ data }) => {
             otpKeyDownFunc={() => { }}
           />
           <div className='header-reject-popup-content-fot'>
-            <button onClick={submitHandler} className="sbmt_btn">Submit</button>
+            <button onClick={otpSubmitHandler} className="sbmt_btn">Submit</button>
           </div>
         </div>
       }

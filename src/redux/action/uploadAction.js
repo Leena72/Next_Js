@@ -1,63 +1,64 @@
 import Axios from "axios";
-import {apiConstants} from "../../constants/apiConstants";
+import { apiConstants } from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 import axios from "axios";
 
 // add non medical
 export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
-    axios
+  axios
     .post(
-      `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${''}&docCategoryCd=${'COCL'}&docCategoryTypeCd=${'CO'}&documentSide=FRONT_SIDE&documentNumber=${''}&partyType=${'OWNER'}&proposalNo=${'3108426548'}&policyNo=${''}&serviceDocListId=${'1'}&uwId=${'46914'}`,
+      `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${headerData.documentCd}&docCategoryCd=${headerData.docCategoryCd}&docCategoryTypeCd=${headerData.docCategoryTypeCd}&documentSide=FRONT_SIDE&documentNumber=${''}&partyType=${headerData.partyType}&proposalNo=${'3209405777'}&policyNo=${'506-8150266'}&serviceDocListId=${headerData.id}&uwId=${'48521'}`,
+      fileData,
+      {
+        headers: {
+          accept: "*/*",
+          Authorization: 'Bearer' + ' ' + localStorage.getItem("accessToken"),
+        },
+      }
+    )
+
+    .then((res) => {
+      if(res.data.status ==='OK'){
+        cb(res.data.body);
+        toaster("success", res.data.message);
+      }
+      else {
+        toaster("error", res.data.message);
+      }
+    })
+    .catch((error) => {
+      toaster("error", error.message);
+    });
+};
+
+
+// form filling
+export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
+  axios
+    .post(
+      `${apiConstants.API_URL}proposal/document/uploadFile`,
       fileData,
       {
         headers: {
           ...headerData,
           accept: "*/*",
-          Authorization:'Bearer'+' '+localStorage.getItem("accessToken"),
+          Authorization: 'Bearer' + ' ' + localStorage.getItem("accessToken"),
         },
       }
     )
 
-        .then((res) => {
-            if (res.data.status === "NOT_ACCEPTABLE") {
-                toaster("error", res.data.message);
-              }
-              if (cb) {
-                cb(res.data.body);
-              }
-        })
-        .catch((error) => {
-        });
-};
-
-
-// form filling
-export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => { 
-  axios
-  .post(
-    `${apiConstants.API_URL}proposal/document/uploadFile`,
-    fileData,
-    {
-      headers: {
-        ...headerData,
-        accept: "*/*",
-        Authorization:'Bearer'+' '+localStorage.getItem("accessToken"),
-      },
-    }
-  )
-
-      .then((res) => {
-          if(res.data.body){
-            cb(res.data.body)
-          }
-          else if (res.data.status === "LOCKED") {
-              toaster("error", res.data.message);
-            cb(res.data)
-
-            }
-      })
-      .catch((error) => {
-      });
+    .then((res) => {
+      if (res.data.body) {
+        cb(res.data.body)
+      }
+      if (res.data.status === "LOCKED") {
+        toaster("error", res.data.message);
+        cb(res.data)
+      }
+    })
+    .catch((error) => {
+      toaster("error", error.message);
+    });
 };
 
 
@@ -86,7 +87,7 @@ export const deleteDoc =
           cb();
         }
       })
-      .catch((err) => {
-  // console.log('err',err)
+      .catch((error) => {
+        toaster("error", error.message);
       });
   };

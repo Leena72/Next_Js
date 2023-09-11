@@ -48,9 +48,23 @@
     }
 
     .doc-img {
+        display: flex;
+
         .doc-img-link {
             cursor: pointer;
             text-decoration: none;
+            margin-right: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            span {
+                font-size: $font-10;
+
+                @include mquery(desk) {
+                    font-size: $font-12;
+                }
+            }
 
             img {
                 width: 20px;

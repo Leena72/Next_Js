@@ -215,8 +215,8 @@
         border-radius: 50px;
         width: 27px;
         height: 27px;
-        top: -7px;
-        left: -7px;
+        top: -14px;
+        right: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -225,6 +225,9 @@
     img {
         width: 15px;
         height: 13px;
+        position: absolute;
+        right: 6px;
+        top: -7px;
     }
 }
 

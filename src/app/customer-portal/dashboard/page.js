@@ -2,15 +2,13 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import withAuth from '../../../utils/withAuth';
-import Axios from "axios";
 import Banner from '../../../container/Banner';
 import MainAccordion from '../../../container/MainAccordion';
-import { applicationData, downloadData } from '../../../data'
-import Accordion3 from '@/component/Accordion/Accordion3';
+import { applicationData, downloadData, statusApi } from '../../../data'
+import Accordion3 from '../../../component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
 import { dashboardAction } from '../../../redux/action/dashboardAction'
-import { customerDetailAction } from '../../../redux/action/customerDetailAction' // not in used
 
 
 const Dashboard = () => {
@@ -18,15 +16,20 @@ const Dashboard = () => {
     const [openAccordion, setOpenAccordion] = useState(false)
     const [customerData, setcustomerData] = useState(null)
     const dispatch = useDispatch()
+    const showLoader = useSelector((state) => state.loaderReducer);
+    const storeState = useSelector((state) => state);
+    
+    // console.log('storeState', storeState)
+    // console.log('statusApi', statusApi)
+
     useEffect(() => {
         let proposalNo = localStorage.getItem("proposalNo")
         dispatch(dashboardAction(proposalNo, (res) => {
             setcustomerData(res)
         }))
+        // setcustomerData(statusApi) // static data
     }, [])
-    const showLoader = useSelector((state) => state.loaderReducer);
-    // const storeState = useSelector((state) => state);
-    // console.log('storeState', storeState)
+
     return (
         <div className='dashboard-container'>
             {showLoader["isLoaderOn"] && (
@@ -38,17 +41,17 @@ const Dashboard = () => {
                 <p>Proposal Number</p>
                 <p>{customerData?.proposalNumber}</p>
             </div>
-            <Banner
-                customerData={customerData}
-            />
+            <Banner/>
             <div className='doc-heading'><p>Application Status</p></div>
             <MainAccordion
                 data={data}
-                accDetails={customerData}
             />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
             <div className='dashboard-acc'>
-                <div className='acc-non-block' onClick={() => setOpenAccordion(!openAccordion)}>
+                <div 
+                className='acc-non-block' 
+                onClick={() => setOpenAccordion(!openAccordion)}
+                >
                     <div>Download Documents</div>
                     <div className='acc-active-icon '>
                         <Image
@@ -61,7 +64,9 @@ const Dashboard = () => {
             </div>
             {
                 openAccordion &&
-                <Accordion3 data={downloadData} documentList={customerData?.policyDocuments}/>
+                <Accordion3 
+                data={downloadData} 
+                />
             }
         </div>
     )

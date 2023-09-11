@@ -65,7 +65,7 @@
     text-align: center;
     width: 100%;
     margin: auto;
-    padding: 1em 0 0;
+    padding: 1em 0;
 
     button {
         width: 47%;
@@ -74,7 +74,7 @@
         font-size: $font-18;
         border: none;
         border-radius: 50px;
-        padding: 14px 10px;
+        padding: 10px;
         font-family: $font-family-OpenSanaSemiBold;
 
         &:nth-of-type(1) {
@@ -86,8 +86,17 @@
             background: $label-blue;
         }
 
+        &:disabled {
+            background: $grey1;
+            cursor: not-allowed;
+        }
+
         @include mquery(desk) {
             font-size: $font-22;
+
+            button {
+                padding: 14px 10px;
+            }
         }
     }
 
@@ -171,6 +180,11 @@
     }
 }
 
+.submit-consent-btn {
+    display: flex;
+    justify-content: center;
+}
+
 .consent-blk {
     background: $light-blue1;
     margin-bottom: 20px;
@@ -189,7 +203,9 @@
 }
 
 .consent-btn {
-padding: 10px 30px 20px;
+    display: flex;
+    justify-content: space-between;
+
     button {
         display: inline-block;
         border: 0px;
@@ -199,15 +215,23 @@ padding: 10px 30px 20px;
         font-size: $font-18;
         font-weight: 600;
         text-decoration: none;
+
         &:nth-of-type(1) {
-            background: $label-blue;;
+            background: $label-blue;
+            ;
             color: $white;
             margin-right: 20px;
-        }    
+        }
+
         &:nth-of-type(2) {
             background: $white;
             color: $black;
             border: $red1 solid 1px;
         }
+    }
+
+    @include mquery(desk) {
+        display: block;
+        padding: 10px 30px 20px;
     }
 }

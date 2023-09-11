@@ -4,14 +4,18 @@ import Health from './Health'
 import Accordion2 from '../../component/Accordion/Accordion2';
 import DocumentUpload from '../Doc_Upload';
 
-const AddNonMedReq = ({addNonMedDetail}) => {
+const AddNonMedReq = ({addNonMedDetail,accDetails}) => {
     const [openAccordion, setOpenAccordion] = useState(null)
     const renderElement = (data, title) => {
         switch (title) {
             case 'Health and Lifestyle Questionnaire':
-                return <Health data={data.list} />
+                return <Health data={data.list}
+                accDetails={accDetails}
+                />
             case 'Documents':
-                return <DocumentUpload label={'add-form'}/>
+                return <DocumentUpload label={'add-form'}
+                addDocUpload={accDetails}
+                />
             default:
                 break;
         }

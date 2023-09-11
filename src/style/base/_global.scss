@@ -100,13 +100,19 @@ ul {
   transform: rotate(180deg);
 }
 
-.display_flex{
+.display_flex {
   display: flex;
 }
+
 //
+.Toastify__toast-container {
+  z-index: 99999;
+}
+
 .Toastify__toast--error {
   background-color: #f8ebee !important;
   color: #000 !important;
+
 }
 
 .Toastify__toast--success {
@@ -167,19 +173,22 @@ ul {
   //     }
 }
 
-.otp-input-wrapper  {
+.otp-input-wrapper {
   padding: 20px 0 10px;
-  div{
+
+  div {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @include mquery(desk){
+
+    @include mquery(desk) {
       width: 80%;
       margin: auto;
     }
   }
-  input{
+
+  input {
     width: 1em;
     text-align: center;
     color: #000;
@@ -373,19 +382,23 @@ ul {
   border-radius: 10px;
   width: 96%;
   margin: auto;
+
   p {
     color: $label-blue;
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
     margin-right: 10px;
-    @include mquery(ipad){
-    font-size: $font-16;
+
+    @include mquery(ipad) {
+      font-size: $font-16;
     }
-    @include mquery(desk){
+
+    @include mquery(desk) {
       font-size: $font-18;
-      }
+    }
   }
-  button{
+
+  button {
     border: 1px solid $label-blue;
     color: $label-blue;
     background: $light-blue1;
@@ -393,38 +406,46 @@ ul {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    &:hover{
+
+    &:hover {
       color: $white;
       background-color: $blue;
     }
-    @include mquery(ipad){
+
+    @include mquery(ipad) {
       font-size: $font-16;
-      }
-      @include mquery(desk){
-        font-size: $font-18;
-        }
+    }
+
+    @include mquery(desk) {
+      font-size: $font-18;
+    }
   }
 }
-.quote{
+
+.quote {
   background: $light-blue1;
   padding: 10px;
   border-radius: 10px;
   width: 100%;
   margin: auto;
-  .quote-text{
+
+  .quote-text {
     color: $label-blue;
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
     text-decoration: underline;
     text-transform: uppercase;
-    @include mquery(ipad){
+
+    @include mquery(ipad) {
       font-size: $font-16;
-      }
-      @include mquery(desk){
-        font-size: $font-18;
-        }
+    }
+
+    @include mquery(desk) {
+      font-size: $font-18;
+    }
   }
-  .quote-btn{
+
+  .quote-btn {
     border: 1px solid $label-blue;
     color: $label-blue;
     background: $light-blue1;
@@ -432,16 +453,19 @@ ul {
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    &:hover{
+
+    &:hover {
       color: $white;
       background-color: $blue;
     }
-    @include mquery(ipad){
+
+    @include mquery(ipad) {
       font-size: $font-16;
-      }
-      @include mquery(desk){
-        font-size: $font-18;
-        }
+    }
+
+    @include mquery(desk) {
+      font-size: $font-18;
+    }
   }
 }
 
@@ -470,11 +494,11 @@ ul {
   }
 }
 
-.error-msg{
+.error-msg {
   color: $red1;
   font-size: $font-12;
-  @include mquery(desk){
-  font-size: $font-14;
+
+  @include mquery(desk) {
+    font-size: $font-14;
   }
 }
-

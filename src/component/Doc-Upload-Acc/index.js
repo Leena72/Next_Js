@@ -5,15 +5,16 @@ import previewImg from "../../Assets/images/preview.png"
 import deleteImg from "../../Assets/images/delete.png"
 
 
-export const UploadDoc = ({ data,key,clickHandler }) => {
+export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label }) => {
     return (
-        <div 
-        className={`upl-doc-container upl-doc`} 
-        // className={`upl-doc-container 
-        // ${data.upload ? 'upl-doc' : 'upl-blk'}
-        // `} 
-        key={key} 
-        onClick={()=>clickHandler(data.indexValue,data.documents)}
+        <div
+            className={`upl-doc-container upl-doc`}
+            key={key}
+            onClick={label === 'form-filling' ?
+                () => clickHandler(data.indexValue, data.documents)
+                :
+                () => clickHandleraddNon(data.indexValue)
+            }
         >
             <div className='upl-heading'>{data.indexValue}</div>
             <div className='upl-img'>
@@ -28,15 +29,15 @@ export const UploadDoc = ({ data,key,clickHandler }) => {
     )
 }
 
-export const Document = ({ data,key,clickHandler }) => {
+export const Document = ({ data, key, clickHandler }) => {
     return (
-        <div className='upl-doc-container upl-doc' key={key} onClick={()=>clickHandler(data.id)}>
+        <div className='upl-doc-container upl-doc' key={key} onClick={() => clickHandler(data.id)}>
             <div className='upl-heading'>{data.title}</div>
         </div>
     )
 }
 
-export const ViewDoc = ({ data,key,deleteDocHandler }) => {
+export const ViewDoc = ({ data, key, deleteDocHandler }) => {
     return (
         <div className='view-doc2-container' key={key} >
             <div className='view-heading'>{data.title}</div>
@@ -47,8 +48,8 @@ export const ViewDoc = ({ data,key,deleteDocHandler }) => {
                         alt='uplImg'
                     />
                 </a>
-                <a className='view-img-link' 
-                            onClick={deleteDocHandler}
+                <a className='view-img-link'
+                    onClick={deleteDocHandler}
                 >
                     <Image
                         src={deleteImg}

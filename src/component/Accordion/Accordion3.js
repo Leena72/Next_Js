@@ -1,23 +1,24 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image'
 import dwnImg from "../../Assets/images/pdf-dwn-arrow.png";
 import { downloadAction } from '../../redux/action/downloadAction';
-const Accordion3 = ({ data, documentList }) => {
-    console.log('documentList>>', documentList)
+
+const Accordion3 = ({ data }) => {
     const dispatch = useDispatch()
+    const customerDetail = useSelector((state) => state.customerDetailReducer);
+    const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments);
 
     const downloadHandler = (file) => {
         let proposalNo = localStorage.getItem("proposalNo")
-        // dispatch(downloadAction(proposalNo, file))
+        // let proposalNo="3108426548"
+        dispatch(downloadAction(proposalNo, file))
     }
 
     const renderElement = (item) => {
-      
         let docExist1 = item.proposer in documentList
         let proposerFile = documentList[item.proposer]
         let insuredFile = documentList[item.insured]
-        console.log('doc>>', docExist1, proposerFile, insuredFile)
         if (docExist1) {
             return (
                 <li className='doc-list' key={item.id}>
@@ -27,17 +28,19 @@ const Accordion3 = ({ data, documentList }) => {
                         <span className='doc-sub-heading'>{item.msg ? `(${item.msg})` : ''}</span>
                     </div>
                     <div className='doc-img'>
-                       {item.proposer && <a className='doc-img-link' onClick={() => downloadHandler(proposerFile)}>
+                        {item.proposer && <a className='doc-img-link' onClick={() => downloadHandler(proposerFile)}>
                             <Image
                                 src={dwnImg}
                                 alt='dwnImg'
                             />
+                            {item.title === 'COVID Questionnaire' && <span>{customerDetail?.proposerName}</span>}
                         </a>}
-                       {item.insured && <a className='doc-img-link' onClick={() => downloadHandler(insuredFile)}>
+                        {item.insured && <a className='doc-img-link' onClick={() => downloadHandler(insuredFile)}>
                             <Image
                                 src={dwnImg}
                                 alt='dwnImg'
                             />
+                            {item.title === 'COVID Questionnaire' && <span>{!customerDetail?.insuredName?'INSURER':customerDetail?.insuredName}</span>}
                         </a>}
                     </div>
                 </li>

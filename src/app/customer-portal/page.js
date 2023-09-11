@@ -31,12 +31,13 @@ const Login = () => {
 
   const proposalHandler = (e) => {
     let val = e.target.value
-    if (!isNaN(val)) {
+    const re = /^[0-9\-/]+$/;
+    // if (!isNaN(val)) {
       if (val.length >= 21) {
         return false
       }
       setProposalNo(e.target.value)
-    }
+    // }
   }
 
   const dobPanHandler = (e) => {
@@ -122,6 +123,7 @@ const Login = () => {
             type='tel'
             value={proposalNo}
             name='proposalNo'
+            placeholder='xxxxxxxxxx'
             changeHandler={proposalHandler}
           />
         </div>
@@ -131,7 +133,7 @@ const Login = () => {
             type='text'
             name={isDob ? 'dob' : 'pan'}
             value={isDob ? DOB : PAN}
-            placeholder={'dd-mm-yyyy'}
+            placeholder={'DD-MM-YYYY'}
             changeHandler={dobPanHandler}
           />
         </div>
