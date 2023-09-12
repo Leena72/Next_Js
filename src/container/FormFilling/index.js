@@ -43,9 +43,9 @@ const FormFilling = ({ data, label }) => {
           return item.status === 'PROPOSAL';
         });
         // console.log('proposalFormList--', proposalFormList)
-        const proposalList = [...proposalFormList];
-        const proposalReversedList = proposalList.reverse();
-        showElement = proposalFormList.length !== 0
+        const proposalList = proposalFormList;
+        const proposalReversedList = proposalList?.reverse();
+        showElement = proposalFormList?.length !== 0
           ?
           <ProposalForm
             data={data.subContent}
@@ -88,7 +88,7 @@ const FormFilling = ({ data, label }) => {
           return item.status === 'PAYMENT';
         })
         // console.log('paymentDetail>>', paymentDetail)
-        showElement = paymentDetail[0]?.actual_status === 'COMPLETED'
+        showElement = paymentDetail && paymentDetail[0]?.actual_status === 'COMPLETED'
           ?
           <FormFieldConsent
             text='To Download the Payment Receipt'
@@ -106,7 +106,7 @@ const FormFilling = ({ data, label }) => {
         return showElement
       case 'Document Upload':
         if (label === 'form-filling') {
-          showElement = formFillDocDownload?.list.length !== 0
+          showElement = !!formFillDocDownload?.list
             ?
             <DocumentUpload
               label='form-filling'
@@ -127,14 +127,15 @@ const FormFilling = ({ data, label }) => {
           return item.status === 'PROPOSAL_SUBMISSION';
         });
         // console.log('proposalSub', proposalSub)
-        showElement = proposalSub[0]?.actual_status === 'COMPLETED'
+        showElement = proposalSub && proposalSub[0]?.actual_status === 'COMPLETED'
           ?
           <div className='blue-block-container'>
             <p>Policy Number: {accDetails?.policyNumber}</p>
           </div>
           :
           <div className='blue-block-container'>
-            <p>{proposalSub[0].subStatus}</p>
+            {/* <p>{proposalSub[0].subStatus}</p> */}
+            <p>Yet to Start</p>
           </div>
         return showElement
       default:
@@ -158,9 +159,9 @@ const FormFilling = ({ data, label }) => {
       propDetail = detail?.filter(item => {
         return item.subStatus === 'Health_Details';
       });
-      dateStatus = propDetail[0]?.actual_status === 'COMPLETED' ? true : false
+      dateStatus = propDetail && propDetail[0]?.actual_status === 'COMPLETED' ? true : false
       if (dateStatus) {
-        let date = propDetail[0]?.updatedOn
+        let date =propDetail && propDetail[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }
@@ -170,9 +171,9 @@ const FormFilling = ({ data, label }) => {
     }
 
     else {
-      dateStatus = detail[0]?.actual_status === 'COMPLETED' ? true : false
+      dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
       if (dateStatus) {
-        let date = detail[0]?.updatedOn
+        let date = detail && detail[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }

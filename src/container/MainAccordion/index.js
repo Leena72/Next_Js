@@ -56,7 +56,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails?.filter(item => {
           return item.status === 'QUOTE';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <QuoteGenerated
             quoteDetail={detail && detail[0]}
@@ -76,7 +76,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails && accordionDetails?.filter(item => {
           return item.status === 'MEDICAL_REQUIREMENT';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('MEDICAL_REQUIREMENT')}
@@ -93,7 +93,7 @@ const MainAccordion = ({ data }) => {
 
         return <AddNonMedReq
           accDetails={accDetails} //whole data
-          addNonMedDetail={addNonMedDetail}
+          // addNonMedDetail={addNonMedDetail}
         />
       case 'Revised Offer':
         return <CounterPage />
@@ -103,7 +103,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails?.filter(item => {
           return item.status === 'PAYMENT_REQUIREMENT';
         })
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <FormFieldConsent
             text='To initiate the Download the Payment Receipt'
@@ -120,7 +120,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'QUALITY_CHECK';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('QUALITY_CHECK')}
@@ -134,7 +134,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'MEDICAL_RISK_VERIFICATION';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('MEDICAL_RISK_VERIFICATION')}
@@ -148,7 +148,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('FINANCIAL_AND_MEDICAL_RISK_VERIFICATION')}
@@ -162,7 +162,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'POLICY_STATUS';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement =detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('POLICY_STATUS')}

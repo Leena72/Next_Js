@@ -62,7 +62,8 @@ const Health = ({ data }) => {
     const data = {
       "otp": otp,
       "refId": refId,
-      "key": "ADDITIONAL_QUESTIONNAIRE"
+      "key": "ADDITIONAL_QUESTIONNAIRE",
+      "action":""
     }
     let proposalNo = localStorage.getItem("proposalNo")
     dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {

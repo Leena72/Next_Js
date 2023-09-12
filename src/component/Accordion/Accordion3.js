@@ -16,9 +16,17 @@ const Accordion3 = ({ data }) => {
     }
 
     const renderElement = (item) => {
-        let docExist1 = item.proposer in documentList
-        let proposerFile = documentList[item.proposer]
-        let insuredFile = documentList[item.insured]
+        let docExist1 
+        let proposerFile 
+        let insuredFile 
+        if (documentList) {
+             docExist1 = item.proposer in documentList
+             proposerFile = documentList?.[item.proposer]
+             insuredFile = documentList?.[item.insured]
+        }
+        else{
+          return
+        }
         if (docExist1) {
             return (
                 <li className='doc-list' key={item.id}>
@@ -33,14 +41,14 @@ const Accordion3 = ({ data }) => {
                                 src={dwnImg}
                                 alt='dwnImg'
                             />
-                            {item.title === 'COVID Questionnaire' && <span>{customerDetail?.proposerName}</span>}
+                            {item.title === 'COVID Questionnaire' && item.title === 'Form 60' && <span>{customerDetail?.proposerName}</span>}
                         </a>}
                         {item.insured && <a className='doc-img-link' onClick={() => downloadHandler(insuredFile)}>
                             <Image
                                 src={dwnImg}
                                 alt='dwnImg'
                             />
-                            {item.title === 'COVID Questionnaire' && <span>{!customerDetail?.insuredName?'INSURER':customerDetail?.insuredName}</span>}
+                            {item.title === 'COVID Questionnaire' && item.title === 'Form 60' && <span>{!customerDetail?.insuredName ? 'INSURER' : customerDetail?.insuredName}</span>}
                         </a>}
                     </div>
                 </li>

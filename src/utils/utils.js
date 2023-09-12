@@ -87,8 +87,8 @@ export const dateFormat = (createdOn) => {
     dateArr = text.split(",");
     date = dateArr[0];
     arr1 = date.split("/");
-    mmm = arr1[1]?.length === 1 ? '0' + arr1?.[0] : arr1?.[0]
-    ddd = arr1[0]?.length === 1 ? '0' + arr1?.[1] : arr1?.[1]
+    mmm = arr1[1]?.length === 1 ? '0' + arr1?.[1] : arr1?.[1]
+    ddd = arr1[0]?.length === 1 ? '0' + arr1?.[0] : arr1?.[0]
     month = monthNames[mmm - 1]
     yyy = arr1[2]
 

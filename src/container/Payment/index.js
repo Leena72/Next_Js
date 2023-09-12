@@ -74,7 +74,7 @@ const Payment = (props) => {
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, data, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization":'Bearer'+' '+localStorage.getItem("accessToken")
+        "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
       },
     })
       .then((resp) => {
@@ -106,68 +106,76 @@ const Payment = (props) => {
     // })
     // openBillDesk = (txAmount) => {
     let billDeskReqData = {
-        currencyType: "INR",
-        // onlyMandate? !emandate: emandate,
-        onlyMandate: onlyMandate ? onlyMandate : false,
-        customerEmailId:props.accDetails?.emailId,
-        customerMobileNo:props.accDetails?.mobileNo,
-        proposalId: props.accDetails?.proposalId,
-        proposalNumber:props.accDetails?.proposalNumber,
-        // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
-        paymentMethod: "ONLINE_BILL_DESK",
-        // txAmount: '11287.05',
-        txAmount: props.paymentValue,
-        userAgent: navigator.userAgent,
+      currencyType: "INR",
+      // onlyMandate? !emandate: emandate,
+      onlyMandate: onlyMandate ? onlyMandate : false,
+      customerEmailId: props.accDetails?.emailId,
+      customerMobileNo: props.accDetails?.mobileNo,
+      proposalId: props.accDetails?.proposalId,
+      proposalNumber: props.accDetails?.proposalNumber,
+      // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
+      paymentMethod: "ONLINE_BILL_DESK",
+      txAmount: '11287.05',
+      // txAmount: props.paymentValue,
+      userAgent: navigator.userAgent,
     };
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": 'Bearer'+' '+localStorage.getItem("accessToken")
+        "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
       },
     })
-    .then((resp) => {
-      let flow_config = {
-                merchantId: resp.data.body.options.merchantId,
-                bdOrderId: resp.data.body.options.bdOrderId,
-                authToken: resp.data.body.options.orderToken,
-                childWindow: true,
-                retryCount: resp.data.body.options.retryCount,
-                prefs: {}
-            };
-       let mandate_flow_config = {
-                      merchantId: resp.data.body.options.merchantId,
-                      mandateTokenId: resp.data.body.options.mandateTokenId,
-                      authToken: resp.data.body.options.orderToken,
-                      childWindow: true,
-                      retryCount: resp.data.body.options.retryCount,
-                  }
-                  // console.log("test>>>>", flow_config)
-                  let config = {
-                            responseHandler: (txn) => {
-                              // console.log("test222",txn)
-                              ()=>{}
-                            },
-                            merchantLogo: "/logo_2x.png",
-                            flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
-                            flowType: resp.data.body.options.onlyMandate ? "emandate" : "payments",
-                        };
-                        // console.log('window',window.loadBillDeskSdk)
-                        window.loadBillDeskSdk(config);
+      .then((resp) => {
+        let flow_config = {
+          merchantId: resp.data.body.options.merchantId,
+          bdOrderId: resp.data.body.options.bdOrderId,
+          authToken: resp.data.body.options.orderToken,
+          childWindow: true,
+          retryCount: resp.data.body.options.retryCount,
+          prefs: {}
+        };
+        let mandate_flow_config = {
+          merchantId: resp.data.body.options.merchantId,
+          mandateTokenId: resp.data.body.options.mandateTokenId,
+          authToken: resp.data.body.options.orderToken,
+          childWindow: true,
+          retryCount: resp.data.body.options.retryCount,
+        }
+        // console.log("test>>>>", flow_config)
+        let config = {
+          responseHandler: (txn) => {
+            // console.log("test222",txn)
+            () => { }
+          },
+          merchantLogo: "/logo_2x.png",
+          flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
+          flowType: resp.data.body.options.onlyMandate ? "emandate" : "payments",
+        };
+        // console.log('window',window.loadBillDeskSdk)
+        if (resp.data.status === 'OK') {
+          window.loadBillDeskSdk(config);
+        }
+        else {
+          toaster("error", 'BillDesk Order Creation Exception')
+        }
 
-      // dispatch({
-      //   type: actionTypes.loadingOff
-      // });
-    })
+        // dispatch({
+        //   type: actionTypes.loadingOff
+        // });
+      })
       .catch((err) => {
+        console.log('err>>', err)
+        toaster("error", 'BillDesk Order Creation Exception')
+
         // if (err.status == '401') {
         //   window.location.href = apiConstants.TRACKER_URL
         // }
-        if (err.response && err.response.data) {
-          toaster("error", err.response.data.errors && err.response.data.errors.length > 0 &&
-            err.response.data.errors[0]);
-        } else {
-          toaster("error", err.data && err.data.message);
-        }
+        // if (err.response && err.response.data) {
+        //   toaster("error", err.response.data.errors && err.response.data.errors.length > 0 &&
+        //     err.response.data.errors[0]);
+        // } else {
+        //   toaster("error", err.data && err.data.message);
+        // }
         // dispatch({
         //   type: actionTypes.loadingOff
         // });
@@ -229,8 +237,8 @@ const Payment = (props) => {
     //     };
     //     window.loadBillDeskSdk(config);
     // });
-};
-  const validatePaymentLink = (query) => {
+  };
+  const validatePaymentLink = (query,cb) => {
     Axios
       .get(
         `https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/validatePaymentLink?${query}`,
@@ -242,20 +250,21 @@ const Payment = (props) => {
       )
       .then((resp) => {
         if (resp.data.body.DateValidate || resp.data.body.PanValidate) {
-          toaster("success", "Successfully validated")
+          // toaster("success", "Successfully validated")
           setValidationInput('')
           setDob('')
           setPan('')
           setShowOnlinePopup(false)
           openBillDesk();
+          cb(resp.data.body)
         }
-        else if(resp.data.body.DateValidate === false){
+        else if (resp.data.body.DateValidate === false) {
           toaster("error", "Please enter valid DOB")
           setValidationInput('')
           setDob('')
           setPan('')
         }
-        else if(resp.data.body.PanValidate === false){
+        else if (resp.data.body.PanValidate === false) {
           toaster("error", "Please enter valid PAN")
           setValidationInput('')
           setDob('')
@@ -272,10 +281,16 @@ const Payment = (props) => {
     let proposalNo = localStorage.getItem("proposalNo")
     if (dob && dob.length === 10) {
       query = `proposalNumber=${proposalNo}&dateOfBirth=${validationInput}&panNumber`;
-      validatePaymentLink(query);
-    } else if(pan && pan.length === 10) {
+      validatePaymentLink(query,(res)=>{
+        if(res.DateValidate === true){
+        toaster('success','DOB validated successfully')
+        }
+      });
+    } else if (pan && pan.length === 10) {
       query = `proposalNumber=${proposalNo}&panNumber=${validationInput}&dateOfBirth`;
-      validatePaymentLink(query);
+      validatePaymentLink(query,(res)=>{
+        toaster('success','PAN validated successfully')
+      });
     }
   }
   return (

@@ -3141,6 +3141,14 @@ export const downloadData = [
         proposer: 'Revised_Offer_Doc',
         insured: ''
     },
+    {
+        id: 9,
+        title: 'Revised Benefit',
+        msg: '',
+        downloadStatus: false,
+        proposer: 'REVISED_BI_DOC',
+        insured: ''
+    },
 ]
 
 // consent data
