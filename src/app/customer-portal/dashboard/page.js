@@ -20,15 +20,16 @@ const Dashboard = () => {
     const storeState = useSelector((state) => state);
     
     // console.log('storeState', storeState)
-    // console.log('statusApi', statusApi)
 
     useEffect(() => {
         let proposalNo = localStorage.getItem("proposalNo")
-        // dispatch(dashboardAction(proposalNo, (res) => {
-        //     setcustomerData(res)
-        // }))
-        setcustomerData(statusApi) // static data
+        dispatch(dashboardAction(proposalNo, (res) => {
+            setcustomerData(res)
+        }))
+        // setcustomerData(statusApi) // static data
     }, [])
+
+    console.log('statusApi', statusApi)
 
     return (
         <div className='dashboard-container'>
