@@ -29,7 +29,7 @@ const Dashboard = () => {
         // setcustomerData(statusApi) // static data
     }, [])
 
-    console.log('statusApi', statusApi)
+    // console.log('statusApi', statusApi)
 
     return (
         <div className='dashboard-container'>

@@ -92,10 +92,10 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
 
 
     const formSaveHandler = (e, formName) => {
-        console.log('formValues', formValues[formName], Object.values(formValues[formName]))
+        // console.log('formValues', formValues[formName], Object.values(formValues[formName]))
         let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
-        console.log('docQuesList',docQuesList)
+        // console.log('docQuesList',docQuesList)
         let data = Object.values(formValues[formName])
         let payload = {
             "policyNumber": accDetails?.policyNumber,
@@ -112,7 +112,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
                 }
             ]
         }
-        console.log('payload', payload)
+        // console.log('payload', payload)
         dispatch(saveQuestionnaireAction(payload, res => {
             console.log('res', res)
         }))
