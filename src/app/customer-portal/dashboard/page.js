@@ -18,8 +18,16 @@ const Dashboard = () => {
     const dispatch = useDispatch()
     const showLoader = useSelector((state) => state.loaderReducer);
     const storeState = useSelector((state) => state);
-    
+
     // console.log('storeState', storeState)
+
+    useEffect(() => {
+        window.history.pushState(null, null, window.location.href);
+        window.onpopstate = function (event) {
+            history.go(1);
+        }
+    }, [])
+
 
     useEffect(() => {
         let proposalNo = localStorage.getItem("proposalNo")
@@ -30,7 +38,6 @@ const Dashboard = () => {
     }, [])
 
     // console.log('statusApi', statusApi)
-
     return (
         <div className='dashboard-container'>
             {showLoader["isLoaderOn"] && (
@@ -42,16 +49,16 @@ const Dashboard = () => {
                 <p>Proposal Number</p>
                 <p>{customerData?.proposalNumber}</p>
             </div>
-            <Banner/>
+            <Banner />
             <div className='doc-heading'><p>Application Status</p></div>
             <MainAccordion
                 data={data}
             />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
             <div className='dashboard-acc'>
-                <div 
-                className='acc-non-block' 
-                onClick={() => setOpenAccordion(!openAccordion)}
+                <div
+                    className='acc-non-block'
+                    onClick={() => setOpenAccordion(!openAccordion)}
                 >
                     <div>Download Documents</div>
                     <div className='acc-active-icon '>
@@ -65,8 +72,8 @@ const Dashboard = () => {
             </div>
             {
                 openAccordion &&
-                <Accordion3 
-                data={downloadData} 
+                <Accordion3
+                    data={downloadData}
                 />
             }
         </div>
