@@ -33,7 +33,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             })
         }
         setproposedDocList(proposedDocList)
-    }, [title])
+    }, [formFillDocDownload?.list,title])
 
 
     let demoDoc

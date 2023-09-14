@@ -13,7 +13,7 @@ const ConsentLayout = ({ data, title }) => {
                 </thead>
                 <tbody>
                     {data.map((item, id) => (
-                        <tr>
+                        <tr key={id}>
                             <td>{item.title}</td>
                             <td>
                                 <Input
