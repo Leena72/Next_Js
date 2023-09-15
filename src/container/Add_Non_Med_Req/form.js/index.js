@@ -92,9 +92,9 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
 
 
     const formSaveHandler = (e, formName) => {
-        // console.log('formValues', formValues[formName], Object.values(formValues[formName]))
-        let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
-        let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
+        console.log('formValues', formValues[formName], Object.values(formValues[formName]))
+        // let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
+        // let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
         // console.log('docQuesList',docQuesList)
         let data = Object.values(formValues[formName])
         let payload = {
@@ -103,16 +103,12 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             "uwId": accDetails?.additionalInfoDocs?.uwId,
             "additionalQuestionnaire": [
                 {
-                    "docCategoryCd": docQuesList[0].docCategoryCd,
-                    "docCategoryTypeCd": docQuesList[0].docCategoryTypeCd,
-                    "documentCd": docQuesList[0].documentCd,
-                    "partyType": docQuesList[0].partyType,
-                    "serviceDocListId": docQuesList[0].id,
-                    "data": data
+                   'id':2,
+                "data": data
                 }
             ]
         }
-        // console.log('payload', payload)
+        console.log('payload', data)
         dispatch(saveQuestionnaireAction(payload, res => {
             console.log('res', res)
         }))

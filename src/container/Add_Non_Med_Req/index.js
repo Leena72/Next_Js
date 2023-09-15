@@ -7,9 +7,13 @@ import DocumentUpload from '../Doc_Upload';
 const AddNonMedReq = ({addNonMedDetail,accDetails}) => {
     const [openAccordion, setOpenAccordion] = useState(null)
     const renderElement = (data, title) => {
+        const checkData=accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList.map((item)=>{
+           return data?.list.filter((val)=>item?.documentCdValue?.toLowerCase()===val?.title?.toLowerCase())
+        });
+        console.log("checkData for medical===",checkData,data.list)
         switch (title) {
             case 'Health and Lifestyle Questionnaire':
-                return <Health data={data.list}
+                return <Health data={checkData.flat()}
                 accDetails={accDetails}
                 />
             case 'Documents':
