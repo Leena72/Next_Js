@@ -10,7 +10,7 @@ import { videoPIVCAction } from '../../redux/action/videoPIVCAction'
 import { consentHandlerAction } from '../../redux/action/consentHandlerAction'
 import { dateFormat, convertToIST } from '../../utils/utils';
 
-const FormFilling = ({ data, label }) => {
+const FormFilling = ({ data, label, proposalNo }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
   const accDetails = useSelector((state) => state.customerDetailReducer);
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
@@ -23,14 +23,14 @@ const FormFilling = ({ data, label }) => {
   const videoPIVCHandler = () => {
     const payload = {
       "message": null,
-      "proposalNumber": localStorage.getItem("proposalNo"),
+      "proposalNumber": proposalNo,
     }
     dispatch(videoPIVCAction(payload))
   }
   const consentHandler = () => {
     const payload = {
       "message": null,
-      "proposalNumber": localStorage.getItem("proposalNo"),
+      "proposalNumber": proposalNo,
     }
     dispatch(consentHandlerAction(payload))
   }
@@ -42,9 +42,18 @@ const FormFilling = ({ data, label }) => {
         let proposalFormList = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PROPOSAL';
         });
-        // console.log('proposalFormList--', proposalFormList)
-        const proposalList = proposalFormList;
-        const proposalReversedList = proposalList?.reverse();
+        let Personal_Details = proposalFormList.filter(item => {
+          return item.subStatus === 'Personal_Details';
+        });
+        let Nominee_Details = proposalFormList.filter(item => {
+          return item.subStatus === 'Nominee_Details';
+        });
+        let Health_Details = proposalFormList.filter(item => {
+          return item.subStatus === 'Health_Details';
+        });
+        let proposalReversedList = []
+        proposalReversedList.push(Personal_Details[0], Nominee_Details[0], Health_Details[0])
+
         showElement = proposalFormList?.length !== 0
           ?
           <ProposalForm
@@ -130,7 +139,7 @@ const FormFilling = ({ data, label }) => {
         showElement = proposalSub && proposalSub[0]?.actual_status === 'COMPLETED'
           ?
           <div className='blue-block-container'>
-            <p>Policy Number: {accDetails?.policyNumber}</p>
+            <p>Policy Number: {proposalNo}</p>
           </div>
           :
           <div className='blue-block-container'>
@@ -161,7 +170,7 @@ const FormFilling = ({ data, label }) => {
       });
       dateStatus = propDetail && propDetail[0]?.actual_status === 'COMPLETED' ? true : false
       if (dateStatus) {
-        let date =propDetail && propDetail[0]?.updatedOn
+        let date = propDetail && propDetail[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }
@@ -191,7 +200,6 @@ const FormFilling = ({ data, label }) => {
     <ul className='acc-active-container'>
       {
         data.map((item, idx) => {
-          console.log('item>>>>>>', item)
           if ((!accDetails?.instaRequired && item.heading === "Insta Verify")
             ||
             (!accDetails?.customerConsentRequired && item.heading === "Customer Consent")

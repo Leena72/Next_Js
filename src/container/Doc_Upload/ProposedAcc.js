@@ -16,7 +16,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
     const [uploadDocModal, setuploadDocModal] = useState(false)
     const [proposedDocList, setproposedDocList] = useState(null)
     const [showViewDelete, setshowViewDelete] = useState(false)
-    const customerDetail = useSelector((state) => state.customerDetailReducer.body)
+    const customerDetail = useSelector((state) => state.customerDetailReducer)
     const dispatch = useDispatch()
 
 
@@ -39,19 +39,16 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
     let demoDoc
     if (label === 'add-form') {
         demoDoc = addNonupload?.filter(item => item.questionnaire === false)
-        // console.log('demoDoc',demoDoc)
     }
-
-
 
     const clickHandler = (heading, documentList) => {
         setmodalHeading(heading)
         setdocumentList(documentList)
         setopenUploadModal(!openUploadModal)
     }
-    const clickHandleraddNon = () => {
+    const clickHandleraddNon = (heading) => {
         setuploadDocModal(true)
-
+        setmodalHeading(heading)
     }
     const docClickHandler = (id) => {
         setopenDocModal(!openDocModal)
@@ -69,7 +66,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
         formData.append("file", file);
         let headerData
 
-        if (label === 'form-filling') {
+        if (label === form-filling) {
             headerData = {
                 documentCategory: 'Age Proof',
                 documentType: 'PAN Card',
@@ -81,12 +78,10 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 // proposalNo:"3108426548"
             };
             dispatch(uploadFormAction(headerData, formData, (res) => {
-                // toaster('success', res.description)
                 if (res.status === 'OK') {
                     setuploadDocModal(false)
                     showViewDelete(true)
                 }
-
             }))
         }
         else {
@@ -104,13 +99,10 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             };
 
             dispatch(uploadAction(headerData, formData, (res) => {
-                // console.log('res',res)
                 if (res.status === 'OK') {
-
                     setuploadDocModal(false)
                     showViewDelete(true)
                 }
-                // toaster('success', res.description)
             }))
         }
     }
@@ -128,7 +120,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                     key={item.idx}
                     data={item}
                     showViewDelete={showViewDelete}
-                    clickHandler={clickHandler}
+                    clickHandler={label === 'add-form' ?clickHandleraddNon: clickHandler}
                 />
             )
             }
@@ -172,7 +164,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             />}
         {
             uploadDocModal && <UploadDocModal
-                heading={`Upload ${customerDetail?.customerName}’s`}
+                heading={label==='form-filling' ? `Upload ${customerDetail?.customerName}’s`
+                :`Upload ${modalHeading}`}
                 subheading={uploadModalHeading}
                 onClose={() => setuploadDocModal(false)}
                 label={label}

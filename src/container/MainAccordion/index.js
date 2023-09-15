@@ -9,7 +9,7 @@ import FormFieldConsent from '../../component/FormFieldConsent';
 import Consent from '../Consent';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import { scrollToTop,  convertToIST } from '../../utils/utils';
+import { scrollToTop, convertToIST } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
 
 const MainAccordion = ({ data }) => {
@@ -61,6 +61,7 @@ const MainAccordion = ({ data }) => {
           <QuoteGenerated
             quoteDetail={detail && detail[0]}
             policyDocumentFile={policyDocuments['BI_TAG_NAME']}
+            proposalNo={accDetails?.proposalNumber}
           />
           :
           <div className='blue-block-container'>
@@ -71,6 +72,7 @@ const MainAccordion = ({ data }) => {
         return <FormFilling
           data={data.content}
           label='form-filling'
+          proposalNo={accDetails?.proposalNumber}
         />
       case 'Medical Requirement':
         detail = accordionDetails && accordionDetails?.filter(item => {
@@ -93,7 +95,8 @@ const MainAccordion = ({ data }) => {
 
         return <AddNonMedReq
           accDetails={accDetails} //whole data
-          // addNonMedDetail={addNonMedDetail}
+          proposalNo={accDetails?.proposalNumber}
+        // addNonMedDetail={addNonMedDetail}
         />
       case 'Revised Offer':
         return <CounterPage />
@@ -162,7 +165,7 @@ const MainAccordion = ({ data }) => {
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'POLICY_STATUS';
         });
-        showElement =detail && detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('POLICY_STATUS')}
@@ -266,7 +269,7 @@ const MainAccordion = ({ data }) => {
                 </div>
                 <div className='acc-activeState'>
                   {
-                    renderStatus(item.heading, item.title)
+                    renderStatus(item.title)
                       ?
                       <div className='acc-completed'>
                         <Image
