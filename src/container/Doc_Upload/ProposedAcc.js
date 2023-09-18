@@ -66,7 +66,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
         formData.append("file", file);
         let headerData
 
-        if (label === form-filling) {
+        if (label === 'form-filling') {
             headerData = {
                 documentCategory: 'Age Proof',
                 documentType: 'PAN Card',
