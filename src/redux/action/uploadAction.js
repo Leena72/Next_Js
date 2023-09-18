@@ -19,7 +19,7 @@ export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
 
     .then((res) => {
       if(res.data.status ==='OK'){
-        cb(res.data.body);
+        cb(res.data);
         toaster("success", res.data.message);
       }
       else {
