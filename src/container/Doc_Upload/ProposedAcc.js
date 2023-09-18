@@ -16,7 +16,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
     const [uploadDocModal, setuploadDocModal] = useState(false)
     const [proposedDocList, setproposedDocList] = useState(null)
     const [showViewDelete, setshowViewDelete] = useState(false)
-    const customerDetail = useSelector((state) => state.customerDetailReducer.body)
+    const [selectedDoc, setSelectedDoc] = useState(null)
+    const customerDetail = useSelector((state) => state.customerDetailReducer)
     const dispatch = useDispatch()
 
 
@@ -33,25 +34,25 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             })
         }
         setproposedDocList(proposedDocList)
-    }, [title])
+    }, [formFillDocDownload?.list,title])
 
 
     let demoDoc
     if (label === 'add-form') {
         demoDoc = addNonupload?.filter(item => item.questionnaire === false)
-        // console.log('demoDoc',demoDoc)
     }
-
-
 
     const clickHandler = (heading, documentList) => {
         setmodalHeading(heading)
         setdocumentList(documentList)
         setopenUploadModal(!openUploadModal)
     }
-    const clickHandleraddNon = () => {
+    const clickHandleraddNon = (heading) => {
+        let selectedDoc= addNonupload?.filter(item => item.indexValue === heading)
+        setSelectedDoc(selectedDoc[0])
+        // console.log('setSelectedDoc',selectedDoc[0])
         setuploadDocModal(true)
-
+        setmodalHeading(heading)
     }
     const docClickHandler = (id) => {
         setopenDocModal(!openDocModal)
@@ -77,16 +78,13 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 documentSide: "",
                 policyNo: "",
                 documentNumber: "",
-                proposalNo: localStorage.getItem('proposalNo')
-                // proposalNo:"3108426548"
+                proposalNo: customerDetail?.proposalNumber
             };
             dispatch(uploadFormAction(headerData, formData, (res) => {
-                // toaster('success', res.description)
                 if (res.status === 'OK') {
                     setuploadDocModal(false)
-                    showViewDelete(true)
+                    setshowViewDelete(true)
                 }
-
             }))
         }
         else {
@@ -100,17 +98,14 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 documentSide: "",
                 policyNo: "",
                 documentNumber: "",
-                proposalNo: localStorage.getItem('proposalNo')
+                proposalNo: customerDetail?.proposalNumber
             };
 
             dispatch(uploadAction(headerData, formData, (res) => {
-                // console.log('res',res)
                 if (res.status === 'OK') {
-
                     setuploadDocModal(false)
-                    showViewDelete(true)
+                    setshowViewDelete(true)
                 }
-                // toaster('success', res.description)
             }))
         }
     }
@@ -120,6 +115,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
         dispatch(deleteDoc(fileName, () => {
         }))
     }
+    addNonupload
     return (<>
         <div className='nonMedListBlock'>
             {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>
@@ -128,7 +124,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                     key={item.idx}
                     data={item}
                     showViewDelete={showViewDelete}
-                    clickHandler={clickHandler}
+                    clickHandler={label === 'add-form' ?clickHandleraddNon: clickHandler}
                 />
             )
             }
@@ -172,7 +168,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             />}
         {
             uploadDocModal && <UploadDocModal
-                heading={`Upload ${customerDetail?.customerName}’s`}
+                heading={label==='form-filling' ? `Upload ${customerDetail?.customerName}’s`
+                :`Upload ${modalHeading}`}
                 subheading={uploadModalHeading}
                 onClose={() => setuploadDocModal(false)}
                 label={label}
