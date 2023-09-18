@@ -4,21 +4,25 @@ import Health from './Health'
 import Accordion2 from '../../component/Accordion/Accordion2';
 import DocumentUpload from '../Doc_Upload';
 
-const AddNonMedReq = ({addNonMedDetail,accDetails}) => {
+const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
     const renderElement = (data, title) => {
-        const checkData=accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList.map((item)=>{
-           return data?.list.filter((val)=>item?.documentCdValue?.toLowerCase()===val?.title?.toLowerCase())
+        const InsuredCheckData = accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.quesList.map((item) => {
+            return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
         });
-        console.log("checkData for medical===",checkData,data.list)
+        const proposerCheckData = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList.map((item) => {
+            return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
+        });
+        console.log("checkData for medical===", data.list, InsuredCheckData.flat(), proposerCheckData.flat())
         switch (title) {
             case 'Health and Lifestyle Questionnaire':
-                return <Health data={checkData.flat()}
-                accDetails={accDetails}
+                return <Health insureddata={InsuredCheckData.flat()}
+                    proposerdata={proposerCheckData.flat()}
+                    accDetails={accDetails}
                 />
             case 'Documents':
                 return <DocumentUpload label={'add-form'}
-                addDocUpload={accDetails}
+                    addDocUpload={accDetails}
                 />
             default:
                 break;
@@ -34,9 +38,9 @@ const AddNonMedReq = ({addNonMedDetail,accDetails}) => {
                     return (
                         <li className='addNonMedAccList' key={item.id} >
                             <Accordion2
-                            item={item}
-                            openAccordion={openAccordion}
-                            toggleAccordion={toggleAccordion}
+                                item={item}
+                                openAccordion={openAccordion}
+                                toggleAccordion={toggleAccordion}
                             />
                             {openAccordion === item.id ?
                                 <div className='show'>

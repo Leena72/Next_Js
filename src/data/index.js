@@ -383,57 +383,68 @@ export const questionnaireData = [
             {
                 id: 1,
                 title: 'Alcohol Habit Questionnaire ',
-                formName: 'ALCOHOL_HABIT_QUESTION'
+                formName: 'ALCOHOL_HABIT_QUESTION',
+                newTitle:'Alcohol Questionnaire'
             },
             {
                 id: 2,
                 title: 'Chest Pain Questionnaire',
-                formName: 'CHEST_PAIN_QUESTION'
+                formName: 'CHEST_PAIN_QUESTION',
+                newTitle:'Chest Pain Questionnaire'
             },
             {
                 id: 3,
                 title: 'Deformity Questionnaire',
-                formName: 'DEFORMITY_QUESTION'
+                formName: 'DEFORMITY_QUESTION',
+                newTitle:'Deformity questionnaire'
             },
             {
                 id: 4,
-                title: 'DIABETES Questionnaire',
-                formName: 'diabetes'
+                title: 'Diabetes Questionnaire',
+                formName: 'diabetes',
+                newTitle:'Diabetes Questionnaire'
             },
             {
                 id: 5,
                 title: 'Digestive Disorder Questionnaire',
-                formName: 'DIGESTIVE_DISORDER_QUESTION'
+                formName: 'DIGESTIVE_DISORDER_QUESTION',
+                newTitle:'Digestive Disorder Questionnaire'
             },
             {
                 id: 6,
                 title: 'Epilepsy Questionnaire',
-                formName: 'EPILEPSY_QUESTION'
+                formName: 'EPILEPSY_QUESTION',
+                newTitle:'Epilepsy Questionnaire'
             },
             {
                 id: 7,
                 title: 'Musculoskeletal Questionnaire',
-                formName: 'MUSCULO_SKELETAL_DISORDERS_QUESTION'
+                formName: 'MUSCULO_SKELETAL_DISORDERS_QUESTION',
+                newTitle:'Musculoskeletal Questionnaire'
             },
             {
                 id: 8,
                 title: 'Nervous Disorder Questionnaire',
-                formName: 'NERVOUS_DISORDER_QUESTION'
+                formName: 'NERVOUS_DISORDER_QUESTION',
+                newTitle:'Nervous Disorder Questionnaire'
             },
             {
                 id: 9,
                 title: 'Resipratory Disorder Questionnaire',
-                formName: 'RESPIRATORY_DISORDER_QUESTION'
+                formName: 'RESPIRATORY_DISORDER_QUESTION',
+                newTitle:'Respiratory disorder Questionnaire'
             },
             {
                 id: 10,
                 title: 'Thyroid Disorder Questionnaire',
-                formName: 'THYROID_DISORDER_QUESTION'
+                formName: 'THYROID_DISORDER_QUESTION',
+                newTitle:'Thyroid Questionnaire'
             },
             {
                 id: 11,
                 title: 'Tumour Questionnaire',
-                formName: 'tumour'
+                formName: 'tumour',
+                newTitle:'Tumour Questionnaire'
             },
         ]
     },

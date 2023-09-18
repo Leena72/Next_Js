@@ -11,7 +11,7 @@ import { questionnaireAction, saveQuestionnaireAction } from '../../../redux/act
 import { toaster } from '@/utils/toaster';
 
 
-const NonMedForm = ({ formName, formValues, setFormValues }) => {
+const NonMedForm = ({ formName, formValues, setFormValues, title,newTitle,userType }) => {
     const accDetails = useSelector((state) => state.customerDetailReducer);
 
     let formData = questionnaireList[formName]
@@ -80,22 +80,37 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
 
 
     }
-    const renderElement = (formName, formValues, formik) => {
+    useEffect(() => {
+
+    }, []);
+    const renderElement = (formName, formValues, formik, title,newTitle,userType) => {
+        console.log("checking===>", formName, formData, formValues, formik, title, formData)
+        const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
+        const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
+        let newFormData = []
+        if (getApidata && getApidata[0]?.data?.length > 0) {
+            newFormData = [...getApidata[0]?.data]
+        }else{
+            newFormData=formData;
+        }
+        console.log("check data for new work",userType,accDetails?.additionalInfoDocs[userType],getApidata && getApidata[0]?.data,getApidata && getApidata[0] && [...getApidata[0]?.data])
         return <FormLayout
             formName={formName}
-            formData={formData}
+            formData={newFormData}
             formValues={formValues}
             formik={formik}
             formChangeHandler={formChangeHandler}
+            newTitle={newTitle}
         />
     }
 
 
-    const formSaveHandler = (e, formName) => {
+    const formSaveHandler = (e, formName,newTitle,userType) => {
         console.log('formValues', formValues[formName], Object.values(formValues[formName]))
+        const filterQuestion = accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
         // let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         // let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
-        // console.log('docQuesList',docQuesList)
+        console.log('docQuesList',accDetails?.additionalInfoDocs[userType]?.quesList,userType,filterQuestion && filterQuestion[0])
         let data = Object.values(formValues[formName])
         let payload = {
             "policyNumber": accDetails?.policyNumber,
@@ -103,12 +118,12 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             "uwId": accDetails?.additionalInfoDocs?.uwId,
             "additionalQuestionnaire": [
                 {
-                   'id':2,
-                "data": data
+                    'id': filterQuestion[0]?.id,
+                    "data": data
                 }
             ]
         }
-        console.log('payload', data)
+        console.log('payload',filterQuestion[0]?.id, data)
         dispatch(saveQuestionnaireAction(payload, res => {
             console.log('res', res)
         }))
@@ -124,7 +139,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             >
                 {(formik) => (
                     <Form>
-                        {renderElement(formName, formValues, formik)}
+                        {renderElement(formName, formValues, formik, title,newTitle,userType)}
 
                         <div className='form-btn'>
                             <Button
@@ -137,7 +152,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
                             <Button
                                 className={'props.className'}
                                 disabled={!(formik.dirty && formik.isValid)}
-                                clickHandler={(e) => formSaveHandler(e, formName)}
+                                clickHandler={(e) => formSaveHandler(e, formName,newTitle,userType)}
                                 type={''}
                                 buttonText={'Save'}
                             />
