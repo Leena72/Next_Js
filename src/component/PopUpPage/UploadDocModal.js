@@ -37,7 +37,7 @@ const UploadDocModal = (props) => {
                         <div onClick={closeHandler} className="close_popup"><Image src={close} alt="cross" /></div>
                         {props.removeHeader ? null :
                             <div className="hdng_bx">
-                                <h2>{props.label==='form-filling'? props.heading : 'Upload'}</h2>
+                                <h2>{props.heading}</h2>
                             </div>
                         }
                         <div className='sub-heading-bx'>{props.subheading ? props.subheading : null}</div>

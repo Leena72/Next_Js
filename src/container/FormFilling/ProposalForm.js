@@ -1,7 +1,7 @@
 import React from 'react'
-import { dateFormat, convertToIST } from '../../utils/utils'
+import { convertToIST } from '../../utils/utils'
 
-const ProposalForm = ({ data, proposalFormList, proposalReversedList }) => {
+const ProposalForm = ({proposalReversedList}) => {
     const renderHeding = (heading) => {
         switch (heading) {
             case 'Personal_Details':
@@ -42,7 +42,7 @@ const ProposalForm = ({ data, proposalFormList, proposalReversedList }) => {
                 proposalReversedList?.map((item, idx) => (
                     <li key={idx}>
                         <p>{renderHeding(item.subStatus)}</p>
-                        <p>{renderCreateOn( item)}</p>
+                        <p>{renderCreateOn(item)}</p>
                     </li>
                 ))
             }
