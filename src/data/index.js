@@ -241,7 +241,7 @@ export const applicationData = [
     },
     {
         id: 6,
-        heading: 'Consent for change in the application details',
+        heading: 'Consent For Change In The Application Details',
         title:'DATA_CHANGE',
         subHeading: 'Yet to start',
         completed: false,

@@ -74,8 +74,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 documentSide: "",
                 policyNo: "",
                 documentNumber: "",
-                proposalNo: localStorage.getItem('proposalNo')
-                // proposalNo:"3108426548"
+                proposalNo: customerDetail?.proposalNumber
             };
             dispatch(uploadFormAction(headerData, formData, (res) => {
                 if (res.status === 'OK') {
@@ -95,7 +94,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 documentSide: "",
                 policyNo: "",
                 documentNumber: "",
-                proposalNo: localStorage.getItem('proposalNo')
+                proposalNo: customerDetail?.proposalNumber
             };
 
             dispatch(uploadAction(headerData, formData, (res) => {

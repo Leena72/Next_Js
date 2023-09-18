@@ -100,7 +100,7 @@ const MainAccordion = ({ data }) => {
         />
       case 'Revised Offer':
         return <CounterPage />
-      case 'Consent for change in the application details':
+      case 'Consent For Change In The Application Details':
         return <Consent />
       case 'Payment Required':
         detail = accordionDetails?.filter(item => {
