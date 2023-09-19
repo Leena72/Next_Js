@@ -66,7 +66,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
         formData.append("file", file);
         let headerData
 
-        if (label === form-filling) {
+        if (label === "form-filling") {
             headerData = {
                 documentCategory: 'Age Proof',
                 documentType: 'PAN Card',
@@ -79,7 +79,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             dispatch(uploadFormAction(headerData, formData, (res) => {
                 if (res.status === 'OK') {
                     setuploadDocModal(false)
-                    showViewDelete(true)
+                    setshowViewDelete(true)
                 }
             }))
         }
@@ -100,7 +100,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             dispatch(uploadAction(headerData, formData, (res) => {
                 if (res.status === 'OK') {
                     setuploadDocModal(false)
-                    showViewDelete(true)
+                    setshowViewDelete(true)
                 }
             }))
         }
@@ -111,6 +111,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
         dispatch(deleteDoc(fileName, () => {
         }))
     }
+    addNonupload
     return (<>
         <div className='nonMedListBlock'>
             {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>

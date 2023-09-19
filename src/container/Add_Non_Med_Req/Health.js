@@ -13,7 +13,7 @@ import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 
 import { toaster } from '@/utils/toaster';
 
-const Health = ({ data }) => {
+const Health = ({ insureddata,proposerdata }) => {
   const [formValues, setFormValues] = useState({})
   const [openAcc, setOpenAcc] = useState(null)
   const [showOtp, setShowOtp] = useState(false);
@@ -30,11 +30,15 @@ const Health = ({ data }) => {
   const toggleAccordion = (id) => {
     setOpenAcc(openAcc === id ? null : id)
   }
-  const renderElement = (formName) => {
+  const renderElement = ({formName,title,newTitle},userType) => {
+    console.log("checked==",formName,userType)
     return <NonMedForm formName={formName}
       formValues={formValues}
       accDetails={accDetails}
       setFormValues={setFormValues}
+      title={title}
+      newTitle={newTitle}
+      userType={userType}
     />
   }
   // console.log('formValues',formValues)
@@ -104,8 +108,9 @@ const Health = ({ data }) => {
         style={{ display: overlay ? "block" : "none" }}
       ></div>
 
-      <ul className='nonMedListBlock'>
-        {data.map(item => {
+     {insureddata?.length>0 && <ul className='nonMedListBlock'>
+      insured
+        {insureddata.map(item => {
           return (
             <li className='nonMedList' key={item.id} >
               <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
@@ -121,7 +126,7 @@ const Health = ({ data }) => {
               {openAcc === item.id ?
                 <div className='show'>
                   {
-                    renderElement(item.formName)
+                    renderElement(item,'primaryInsuredDocumentDetail')
                   }
                 </div>
                 : ''
@@ -129,7 +134,34 @@ const Health = ({ data }) => {
             </li>
           )
         })}
-      </ul>
+      </ul>}
+      {proposerdata?.length>0 && <ul className='nonMedListBlock'>
+        proposer
+        {proposerdata.map(item => {
+          return (
+            <li className='nonMedList' key={item.id} >
+              <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                <div>{item.title}</div>
+                <div className='acc-active-icon '>
+                  <Image
+                    className={openAcc === item.id ? 'upArrow' : ''}
+                    src={dwnArrow}
+                    alt='icon'
+                  />
+                </div>
+              </div>
+              {openAcc === item.id ?
+                <div className='show'>
+                  {
+                    renderElement(item,'proposerDocumentDetail')
+                  }
+                </div>
+                : ''
+              }
+            </li>
+          )
+        })}
+      </ul>}
 
       <div className='consent-blk submit-consent-btn'>
         <div className='form-btn'>
