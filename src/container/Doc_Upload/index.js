@@ -12,6 +12,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload }) => {
     let addInsuredNonupload
     let docInsuredQuesList
     let docQuesList
+    let uwId
     if (label === "form-filling") {
         // console.log('formFillDocDownload', formFillDocDownload)
     }
@@ -22,6 +23,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload }) => {
         // proposer
         addNonupload = addDocUpload?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         docQuesList = addNonupload?.filter(item => item.questionnaire === false)
+        uwId=addDocUpload?.additionalInfoDocs?.uwId
     }
 
     const toggleAccordion = (id) => {
@@ -36,6 +38,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload }) => {
             title={title}
             formFillDocDownload={formFillDocDownload}
             addNonupload={documentList}
+            uwId={uwId}
         />
     }
     return (

@@ -5,9 +5,9 @@ import { uploadDocument, documentsUplaod } from '../../data'
 import AccPopUp from '../../component/PopUpPage/AccPopUp'
 import AccDocModal from '../../component/PopUpPage/AccDocModal'
 import UploadDocModal from '../../component/PopUpPage/UploadDocModal'
-import { uploadFormAction, uploadAction, deleteDoc } from '../../redux/action/uploadAction'
+import { uploadFormAction, uploadAction, deleteDoc,deleteDocAddInfo } from '../../redux/action/uploadAction'
 
-const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
+const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload,uwId }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
     const [uploadModalHeading, setuploadModalHeading] = useState('')
@@ -86,6 +86,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             }))
         }
         else {
+            console.log("===========>",demoDoc)
             headerData = {
                 documentCd: demoDoc[0].documentCd,
                 docCategoryCd: demoDoc[0].docCategoryCd,
@@ -125,6 +126,13 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             
         // }))
     }
+    const AddInfodeleteDocHandler=()=>{
+        let payload = fileObject
+        payload['uwId']=uwId
+        dispatch(deleteDocAddInfo(payload, (res) => {
+            
+        }))
+    }
     return (<>
         <div className='nonMedListBlock'>
             {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>
@@ -135,6 +143,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                     showViewDelete={showViewDelete}
                     clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
                     deleteDocHandler={deleteDocHandler}
+                    viewDocHandler={viewDocHandler}
                 />
             )
             }
@@ -147,7 +156,9 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                         data={item}
                         showViewDelete={showViewDelete}
                         clickHandleraddNon={clickHandleraddNon}
-                        deleteDocHandler={deleteDocHandler}
+                        deleteDocHandler={AddInfodeleteDocHandler}
+                        viewDocHandler={viewDocHandler}
+                        uwId={uwId}
                     />
                 )
             }
