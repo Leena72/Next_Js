@@ -31,7 +31,9 @@ export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, 
                 </div>
                     :
                     <div className='view-img'>
-                        <a className='view-img-link'>
+                        <a className='view-img-link'
+                        onClick={viewDocHandler}
+                        >
                             <Image
                                 src={previewImg}
                                 alt='uplImg'

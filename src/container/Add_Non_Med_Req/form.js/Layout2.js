@@ -2,11 +2,17 @@ import React from 'react'
 import Button from '@/component/Button';
 import Input from '@/component/Input';
 
-const Layout2 = ({ formName, formData, formChangeHandler }) => {
-    const changeHandler = (e, quesData) => {
-        // console.log('>>>>',quesData?.ques)
-        const { name, value } = e.target;
-        // console.log('e', e.target.value)
+const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
+
+    const changeHandler = (e, quesData, radioInput) => {
+        let value = e.target.value
+        let name = e.target.name
+        if (e.target.checked === true) {
+            value = radioInput === 'yes' ? true : false
+        }
+        else {
+            value = e.target.value
+        }
         formChangeHandler({ name, value, quesData, formName })
     }
     return (
@@ -15,8 +21,8 @@ const Layout2 = ({ formName, formData, formChangeHandler }) => {
                 formData.map(item => {
                     return (
                         <div className='form-block' key={item.id}>
-                            <div className={`${item.declaration!==''?'form-declaration':'hide'}`}>{item.declaration}</div>
-                            <div className={`${item.heading!==''?'form-question':'hide'}`}>{item.heading}</div>
+                            <div className={`${item.declaration !== '' ? 'form-declaration' : 'hide'}`}>{item.declaration}</div>
+                            <div className={`${item.heading !== '' ? 'form-question' : 'hide'}`}>{item.heading}</div>
                             {
                                 item.subQuestions.map(ele => (
                                     <div className='form-quesAns' key={ele.id}>
@@ -27,9 +33,11 @@ const Layout2 = ({ formName, formData, formChangeHandler }) => {
                                                     <Input
                                                         type='radio'
                                                         value={''}
-                                                        name='check'
+                                                        name={`radio_${item.id}_${ele.id}`}
                                                         // checked={''}
-                                                        changeHandler={''}
+                                                        changeHandler={(e) =>
+                                                            changeHandler(e, { ques: item, type: 'ques', parent: null, }, 'yes')}
+
                                                     />
                                                     <label className="radio-label">Yes</label>
                                                 </div>
@@ -37,9 +45,10 @@ const Layout2 = ({ formName, formData, formChangeHandler }) => {
                                                     <Input
                                                         type='radio'
                                                         value={''}
-                                                        name='check'
+                                                        name={`radio_${item.id}_${ele.id}`}
                                                         // checked={''}
-                                                        changeHandler={''}
+                                                        changeHandler={(e) =>
+                                                            changeHandler(e, { ques: item, type: 'ques', parent: null }, 'no')}
                                                     />
                                                     <label className="radio-label">No</label>
                                                 </div>
@@ -62,9 +71,10 @@ const Layout2 = ({ formName, formData, formChangeHandler }) => {
                                                 <Input
                                                     type='radio'
                                                     value={''}
-                                                    name='check'
+                                                    name={`radio_${item.id}`}
                                                     // checked={''}
-                                                    changeHandler={''}
+                                                    changeHandler={(e) =>
+                                                        changeHandler(e, { ques: item, type: 'ques', parent: null },'yes')}
                                                 />
                                                 <label className="radio-label">Yes</label>
                                             </div>
@@ -72,9 +82,10 @@ const Layout2 = ({ formName, formData, formChangeHandler }) => {
                                                 <Input
                                                     type='radio'
                                                     value={''}
-                                                    name='check'
+                                                    name={`radio_${item.id}`}
                                                     // checked={''}
-                                                    changeHandler={''}
+                                                    changeHandler={(e) =>
+                                                        changeHandler(e, { ques: item, type: 'ques', parent: null },'no')}
                                                 />
                                                 <label className="radio-label">No</label>
                                             </div>
