@@ -5,10 +5,10 @@ import previewImg from "../../Assets/images/preview.png"
 import deleteImg from "../../Assets/images/delete.png"
 
 
-export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, showViewDelete }) => {
-    const deleteDocHandler=()=>{
-        
-    }
+export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, showViewDelete ,deleteDocHandler}) => {
+    // const deleteDocHandler=()=>{
+    //     deleteDocHandler()
+    // }
     return (
         <div
             className={`upl-doc-container upl-doc`}
