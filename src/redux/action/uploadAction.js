@@ -10,7 +10,7 @@ export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
   });
   axios
     .post(
-      `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${headerData.documentCd}&docCategoryCd=${headerData.docCategoryCd}&docCategoryTypeCd=${headerData.docCategoryTypeCd}&documentSide=FRONT_SIDE&documentNumber=${''}&partyType=${headerData.partyType}&proposalNo=${'3209405777'}&policyNo=${'506-8150266'}&serviceDocListId=${headerData.id}&uwId=${'48521'}`,
+      `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${headerData.documentCd}&docCategoryCd=${headerData.docCategoryCd}&docCategoryTypeCd=${headerData.docCategoryTypeCd}&documentSide=${headerData.documentSide}&documentNumber=${headerData.documentNumber}&partyType=${headerData.partyType}&proposalNo=${headerData.proposalNo}&policyNo=${headerData.policyNo}&serviceDocListId=${headerData.id}&uwId=${headerData.uwId}`,
       fileData,
       {
         headers: {
@@ -127,18 +127,22 @@ export const deleteDocAddInfo = (payload, cb) => (dispatch) => {
     type: "LOADER_ON",
   });
   axios
-    .delete(`${apiConstants.API_URL}proposal/document/addInfo/delete?file=${payload.fileName}&proposalNo=${payload.proposalNo}&uwId=${payload.uwId}`, {
+    .delete(`${apiConstants.API_URL}proposal/document/addInfo/delete?file=${payload.url}&proposalNo=${payload.proposalNo}&uwId=${payload.uwId}`, {
     headers: {
       "Authorization": localStorage.getItem('agentAuth'),
     },
   })
-    .then((resp) => {
+    .then((res) => {
       dispatch({
         type: "LOADER_OFF",
       });
-      if (cb) {
-        cb();
+      if (res.data && res.data.message.indexOf('removing request submitted successfully') > -1) {
+        toaster("success", res.data.message)
+        if (cb) {
+          cb();
+        }
       }
+      
     })
     .catch((error) => {
       dispatch({
