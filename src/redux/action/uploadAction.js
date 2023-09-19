@@ -5,6 +5,9 @@ import axios from "axios";
 
 // add non medical
 export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
+  dispatch({
+    type: "LOADER_ON",
+});
   axios
     .post(
       `${apiConstants.API_URL}proposal/document/addInfo/uploadFile?documentCd=${headerData.documentCd}&docCategoryCd=${headerData.docCategoryCd}&docCategoryTypeCd=${headerData.docCategoryTypeCd}&documentSide=FRONT_SIDE&documentNumber=${''}&partyType=${headerData.partyType}&proposalNo=${'3209405777'}&policyNo=${'506-8150266'}&serviceDocListId=${headerData.id}&uwId=${'48521'}`,
@@ -18,6 +21,9 @@ export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
     )
 
     .then((res) => {
+      dispatch({
+        type: "LOADER_OFF",
+    });
       if(res.data.status ==='OK'){
         cb(res.data);
         toaster("success", res.data.message);
@@ -27,6 +33,9 @@ export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
       }
     })
     .catch((error) => {
+      dispatch({
+        type: "LOADER_OFF",
+    });
       toaster("error", error.message);
     });
 };
@@ -34,6 +43,9 @@ export const uploadAction = (headerData, fileData, cb) => (dispatch) => {
 
 // form filling
 export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
+  dispatch({
+    type: "LOADER_ON",
+});
   axios
     .post(
       `${apiConstants.API_URL}proposal/document/uploadFile`,
@@ -48,6 +60,9 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
     )
 
     .then((res) => {
+      dispatch({
+        type: "LOADER_OFF",
+    });
       if (res.data.body) {
         cb(res.data.body)
       }
@@ -57,6 +72,9 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
       }
     })
     .catch((error) => {
+      dispatch({
+        type: "LOADER_OFF",
+    });
       toaster("error", error.message);
     });
 };
@@ -64,30 +82,39 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
 
 // delete doc
 
-export const deleteDoc =
-  (fileName, proposalNumber, name, docCatg, type, cb) => (dispatch) => {
+export const deleteDoc =(payload, cb) => (dispatch) => {
+  console.log('payload',payload)
+    dispatch({
+      type: "LOADER_ON",
+  });
     axios
       .delete(
-        `${apiConstants.API_URL}proposal/document/delete?file=${fileName}`,
+        `${apiConstants.API_URL}proposal/document/delete?file=${payload.fileName}`,
         {
           headers: {
             "Content-Type": "application/json",
-            documentCategory: 'Age Proof',
-            documentType: 'PAN Card',
-            partyType: 'OWNER',
+            documentCategory: payload.docCategoryCd,
+            documentType: payload.docCategoryTypeCd,
+            partyType: payload.partyType,
             documentSide: "",
-            policyNo: "",
-            documentNumber: "",
-            proposalNo: localStorage.getItem('proposalNo')
+            policyNo: payload.policyNo,
+            // documentNumber: '',
+            proposalNo:payload.proposalNo
           },
         }
       )
       .then((resp) => {
+        dispatch({
+          type: "LOADER_OFF",
+      });
         if (cb) {
           cb();
         }
       })
       .catch((error) => {
+        dispatch({
+          type: "LOADER_OFF",
+      });
         toaster("error", error.message);
       });
   };

@@ -16,6 +16,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
     const [uploadDocModal, setuploadDocModal] = useState(false)
     const [proposedDocList, setproposedDocList] = useState(null)
     const [showViewDelete, setshowViewDelete] = useState(false)
+    const [fileObject, setfileObject] = useState('')
+
     const customerDetail = useSelector((state) => state.customerDetailReducer)
     const dispatch = useDispatch()
 
@@ -33,7 +35,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             })
         }
         setproposedDocList(proposedDocList)
-    }, [formFillDocDownload?.list,title])
+    }, [formFillDocDownload?.list, title])
 
 
     let demoDoc
@@ -66,7 +68,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
         formData.append("file", file);
         let headerData
 
-        if (label === "form-filling") {
+        if (label === 'form-filling') {
             headerData = {
                 documentCategory: 'Age Proof',
                 documentType: 'PAN Card',
@@ -101,17 +103,28 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                 if (res.status === 'OK') {
                     setuploadDocModal(false)
                     setshowViewDelete(true)
+                    setfileObject(res.body)
                 }
             }))
         }
     }
 
     const deleteDocHandler = () => {
+        let payload = fileObject
+        
         let fileName = 'camera.png'
-        dispatch(deleteDoc(fileName, () => {
+        dispatch(deleteDoc(payload, (res) => {
+            
         }))
     }
-    addNonupload
+    const viewDocHandler = () => {
+        let payload = fileObject
+        
+        let fileName = 'camera.png'
+        // dispatch(viewDoc(payload, (res) => {
+            
+        // }))
+    }
     return (<>
         <div className='nonMedListBlock'>
             {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>
@@ -120,7 +133,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                     key={item.idx}
                     data={item}
                     showViewDelete={showViewDelete}
-                    clickHandler={label === 'add-form' ?clickHandleraddNon: clickHandler}
+                    clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
+                    deleteDocHandler={deleteDocHandler}
                 />
             )
             }
@@ -133,6 +147,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
                         data={item}
                         showViewDelete={showViewDelete}
                         clickHandleraddNon={clickHandleraddNon}
+                        deleteDocHandler={deleteDocHandler}
                     />
                 )
             }
@@ -164,8 +179,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload }) => {
             />}
         {
             uploadDocModal && <UploadDocModal
-                heading={label==='form-filling' ? `Upload ${customerDetail?.customerName}’s`
-                :`Upload ${modalHeading}`}
+                heading={label === 'form-filling' ? `Upload ${customerDetail?.customerName}’s`
+                    : `Upload ${modalHeading}`}
                 subheading={uploadModalHeading}
                 onClose={() => setuploadDocModal(false)}
                 label={label}
