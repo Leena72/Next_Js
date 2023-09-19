@@ -10,8 +10,7 @@ const Accordion3 = ({ data }) => {
     const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments);
 
     const downloadHandler = (file) => {
-        let proposalNo = localStorage.getItem("proposalNo")
-        // let proposalNo="3108426548"
+        let proposalNo = customerDetail?.proposalNumber
         dispatch(downloadAction(proposalNo, file))
     }
 
