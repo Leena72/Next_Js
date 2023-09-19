@@ -2,7 +2,7 @@ import Axios from "axios";
 import {apiConstants} from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
-export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
+export const downloadAction = (proposalNo, file,type, cb) => (dispatch) => {
     Axios({
         method: "get",
         mode: "no-cors",
@@ -15,7 +15,9 @@ export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
     }) .then((response) => {
             // create file link in browser's memory
             const href = URL.createObjectURL(response.data);
-        
+            if(type==="preview"){
+                cb(href);
+            }else{
             // create "a" HTML element with href to file & click
             const link = document.createElement('a');
             link.href = href;
@@ -26,6 +28,7 @@ export const downloadAction = (proposalNo, file, cb) => (dispatch) => {
             // clean up "a" element & remove ObjectURL
             document.body.removeChild(link);
             URL.revokeObjectURL(href);
+            }
         })
         .catch((error) => {
             toaster('error', error.message);
