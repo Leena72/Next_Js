@@ -115,8 +115,8 @@ const Payment = (props) => {
       proposalNumber: props.accDetails?.proposalNumber,
       // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
       paymentMethod: "ONLINE_BILL_DESK",
-      txAmount: '11287.05',
-      // txAmount: props.paymentValue,
+      // txAmount: '11287.05',
+      txAmount: props.paymentValue,
       userAgent: navigator.userAgent,
     };
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
