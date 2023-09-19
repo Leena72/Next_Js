@@ -19,6 +19,14 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
                 return <Health insureddata={InsuredCheckData.flat()}
                     proposerdata={proposerCheckData.flat()}
                     accDetails={accDetails}
+                    category={[{
+                        id: 1,
+                        title: 'Insured'
+                    },
+                    {
+                        id: 2,
+                        title: 'Proposer'
+                    }]}
                 />
             case 'Documents':
                 return <DocumentUpload label={'add-form'}

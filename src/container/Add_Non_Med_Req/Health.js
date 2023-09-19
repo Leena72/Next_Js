@@ -8,21 +8,22 @@ import thankYou from "../../Assets/images/thank-you-bg.png";
 import dwnArrow from "../../Assets/images/dwn-arw.png";
 import OTPInput from '../OTPInput'
 import { questionnaireAction, saveQuestionnaireAction } from '../../redux/action/questionnaireAction'
-
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
-
 import { toaster } from '@/utils/toaster';
+import Accordion2 from '../../component/Accordion/Accordion2.js';
 
-const Health = ({ insureddata,proposerdata }) => {
+
+const Health = ({ insureddata, proposerdata, category }) => {
   const [formValues, setFormValues] = useState({})
   const [openAcc, setOpenAcc] = useState(null)
+  const [openCatAcc, setOpenCatAcc] = useState(null)
   const [showOtp, setShowOtp] = useState(false);
   const [showThankyou, setShowThankyou] = useState();
   const [overlay, setOverlay] = useState(false);
   const [otp, setOtp] = useState('');
   const [refId, setRefId] = useState();
   const [fileName, setFileName] = useState('')
-  
+
   const accDetails = useSelector((state) => state.customerDetailReducer);
   let uwId = accDetails?.additionalInfoDocs?.uwId
 
@@ -30,8 +31,11 @@ const Health = ({ insureddata,proposerdata }) => {
   const toggleAccordion = (id) => {
     setOpenAcc(openAcc === id ? null : id)
   }
-  const renderElement = ({formName,title,newTitle},userType) => {
-    console.log("checked==",formName,userType)
+  const toggleCatAccordion = (id) => {
+    setOpenCatAcc(openCatAcc === id ? null : id)
+  }
+  const renderElement = ({ formName, title, newTitle }, userType) => {
+    console.log("checked==", formName, userType)
     return <NonMedForm formName={formName}
       formValues={formValues}
       accDetails={accDetails}
@@ -67,7 +71,7 @@ const Health = ({ insureddata,proposerdata }) => {
       "otp": otp,
       "refId": refId,
       "key": "ADDITIONAL_QUESTIONNAIRE",
-      "action":""
+      "action": ""
     }
     let proposalNo = localStorage.getItem("proposalNo")
     dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
@@ -90,90 +94,139 @@ const Health = ({ insureddata,proposerdata }) => {
 
   const formSubmitHandler = () => {
     let payload = {
-      "proposalNumber": accDetails?.proposalNumber,  
-      "policyNumber": accDetails?.policyNumber,  
-      "uwId": uwId,  
+      "proposalNumber": accDetails?.proposalNumber,
+      "policyNumber": accDetails?.policyNumber,
+      "uwId": uwId,
       "otp": otp
-  }
-    dispatch(questionnaireAction(payload,(res) => {
+    }
+    dispatch(questionnaireAction(payload, (res) => {
       setFileName(res.body.fileName)
       formvalidate()
     }))
   }
+  const renderCatElement = (item, title) => {
+    switch (title) {
+      case 'Insured':
+        return <>{
+          insureddata?.length > 0
+          &&
+          <>
+            <ul className='nonMedListBlock'>
 
+              {insureddata.map(item => {
+                return (
+                  <li className='nonMedList' key={item.id} >
+                    <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                      <div>{item.title}</div>
+                      <div className='acc-active-icon '>
+                        <Image
+                          className={openAcc === item.id ? 'upArrow' : ''}
+                          src={dwnArrow}
+                          alt='icon'
+                        />
+                      </div>
+                    </div>
+                    {openAcc === item.id ?
+                      <div className='show'>
+                        {
+                          renderElement(item, 'primaryInsuredDocumentDetail')
+                        }
+                      </div>
+                      : ''
+                    }
+                  </li>
+                )
+              })}
+            </ul>
+            <div className='consent-blk submit-consent-btn'>
+              <div className='form-btn'>
+                <Button
+                  className={'activeBtn'}
+                  clickHandler={finalFormSubmit}
+                  type='button'
+                  buttonText={'Submit'}
+                // disabled={'true'}
+                />
+              </div>
+            </div>
+          </>
+        }
+        </>
+      case 'Proposer':
+        return <>  {
+          proposerdata?.length > 0
+          &&
+          <>
+            <ul className='nonMedListBlock'>
+              {proposerdata.map(item => {
+                return (
+                  <li className='nonMedList' key={item.id} >
+                    <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                      <div>{item.title}</div>
+                      <div className='acc-active-icon '>
+                        <Image
+                          className={openAcc === item.id ? 'upArrow' : ''}
+                          src={dwnArrow}
+                          alt='icon'
+                        />
+                      </div>
+                    </div>
+                    {openAcc === item.id ?
+                      <div className='show'>
+                        {
+                          renderElement(item, 'proposerDocumentDetail')
+                        }
+                      </div>
+                      : ''
+                    }
+                  </li>
+                )
+              })}
+            </ul>
+            <div className='consent-blk submit-consent-btn'>
+              <div className='form-btn'>
+                <Button
+                  className={'activeBtn'}
+                  clickHandler={finalFormSubmit}
+                  type='button'
+                  buttonText={'Submit'}
+                // disabled={'true'}
+                />
+              </div>
+            </div>
+          </>
+        } </>
+
+      default:
+        break;
+    }
+  }
   return (
     <>
       <div
         className="overlay__popup_nw"
         style={{ display: overlay ? "block" : "none" }}
       ></div>
-
-     {insureddata?.length>0 && <ul className='nonMedListBlock'>
-      insured
-        {insureddata.map(item => {
-          return (
-            <li className='nonMedList' key={item.id} >
-              <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
-                <div>{item.title}</div>
-                <div className='acc-active-icon '>
-                  <Image
-                    className={openAcc === item.id ? 'upArrow' : ''}
-                    src={dwnArrow}
-                    alt='icon'
-                  />
-                </div>
+      <ul>
+        {category?.map((item, id) =>
+          <li>
+            <Accordion2
+              item={item}
+              openAccordion={openCatAcc}
+              toggleAccordion={toggleCatAccordion}
+            />
+            {openCatAcc === item.id ?
+              <div className='show'>
+                {
+                  renderCatElement(item, item.title)
+                }
               </div>
-              {openAcc === item.id ?
-                <div className='show'>
-                  {
-                    renderElement(item,'primaryInsuredDocumentDetail')
-                  }
-                </div>
-                : ''
-              }
-            </li>
-          )
-        })}
-      </ul>}
-      {proposerdata?.length>0 && <ul className='nonMedListBlock'>
-        proposer
-        {proposerdata.map(item => {
-          return (
-            <li className='nonMedList' key={item.id} >
-              <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
-                <div>{item.title}</div>
-                <div className='acc-active-icon '>
-                  <Image
-                    className={openAcc === item.id ? 'upArrow' : ''}
-                    src={dwnArrow}
-                    alt='icon'
-                  />
-                </div>
-              </div>
-              {openAcc === item.id ?
-                <div className='show'>
-                  {
-                    renderElement(item,'proposerDocumentDetail')
-                  }
-                </div>
-                : ''
-              }
-            </li>
-          )
-        })}
-      </ul>}
+              : ''
+            }
 
-      <div className='consent-blk submit-consent-btn'>
-        <div className='form-btn'>
-          <Button
-            className={'activeBtn'}
-            clickHandler={finalFormSubmit}
-            type='button'
-            buttonText={'Submit'}
-          // disabled={'true'}
-          />
-        </div>
-      </div>
+          </li>
+        )}
+      </ul>
 
       {showOtp &&
         <div className={`header-otp-popup popupcmn ${showOtp && 'active'}`} >
