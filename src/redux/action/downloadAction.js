@@ -3,6 +3,9 @@ import {apiConstants} from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 export const downloadAction = (proposalNo, file,type, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+    });
     Axios({
         method: "get",
         mode: "no-cors",
@@ -13,6 +16,9 @@ export const downloadAction = (proposalNo, file,type, cb) => (dispatch) => {
         },
         responseType: "blob",
     }) .then((response) => {
+        dispatch({
+            type: "LOADER_OFF",
+        });
             // create file link in browser's memory
             const href = URL.createObjectURL(response.data);
             if(type==="preview"){
@@ -31,6 +37,9 @@ export const downloadAction = (proposalNo, file,type, cb) => (dispatch) => {
             }
         })
         .catch((error) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             toaster('error', error.message);
         });
 };

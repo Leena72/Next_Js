@@ -11,6 +11,8 @@ import { downloadAction } from '@/redux/action/downloadAction'
 import PopUpPage from '@/component/PopUpPage'
 import Image from 'next/image'
 import plaholderPdf from '../../Assets/images/placeholder.png'
+import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
+import { Button } from 'bootstrap'
 const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
@@ -20,6 +22,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
     const [uploadDocModal, setuploadDocModal] = useState(false)
     const [proposedDocList, setproposedDocList] = useState(null)
     const [showViewDelete, setshowViewDelete] = useState(false)
+    const [showDeletePopup, setShowDeletePopup] = useState(false)
+    const [deleteItem, setDeleteItem] = useState('')
     const [fileObject, setfileObject] = useState('')
     const [preview, setPreview] = useState({ url: '', data: null })
     const customerDetail = useSelector((state) => state.customerDetailReducer)
@@ -132,20 +136,27 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
             }
         }))
     }
-    const AddInfodeleteDocHandler = (item) => {
+    const AddInfodeleteDocHandler = () => {
+        let item=deleteItem
         let payload = JSON.parse(JSON.stringify(item));
-        // console.log("======>", item)
         payload['uwId'] = uwId
         payload['proposalNo'] = customerDetail.proposalNumber
 
         dispatch(deleteDocAddInfo(payload, (res) => {
+            setShowDeletePopup(false)
             dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
-
+                window.location.reload(false);
             }))
-
         })
         )
     }
+    const openDeletePopUp = (item) => {
+        setShowDeletePopup(true)
+        setDeleteItem(item)
+    }
+    const closeDeleteHandler = () => { }
+    const deleteHandler = () => { }
+
     const closeHandler = () => {
         setPreview('')
     }
@@ -172,7 +183,9 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                         data={item}
                         showViewDelete={showViewDelete || item.url}
                         clickHandleraddNon={clickHandleraddNon}
-                        deleteDocHandler={() => AddInfodeleteDocHandler(item)}
+                        // deleteDocHandler={() => AddInfodeleteDocHandler(item)}
+                        deleteDocHandler={()=>openDeletePopUp(item)}
+
                         viewDocHandler={() => viewDocHandler(item)}
                         uwId={uwId}
                     />
@@ -212,6 +225,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                 onClose={() => setuploadDocModal(false)}
                 label={label}
                 uploadDocHandler={uploadDocHandler}
+                proposalNo={customerDetail.proposalNumber}
             />
         }
         {
@@ -273,6 +287,12 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                 </div>
             </PopUpPage>
 
+        }
+        {
+           showDeletePopup &&  <DeletePopUpPage
+           onClose={()=>setShowDeletePopup(false)}
+           deleteHandler={AddInfodeleteDocHandler}
+           />
         }
     </>
     )
