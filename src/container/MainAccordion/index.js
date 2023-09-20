@@ -24,7 +24,7 @@ const MainAccordion = ({ data }) => {
     let renderItem = true // by default render 
     accordionDetails?.map((acc) => {
       if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT' && item.heading === 'Additional Non-Medical Requirements') {
-        if (acc?.subStatus == 'AR') {
+        if (acc?.subStatus == 'AR' && acc?.subStatus === null) {
           renderItem = false
         }
       }

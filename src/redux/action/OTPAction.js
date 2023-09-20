@@ -40,9 +40,15 @@ export const verifyOTPAction = (data, proposalNo, fileName, cb) => (dispatch) =>
         data: data
     })
         .then((res) => {
-            toaster('success', res?.data?.message);
-            cb(res.data);
-        })
+            if (res.data.body !== null) {
+                toaster('success', res?.data?.message);
+                cb(res.data);
+            }
+            else{
+                toaster('error', res?.data?.message);
+            }
+        }
+        )
         .catch((error) => {
             toaster('error', error?.message);
         });
