@@ -115,8 +115,8 @@ const Payment = (props) => {
       proposalNumber: props.accDetails?.proposalNumber,
       // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
       paymentMethod: "ONLINE_BILL_DESK",
-      txAmount: '11287.05',
-      // txAmount: props.paymentValue,
+      // txAmount: '11287.05',
+      txAmount: props.paymentValue,
       userAgent: navigator.userAgent,
     };
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
@@ -293,12 +293,53 @@ const Payment = (props) => {
       });
     }
   }
+
+  const enachInitiated = (payload, cb)=>{
+   
+    Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/eNACH/paymentBegin`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer'+' '+localStorage.getItem("accessToken")
+        // "Authorization" :"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjkyMTIiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQUdFTlQifV0sImlhdCI6MTY5NDc1NDgxMCwiZXhwIjoxNjk0ODQxMjEwfQ.u6VwxAj4GZuIIuSldDPXjTtE3NigvLZqlVQt8MDJokWTZaN4UjIjPC8A0PGeWiYvxfz7SXE2PMwET6-iJcTKTQ"
+
+      },
+    })
+      .then((resp) => {
+        toaster("success", "E-nach initiated successfully");
+        if (cb) {
+          cb(resp.data.body)
+        }
+      })
+      .catch((err) => {
+
+        toaster("error", err.response?.data?.errors);
+        if (err.status == '401') {
+          window.location.href = apiConstants.TRACKER_URL
+        }
+        if (cb) {
+          // cb(false)
+        }
+
+      });
+  }
+  const enachHandler = ()=>{
+    const data ={
+      paymentMode: "E_MANDATE",
+      proposalNumber : localStorage.getItem("proposalNo")
+    }
+    enachInitiated(data, (res)=>{
+      let newWindow = window.open();
+      newWindow.location = res.DATA;
+    })
+  }
+
   return (
     <div>
       <ul className="lst_prpsl">
         <li>
           <div className="lnkbx">Click here to initiate the
             <span onClick={onlineBtnandler} className="lnktxtbx">{props.isText ? props.isText : 'Pay Online'}</span>
+            <span onClick={enachHandler} className="lnktxtbx">E-Nach</span>
             {!props.showOffline &&
               <>
                 <span className='text'>OR</span>
