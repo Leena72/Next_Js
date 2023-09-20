@@ -3,8 +3,6 @@ import { useDispatch } from 'react-redux'
 import close from "../../Assets/images/close.png"
 import Image from 'next/image';
 import Button from '../Button';
-import cameraImg from '../../Assets/images/camera.png'
-import uploadImg from '../../Assets/images/upload_icon.png'
 
 const UploadDocModal = (props) => {
     const dispatch = useDispatch()
@@ -44,26 +42,14 @@ const UploadDocModal = (props) => {
                         <div className='content-box upload-content-bx'>
                         {showImg ?   <div className='upload-block'>
                                 <div className='upload-pin-blk'>
-                                    {/* <Image
-                                        src={uploadImg}
-                                        alt='uplImg'
-                                    /> */}
                                     <input type="file" onChange={fileUploadHandler} />
                                 </div>
                                 <div className='upload-camera-blk'>
-                                    {/* <Image
-                                        src={cameraImg}
-                                        alt='cmImg'
-                                    /> */}
                                     <input type="file" onChange={fileUploadHandler} />
                                 </div>
                             </div>
                             :
                                 <div>
-                                    {/* <Image
-                                        src={fileImg}
-                                        alt='cmImg'
-                                    /> */}
                                     <p>{fileImg}</p>
                                 </div>
                             }

@@ -5,10 +5,14 @@ import previewImg from "../../Assets/images/preview.png"
 import deleteImg from "../../Assets/images/delete.png"
 
 
+
 export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, showViewDelete, deleteDocHandler, viewDocHandler }) => {
-    // const deleteDocHandler=()=>{
-    //     deleteDocHandler()
-    // }
+    const imageStyle = {
+        marginRight: '8px',
+        width: '20px',
+        height: '20px'
+    }
+
     return (
         <div
             className={`upl-doc-container upl-doc`}
@@ -26,6 +30,7 @@ export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, 
                         <Image
                             src={uplImg}
                             alt='uplImg'
+                            style={imageStyle}
                         />
                     </a>
                 </div>
@@ -37,6 +42,7 @@ export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, 
                             <Image
                                 src={previewImg}
                                 alt='uplImg'
+                                style={imageStyle}
                             />
                         </a>
                         <a className='view-img-link'
@@ -45,6 +51,7 @@ export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, 
                             <Image
                                 src={deleteImg}
                                 alt='uplImg'
+                                style={imageStyle}
                             />
                         </a>
                     </div>
