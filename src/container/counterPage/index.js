@@ -9,6 +9,7 @@ import Image from 'next/image';
 import { downloadAction } from '../../redux/action/downloadAction';
 import { downloadData } from '../../data'
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
+import { toaster } from "../../utils/toaster"
 
 const CounterPage = () => {
   const dispatch = useDispatch()
@@ -98,7 +99,8 @@ const CounterPage = () => {
       "action": revisedAction
     }
     let proposalNo = localStorage.getItem("proposalNo")
-    let fileName = ''
+    let fileName = [ documentList['REVISED_OFFER_DOC'], documentList['REVISED_BI_DOC']]
+    
     dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
       // console.log('resp',resp.data.body)
       setOtp("")
@@ -116,7 +118,7 @@ const CounterPage = () => {
     <div className='card-body'>
       <div className="rvsd_dwnld_outr">
         <div className="rvsd_dwnld" >Please download the below documents to check your revised offer <br /><br />
-          <span className="lnktxtbx" onClick={()=>downloadHandler('Revised_Offer_Doc')}>Counter Offer Letter</span>
+          <span className="lnktxtbx" onClick={()=>downloadHandler('REVISED_OFFER_DOC')}>Counter Offer Letter</span>
           <span className="lnktxtbx" onClick={()=>downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
