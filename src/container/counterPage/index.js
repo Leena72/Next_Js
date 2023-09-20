@@ -85,7 +85,7 @@ const CounterPage = () => {
 
     dispatch(sendOTPAction(data, (resp) => {
       // console.log('res', resp)
-      setRefId(resp?.data?.body?.body.refId)
+      setRefId(resp?.body?.body.refId)
       setShowOtp(true);
       setOverlay(true)
     }))

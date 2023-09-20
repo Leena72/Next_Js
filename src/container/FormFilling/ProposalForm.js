@@ -1,12 +1,12 @@
 import React from 'react'
 import { convertToIST } from '../../utils/utils'
 
-const ProposalForm = ({proposalReversedList}) => {
+const ProposalForm = ({ proposalReversedList }) => {
     const renderHeding = (heading) => {
         switch (heading) {
             case 'Personal_Details':
                 return 'Basic detail Section (Proposer)'
-            case 'Insured_Proposer_Details':
+            case 'Insured_Details':
                 return 'Insured detail Section (Conditional only for Insured-Proposer cases)'
             case 'Nominee_Details':
                 return 'Nominee detail Section'
@@ -35,11 +35,15 @@ const ProposalForm = ({proposalReversedList}) => {
         }
     }
 
+    let listItem = proposalReversedList.filter(ele => {
+        return ele !== undefined
+    })
 
     return (
         <ul className='acc-active-sub-container'>
             {
-                proposalReversedList?.map((item, idx) => (
+                listItem?.map((item, idx) => (
+
                     <li key={idx}>
                         <p>{renderHeding(item.subStatus)}</p>
                         <p>{renderCreateOn(item)}</p>
