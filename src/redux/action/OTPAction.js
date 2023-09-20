@@ -32,7 +32,12 @@ export const verifyOTPAction = (data, proposalNo, fileName, cb) => (dispatch) =>
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName}`,
+        url: data.key ==='REVISED_OFFER'
+        ? 
+        `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName[0]}&fileName=${fileName[1]}`
+        :
+        `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName}`,
+
         headers: {
             "Content-Type": "application/json",
             "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")

@@ -45,6 +45,9 @@ const FormFilling = ({ data, label, proposalNo }) => {
         let Personal_Details = proposalFormList.filter(item => {
           return item.subStatus === 'Personal_Details';
         });
+        let Insured_Details = proposalFormList.filter(item => {
+          return item.subStatus === 'Insured_Details';
+        });
         let Nominee_Details = proposalFormList.filter(item => {
           return item.subStatus === 'Nominee_Details';
         });
@@ -52,7 +55,7 @@ const FormFilling = ({ data, label, proposalNo }) => {
           return item.subStatus === 'Health_Details';
         });
         let proposalReversedList = []
-        proposalReversedList.push(Personal_Details[0], Nominee_Details[0], Health_Details[0])
+        proposalReversedList.push(Personal_Details[0], Insured_Details[0],Nominee_Details[0], Health_Details[0])
 
         showElement = proposalFormList?.length !== 0
           ?

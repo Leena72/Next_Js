@@ -28,7 +28,7 @@ const Layout1 = ({ formName, formData, formChangeHandler, formik}) => {
                                             as="textarea" 
                                             id={ele.id} 
                                             name={ele.name}
-                                            value={ele.answer}
+                                            value={formik.values?.[ele.name]}
                                             onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: item },formik.handleChange)} 
                                             />
                                             {formik.errors?.[ele.name] && formik.touched?.[ele.name] ? (
