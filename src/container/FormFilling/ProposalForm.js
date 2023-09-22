@@ -31,7 +31,7 @@ const ProposalForm = ({ proposalReversedList }) => {
             return 'Completed:' + ' ' + newdate
         }
         else {
-            return <div>Yet to start</div>
+            return <div className='subHeading'>Yet to start</div>
         }
     }
 
@@ -45,8 +45,8 @@ const ProposalForm = ({ proposalReversedList }) => {
                 listItem?.map((item, idx) => (
 
                     <li key={idx}>
-                        <p>{renderHeding(item.subStatus)}</p>
-                        <p>{renderCreateOn(item)}</p>
+                        <div className='heading'>{renderHeding(item.subStatus)}</div>
+                        <div className='subHeading'>{renderCreateOn(item)}</div>
                     </li>
                 ))
             }

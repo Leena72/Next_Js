@@ -136,7 +136,7 @@
 }
 
 .acc-show-content {
-    padding: 1em;
+    padding: 15px 15px 0;
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
 
@@ -344,33 +344,32 @@
         border-radius: 15px;
         margin-bottom: 1em;
 
-        p {
-            &:nth-of-type(1) {
-                font-size: $font-16;
-                color: $label-blue;
-                font-family: $font-family-OpenSanaSemiBold;
+        .heading {
+            font-size: $font-16;
+            color: $label-blue;
+            font-family: $font-family-OpenSanaSemiBold;
 
-                @include mquery(ipad) {
-                    font-size: $font-18;
-                }
-            }
-
-            &:nth-of-type(2) {
-                color: $red3;
-                font-size: $font-15;
-                font-family: $font-family-OpenSanaRegular;
-                font-style: italic;
+            @include mquery(ipad) {
+                font-size: $font-18;
             }
         }
 
-        &:first-of-type {
-            margin-top: 1em;
+        .subHeading {
+            color: $red3;
+            font-size: $font-15;
+            font-family: $font-family-OpenSanaRegular;
+            font-style: italic;
         }
+    
 
-        &:last-of-type {
-            margin-bottom: 0;
-        }
+    &:first-of-type {
+        margin-top: 1em;
     }
+
+    &:last-of-type {
+        margin-bottom: 0;
+    }
+}
 }
 
 // add Non Med Accordion
@@ -472,4 +471,9 @@
 
         &:nth-of-type(2) {}
     }
+}
+
+.sub-Health-acc{
+    width: 97%;
+    margin: auto;
 }

@@ -6,7 +6,7 @@ import deleteImg from "../../Assets/images/delete.png"
 
 
 
-export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, showViewDelete, deleteDocHandler, viewDocHandler }) => {
+export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showViewDelete, deleteDocHandler, viewDocHandler }) => {
     const imageStyle = {
         marginRight: '8px',
         width: '20px',
@@ -16,7 +16,7 @@ export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label, 
     return (
         <div
             className={`upl-doc-container upl-doc`}
-            key={key}
+            // key={key}
 
         >
             <div className='upl-heading'>{data.indexValue}</div>

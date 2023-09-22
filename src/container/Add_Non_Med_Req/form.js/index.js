@@ -84,7 +84,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title,newTitle,userTy
 
     }, []);
     const renderElement = (formName, formValues, formik, title,newTitle,userType) => {
-        console.log("checking===>", formName, formData, formValues, formik, title, formData)
+        // console.log("checking===>", formName, formData, formValues, formik, title, formData)
         const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
         const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
         let newFormData = []
@@ -93,7 +93,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title,newTitle,userTy
         }else{
             newFormData=formData;
         }
-        console.log("check data for new work",userType,accDetails?.additionalInfoDocs[userType],getApidata && getApidata[0]?.data,getApidata && getApidata[0] && [...getApidata[0]?.data])
+        // console.log("check data for new work",userType,accDetails?.additionalInfoDocs[userType],getApidata && getApidata[0]?.data,getApidata && getApidata[0] && [...getApidata[0]?.data])
         return <FormLayout
             formName={formName}
             formData={newFormData}
@@ -106,11 +106,11 @@ const NonMedForm = ({ formName, formValues, setFormValues, title,newTitle,userTy
 
 
     const formSaveHandler = (e, formName,newTitle,userType) => {
-        console.log('formValues', formValues[formName], Object.values(formValues[formName]))
+        // console.log('formValues', formValues[formName], Object.values(formValues[formName]))
         const filterQuestion = accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
         // let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         // let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
-        console.log('docQuesList',accDetails?.additionalInfoDocs[userType]?.quesList,userType,filterQuestion && filterQuestion[0])
+        // console.log('docQuesList',accDetails?.additionalInfoDocs[userType]?.quesList,userType,filterQuestion && filterQuestion[0])
         let data = Object.values(formValues[formName])
         let payload = {
             "policyNumber": accDetails?.policyNumber,
@@ -123,9 +123,9 @@ const NonMedForm = ({ formName, formValues, setFormValues, title,newTitle,userTy
                 }
             ]
         }
-        console.log('payload',filterQuestion[0]?.id, data)
+        // console.log('payload',filterQuestion[0]?.id, data)
         dispatch(saveQuestionnaireAction(payload, res => {
-            console.log('res', res)
+            // console.log('res', res)
         }))
     }
     return (

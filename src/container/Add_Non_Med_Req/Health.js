@@ -109,92 +109,73 @@ const Health = ({ insureddata, proposerdata, category }) => {
       case 'Insured':
         return <>{
           insureddata?.length > 0
-          &&
-          <>
-            <ul className='nonMedListBlock'>
-
-              {insureddata.map(item => {
-                return (
-                  <li className='nonMedList' key={item.id} >
-                    <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
-                      <div>{item.title}</div>
-                      <div className='acc-active-icon '>
-                        <Image
-                          className={openAcc === item.id ? 'upArrow' : ''}
-                          src={dwnArrow}
-                          alt='icon'
-                        />
-                      </div>
+          ?
+          <ul className='nonMedListBlock'>
+            {insureddata.map(item => {
+              return (
+                <li className='nonMedList' key={item.id} >
+                  <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                    <div>{item.title}</div>
+                    <div className='acc-active-icon '>
+                      <Image
+                        className={openAcc === item.id ? 'upArrow' : ''}
+                        src={dwnArrow}
+                        alt='icon'
+                      />
                     </div>
-                    {openAcc === item.id ?
-                      <div className='show'>
-                        {
-                          renderElement(item, 'primaryInsuredDocumentDetail')
-                        }
-                      </div>
-                      : ''
-                    }
-                  </li>
-                )
-              })}
-            </ul>
-            <div className='consent-blk submit-consent-btn'>
-              <div className='form-btn'>
-                <Button
-                  className={'activeBtn'}
-                  clickHandler={finalFormSubmit}
-                  type='button'
-                  buttonText={'Submit'}
-                // disabled={'true'}
-                />
-              </div>
+                  </div>
+                  {openAcc === item.id ?
+                    <div className='show'>
+                      {
+                        renderElement(item, 'primaryInsuredDocumentDetail')
+                      }
+                    </div>
+                    : ''
+                  }
+                </li>
+              )
+            })}
+          </ul>
+          :
+          <div className='blue-block-container'>
+              <p>Documents are not available!</p>
             </div>
-          </>
         }
         </>
       case 'Proposer':
         return <>  {
           proposerdata?.length > 0
-          &&
-          <>
-            <ul className='nonMedListBlock'>
-              {proposerdata.map(item => {
-                return (
-                  <li className='nonMedList' key={item.id} >
-                    <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
-                      <div>{item.title}</div>
-                      <div className='acc-active-icon '>
-                        <Image
-                          className={openAcc === item.id ? 'upArrow' : ''}
-                          src={dwnArrow}
-                          alt='icon'
-                        />
-                      </div>
+          ?
+          <ul className='nonMedListBlock'>
+            {proposerdata.map(item => {
+              return (
+                <li className='nonMedList' key={item.id} >
+                  <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                    <div>{item.title}</div>
+                    <div className='acc-active-icon '>
+                      <Image
+                        className={openAcc === item.id ? 'upArrow' : ''}
+                        src={dwnArrow}
+                        alt='icon'
+                      />
                     </div>
-                    {openAcc === item.id ?
-                      <div className='show'>
-                        {
-                          renderElement(item, 'proposerDocumentDetail')
-                        }
-                      </div>
-                      : ''
-                    }
-                  </li>
-                )
-              })}
-            </ul>
-            <div className='consent-blk submit-consent-btn'>
-              <div className='form-btn'>
-                <Button
-                  className={'activeBtn'}
-                  clickHandler={finalFormSubmit}
-                  type='button'
-                  buttonText={'Submit'}
-                // disabled={'true'}
-                />
-              </div>
+                  </div>
+                  {openAcc === item.id ?
+                    <div className='show'>
+                      {
+                        renderElement(item, 'proposerDocumentDetail')
+                      }
+                    </div>
+                    : ''
+                  }
+                </li>
+              )
+            })}
+          </ul>
+          :
+          <div className='blue-block-container'>
+              <p>Documents are not available!</p>
             </div>
-          </>
         } </>
 
       default:
@@ -207,26 +188,39 @@ const Health = ({ insureddata, proposerdata, category }) => {
         className="overlay__popup_nw"
         style={{ display: overlay ? "block" : "none" }}
       ></div>
-      <ul>
-        {category?.map((item, id) =>
-          <li>
-            <Accordion2
-              item={item}
-              openAccordion={openCatAcc}
-              toggleAccordion={toggleCatAccordion}
-            />
-            {openCatAcc === item.id ?
-              <div className='show'>
-                {
-                  renderCatElement(item, item.title)
-                }
-              </div>
-              : ''
-            }
+      <>
+        <ul className='sub-Health-acc'>
+          {category?.map((item, id) =>
+            <li key={id}>
+              <Accordion2
+                item={item}
+                openAccordion={openCatAcc}
+                toggleAccordion={toggleCatAccordion}
+              />
+              {openCatAcc === item.id ?
+                <div className='show'>
+                  {
+                    renderCatElement(item, item.title)
+                  }
+                </div>
+                : ''
+              }
 
-          </li>
-        )}
-      </ul>
+            </li>
+          )}
+        </ul>
+        <div className='consent-blk submit-consent-btn'>
+          <div className='form-btn'>
+            <Button
+              className={'activeBtn'}
+              clickHandler={finalFormSubmit}
+              type='button'
+              buttonText={'Submit'}
+            // disabled={'true'}
+            />
+          </div>
+        </div>
+      </>
 
       {showOtp &&
         <div className={`header-otp-popup popupcmn ${showOtp && 'active'}`} >

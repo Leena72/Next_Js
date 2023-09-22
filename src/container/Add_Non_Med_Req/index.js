@@ -13,11 +13,11 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
         const proposerCheckData = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
         });
-        console.log("checkData for medical===", data.list, InsuredCheckData.flat(), proposerCheckData.flat())
+        // console.log("checkData for medical===", data.list, InsuredCheckData.flat(), proposerCheckData.flat())
         switch (title) {
             case 'Health and Lifestyle Questionnaire':
-                return <Health insureddata={InsuredCheckData.flat()}
-                    proposerdata={proposerCheckData.flat()}
+                return <Health insureddata={InsuredCheckData && InsuredCheckData.flat()}
+                    proposerdata={proposerCheckData && proposerCheckData.flat()}
                     accDetails={accDetails}
                     category={[{
                         id: 1,
