@@ -3149,7 +3149,7 @@ export const downloadData = [
         title: 'Counter Offer',
         msg: '',
         downloadStatus: false,
-        proposer: 'Revised_Offer_Doc',
+        proposer: 'REVISED_OFFER_DOC',
         insured: ''
     },
     {

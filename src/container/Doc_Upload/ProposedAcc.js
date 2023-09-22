@@ -137,7 +137,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         }))
     }
     const AddInfodeleteDocHandler = () => {
-        let item=deleteItem
+        let item = deleteItem
         let payload = JSON.parse(JSON.stringify(item));
         payload['uwId'] = uwId
         payload['proposalNo'] = customerDetail.proposalNumber
@@ -161,34 +161,36 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         setPreview('')
     }
     return (<>
-        <div className='nonMedListBlock'>
+        <ul className='nonMedListBlock'>
             {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>
+            (<li key={idx}>
                 <UploadDoc
                     label={label}
-                    key={item.idx}
                     data={item}
                     showViewDelete={showViewDelete}
                     clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
                     deleteDocHandler={deleteDocHandler}
                     viewDocHandler={() => viewDocHandler(item)}
                 />
+            </li>
+            )
             )
             }
             {
                 label === 'add-form' &&
                 addNonupload?.map((item, idx) =>
+                (<li key={idx}>
                     <UploadDoc
                         label={label}
-                        key={item.idx}
                         data={item}
                         showViewDelete={showViewDelete || item.url}
                         clickHandleraddNon={clickHandleraddNon}
                         // deleteDocHandler={() => AddInfodeleteDocHandler(item)}
-                        deleteDocHandler={()=>openDeletePopUp(item)}
-
+                        deleteDocHandler={() => openDeletePopUp(item)}
                         viewDocHandler={() => viewDocHandler(item)}
                         uwId={uwId}
                     />
+                </li>)
                 )
             }
             {/* {docData.map(item =>
@@ -207,7 +209,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                 />
             )
             } */}
-        </div>
+        </ul>
         {openUploadModal &&
             <AccPopUp
                 heading={`Select ${modalHeading}`}
@@ -289,10 +291,10 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
 
         }
         {
-           showDeletePopup &&  <DeletePopUpPage
-           onClose={()=>setShowDeletePopup(false)}
-           deleteHandler={AddInfodeleteDocHandler}
-           />
+            showDeletePopup && <DeletePopUpPage
+                onClose={() => setShowDeletePopup(false)}
+                deleteHandler={AddInfodeleteDocHandler}
+            />
         }
     </>
     )

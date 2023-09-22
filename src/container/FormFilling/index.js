@@ -34,6 +34,9 @@ const FormFilling = ({ data, label, proposalNo }) => {
     }
     dispatch(consentHandlerAction(payload))
   }
+  const downloadReceipt=()=>{
+    // console.log('downloadReceipt')
+  }
 
   const renderElement = (data, title) => {
     let showElement;
@@ -42,22 +45,25 @@ const FormFilling = ({ data, label, proposalNo }) => {
         let proposalFormList = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PROPOSAL';
         });
-        let Personal_Details = proposalFormList.filter(item => {
+        let Personal_Details = proposalFormList && proposalFormList.filter(item => {
           return item.subStatus === 'Personal_Details';
         });
-        let Insured_Details = proposalFormList.filter(item => {
+        let Insured_Details = proposalFormList && proposalFormList.filter(item => {
           return item.subStatus === 'Insured_Details';
         });
-        let Nominee_Details = proposalFormList.filter(item => {
+        let Nominee_Details = proposalFormList && proposalFormList.filter(item => {
           return item.subStatus === 'Nominee_Details';
         });
-        let Health_Details = proposalFormList.filter(item => {
+        let Health_Details = proposalFormList && proposalFormList.filter(item => {
           return item.subStatus === 'Health_Details';
         });
         let proposalReversedList = []
-        proposalReversedList.push(Personal_Details[0], Insured_Details[0],Nominee_Details[0], Health_Details[0])
+        proposalReversedList && proposalReversedList.push(Personal_Details && Personal_Details[0],
+          Insured_Details && Insured_Details[0],
+          Nominee_Details && Nominee_Details[0], 
+          Health_Details && Health_Details[0])
 
-        showElement = proposalFormList?.length !== 0
+        showElement = proposalFormList && proposalFormList?.length !== 0
           ?
           <ProposalForm
             data={data.subContent}
@@ -105,7 +111,7 @@ const FormFilling = ({ data, label, proposalNo }) => {
           <FormFieldConsent
             text='To Download the Payment Receipt'
             buttonText='Click Here'
-            clickHandler={consentHandler}
+            clickHandler={downloadReceipt}
           />
           :
           <Payment
