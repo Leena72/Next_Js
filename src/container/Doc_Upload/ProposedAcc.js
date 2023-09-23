@@ -145,7 +145,6 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         dispatch(deleteDocAddInfo(payload, (res) => {
             setShowDeletePopup(false)
             dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
-                window.location.reload(false);
             }))
         })
         )

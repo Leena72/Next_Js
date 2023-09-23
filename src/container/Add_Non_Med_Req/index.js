@@ -7,10 +7,10 @@ import DocumentUpload from '../Doc_Upload';
 const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
     const renderElement = (data, title) => {
-        const InsuredCheckData = accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.quesList.map((item) => {
+        const InsuredCheckData = accDetails && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.quesList.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
         });
-        const proposerCheckData = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList.map((item) => {
+        const proposerCheckData = accDetails && accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
         });
         // console.log("checkData for medical===", data.list, InsuredCheckData.flat(), proposerCheckData.flat())
