@@ -18,7 +18,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
     return (
         <>
             {
-                formData.map(item => {
+                formData && formData.length>0 && formData.map(item => {
                     return (
                         <div className='form-block' key={item.id}>
                             <div className={`${item.declaration !== '' ? 'form-declaration' : 'hide'}`}>{item.declaration}</div>

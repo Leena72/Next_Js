@@ -9,10 +9,11 @@ const Button = (props) => {
             onClick={props.clickHandler}
             type={props.type}
             autoFocus={props.autofocus}
-            name='cta button'
+            value={props.buttonText}
+            name={props.name?props.name:'cta button'}
         >
-            {props.buttonIcon && <span className={props.buttonIcon}></span>}
-            {props.buttonText && <span className="">{props.buttonText}</span>}
+            {props.buttonIcon }
+            {props.buttonText}
         </button>
     )
 }

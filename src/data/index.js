@@ -2874,7 +2874,7 @@ export const questionnaireList = {
             id: '5',
             question: 'Have you ever had any operation for your thyroid disorder (e.g. thyroidectomy)? If so, please provide full details with copies of any reports in your possession (date of operation, type of operation, findings etc).',
             answer: '',
-            name: 'thyroid_disorder',
+            name: 'thyroid_disorder2',
             declaration: '',
             heading: '',
             type: 'textbox',
