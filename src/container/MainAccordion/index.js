@@ -23,23 +23,31 @@ const MainAccordion = ({ data }) => {
     // which list acc to be shown
     let renderItem = true // by default render 
     accordionDetails?.map((acc) => {
-      if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT' && item.heading === 'Additional Non-Medical Requirements') {
-        if (acc?.subStatus == 'AR' && acc?.subStatus === null) {
+      if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT' &&
+        item.heading === 'Additional Non-Medical Requirements') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '' || acc?.subStatus !== 'AR') {
           renderItem = false
         }
       }
-      else if (renderItem && acc.status === 'REVISED_OFFER' && item.heading === 'Revised Offer') {
-        if (acc?.subStatus !== 'CO') {
+      else if (renderItem && acc.status === 'REVISED_OFFER' &&
+        item.heading === 'Revised Offer') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '' || acc?.subStatus !== 'CO') {
           renderItem = false
         }
       }
-      else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' && item.heading === 'Payment Required') {
-        if (acc?.subStatus !== 'CO' || acc?.subStatus !== 'SP') {
+      else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' &&
+        item.heading === 'Payment Required') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '' || acc?.subStatus !== 'CO' || acc?.subStatus !== 'SP') {
           renderItem = false
         }
       }
-      else if (renderItem && acc.status === 'DATA_CHANGE' && item.heading === 'Consent for change in the application details') {
-        if (acc?.subStatus !== 'AD') {
+      else if (renderItem && acc.status === 'DATA_CHANGE' &&
+        item.heading === 'Consent For Change In The Application Details') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '' || acc?.subStatus !== 'AD') {
           renderItem = false
         }
       }
@@ -263,8 +271,12 @@ const MainAccordion = ({ data }) => {
                     />
                   </div>
                   <div className='acc-content'>
-                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>{item.heading}</p>
-                    <div className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>{renderCreateOn(item.title)}</div>
+                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>
+                      {item.heading}
+                    </p>
+                    <div className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>
+                      {renderCreateOn(item.title)}
+                    </div>
                   </div>
                 </div>
                 <div className='acc-activeState'>

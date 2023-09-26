@@ -60,7 +60,7 @@ export const applicationData = [
     {
         id: 1,
         heading: 'Quote Generated',
-        title:'QUOTE',
+        title: 'QUOTE',
         subHeading: 'Completed: 26 JUNE, 2023 | 09:06 PM',
         completed: false,
         dummyContent: 'Content here',
@@ -82,7 +82,7 @@ export const applicationData = [
     {
         id: 2,
         heading: 'Form Filling',
-        title:'FORM_FILLING',
+        title: 'FORM_FILLING',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: '',
@@ -93,7 +93,7 @@ export const applicationData = [
             {
                 id: 1,
                 heading: 'Proposal Form',
-                title:'PROPOSAL',
+                title: 'PROPOSAL',
                 subHeading: 'Yet to start',
                 img: img_22,
                 dummyContent: '',
@@ -124,7 +124,7 @@ export const applicationData = [
             {
                 id: 2,
                 heading: 'Insta Verify',
-                title:'INSTA_VERIFY',
+                title: 'INSTA_VERIFY',
                 subHeading: 'Yet to start',
                 img: img_2,
                 dummyContent: 'Dummy Content',
@@ -134,7 +134,7 @@ export const applicationData = [
             {
                 id: 3,
                 heading: 'Customer Consent',
-                title:'CUSTOMER_CONSENT',
+                title: 'CUSTOMER_CONSENT',
                 subHeading: 'Yet to start',
                 img: img_3,
                 dummyContent: '3',
@@ -144,7 +144,7 @@ export const applicationData = [
             {
                 id: 4,
                 heading: 'Payment',
-                title:'PAYMENT',
+                title: 'PAYMENT',
                 subHeading: 'Yet to start',
                 img: img_4,
                 dummyContent: '3',
@@ -154,7 +154,7 @@ export const applicationData = [
             {
                 id: 5,
                 heading: 'Document Upload',
-                title:'DOC_UPLOAD',
+                title: 'DOC_UPLOAD',
                 subHeading: 'Yet to start',
                 img: img_5,
                 dummyContent: '3',
@@ -164,7 +164,7 @@ export const applicationData = [
             {
                 id: 6,
                 heading: 'Proposal Submission',
-                title:'PROPOSAL_SUBMISSION',
+                title: 'PROPOSAL_SUBMISSION',
                 subHeading: 'Yet to start',
                 img: img_6,
                 dummyContent: '3',
@@ -176,7 +176,7 @@ export const applicationData = [
     {
         id: 3,
         heading: 'Medical Requirement',
-        title:'MEDICAL_REQUIREMENT',
+        title: 'MEDICAL_REQUIREMENT',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -198,7 +198,7 @@ export const applicationData = [
     {
         id: 4,
         heading: 'Additional Non-Medical Requirements',
-        title:'ADDITIONAL_NON_MEDICAL_REQUIREMENT',
+        title: 'ADDITIONAL_NON_MEDICAL_REQUIREMENT',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -220,7 +220,7 @@ export const applicationData = [
     {
         id: 5,
         heading: 'Revised Offer',
-        title:'REVISED_OFFER',
+        title: 'REVISED_OFFER',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -242,7 +242,7 @@ export const applicationData = [
     {
         id: 6,
         heading: 'Consent For Change In The Application Details',
-        title:'DATA_CHANGE',
+        title: 'DATA_CHANGE',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -264,7 +264,7 @@ export const applicationData = [
     {
         id: 7,
         heading: 'Payment Required',
-        title:'PAYMENT_REQUIREMENT',
+        title: 'PAYMENT_REQUIREMENT',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -286,7 +286,7 @@ export const applicationData = [
     {
         id: 8,
         heading: 'Quality Check',
-        title:'QUALITY_CHECK',
+        title: 'QUALITY_CHECK',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -308,7 +308,7 @@ export const applicationData = [
     {
         id: 9,
         heading: 'Medical Risk Verification',
-        title:'MEDICAL_RISK_VERIFICATION',
+        title: 'MEDICAL_RISK_VERIFICATION',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -330,7 +330,7 @@ export const applicationData = [
     {
         id: 10,
         heading: 'Financial and Medical Risk Verification',
-        title:'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION',
+        title: 'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -352,7 +352,7 @@ export const applicationData = [
     {
         id: 11,
         heading: 'Policy Decision',
-        title:'POLICY_STATUS',
+        title: 'POLICY_STATUS',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -384,67 +384,67 @@ export const questionnaireData = [
                 id: 1,
                 title: 'Alcohol Habit Questionnaire ',
                 formName: 'ALCOHOL_HABIT_QUESTION',
-                newTitle:'Alcohol Questionnaire'
+                newTitle: 'Alcohol Questionnaire'
             },
             {
                 id: 2,
                 title: 'Chest Pain Questionnaire',
                 formName: 'CHEST_PAIN_QUESTION',
-                newTitle:'Chest Pain Questionnaire'
+                newTitle: 'Chest Pain Questionnaire'
             },
             {
                 id: 3,
                 title: 'Deformity Questionnaire',
                 formName: 'DEFORMITY_QUESTION',
-                newTitle:'Deformity questionnaire'
+                newTitle: 'Deformity questionnaire'
             },
             {
                 id: 4,
                 title: 'Diabetes Questionnaire',
                 formName: 'diabetes',
-                newTitle:'Diabetes Questionnaire'
+                newTitle: 'Diabetes Questionnaire'
             },
             {
                 id: 5,
                 title: 'Digestive Disorder Questionnaire',
                 formName: 'DIGESTIVE_DISORDER_QUESTION',
-                newTitle:'Digestive Disorder Questionnaire'
+                newTitle: 'Digestive Disorder Questionnaire'
             },
             {
                 id: 6,
                 title: 'Epilepsy Questionnaire',
                 formName: 'EPILEPSY_QUESTION',
-                newTitle:'Epilepsy Questionnaire'
+                newTitle: 'Epilepsy Questionnaire'
             },
             {
                 id: 7,
                 title: 'Musculoskeletal Questionnaire',
                 formName: 'MUSCULO_SKELETAL_DISORDERS_QUESTION',
-                newTitle:'Musculoskeletal Questionnaire'
+                newTitle: 'Musculoskeletal Questionnaire'
             },
             {
                 id: 8,
                 title: 'Nervous Disorder Questionnaire',
                 formName: 'NERVOUS_DISORDER_QUESTION',
-                newTitle:'Nervous Disorder Questionnaire'
+                newTitle: 'Nervous Disorder Questionnaire'
             },
             {
                 id: 9,
                 title: 'Resipratory Disorder Questionnaire',
                 formName: 'RESPIRATORY_DISORDER_QUESTION',
-                newTitle:'Respiratory disorder Questionnaire'
+                newTitle: 'Respiratory disorder Questionnaire'
             },
             {
                 id: 10,
                 title: 'Thyroid Disorder Questionnaire',
                 formName: 'THYROID_DISORDER_QUESTION',
-                newTitle:'Thyroid Questionnaire'
+                newTitle: 'Thyroid Questionnaire'
             },
             {
                 id: 11,
                 title: 'Tumour Questionnaire',
                 formName: 'tumour',
-                newTitle:'Tumour Questionnaire'
+                newTitle: 'Tumour Questionnaire'
             },
         ]
     },
@@ -3292,6 +3292,24 @@ export const statusApi =
     "pasaCase": false,
     "premiumPaymentTerm": 5,
     "policyTerm": 15,
+    "enachCompleted": false,
+    "instaDetails": null,
+    "customerConsentRequired": false,
+    "agentConsentRequired": false,
+    "instaRequired": true,
+    "proposerName": "ONEE",
+    "insuredName": null,
+    "issuanceType": "NEWGEN",
+    "paymentDetails": [],
+    "counterOfferCount": 0,
+    "paymentRenewalRequired": false,
+    "paymentCompleted": false,
+    "paymentOtpCompleted": false,
+    "additionalQuestionnaireListDTO": {
+        "proposerAdditionalQuestionnaireDocs": [],
+        "insuredAdditionalQuestionnaireDocs": [],
+        "jointAdditionalQuestionnaireDocs": []
+    },
     "newgenStatusResponseDTOList": [
         {
             "id": 3865816,
@@ -3300,7 +3318,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865814,
@@ -3309,7 +3328,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865813,
@@ -3318,7 +3338,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865811,
@@ -3327,16 +3348,24 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
-            "id": 3865810,
+
+            "id": 3894934,
             "status": "PAYMENT",
             "subStatus": "PAYMENT",
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 07:02:00",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-25 09:52:17",
+            "createdOn": "2023-09-25 09:52:17",
+            "additionalInfo": {},
+            "paymentInfo": {
+                "paymentAmountCompleted": true,
+                "paymentRenewal": false,
+                "enachCompleted": false,
+                "paymentOtpCompleted": true
+            }
         },
         {
             "id": 3865807,
@@ -3345,7 +3374,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865805,
@@ -3354,7 +3384,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 07:01:13",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865804,
@@ -3363,16 +3394,27 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 06:59:39",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3823063,
             "status": "PROPOSAL",
-            "subStatus": "Insured_Proposer_Details",
+            "subStatus": "Insured_Details",
             "actual_status": "COMPLETED",
             "updatedOn": "2023-08-17 15:32:46",
             "createdOn": "2023-08-17 15:32:46"
-        }, 
+        },
+        {
+            "id": 3894929,
+            "status": "PROPOSAL",
+            "subStatus": "Document_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-25 09:52:17",
+            "createdOn": "2023-09-25 09:52:17",
+            "additionalInfo": {},
+            "paymentInfo": null
+        },
         {
             "id": 3865803,
             "status": "PROPOSAL",
@@ -3380,7 +3422,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 06:59:15",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865802,
@@ -3389,7 +3432,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865808,
@@ -3398,7 +3442,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865809,
@@ -3407,7 +3452,30 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-07 06:48:54",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": "{\"id\": null, \"pt\": \"10\", \"sa\": \"SA\", \"ppt\": \"20\", \"smoker\": \"YES\", \"planName\": \"test Pan\", \"loadingType\": \":LoadingType\", \"riderStatus\": [{\"status\": \"Axctive\", \"partyRole\": \"20\", \"riderName\": \"10\"}], \"tempLoading\": \"testtemLoading\", \"medicalLoading\": null, \"revisedPremium\": 20000, \"shortfallPremium\": 100, \"counterOfferReason\": \"testC ounter Offer\", \"tempLoadingDuration\": \"testeLoaduruation\"}"
+            "additionalInfo": {
+                "counterOfferDetails": {
+                    "Id": "1",
+                    "planName": "ddDDA",
+                    "tempLoading": "DSADAd",
+                    "tempLoadingDuration": "asdd",
+                    "medicalLoding": "ddA",
+                    "pt": "5",
+                    "ppt": "7556",
+                    "riderStatus": [
+                        {
+                            "riderName": "jgvghjv",
+                            "partyRole": "dufh",
+                            "status": "dhfc"
+                        }
+                    ],
+                    "sa": "hf",
+                    "smoker": "jfvghg",
+                    "loadingType": "chgvchg",
+                    "counterOfferReason": "xhdcgf",
+                    "revisedPremium": 57685,
+                    "shortfallPremium": 76878
+                }
+            }
         },
         {
             "id": 3865815,
@@ -3416,7 +3484,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 08:46:58",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865806,
@@ -3425,7 +3494,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-07 06:54:21",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865812,
@@ -3434,7 +3504,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 09:05:35",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         }
     ],
     "requiredDocuments": {
@@ -3546,71 +3617,49 @@ export const statusApi =
         "NEW_COVID_TAG_NAME_2": "3108426548covid_19.pdf",
         "AGENT_CONFIDENTIAL_REPORT": "AgentConfidentialReport.pdf"
     },
-    "paymentReceipts": [],
+    "paymentReceipts": [
+        "RECIEP_12321393232_1.pdf",
+        "RECIEP_12321393232_2.pdf"
+    ],
     "additionalInfoDocs": {
-        "uwId": 48521,
+        "uwId": 49786,
         "proposerDocumentDetail": {
             "guid": null,
             "id": null,
-            "medicalScheduling": false,
-            "ServiceDocumentList": [
+            "quesList": [
                 {
                     "id": 1,
-                    "proposalNumber": null,
-                    "partyType": "OWNER",
-                    "docCategoryTypeCd": "QUES",
-                    "docCategoryCd": "HYPER",
-                    "documentCd": "HYPER",
-                    "docCategoryTypeCdValue": null,
-                    "docCategoryCdValue": null,
                     "documentCdValue": "Hypertension Questionnaire",
-                    "mandatoryDoc": "true",
-                    "indexValue": "Medical Questionnaire",
-                    "url": "owner_hyper_ques_1693909784441_front_side.pdf",
-                    "side": null,
-                    "documentNumber": null,
-                    "isAutoGeneratedFl": "true",
-                    "documentMovedStatus": false,
-                    "questions": [
-                        {
-                            "questionId": null,
-                            "questionSetCD": null,
-                            "questionTypeCD": null,
-                            "dataElementCD": null,
-                            "answer": "testAnswer1",
-                            "question": "testQuestions1",
-                            "details": null,
-                            "rowGuid": null,
-                            "subQuestions": null,
-                            "editable": null
-                        },
-                        {
-                            "questionId": null,
-                            "questionSetCD": null,
-                            "questionTypeCD": null,
-                            "dataElementCD": null,
-                            "answer": "testAnswer2",
-                            "question": "testQuestions2",
-                            "details": null,
-                            "rowGuid": null,
-                            "subQuestions": null,
-                            "editable": null
-                        },
-                        {
-                            "questionId": null,
-                            "questionSetCD": null,
-                            "questionTypeCD": null,
-                            "dataElementCD": null,
-                            "answer": "testAnswer3",
-                            "question": "testQuestions3",
-                            "details": null,
-                            "rowGuid": null,
-                            "subQuestions": null,
-                            "editable": null
-                        }
-                    ],
-                    "questionnaire": true
+                    "documentCd": "HYPER",
+                    "documentCategoryCd": "HYPER",
+                    "documentCategoryTypeCd": "QUES",
+                    "partyType": "OWNER",
+                    "documentSide": null,
+                    "url": ""
                 },
+                {
+                    "id": 3,
+                    "documentCdValue": "Digestive Disorder Questionnaire",
+                    "documentCd": "DDQ",
+                    "documentCategoryCd": "MQ",
+                    "documentCategoryTypeCd": "QUES",
+                    "partyType": "OWNER",
+                    "documentSide": null,
+                    "url": ""
+                }
+            ],
+            "quesDataList": [
+                {
+                    "id": 1,
+                    "data": []
+                },
+                {
+                    "id": 3,
+                    "data": []
+                }
+            ],
+            "medicalScheduling": false,
+            "ServiceDocumentList": [
                 {
                     "id": 2,
                     "proposalNumber": null,
@@ -3621,12 +3670,12 @@ export const statusApi =
                     "docCategoryTypeCdValue": null,
                     "docCategoryCdValue": null,
                     "documentCdValue": "PAN Card",
-                    "mandatoryDoc": "true",
+                    "mandatoryDoc": null,
                     "indexValue": "Age Proof",
-                    "url": null,
+                    "url": "",
                     "side": null,
                     "documentNumber": null,
-                    "isAutoGeneratedFl": "true",
+                    "isAutoGeneratedFl": null,
                     "documentMovedStatus": false,
                     "questionnaire": false
                 }
@@ -3635,10 +3684,214 @@ export const statusApi =
         "primaryInsuredDocumentDetail": {
             "guid": null,
             "id": null,
+            "quesList": [
+                {
+                    "id": 5,
+                    "documentCdValue": "Thyroid Questionnaire",
+                    "documentCd": "THY",
+                    "documentCategoryCd": "MQ",
+                    "documentCategoryTypeCd": "QUES",
+                    "partyType": "INSURER",
+                    "documentSide": null,
+                    "url": "insurer_thy_ques_1695207746626_front_side.pdf"
+                },
+                {
+                    "id": 6,
+                    "documentCdValue": "Chest Pain Questionnaire",
+                    "documentCd": "CPQ",
+                    "documentCategoryCd": "MQ",
+                    "documentCategoryTypeCd": "QUES",
+                    "partyType": "INSURER",
+                    "documentSide": null,
+                    "url": "insurer_cpq_ques_1695207746811_front_side.pdf"
+                }
+            ],
+            "quesDataList": [
+                {
+                    "id": 5,
+                    "data": [
+                        {
+                            "questionId": "1",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "",
+                            "question": "",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [
+                                {
+                                    "questionId": "1",
+                                    "questionSetCD": "",
+                                    "questionTypeCD": "text",
+                                    "dataElementCD": "dataElelementCD",
+                                    "answer": "sddasd",
+                                    "question": "If so, please provide details below",
+                                    "details": "testDeatils",
+                                    "rowGuid": "testRowGuide",
+                                    "subQuestions": null,
+                                    "editable": "true"
+                                }
+                            ],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "2",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "sdasd",
+                            "question": "What is the type of thyroid disorder. Hypothyroidism/Hyperthyroidism/ Thyroiditis/Goitre",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "3",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "sadasd",
+                            "question": "When were you first diagnosed with this condition?",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "4",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "",
+                            "question": "",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [
+                                {
+                                    "questionId": "1",
+                                    "questionSetCD": "",
+                                    "questionTypeCD": "text",
+                                    "dataElementCD": "dataElelementCD",
+                                    "answer": "sdsdf",
+                                    "question": "Date of the investigation or test",
+                                    "details": "testDeatils",
+                                    "rowGuid": "testRowGuide",
+                                    "subQuestions": null,
+                                    "editable": "true"
+                                },
+                                {
+                                    "questionId": "2",
+                                    "questionSetCD": "",
+                                    "questionTypeCD": "text",
+                                    "dataElementCD": "dataElelementCD",
+                                    "answer": "sddsad",
+                                    "question": "Name and address of Doctor",
+                                    "details": "testDeatils",
+                                    "rowGuid": "testRowGuide",
+                                    "subQuestions": null,
+                                    "editable": "true"
+                                },
+                                {
+                                    "questionId": "3",
+                                    "questionSetCD": "",
+                                    "questionTypeCD": "text",
+                                    "dataElementCD": "dataElelementCD",
+                                    "answer": "sadasd",
+                                    "question": "Details of findings",
+                                    "details": "testDeatils",
+                                    "rowGuid": "testRowGuide",
+                                    "subQuestions": null,
+                                    "editable": "true"
+                                }
+                            ],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "5",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "sadasd",
+                            "question": "Have you ever had any operation for your thyroid disorder (e.g. thyroidectomy)? If so, please provide full details with copies of any reports in your possession (date of operation, type of operation, findings etc).",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "6",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "sadsad",
+                            "question": "Provide treatment details (name and dosage of the medicines)",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "7",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "sadasd",
+                            "question": "Do you have heart related problems arising out of thyroid disorder? If so, please provide details",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "8",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "sdsad",
+                            "question": "Do you have visual defect, loss of appetite, diarrhoea, tremor of hands, increased perspiration due to the thyroid disorder? If so, please provide details.",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        },
+                        {
+                            "questionId": "9",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "sadasd",
+                            "question": "Please do provide additional information, if any, with regards the thyroid disorder which will assist in processing your proposal.",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        }
+                    ]
+                },
+                {
+                    "id": 6,
+                    "data": [
+                        {
+                            "questionId": "8",
+                            "questionSetCD": "",
+                            "questionTypeCD": "text",
+                            "dataElementCD": "dataElelementCD",
+                            "answer": "d",
+                            "question": "Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.",
+                            "details": null,
+                            "rowGuid": "testRowGuide",
+                            "subQuestions": [],
+                            "editable": "true"
+                        }
+                    ]
+                }
+            ],
             "medicalScheduling": false,
             "ServiceDocumentList": [
                 {
-                    "id": 3,
+                    "id": 4,
                     "proposalNumber": null,
                     "partyType": "INSURER",
                     "docCategoryTypeCd": "PAN",
@@ -3647,12 +3900,12 @@ export const statusApi =
                     "docCategoryTypeCdValue": null,
                     "docCategoryCdValue": null,
                     "documentCdValue": "PAN Card",
-                    "mandatoryDoc": "true",
+                    "mandatoryDoc": null,
                     "indexValue": "Age Proof",
-                    "url": null,
+                    "url": "",
                     "side": null,
                     "documentNumber": null,
-                    "isAutoGeneratedFl": "true",
+                    "isAutoGeneratedFl": null,
                     "documentMovedStatus": false,
                     "questionnaire": false
                 }
@@ -3660,7 +3913,17 @@ export const statusApi =
         },
         "jointLifeDocumentDetail": null
     },
-    "instaDetails": null,
+    "additionalQuestionnaireListDTO": {
+        "proposerAdditionalQuestionnaireDocs": [
+            "Hypertension_Questionnaire.pdf",
+            "Digestive_Disorder_Questionnaire.pdf"
+        ],
+        "insuredAdditionalQuestionnaireDocs": [
+            "Thyroid_Disorder_Questionnaire.pdf",
+            "Chest_Pain_Questionnaire.pdf"
+        ],
+        "jointAdditionalQuestionnaireDocs": []
+    },
     "consentDetail": {
         "whatsAppOpt": false,
         "whatsAppCommunicationAgree": false,
@@ -3691,11 +3954,6 @@ export const statusApi =
         "customerConsentRejectedReason": null,
         "customerConsentRejected": false
     },
-    "customerConsentRequired": false,
-    "agentConsentRequired": false,
-    "instaRequired": true,
-    "proposerName": "ONEE",
-    "insuredName": null
 }
 
 
@@ -3964,7 +4222,7 @@ export const consentForChangeData = [
 
 
 const PolicySubStatus = {
-    "PM":"Policy Approved",
+    "PM": "Policy Approved",
     "PI": "Policy Issued",
     "PD": "Policy declined",
     "PP": "policy postponed",

@@ -4,6 +4,9 @@ import { toaster } from "../../utils/toaster"
 
 
 export const sendOTPAction = (data, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+    });
     Axios({
         method: "post",
         mode: "no-cors",
@@ -15,6 +18,9 @@ export const sendOTPAction = (data, cb) => (dispatch) => {
         data: data
     })
         .then((res) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             if (res.data.status === "OK") {
                 toaster('success', res?.data?.message);
                 cb(res.data);
@@ -24,6 +30,9 @@ export const sendOTPAction = (data, cb) => (dispatch) => {
             }
         })
         .catch((error) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             toaster('error', error?.message);
         });
 };

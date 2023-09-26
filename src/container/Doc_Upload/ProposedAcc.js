@@ -23,6 +23,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
     const [proposedDocList, setproposedDocList] = useState(null)
     const [showViewDelete, setshowViewDelete] = useState(false)
     const [showDeletePopup, setShowDeletePopup] = useState(false)
+    const [proposalHeader, setProposalHeader] = useState('')
     const [deleteItem, setDeleteItem] = useState('')
     const [fileObject, setfileObject] = useState('')
     const [preview, setPreview] = useState({ url: '', data: null })
@@ -51,9 +52,10 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         demoDoc = addNonupload?.filter(item => item.questionnaire === false)
     }
 
-    const clickHandler = (heading, documentList) => {
-        setmodalHeading(heading)
-        setdocumentList(documentList)
+    const clickHandler = (data) => {
+        setmodalHeading(data.indexValue)
+        setdocumentList(data.documents)
+        setProposalHeader(data)
         setopenUploadModal(!openUploadModal)
     }
     const clickHandleraddNon = (heading) => {
@@ -75,14 +77,15 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         let formData = new FormData();
         formData.append("file", file);
         let headerData
+        // console.log('proposedDocList',proposedDocList)
 
         if (label === 'form-filling') {
             headerData = {
-                documentCategory: 'Age Proof',
-                documentType: 'PAN Card',
-                partyType: 'OWNER',
+                documentCategory: proposalHeader?.category,
+                documentType: proposalHeader?.indexValue,
+                partyType: proposedDocList[0]?.name,
                 documentSide: "",
-                policyNo: "",
+                policyNo: customerDetail?.policyNumber,
                 documentNumber: "",
                 proposalNo: customerDetail?.proposalNumber
             };
@@ -145,7 +148,6 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         dispatch(deleteDocAddInfo(payload, (res) => {
             setShowDeletePopup(false)
             dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
-                window.location.reload(false);
             }))
         })
         )
@@ -160,6 +162,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
     const closeHandler = () => {
         setPreview('')
     }
+    // console.log('proposedDocList',proposedDocList)
     return (<>
         <ul className='nonMedListBlock'>
             {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>
@@ -171,6 +174,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                     clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
                     deleteDocHandler={deleteDocHandler}
                     viewDocHandler={() => viewDocHandler(item)}
+                    // proposedDocList={proposedDocList}
                 />
             </li>
             )

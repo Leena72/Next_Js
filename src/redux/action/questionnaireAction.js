@@ -4,6 +4,9 @@ import { toaster } from "../../utils/toaster"
 
 
 export const questionnaireAction = (additionalQuestionnaire, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+    });
     Axios({
         method: "post",
         mode: "no-cors",
@@ -16,6 +19,9 @@ export const questionnaireAction = (additionalQuestionnaire, cb) => (dispatch) =
         data:additionalQuestionnaire
     })
         .then((res) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             if (res.data.status==='OK') {
                 toaster('success', res.data.message)
                 cb(res.data);
@@ -26,12 +32,17 @@ export const questionnaireAction = (additionalQuestionnaire, cb) => (dispatch) =
             }
         })
         .catch((error) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
         });
 };
 
 
 export const saveQuestionnaireAction = (payload, cb) => (dispatch) => {
-
+    dispatch({
+        type: "LOADER_ON",
+    });
     Axios({
         method: "post",
         mode: "no-cors",
@@ -44,12 +55,18 @@ export const saveQuestionnaireAction = (payload, cb) => (dispatch) => {
         "data": payload
     })
         .then((res) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             if (res.data.status==='OK') {
                 toaster('success', res.data.message)
                 cb(res.data);
             }
         })
         .catch((error) => {
+            dispatch({
+                type: "LOADER_ON",
+            });
         });
 };
 
