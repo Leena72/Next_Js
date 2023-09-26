@@ -35,7 +35,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
     setOpenCatAcc(openCatAcc === id ? null : id)
   }
   const renderElement = ({ formName, title, newTitle }, userType) => {
-    console.log("checked==", formName, userType)
+    // console.log("checked==", formName, userType)
     let formData = questionnaireList[formName]
     // setFormValues(formData)
     return <NonMedForm formName={formName}
@@ -51,7 +51,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
   const checkSubmitValidation = (data) => {
     return data.forEach(item => {
       if (item.data && item.data.length === 0) {
-        console.log('check submit otp4', item.data)
+        // console.log('check submit otp4', item.data)
         setSubmitValid(false)
       }
     });
@@ -98,14 +98,14 @@ const Health = ({ insureddata, proposerdata, category }) => {
     let proposalNo = localStorage.getItem("proposalNo")
     dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
       if (resp?.body?.body) {
-        toaster('success', resp?.body?.message);
+        // toaster('success', resp?.body?.message);
         setOtp("")
         formSubmitHandler()
         setShowOtp(false);
         setShowThankyou(true)
 
       } else {
-        toaster('error', resp?.body?.message);
+        // toaster('error', resp?.body?.message);
         setOtp('')
       }
     }))

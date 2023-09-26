@@ -87,7 +87,7 @@ const UploadDocModal = (props) => {
                 </div>
             )
         }
-        console.log('uiItems', uiItems)
+        // console.log('uiItems', uiItems)
         return uiItems;
 
     }

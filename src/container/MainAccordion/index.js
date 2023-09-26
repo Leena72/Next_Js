@@ -14,7 +14,6 @@ import QuoteGenerated from "../../component/QuoteGenerated/index"
 
 const MainAccordion = ({ data }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
-
   const accDetails = useSelector((state) => state.customerDetailReducer);
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
   const policyDocuments = accDetails?.policyDocuments

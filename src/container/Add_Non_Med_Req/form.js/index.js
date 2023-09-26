@@ -35,14 +35,14 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         const datacheck = (formdata) => {
             for (let i = 0; i < formdata.length; i++) {
                 const item = formdata[i];
-                console.log("check1", item, item.type !== "HEADING", !item.answer, item.answer == "", item.type !== "HEADING" && (!item.answer || item.answer == ""))
+                // console.log("check1", item, item.type !== "HEADING", !item.answer, item.answer == "", item.type !== "HEADING" && (!item.answer || item.answer == ""))
                 if (item.type !== "HEADING" && (!item.answer || item.answer == "")) {
-                    console.log("check validation1", item)
+                    // console.log("check validation1", item)
                     check = false;
                     return false;
                     // break;
                 } else if (item.subQuestions && item.subQuestions.length > 0) {
-                    console.log("check validation2")
+                    // console.log("check validation2")
                     datacheck(item.subQuestions)
                 }
                 // return check
@@ -58,10 +58,10 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         let data = JSON.parse(JSON.stringify(formData))
         let finalFormData = mapSaveData(data, name, value)
         setFormValues(finalFormData)
-        console.log('check validation data', checkValidation(finalFormData))
+        // console.log('check validation data', checkValidation(finalFormData))
         let isvalidform = checkValidation(finalFormData)
         checkIsvalid(isvalidform)
-        console.log("maped data", finalFormData)
+        // console.log("maped data", finalFormData)
     }
     useEffect(() => {
         const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
@@ -69,7 +69,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         let formData = questionnaireList[formName]
         setFormValues(formData)
         if (getApidata && getApidata[0]?.data?.length > 0) {
-            console.log("checking data===", [...getApidata[0]?.data])
+            // console.log("checking data===", [...getApidata[0]?.data])
             const data = [...getApidata[0]?.data]
             setFormValues(data)
             let isvalidform = checkValidation(data)
@@ -86,7 +86,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         // // }else{
         //     newFormData=formData;
         // // }
-        console.log("check data for new work", formData)
+        // console.log("check data for new work", formData)
         return <FormLayout
             formName={formName}
             formData={formValues}
@@ -103,7 +103,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         const filterQuestion = accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
         // let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         // let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
-        console.log('docQuesList', accDetails?.additionalInfoDocs[userType]?.quesList, userType, filterQuestion && filterQuestion[0])
+        // console.log('docQuesList', accDetails?.additionalInfoDocs[userType]?.quesList, userType, filterQuestion && filterQuestion[0])
         // let data = Object.values(formValues[formName])
         let payload = {
             "policyNumber": accDetails?.policyNumber,
@@ -116,9 +116,9 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
                 }
             ]
         }
-        console.log('payload', filterQuestion[0]?.id, formValues)
+        // console.log('payload', filterQuestion[0]?.id, formValues)
         dispatch(saveQuestionnaireAction(payload, res => {
-            console.log('res', res)
+            // console.log('res', res)
             dispatch(dashboardAction(accDetails.proposalNumber, (res) => {
 
             }))

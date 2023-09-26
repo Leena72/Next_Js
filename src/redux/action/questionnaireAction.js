@@ -28,7 +28,7 @@ export const questionnaireAction = (additionalQuestionnaire, cb) => (dispatch) =
             }
             else {
                 toaster('error', res.data.message)
-                cb(res.data); // need to remobved
+                // cb(res.data); // need to remobved
             }
         })
         .catch((error) => {

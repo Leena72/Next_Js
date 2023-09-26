@@ -4231,3 +4231,172 @@ const PolicySubStatus = {
     "PW": "Policy in WIP for dispatch",
     "PT": "Policy Dispatched",
 }
+
+// sub status value
+
+const subStatus = [
+{'status':'AS',
+'agentView':'Pending for application Submission',
+'customerPortal':'Pending for application Submission'
+
+},
+{'status':'UD',
+'agentView':'Pending for system UW decision',
+'customerPortal':'WIP'
+
+},
+{'status':'MP',
+'agentView':'Awaited medicals from Customer',
+'customerPortal':'Awaited medicals from Customer'
+
+},
+{'status':'NP',
+'agentView':'Awaited Non-medical requirements from Customer',
+'customerPortal':'Awaited Non-medical requirements from Customer'
+
+},
+{'status':'NM',
+'agentView':'Awaited medical and Non-Medical Req from Customer',
+'customerPortal':'Awaited medical and Non-Medical Req from Customer'
+
+},
+{'status':'DS',
+'agentView':'Document awaited from Sales',
+'customerPortal':'WIP'
+
+},
+{'status':'AR',
+'agentView':'Addditional requirement called in Branch/NB',
+'customerPortal':'Awaited for addditional requirements to receive'
+
+},
+{'status':'AI',
+'agentView':'Add info called in UW ',
+'customerPortal':'Awaited for addditional requirements to receive'
+
+},
+{'status':'CO',
+'agentView':'Pending for Counter offer acceptance ',
+'customerPortal':'Pending for Counter offer acceptance '
+
+},
+{'status':'SP',
+'agentView':'Pending for Short Premium payment',
+'customerPortal':'Pending for Short Premium payment'
+
+},
+{'status':'DB',
+'agentView':'Pending for Data  quality checking with Branch',
+'customerPortal':'WIP'
+
+},
+{'status':'PA',
+'agentView':'Pending for payment acknowledgement at Branch',
+'customerPortal':'WIP'
+
+},
+{'status':'DN',
+'agentView':'Pending for Data quality checking with NB',
+'customerPortal':'WIP'
+
+},
+{'status':'DC',
+'agentView':'Pending for Data corrections/ changes in NB',
+'customerPortal':'WIP'
+
+},
+{'status':'RI',
+'agentView':'Pending for RCU investigation ',
+'customerPortal':'WIP'
+
+},
+{'status':'MA',
+'agentView':'Pending for Medical Appointment',
+'customerPortal':'Pending for Medical Appointment'
+
+},
+{'status':'MR',
+'agentView':'Pending for Medical Reports',
+'customerPortal':'Pending for Medical Reports'
+
+},
+{'status':'TC',
+'agentView':'Pending for TPA clarification on medicals done',
+'customerPortal':'Pending for TPA clarification on medicals done'
+
+},
+{'status':'RA',
+'agentView':'Pending for UW Risk Assesment ',
+'customerPortal':'Pending for UW Risk Assesment '
+},
+{'status':'CF',
+'agentView':'Pending for compliance opinion ',
+'customerPortal':'WIP'
+
+},
+{'status':'VC',
+'agentView':'Pending for PIVC clearance',
+'customerPortal':'WIP'
+
+},
+{'status':'CP',
+'agentView':'Pending for Local Cheque Clearance',
+'customerPortal':'Pending for Local Cheque Clearance'
+
+},
+{'status':'OP',
+'agentView':'Pending for Direct Debit/NEFT clearance/Fund clearance on FT',
+'customerPortal':'WIP'
+
+},
+{'status':'CD',
+'agentView':'Pending for Fresh payment on Cheque Dishonour',
+'customerPortal':'Pending for Fresh payment on Cheque Dishonour'
+
+},
+{'status':'WI',
+'agentView':'Pending for final issuance in Newgen',
+'customerPortal':'WIP'
+
+},
+{'status':'PM',
+'agentView':'Policy moved to RLS for final isuance',
+'customerPortal':'Policy Approved'
+
+},
+{'status':'PI',
+'agentView':'Policy issued ',
+'customerPortal':'Policy Issued'
+
+},
+{'status':'PD',
+'agentView':'Policy Declined ',
+'customerPortal':'Policy declined'
+
+},
+{'status':'PP',
+'agentView':'Policy Postponed ',
+'customerPortal':'policy postponed'
+
+},
+{'status':'PR',
+'agentView':'Policy rejected ',
+'customerPortal':'policy rejected'
+
+},
+{'status':'PC',
+'agentView':'Policy cancelled ',
+'customerPortal':'Policy in WIP for dispatch'
+
+},
+{'status':'PW',
+'agentView':'Policy waiting for dispatch',
+'customerPortal':'Policy in WIP for dispatch'
+
+},
+{'status':'PT',
+'agentView':'Policy Dispatched to Customer',
+'customerPortal':'Policy Dispatched'
+
+},
+]

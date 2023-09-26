@@ -8,7 +8,7 @@ const Accordion3 = ({ data }) => {
     const [listItem, setlistItem] = useState('')
     const dispatch = useDispatch()
     const customerDetail = useSelector((state) => state.customerDetailReducer);
-    console.log('proposerName',customerDetail?.proposerName)
+    // console.log('proposerName',customerDetail?.proposerName)
     const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments);
 
     useEffect(() => {

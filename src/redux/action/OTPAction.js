@@ -54,7 +54,7 @@ export const verifyOTPAction = (data, proposalNo, fileName, cb) => (dispatch) =>
         data: data
     })
         .then((res) => {
-            if (res.data.body !== null) {
+            if (res.data.status === 'OK') {
                 toaster('success', res?.data?.message);
                 cb(res.data);
             }

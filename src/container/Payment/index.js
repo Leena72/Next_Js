@@ -150,7 +150,9 @@ const Payment = (props) => {
         let config = {
           responseHandler: (txn) => {
             // console.log("test222",txn)
-            () => { }
+            () => { 
+              dispatch(dashboardAction(props.accDetails?.proposalNumber, (res) => {}))
+            }
           },
           merchantLogo: "/logo_2x.png",
           flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
@@ -344,6 +346,9 @@ const Payment = (props) => {
     dispatch(downloadAction(proposalNo, fileName))
   }
   const paymentCompleted = props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted
+  // console.log('paymentCompleted',paymentCompleted,props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted,props.showOffline )
+  // console.log('>>>>>>>>>>>>.here')
+
   return (
     <div>
       <ul className="lst_prpsl">
@@ -372,7 +377,7 @@ const Payment = (props) => {
             </div>
           }
           {
-          props.accDetails?.paymentReceipts.length > 0 &&
+          props.accDetails?.paymentReceipts.length > 0 ?
             <div className="lnkbx receipt-download">
               <span>Download Receipts:</span>
               {
@@ -380,7 +385,12 @@ const Payment = (props) => {
                   return <div key={idx} onClick={() => downloadHandler(item)}>{item}</div>
                 })
               }
-            </div>}
+            </div>
+          :
+          <div className='blue-block-container'>
+            <p>Receipts are not available</p>
+          </div>
+          }
         </li>
       </ul>
 

@@ -37,7 +37,7 @@ const Dashboard = () => {
         // setcustomerData(statusApi) // static data
     }, [])
 
-    // console.log('statusApi', statusApi)
+    // console.log('customerData', customerData)
     return (
         <div className='dashboard-container'>
             {showLoader["isLoaderOn"] && (

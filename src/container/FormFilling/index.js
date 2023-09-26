@@ -108,9 +108,9 @@ const FormFilling = ({ data, label, proposalNo }) => {
         let paymentDetail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PAYMENT';
         })
-  // console.log('paymentDetail>>', paymentDetail)
+  // console.log('paymentDetail>>', paymentDetail , paymentDetail[0]?.paymentInfo?.paymentOtpCompleted )
 
-        showElement = paymentDetail && paymentDetail[0]?.actual_status === 'COMPLETED'
+        // showElement = paymentDetail && paymentDetail[0]?.actual_status === 'COMPLETED'
           // ?
           // <FormFieldConsent
           //   text='To Download the Payment Receipt'
@@ -118,8 +118,9 @@ const FormFilling = ({ data, label, proposalNo }) => {
           //   clickHandler={downloadReceipt}
           // />
           // :
-          &&
-            paymentDetail && paymentDetail[0]?.paymentInfo?.paymentOtpCompleted ? 
+          // &&
+             showElement= paymentDetail && paymentDetail[0]?.paymentInfo?.paymentOtpCompleted === true 
+            ? 
           <Payment
             showOffline={true}
             isText={'Online Payment'}
@@ -131,8 +132,6 @@ const FormFilling = ({ data, label, proposalNo }) => {
           <div className='blue-block-container'>
           <p>Sections not completed yet</p>
         </div>
-        
-
         return showElement
       case 'Document Upload':
         let paymentDocShow = accordionDetails && accordionDetails.filter(item => {
