@@ -3280,7 +3280,7 @@ export const statusApi =
     "emailId": "OK@OK.COM",
     "mobileNo": "8826979056",
     "dateOfBirth": "11-05-1994",
-    "channelName": "", 
+    "channelName": "",
     "subChannelName": "",
     "sourceName": "MSell",
     "policyFor": "OTHER",
@@ -3292,6 +3292,24 @@ export const statusApi =
     "pasaCase": false,
     "premiumPaymentTerm": 5,
     "policyTerm": 15,
+    "enachCompleted": false,
+    "instaDetails": null,
+    "customerConsentRequired": false,
+    "agentConsentRequired": false,
+    "instaRequired": true,
+    "proposerName": "ONEE",
+    "insuredName": null,
+    "issuanceType": "NEWGEN",
+    "paymentDetails": [],
+    "counterOfferCount": 0,
+    "paymentRenewalRequired": false,
+    "paymentCompleted": false,
+    "paymentOtpCompleted": false,
+    "additionalQuestionnaireListDTO": {
+        "proposerAdditionalQuestionnaireDocs": [],
+        "insuredAdditionalQuestionnaireDocs": [],
+        "jointAdditionalQuestionnaireDocs": []
+    },
     "newgenStatusResponseDTOList": [
         {
             "id": 3865816,
@@ -3300,7 +3318,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865814,
@@ -3309,7 +3328,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865813,
@@ -3318,7 +3338,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865811,
@@ -3327,16 +3348,24 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
-            "id": 3865810,
+
+            "id": 3894934,
             "status": "PAYMENT",
             "subStatus": "PAYMENT",
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 07:02:00",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-25 09:52:17",
+            "createdOn": "2023-09-25 09:52:17",
+            "additionalInfo": {},
+            "paymentInfo": {
+                "paymentAmountCompleted": true,
+                "paymentRenewal": false,
+                "enachCompleted": false,
+                "paymentOtpCompleted": true
+            }
         },
         {
             "id": 3865807,
@@ -3345,7 +3374,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865805,
@@ -3354,7 +3384,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 07:01:13",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865804,
@@ -3363,15 +3394,26 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 06:59:39",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3823063,
             "status": "PROPOSAL",
-            "subStatus": "Insured_Proposer_Details",
+            "subStatus": "Insured_Details",
             "actual_status": "COMPLETED",
             "updatedOn": "2023-08-17 15:32:46",
             "createdOn": "2023-08-17 15:32:46"
+        },
+        {
+            "id": 3894929,
+            "status": "PROPOSAL",
+            "subStatus": "Document_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-25 09:52:17",
+            "createdOn": "2023-09-25 09:52:17",
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865803,
@@ -3380,7 +3422,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 06:59:15",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865802,
@@ -3389,7 +3432,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865808,
@@ -3398,7 +3442,8 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865809,
@@ -3407,7 +3452,30 @@ export const statusApi =
             "actual_status": "CREATED",
             "updatedOn": "2023-09-07 06:48:54",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": "{\"id\": null, \"pt\": \"10\", \"sa\": \"SA\", \"ppt\": \"20\", \"smoker\": \"YES\", \"planName\": \"test Pan\", \"loadingType\": \":LoadingType\", \"riderStatus\": [{\"status\": \"Axctive\", \"partyRole\": \"20\", \"riderName\": \"10\"}], \"tempLoading\": \"testtemLoading\", \"medicalLoading\": null, \"revisedPremium\": 20000, \"shortfallPremium\": 100, \"counterOfferReason\": \"testC ounter Offer\", \"tempLoadingDuration\": \"testeLoaduruation\"}"
+            "additionalInfo": {
+                "counterOfferDetails": {
+                    "Id": "1",
+                    "planName": "ddDDA",
+                    "tempLoading": "DSADAd",
+                    "tempLoadingDuration": "asdd",
+                    "medicalLoding": "ddA",
+                    "pt": "5",
+                    "ppt": "7556",
+                    "riderStatus": [
+                        {
+                            "riderName": "jgvghjv",
+                            "partyRole": "dufh",
+                            "status": "dhfc"
+                        }
+                    ],
+                    "sa": "hf",
+                    "smoker": "jfvghg",
+                    "loadingType": "chgvchg",
+                    "counterOfferReason": "xhdcgf",
+                    "revisedPremium": 57685,
+                    "shortfallPremium": 76878
+                }
+            }
         },
         {
             "id": 3865815,
@@ -3416,7 +3484,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 08:46:58",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865806,
@@ -3425,7 +3494,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-07 06:54:21",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         },
         {
             "id": 3865812,
@@ -3434,7 +3504,8 @@ export const statusApi =
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-02 09:05:35",
             "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": null
+            "additionalInfo": {},
+            "paymentInfo": null
         }
     ],
     "requiredDocuments": {
@@ -3853,7 +3924,6 @@ export const statusApi =
         ],
         "jointAdditionalQuestionnaireDocs": []
     },
-    "instaDetails": null,
     "consentDetail": {
         "whatsAppOpt": false,
         "whatsAppCommunicationAgree": false,
@@ -3884,11 +3954,6 @@ export const statusApi =
         "customerConsentRejectedReason": null,
         "customerConsentRejected": false
     },
-    "customerConsentRequired": false,
-    "agentConsentRequired": false,
-    "instaRequired": true,
-    "proposerName": "ONEE",
-    "insuredName": null
 }
 
 

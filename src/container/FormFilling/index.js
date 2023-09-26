@@ -34,7 +34,7 @@ const FormFilling = ({ data, label, proposalNo }) => {
     }
     dispatch(consentHandlerAction(payload))
   }
-  const downloadReceipt=()=>{
+  const downloadReceipt = () => {
     // console.log('downloadReceipt')
   }
 
@@ -58,15 +58,18 @@ const FormFilling = ({ data, label, proposalNo }) => {
           return item.subStatus === 'Health_Details';
         });
         let proposalReversedList = []
-        proposalReversedList && proposalReversedList.push(Personal_Details && Personal_Details[0],
+        proposalReversedList && proposalReversedList.push(
+          Personal_Details && Personal_Details[0],
           Insured_Details && Insured_Details[0],
-          Nominee_Details && Nominee_Details[0], 
-          Health_Details && Health_Details[0])
+          Nominee_Details && Nominee_Details[0],
+          Health_Details && Health_Details[0]
+          )
+          // console.log('proposalReversedList',proposalReversedList)
 
         showElement = proposalFormList && proposalFormList?.length !== 0
           ?
           <ProposalForm
-            data={data.subContent}
+            accDetails={accDetails}
             proposalFormList={proposalFormList}
             proposalReversedList={proposalReversedList}
           />
@@ -105,41 +108,53 @@ const FormFilling = ({ data, label, proposalNo }) => {
         let paymentDetail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PAYMENT';
         })
-        // console.log('paymentDetail>>', paymentDetail)
+  // console.log('paymentDetail>>', paymentDetail)
+
         showElement = paymentDetail && paymentDetail[0]?.actual_status === 'COMPLETED'
-          ?
-          <FormFieldConsent
-            text='To Download the Payment Receipt'
-            buttonText='Click Here'
-            clickHandler={downloadReceipt}
-          />
-          :
+          // ?
+          // <FormFieldConsent
+          //   text='To Download the Payment Receipt'
+          //   buttonText='Click Here'
+          //   clickHandler={downloadReceipt}
+          // />
+          // :
+          &&
+            paymentDetail && paymentDetail[0]?.paymentInfo?.paymentOtpCompleted ? 
           <Payment
             showOffline={true}
             isText={'Online Payment'}
             paymentValue={accDetails?.premium}
             accDetails={accDetails}
+            paymentDetail={paymentDetail}
           />
+          :
+          <div className='blue-block-container'>
+          <p>Sections not completed yet</p>
+        </div>
+        
 
         return showElement
       case 'Document Upload':
-        if (label === 'form-filling') {
+        let paymentDocShow = accordionDetails && accordionDetails.filter(item => {
+          return item.status === 'PAYMENT';
+        })
+        let showDocument = paymentDocShow && paymentDocShow[0]?.actual_status === 'COMPLETED'
+
           showElement = !!formFillDocDownload?.list
-            ?
+          &&
+          showDocument  
+          &&
             <DocumentUpload
               label='form-filling'
               formFillDocDownload={formFillDocDownload}
-              addDocUpload={accDetails?.additionalInfoDocs}
+              addDocUpl oad={accDetails?.additionalInfoDocs}
             />
-            :
-            <div className='blue-block-container'>
-              <p>Documents are not available!</p>
-            </div>
+            // :
+            // <div className='blue-block-container'>
+            //   <p>Documents are not available!</p>
+            // </div>
           return showElement
-        }
-        else {
-
-        }
+        
       case 'Proposal Submission':
         let proposalSub = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PROPOSAL_SUBMISSION';

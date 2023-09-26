@@ -1,13 +1,13 @@
 import React from 'react'
 import { convertToIST } from '../../utils/utils'
 
-const ProposalForm = ({ proposalReversedList }) => {
+const ProposalForm = ({accDetails, proposalReversedList }) => {
     const renderHeding = (heading) => {
         switch (heading) {
             case 'Personal_Details':
-                return 'Basic detail Section (Proposer)'
+                return `Basic detail Section (${accDetails.policyFor ==='OTHER'? accDetails.proposerName : accDetails.insuredName })`
             case 'Insured_Details':
-                return 'Insured detail Section (Conditional only for Insured-Proposer cases)'
+                return `Insured detail Section (${accDetails.policyFor ==='OTHER'? accDetails.insuredName !==null?accDetails.insuredName :'Insured': accDetails.insuredName })`
             case 'Nominee_Details':
                 return 'Nominee detail Section'
             case 'Health_Details':

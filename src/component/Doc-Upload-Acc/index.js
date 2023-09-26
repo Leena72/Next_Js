@@ -6,13 +6,13 @@ import deleteImg from "../../Assets/images/delete.png"
 
 
 
-export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showViewDelete, deleteDocHandler, viewDocHandler }) => {
+export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showViewDelete, deleteDocHandler, viewDocHandler,proposedDocList }) => {
     const imageStyle = {
         marginRight: '8px',
         width: '20px',
         height: '20px'
     }
-
+// console.log('data proposedDocList',data)
     return (
         <div
             className={`upl-doc-container upl-doc`}
@@ -22,7 +22,7 @@ export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showV
             <div className='upl-heading'>{data.indexValue}</div>
             <div>
                 {!showViewDelete ? <div onClick={label === 'form-filling' ?
-                    () => clickHandler(data.indexValue, data.documents)
+                    () => clickHandler(data)
                     :
                     () => clickHandleraddNon(data.indexValue)
                 } className='upl-img'>

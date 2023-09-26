@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 // import PopUpPage from '@/component/PopUpPage';
 // import Input from "../../component/Input";
 import PopUpPage from '../../component/PopUpPage';
 import Input from '../../component/Input';
 import { toaster } from '@/utils/toaster';
 import Axios from "axios";
+import { downloadAction } from "../../redux/action/downloadAction";
+
 
 const Payment = (props) => {
   const [showOfflinePopup, setShowOfflinePopup] = useState(false)
@@ -13,7 +16,9 @@ const Payment = (props) => {
   const [dob, setDob] = useState();
   const [pan, setPan] = useState();
   const [enabled, setenabled] = useState(false)
+  const dispatch = useDispatch()
 
+  // console.log('accDetails>>', props.accDetails)
 
   useEffect(() => {
     const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
@@ -238,7 +243,7 @@ const Payment = (props) => {
     //     window.loadBillDeskSdk(config);
     // });
   };
-  const validatePaymentLink = (query,cb) => {
+  const validatePaymentLink = (query, cb) => {
     Axios
       .get(
         `https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/validatePaymentLink?${query}`,
@@ -281,25 +286,25 @@ const Payment = (props) => {
     let proposalNo = localStorage.getItem("proposalNo")
     if (dob && dob.length === 10) {
       query = `proposalNumber=${proposalNo}&dateOfBirth=${validationInput}&panNumber`;
-      validatePaymentLink(query,(res)=>{
-        if(res.DateValidate === true){
-        toaster('success','DOB validated successfully')
+      validatePaymentLink(query, (res) => {
+        if (res.DateValidate === true) {
+          toaster('success', 'DOB validated successfully')
         }
       });
     } else if (pan && pan.length === 10) {
       query = `proposalNumber=${proposalNo}&panNumber=${validationInput}&dateOfBirth`;
-      validatePaymentLink(query,(res)=>{
-        toaster('success','PAN validated successfully')
+      validatePaymentLink(query, (res) => {
+        toaster('success', 'PAN validated successfully')
       });
     }
   }
 
-  const enachInitiated = (payload, cb)=>{
-   
+  const enachInitiated = (payload, cb) => {
+
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/eNACH/paymentBegin`, payload, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": 'Bearer'+' '+localStorage.getItem("accessToken")
+        "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
         // "Authorization" :"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjkyMTIiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQUdFTlQifV0sImlhdCI6MTY5NDc1NDgxMCwiZXhwIjoxNjk0ODQxMjEwfQ.u6VwxAj4GZuIIuSldDPXjTtE3NigvLZqlVQt8MDJokWTZaN4UjIjPC8A0PGeWiYvxfz7SXE2PMwET6-iJcTKTQ"
 
       },
@@ -322,31 +327,60 @@ const Payment = (props) => {
 
       });
   }
-  const enachHandler = ()=>{
-    const data ={
+  const enachHandler = () => {
+    const data = {
       paymentMode: "E_MANDATE",
-      proposalNumber : localStorage.getItem("proposalNo")
+      proposalNumber: localStorage.getItem("proposalNo")
     }
-    enachInitiated(data, (res)=>{
+    enachInitiated(data, (res) => {
       let newWindow = window.open();
       newWindow.location = res.DATA;
     })
   }
-
+  const downloadHandler = (fileName) => {
+    let proposalNo = props.accDetails.proposalNumber
+    // let file = "3108426724FNA.pdf"
+    // let file =documentList[fileName]
+    dispatch(downloadAction(proposalNo, fileName))
+  }
+  const paymentCompleted = props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted
   return (
     <div>
       <ul className="lst_prpsl">
         <li>
-          <div className="lnkbx">Click here to initiate the
-            <span onClick={onlineBtnandler} className="lnktxtbx">{props.isText ? props.isText : 'Pay Online'}</span>
-            <span onClick={enachHandler} className="lnktxtbx">E-Nach</span>
-            {!props.showOffline &&
-              <>
-                <span className='text'>OR</span>
-                <span className=" ml-5 lnktxtbx"><span onClick={offlineBtnHandler}>Pay Offline</span></span>
-              </>}
-
-          </div>
+          {(props.showOffline && !paymentCompleted) &&
+            <div className="lnkbx">
+              <span> Click here to initiate the</span>
+              <span onClick={onlineBtnandler} className="lnktxtbx">
+                Online Payment
+              </span>
+            </div>
+          }
+          {!props.showOffline &&
+            <div className="lnkbx">
+              <span> Click here to initiate the</span>
+              <span onClick={onlineBtnandler} className="lnktxtbx">Pay Online</span>
+              <span className='text'>OR</span>
+              <span className=" ml-5 lnktxtbx"><span onClick={offlineBtnHandler}>Pay Offline</span></span>
+            </div>
+          }
+          {(props.showOffline && paymentCompleted &&
+            props.paymentDetail[0]?.paymentInfo?.paymentRenewal === false) &&
+            <div className="lnkbx">
+              <span> Click here to initiate the</span>
+              <span onClick={enachHandler} className="lnktxtbx">E-Nach</span>
+            </div>
+          }
+          {
+          props.accDetails?.paymentReceipts.length > 0 &&
+            <div className="lnkbx receipt-download">
+              <span>Download Receipts:</span>
+              {
+                props.accDetails?.paymentReceipts.map((item, idx) => {
+                  return <div key={idx} onClick={() => downloadHandler(item)}>{item}</div>
+                })
+              }
+            </div>}
         </li>
       </ul>
 
