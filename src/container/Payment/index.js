@@ -164,7 +164,7 @@ const Payment = (props) => {
         // });
       })
       .catch((err) => {
-        console.log('err>>', err)
+        // console.log('err>>', err)
         toaster("error", 'BillDesk Order Creation Exception')
 
         // if (err.status == '401') {

@@ -50,7 +50,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
   // console.log('formValues',formValues)
   const checkSubmitValidation = (data) => {
     return data.forEach(item => {
-      if (item.data && item.data.length===0) {
+      if (item.data && item.data.length === 0) {
         console.log('check submit otp4', item.data)
         setSubmitValid(false)
       }
@@ -64,7 +64,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
     }
     if (proposerDocumentDetail && proposerDocumentDetail?.quesDataList?.length > 0) {
       checkSubmitValidation(proposerDocumentDetail?.quesDataList)
-     }
+    }
     // console.log("check submit otp1", submitValid)
     // setSubmitValid(submitValid)
   }, [accDetails])
@@ -131,10 +131,8 @@ const Health = ({ insureddata, proposerdata, category }) => {
       case 'Insured':
         return <>{
           insureddata?.length > 0
-          &&
-          <>
+            ?
             <ul className='nonMedListBlock'>
-
               {insureddata.map(item => {
                 return (
                   <li className='nonMedList' key={item.id} >
@@ -147,6 +145,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
                           alt='icon'
                         />
                       </div>
+
                     </div>
                     {openAcc === item.id ?
                       <div className='show'>
@@ -160,42 +159,39 @@ const Health = ({ insureddata, proposerdata, category }) => {
                 )
               })}
             </ul>
-
-          </>
-        }
-        </>
+            : ''
+        }</>
       case 'Proposer':
         return <>  {
           proposerdata?.length > 0
           &&
-          <>
-            <ul className='nonMedListBlock'>
-              {proposerdata.map(item => {
-                return (
-                  <li className='nonMedList' key={item.id} >
-                    <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
-                      <div>{item.title}</div>
-                      <div className='acc-active-icon '>
-                        <Image
-                          className={openAcc === item.id ? 'upArrow' : ''}
-                          src={dwnArrow}
-                          alt='icon'
-                        />
-                      </div>
+          <ul className='nonMedListBlock'>
+            {proposerdata.map(item => {
+              return (
+                <li className='nonMedList' key={item.id} >
+                  <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                    <div>{item.title}</div>
+                    <div className='acc-active-icon '>
+                      <Image
+                        className={openAcc === item.id ? 'upArrow' : ''}
+                        src={dwnArrow}
+                        alt='icon'
+                      />
                     </div>
-                    {openAcc === item.id ?
-                      <div className='show'>
-                        {
-                          renderElement(item, 'proposerDocumentDetail')
-                        }
-                      </div>
-                      : ''
-                    }
-                  </li>
-                )
-              })}
-            </ul>
-          </>
+
+                  </div>
+                  {openAcc === item.id ?
+                    <div className='show'>
+                      {
+                        renderElement(item, 'proposerDocumentDetail')
+                      }
+                    </div>
+                    : ''
+                  }
+                </li>
+              )
+            })}
+          </ul>
         } </>
 
       default:

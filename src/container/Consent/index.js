@@ -19,6 +19,10 @@ const Consent = ({ }) => {
     const toggleAccordion = (id) => {
         setOpenAccordion(openAccordion === id ? null : id)
     }
+    const changeHandler=()=>{}
+    const downloadHandler=()=>{}
+    const acceptHandler=()=>{}
+    const rejectHandler =()=>{}
     return (<>
         <ul className='addNonMedAcc'>
             {
@@ -47,27 +51,27 @@ const Consent = ({ }) => {
             <FormFieldConsent
                 text='To View And download your revised benefit Illustration'
                 buttonText='Click Here'
-                clickHandler={''}
+                clickHandler={downloadHandler}
             />
             <label>
                 <Input
                     type='radio'
                     value={''}
                     name=''
-                    changeHandler={''}
+                    changeHandler={changeHandler}
                 />
                 <span>I agree to the above changes</span>
             </label>
             <div className='consent-btn'>
                 <Button
                     className={'activeBtn'}
-                    clickHandler={''}
+                    clickHandler={acceptHandler}
                     type='button'
                     buttonText={'Accept'}
                 />
                 <Button
                     className={'activeBtn'}
-                    clickHandler={''}
+                    clickHandler={rejectHandler}
                     type='button'
                     buttonText={'Reject'}
                 />

@@ -2,10 +2,10 @@ import React from 'react'
 import Button from '@/component/Button';
 import { Field } from 'formik';
 
-const Layout1 = ({ formName, formData, formChangeHandler, formik }) => {
-    console.log('formData', formData)
-    const changeHandler = (e, quesData) => {
-        // debugger
+const Layout1 = ({ formName, formData, formChangeHandler, formik}) => {
+    // console.log('formData',formData)
+    const changeHandler = (e, quesData,handleChange) => {
+        // console.log('>>>>')
         const { name, value } = e.target;
         formChangeHandler({ name, value, formData })
     }
