@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Image from 'next/image'
 import NonMedForm from './form.js'
@@ -11,10 +11,10 @@ import { questionnaireAction, saveQuestionnaireAction } from '../../redux/action
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 import { toaster } from '@/utils/toaster';
 import Accordion2 from '../../component/Accordion/Accordion2.js';
-
+import { questionnaireList } from '../../data'
 
 const Health = ({ insureddata, proposerdata, category }) => {
-  const [formValues, setFormValues] = useState({})
+  const [formValues, setFormValues] = useState()
   const [openAcc, setOpenAcc] = useState(null)
   const [openCatAcc, setOpenCatAcc] = useState(null)
   const [showOtp, setShowOtp] = useState(false);
@@ -23,7 +23,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
   const [otp, setOtp] = useState('');
   const [refId, setRefId] = useState();
   const [fileName, setFileName] = useState('')
-
+  const [submitOtpValid, setSubmitValid] = useState(true)
   const accDetails = useSelector((state) => state.customerDetailReducer);
   let uwId = accDetails?.additionalInfoDocs?.uwId
 
@@ -36,6 +36,8 @@ const Health = ({ insureddata, proposerdata, category }) => {
   }
   const renderElement = ({ formName, title, newTitle }, userType) => {
     console.log("checked==", formName, userType)
+    let formData = questionnaireList[formName]
+    // setFormValues(formData)
     return <NonMedForm formName={formName}
       formValues={formValues}
       accDetails={accDetails}
@@ -46,6 +48,26 @@ const Health = ({ insureddata, proposerdata, category }) => {
     />
   }
   // console.log('formValues',formValues)
+  const checkSubmitValidation = (data) => {
+    return data.forEach(item => {
+      if (item.data && item.data.length===0) {
+        console.log('check submit otp4', item.data)
+        setSubmitValid(false)
+      }
+    });
+  }
+  useEffect(() => {
+    const { primaryInsuredDocumentDetail, proposerDocumentDetail } = accDetails?.additionalInfoDocs;
+    setSubmitValid(true)
+    if (primaryInsuredDocumentDetail && primaryInsuredDocumentDetail?.quesDataList?.length > 0) {
+      checkSubmitValidation(primaryInsuredDocumentDetail?.quesDataList)
+    }
+    if (proposerDocumentDetail && proposerDocumentDetail?.quesDataList?.length > 0) {
+      checkSubmitValidation(proposerDocumentDetail?.quesDataList)
+     }
+    // console.log("check submit otp1", submitValid)
+    // setSubmitValid(submitValid)
+  }, [accDetails])
   const sendOtp = () => {
     const data = {
       "consentType": "ADDITIONAL_QUESTIONNAIRE",
@@ -138,17 +160,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
                 )
               })}
             </ul>
-            <div className='consent-blk submit-consent-btn'>
-              <div className='form-btn'>
-                <Button
-                  className={'activeBtn'}
-                  clickHandler={finalFormSubmit}
-                  type='button'
-                  buttonText={'Submit'}
-                // disabled={'true'}
-                />
-              </div>
-            </div>
+
           </>
         }
         </>
@@ -183,17 +195,6 @@ const Health = ({ insureddata, proposerdata, category }) => {
                 )
               })}
             </ul>
-            <div className='consent-blk submit-consent-btn'>
-              <div className='form-btn'>
-                <Button
-                  className={'activeBtn'}
-                  clickHandler={finalFormSubmit}
-                  type='button'
-                  buttonText={'Submit'}
-                // disabled={'true'}
-                />
-              </div>
-            </div>
           </>
         } </>
 
@@ -209,7 +210,8 @@ const Health = ({ insureddata, proposerdata, category }) => {
       ></div>
       <ul>
         {category?.map((item, id) =>
-          <li>
+          <li
+            key={id}>
             <Accordion2
               item={item}
               openAccordion={openCatAcc}
@@ -219,6 +221,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
               <div className='show'>
                 {
                   renderCatElement(item, item.title)
+
                 }
               </div>
               : ''
@@ -226,6 +229,17 @@ const Health = ({ insureddata, proposerdata, category }) => {
 
           </li>
         )}
+        <div className='consent-blk submit-consent-btn'>
+          <div className='form-btn'>
+            <Button
+              className={'activeBtn'}
+              clickHandler={finalFormSubmit}
+              type='button'
+              buttonText={'Submit'}
+              disabled={!submitOtpValid}
+            />
+          </div>
+        </div>
       </ul>
 
       {showOtp &&

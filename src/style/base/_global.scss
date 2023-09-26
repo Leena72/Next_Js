@@ -112,14 +112,16 @@ ul {
 .Toastify__toast--error {
   background-color: #f8ebee !important;
   color: #000 !important;
-
 }
 
 .Toastify__toast--success {
   background-color: #f3f9ec !important;
   color: #000 !important;
 }
-
+.activebutton {
+  background-color: #015289 !important;
+  color: #fff !important;
+}
 // overlay
 .overlay__popup_nw {
   position: fixed;
@@ -208,12 +210,12 @@ ul {
 @media screen and (max-width: 480px) {
   .header-otp-popup {
     width: 90%;
-    left: 5% !important
+    left: 5% !important;
   }
 
   .popupcmn_otpthnks.active {
     width: 90%;
-    left: 5% !important
+    left: 5% !important;
   }
 
   .otp-input-wrapper input {
@@ -235,7 +237,6 @@ ul {
     padding: 3px 10px;
     border: 1px solid #015289;
     border-radius: 10px;
-
   }
 }
 
@@ -482,7 +483,7 @@ ul {
   z-index: 9998;
 
   .loader-img {
-    background: url("../../Assets/images/loader_svg.svg")no-repeat top left;
+    background: url("../../Assets/images/loader_svg.svg") no-repeat top left;
     width: 64px;
     height: 64px;
     background-size: contain;
