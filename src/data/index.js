@@ -3364,7 +3364,7 @@ export const statusApi =
                 "paymentAmountCompleted": true,
                 "paymentRenewal": false,
                 "enachCompleted": false,
-                "paymentOtpCompleted": true
+                "paymentOtpCompleted": false
             }
         },
         {
@@ -3475,6 +3475,9 @@ export const statusApi =
                     "revisedPremium": 57685,
                     "shortfallPremium": 76878
                 }
+            },
+            "paymentInfo": {
+                'revisedOfferPaymentDone':true
             }
         },
         {
@@ -3620,6 +3623,10 @@ export const statusApi =
     "paymentReceipts": [
         "RECIEP_12321393232_1.pdf",
         "RECIEP_12321393232_2.pdf"
+    ],
+    "counterOfferPaymentReceipts":[
+        "RECIEP_12321393232_3.pdf",
+        "RECIEP_12321393232_4.pdf"
     ],
     "additionalInfoDocs": {
         "uwId": 49786,

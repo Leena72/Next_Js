@@ -39,7 +39,7 @@ const MainAccordion = ({ data }) => {
       else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' &&
         item.heading === 'Payment Required') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
-          || acc?.subStatus === '' || acc?.subStatus !== 'CO' || acc?.subStatus !== 'SP' || acc?.subStatus !== 'CD') {
+          || acc?.subStatus === '' ) {
           renderItem = false
         }
       }
@@ -110,22 +110,30 @@ const MainAccordion = ({ data }) => {
       case 'Consent For Change In The Application Details':
         return <Consent />
       case 'Payment Required':
+        let revisedOfferPayment= accordionDetails?.filter(item => {
+          return item.status === 'REVISED_OFFER';
+        })
+        let revisedPayment=revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium
+        // console.log('revisedOfferPayment',revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium)
+
         detail = accordionDetails?.filter(item => {
           return item.status === 'PAYMENT_REQUIREMENT';
         })
-        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
-          ?
-          <FormFieldConsent
-            text='To initiate the Download the Payment Receipt'
-            buttonText='Click Here'
-            clickHandler={paymentReqHandler}
-          />
-          :
-          <Payment
-            paymentValue={accDetails?.premium} // change required
+
+        // showElement = detail && detail[0]?.actual_status === 'COMPLETED'
+        //   ?
+        //   <FormFieldConsent
+        //     text='To initiate the Download the Payment Receipt'
+        //     buttonText='Click Here'
+        //     clickHandler={paymentReqHandler}
+        //   />
+        //   :
+        return  <Payment
+            paymentValue={revisedPayment} // revised offer --shortfall premium
             accDetails={accDetails}
+            isRevised={true}
           />
-        return showElement
+         
       case 'Quality Check':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'QUALITY_CHECK';

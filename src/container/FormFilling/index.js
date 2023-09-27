@@ -120,17 +120,18 @@ const FormFilling = ({ data, label, proposalNo }) => {
           // :
           // &&
              showElement= paymentDetail && paymentDetail[0]?.paymentInfo?.paymentOtpCompleted === true 
-            ? 
+            ?
           <Payment
             showOffline={true}
             isText={'Online Payment'}
             paymentValue={accDetails?.premium}
             accDetails={accDetails}
             paymentDetail={paymentDetail}
+            isRevised={false}
           />
           :
           <div className='blue-block-container'>
-          <p>Sections not completed yet</p>
+          <p>User hasn't reached to payment page yet</p>
         </div>
         return showElement
       case 'Document Upload':
