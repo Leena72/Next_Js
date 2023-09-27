@@ -3344,7 +3344,7 @@ export const statusApi =
         {
             "id": 3865811,
             "status": "PAYMENT_REQUIREMENT",
-            "subStatus": null,
+            "subStatus": 'CO',
             "actual_status": "CREATED",
             "updatedOn": "2023-09-02 12:28:31",
             "createdOn": "2023-09-02 06:58:31",

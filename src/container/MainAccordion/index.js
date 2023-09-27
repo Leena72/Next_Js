@@ -39,7 +39,7 @@ const MainAccordion = ({ data }) => {
       else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' &&
         item.heading === 'Payment Required') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
-          || acc?.subStatus === '' || acc?.subStatus !== 'CO' || acc?.subStatus !== 'SP') {
+          || acc?.subStatus === '' || acc?.subStatus !== 'CO' || acc?.subStatus !== 'SP' || acc?.subStatus !== 'CD') {
           renderItem = false
         }
       }
