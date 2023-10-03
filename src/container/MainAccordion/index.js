@@ -11,6 +11,7 @@ import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
 import { scrollToTop, convertToIST } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
+import { subStatusList } from '../../data'
 
 const MainAccordion = ({ data }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
@@ -39,7 +40,7 @@ const MainAccordion = ({ data }) => {
       else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' &&
         item.heading === 'Payment Required') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
-          || acc?.subStatus === '' ) {
+          || acc?.subStatus === '') {
           renderItem = false
         }
       }
@@ -58,6 +59,7 @@ const MainAccordion = ({ data }) => {
     // on click list acc 
     let showElement;
     let detail;
+    let subStatusText;
     switch (heading) {
       case 'Quote Generated':
         detail = accordionDetails?.filter(item => {
@@ -110,10 +112,14 @@ const MainAccordion = ({ data }) => {
       case 'Consent For Change In The Application Details':
         return <Consent />
       case 'Payment Required':
-        let revisedOfferPayment= accordionDetails?.filter(item => {
+        let revisedOfferPayment = accordionDetails?.filter(item => {
           return item.status === 'REVISED_OFFER';
         })
-        let revisedPayment=revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium
+        // let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium
+        let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.shortfallPremium
+
+        
+        // console.log('revisedPayment',revisedPayment)
         // console.log('revisedOfferPayment',revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium)
 
         detail = accordionDetails?.filter(item => {
@@ -128,16 +134,17 @@ const MainAccordion = ({ data }) => {
         //     clickHandler={paymentReqHandler}
         //   />
         //   :
-        return  <Payment
-            paymentValue={revisedPayment} // revised offer --shortfall premium
-            accDetails={accDetails}
-            isRevised={true}
-          />
-         
+        return <Payment
+          paymentValue={revisedPayment} // revised offer --shortfall premium
+          accDetails={accDetails}
+          isRevised={true}
+        />
+
       case 'Quality Check':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'QUALITY_CHECK';
         });
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
         showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
@@ -145,13 +152,14 @@ const MainAccordion = ({ data }) => {
           </div>
           :
           <div className='blue-block-container'>
-            <p>Yet to Start</p>
+            <div>{subStatusText.length > 0 ? subStatusText[0]?.customerPortal : <div>Yet to Start</div>}</div>
           </div>
         return showElement
       case 'Medical Risk Verification':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'MEDICAL_RISK_VERIFICATION';
         });
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
         showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
@@ -159,13 +167,14 @@ const MainAccordion = ({ data }) => {
           </div>
           :
           <div className='blue-block-container'>
-            <p>Yet to Start</p>
+            <div>{subStatusText.length > 0 ? subStatusText[0]?.customerPortal : <div>Yet to Start</div>}</div>
           </div>
         return showElement
       case 'Financial and Medical Risk Verification':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION';
         });
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
         showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
@@ -173,22 +182,28 @@ const MainAccordion = ({ data }) => {
           </div>
           :
           <div className='blue-block-container'>
-            <p>Yet to Start</p>
+            <div>{subStatusText.length > 0 ? subStatusText[0]?.customerPortal : <div>Yet to Start</div>}</div>
           </div>
         return showElement
       case 'Policy Decision':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'POLICY_STATUS';
         });
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
+        // console.log('subStatusText', subStatusText)
         showElement = detail && detail[0]?.actual_status === 'COMPLETED'
-          ?
-          <div>
-            {renderCreateOn('POLICY_STATUS')}
-          </div>
-          :
-          <div className='blue-block-container'>
-            <p>Yet to Start</p>
-          </div>
+          && <>
+            {subStatusText[0]?.status === 'PI' ?
+              <div className='blue-block-container'>
+                <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+                <p>{renderCreateOn('POLICY_STATUS')}</p>
+              </div>
+              :
+              <div className='blue-block-container'>
+                <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+              </div>
+            }
+          </>
         return showElement
       default:
         break;
