@@ -174,7 +174,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                     clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
                     deleteDocHandler={deleteDocHandler}
                     viewDocHandler={() => viewDocHandler(item)}
-                    // proposedDocList={proposedDocList}
+                // proposedDocList={proposedDocList}
                 />
             </li>
             )
@@ -266,27 +266,30 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                             //         type: "application/pdf",
                             //     }
                             // );
-                            const fileName = "myDocument.pdf";
-                            const link = document.createElement("a");
-                            // create a blobURI pointing to our Blob
-                            link.href = preview.url; //URL.createObjectURL(previewList[currentImgIndex]?.src);
-                            link.download = fileName;
-                            // some browser needs the anchor to be in the doc
-                            document.body.append(link);
-                            link.click();
-                            link.remove();
-                            // in case the Blob uses a lot of memory
-                            setTimeout(
-                                () => URL.revokeObjectURL(link.href),
-                                7000
-                            );
-                            // };
-                            // window.open(
-                            //   window.URL.createObjectURL(new Blob(previewList[currentImgIndex]?.src, {type: "pdf"})),
-                            //  // window.URL.createObjectURL(previewList[currentImgIndex]?.src),
-                            //   "_blank"
-                            // )
-                        }}
+                            if (typeof window !== "undefined") {
+                                const fileName = "myDocument.pdf";
+                                const link = document.createElement("a");
+                                // create a blobURI pointing to our Blob
+                                link.href = preview.url; //URL.createObjectURL(previewList[currentImgIndex]?.src);
+                                link.download = fileName;
+                                // some browser needs the anchor to be in the doc
+                                document.body.append(link);
+                                link.click();
+                                link.remove();
+                                // in case the Blob uses a lot of memory
+                                setTimeout(
+                                    () => URL.revokeObjectURL(link.href),
+                                    7000
+                                );
+                                // };
+                                // window.open(
+                                //   window.URL.createObjectURL(new Blob(previewList[currentImgIndex]?.src, {type: "pdf"})),
+                                //  // window.URL.createObjectURL(previewList[currentImgIndex]?.src),
+                                //   "_blank"
+                                // )
+                            }
+                            }
+                        }
                     >
                         <Image src={plaholderPdf} width='200' alt="pdf placeholder" />
                     </button>)}

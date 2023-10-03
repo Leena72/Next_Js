@@ -45,7 +45,7 @@
         position: absolute;
         background: #000;
         width: 1px;
-        right: 25px;
+        right: 24px;
         height: 60px;
         top: 46px;
         z-index: 9;
@@ -182,10 +182,10 @@
         &:before {
             content: "";
             position: absolute;
-            width: 6px;
-            height: 6px;
-            top: 3px;
-            left: 4px;
+            width: 4px;
+            height: 4px;
+            top: 5px;
+            left: 5px;
             border-radius: 50%;
             animation: circle 1s 1s infinite linear;
             border: 1px solid $red4;
