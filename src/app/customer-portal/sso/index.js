@@ -1,12 +1,8 @@
 'use client';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { validateToken } from '../../redux/action/login-action'
-import Image from 'next/image'
+import { validateToken } from '@/redux/action/login-action';
 import { useRouter } from 'next/navigation';
-import Input from "../../component/Input"
-import Button from '../../component/Button'
-import loginImg from "../../Assets/images/prfress_img.png";
 
 
 const SsoLogin = () => {
@@ -22,7 +18,7 @@ const SsoLogin = () => {
     }
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
-        const ssoid = urlParams.get('ssoId')
+        const ssoid = urlParams.get('ssoid')
         setSsoId(ssoid)
         validateTokenSSO(ssoid)
     }, [])

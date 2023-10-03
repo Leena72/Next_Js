@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import Input from "../../component/Input"
 import Button from '../../component/Button'
 import loginImg from "../../Assets/images/prfress_img.png";
-
+import SsoLogin from './sso';
 
 const Login = () => {
   const router = useRouter();
@@ -18,25 +18,32 @@ const Login = () => {
   const [disabled, setdisabled] = useState(true)
   const dispatch = useDispatch()
   const showLoader = useSelector((state) => state.loaderReducer);
-
+  const [ssoTrue, ssoIdSet] = useState(false)
   useEffect(() => {
     const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
-    if ((DOB.length === 10 || panReg.test(PAN)) && (proposalNo.length >= 10)) {
-      setdisabled(false)
+    const urlParams = new URLSearchParams(window.location.search);
+    const ssoid = urlParams.get('ssoid')
+    if (ssoid) {
+      ssoIdSet(true)
+    } else {
+      if ((DOB.length === 10 || panReg.test(PAN)) && (proposalNo.length >= 10)) {
+        setdisabled(false)
+      }
+      else {
+        setdisabled(true)
+      }
     }
-    else {
-      setdisabled(true)
-    }
+
   }, [DOB, PAN, proposalNo])
 
   const proposalHandler = (e) => {
     let val = e.target.value
     const re = /^[0-9\-/]+$/;
     // if (!isNaN(val)) {
-      if (val.length >= 21) {
-        return false
-      }
-      setProposalNo(e.target.value)
+    if (val.length >= 21) {
+      return false
+    }
+    setProposalNo(e.target.value)
     // }
   }
 
@@ -57,14 +64,14 @@ const Login = () => {
       // if (val.length >= 11) {
       //   return false
       // }
-      
+
       // let abcd = transformDateFormat(val)
       // setDOB(abcd)
     }
   }
 
 
-  const formatDate=(input)=>{ 
+  const formatDate = (input) => {
     const cleanedInput = input.replace(/\D/g, '');
     const match = cleanedInput.match(/^(\d{0,2})(\d{0,2})(\d{0,4})$/);
     if (match) {
@@ -98,56 +105,60 @@ const Login = () => {
     }))
   }
   return (
-    <div className='login-container'>
-      {showLoader["isLoaderOn"] && (
-        <div className="loader-overlay">
-          <div className="loader-img"></div>
-        </div>
-      )}
-      <div className='login-header'>
-        <h1>Welcome to <br></br>
-          Application Tracker
-        </h1>
-        <p>Track policy applications by entering the details</p>
-        <div className='login-img'>
-          <Image
-            src={loginImg}
-            alt='loginImg'
-          />
-        </div>
-      </div>
-      <div className='login-block'>
-        <div className='login-content'>
-          <label>Proposal No./Quotation No./Policy No.</label>
-          <Input
-            type='tel'
-            value={proposalNo}
-            name='proposalNo'
-            placeholder='xxxxxxxxxx'
-            changeHandler={proposalHandler}
-          />
-        </div>
-        <div className='login-content'>
-          <label>Date of Birth/PAN</label>
-          <Input
-            type='text'
-            name={isDob ? 'dob' : 'pan'}
-            value={isDob ? DOB : PAN}
-            placeholder={'DD-MM-YYYY'}
-            changeHandler={dobPanHandler}
-          />
-        </div>
-        <div className='login-button'>
-          <Button
-            className='blue-button'
-            clickHandler={clickHandler}
-            type='button'
-            buttonText={'Track Application'}
-            disabled={disabled}
-          />
-        </div>
-      </div>
-    </div>
+    <>
+      {ssoTrue ? <SsoLogin />
+        :
+        <div className='login-container'>
+          {showLoader["isLoaderOn"] && (
+            <div className="loader-overlay">
+              <div className="loader-img"></div>
+            </div>
+          )}
+          <div className='login-header'>
+            <h1>Welcome to <br></br>
+              Application Tracker
+            </h1>
+            <p>Track policy applications by entering the details</p>
+            <div className='login-img'>
+              <Image
+                src={loginImg}
+                alt='loginImg'
+              />
+            </div>
+          </div>
+          <div className='login-block'>
+            <div className='login-content'>
+              <label>Proposal No./Quotation No./Policy No.</label>
+              <Input
+                type='tel'
+                value={proposalNo}
+                name='proposalNo'
+                placeholder='xxxxxxxxxx'
+                changeHandler={proposalHandler}
+              />
+            </div>
+            <div className='login-content'>
+              <label>Date of Birth/PAN</label>
+              <Input
+                type='text'
+                name={isDob ? 'dob' : 'pan'}
+                value={isDob ? DOB : PAN}
+                placeholder={'DD-MM-YYYY'}
+                changeHandler={dobPanHandler}
+              />
+            </div>
+            <div className='login-button'>
+              <Button
+                className='blue-button'
+                clickHandler={clickHandler}
+                type='button'
+                buttonText={'Track Application'}
+                disabled={disabled}
+              />
+            </div>
+          </div>
+        </div>}
+    </>
   )
 }
 

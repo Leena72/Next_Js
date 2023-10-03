@@ -43,11 +43,11 @@ export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
             });
         });
 };
-export const validateToken = (proposalNo,cb) => (dispatch) => {
+export const validateToken = (sso,cb) => (dispatch) => {
     dispatch({
         type: "LOADER_ON",
     });
-    Axios.get(`${loginAPIConstant.API_URL}auth/customer-portal/token?tokenId=${proposalNo}`, {
+    Axios.get(`${loginAPIConstant.API_URL}auth/customer-portal/token?tokenId=${sso}`, {
         headers: {
             "Content-Type": "application/json",
         }
