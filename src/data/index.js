@@ -1358,26 +1358,7 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            subQuestions: [
-                {
-                    id: '1',
-                    question: 'Please state the date when diabetes was first diagnosed (DD/MM/YY)',
-                    answer: '',
-                    name: 'date_diabetes',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '2',
-                    question: 'Please state the type of Diabetes (Type I or Type II)',
-                    answer: '',
-                    name: 'type_diabetes',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                }
-            ]
+            subQuestions: []
         },
         {
             id: '2',
@@ -1469,17 +1450,7 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            subQuestions: [
-                {
-                    id: '1',
-                    question: 'If yes, please provide details including dates and durations:',
-                    answer: '',
-                    name: 'details',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                }
-            ]
+            subQuestions: []
         },
         {
             id: '5',

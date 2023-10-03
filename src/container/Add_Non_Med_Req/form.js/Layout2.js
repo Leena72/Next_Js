@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '@/component/Button';
 import Input from '@/component/Input';
-
+import AddImg from '../../../Assets/images/add.png'
 const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
 
     const changeHandler = (e, quesData, radioInput) => {
@@ -15,10 +15,11 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
         }
         formChangeHandler({ name, value, quesData, formName })
     }
+    const addMoreHandler = () => { }
     return (
         <>
             {
-                formData && formData.length>0 && formData.map(item => {
+                formData && formData.length > 0 && formData.map(item => {
                     return (
                         <div className='form-block' key={item.id}>
                             <div className={`${item.declaration !== '' ? 'form-declaration' : 'hide'}`}>{item.declaration}</div>
@@ -62,6 +63,17 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                     </div>
                                 ))
                             }
+                            {item.addMore && 
+                            <div className='add-more-container'>
+                            <Button
+                                className='add-more-btn'
+                                clickHandler={addMoreHandler}
+                                type='button'
+                                buttonText={'Add More'}
+                                // buttonIcon={AddImg}
+                            />
+                            </div>
+                            }
                             {item.type != 'HEADING' &&
                                 <div className='form-quesAns'>
                                     <div className='form-question'>{item.question}</div>
@@ -74,7 +86,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                                     name={`radio_${item.id}`}
                                                     // checked={''}
                                                     changeHandler={(e) =>
-                                                        changeHandler(e, { ques: item, type: 'ques', parent: null },'yes')}
+                                                        changeHandler(e, { ques: item, type: 'ques', parent: null }, 'yes')}
                                                 />
                                                 <label className="radio-label">Yes</label>
                                             </div>
@@ -85,7 +97,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                                     name={`radio_${item.id}`}
                                                     // checked={''}
                                                     changeHandler={(e) =>
-                                                        changeHandler(e, { ques: item, type: 'ques', parent: null },'no')}
+                                                        changeHandler(e, { ques: item, type: 'ques', parent: null }, 'no')}
                                                 />
                                                 <label className="radio-label">No</label>
                                             </div>
