@@ -1,12 +1,12 @@
 import Axios from "axios";
-import {apiConstants , loginAPIConstant} from "../../constants/apiConstants";
+import { apiConstants, loginAPIConstant } from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 
 export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
     dispatch({
         type: "LOADER_ON",
-      });
+    });
     Axios({
         method: "post",
         mode: "no-cors",
@@ -19,27 +19,60 @@ export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
             "input2": DOB + ' ' + '00:00:00'
         },
     })
-    .then((res) => {
-        if (res.data.status === 'OK') {
-            localStorage.setItem('accessToken', res.data.body.accessToken)
-            localStorage.setItem('creationDate', res.data.body.creationDate)
-            localStorage.setItem('expirationDate', res.data.body.expirationDate)
-            // localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
-            localStorage.setItem('proposalNo', res.data.body.user.code);
-            toaster('success', res.data.message)
-            cb();
-        }
-        else {
-            toaster('error', res.data.message)
-        }
-        dispatch({
-            type: "LOADER_OFF",
-          });
-    })
-    .catch((error) => {
-        // console.log('>>')
-        dispatch({
-            type: "LOADER_OFF",
+        .then((res) => {
+            if (res.data.status === 'OK') {
+                localStorage.setItem('accessToken', res.data.body.accessToken)
+                localStorage.setItem('creationDate', res.data.body.creationDate)
+                localStorage.setItem('expirationDate', res.data.body.expirationDate)
+                // localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
+                localStorage.setItem('proposalNo', res.data.body.user.code);
+                toaster('success', res.data.message)
+                cb();
+            }
+            else {
+                toaster('error', res.data.message)
+            }
+            dispatch({
+                type: "LOADER_OFF",
+            });
+        })
+        .catch((error) => {
+            // console.log('>>')
+            dispatch({
+                type: "LOADER_OFF",
+            });
         });
+};
+export const validateToken = (proposalNo,cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
     });
+    Axios.get(`${loginAPIConstant.API_URL}auth/customer-portal/token?tokenId=${proposalNo}`, {
+        headers: {
+            "Content-Type": "application/json",
+        }
+    })
+        .then((res) => {
+            if (res.data.status === 'OK') {
+                localStorage.setItem('accessToken', res.data.body.accessToken)
+                localStorage.setItem('creationDate', res.data.body.creationDate)
+                localStorage.setItem('expirationDate', res.data.body.expirationDate)
+                // localStorage.setItem('proposalNo', JSON.stringify({ proposalNo }));
+                localStorage.setItem('proposalNo', res.data.body.user.code);
+                toaster('success', res.data.message)
+                cb();
+            }
+            else {
+                toaster('error', res.data.message)
+            }
+            dispatch({
+                type: "LOADER_OFF",
+            });
+        })
+        .catch((error) => {
+            // console.log('>>')
+            dispatch({
+                type: "LOADER_OFF",
+            });
+        });
 };

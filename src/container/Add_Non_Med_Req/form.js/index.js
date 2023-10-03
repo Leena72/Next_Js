@@ -53,10 +53,11 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         return check;
     }
     const formChangeHandler = ({ name, value, formData }) => {
-        // console.log('name, value, quesData, formName', name, value, quesData, formName, formData)
+         console.log('name, value, quesData, formName', name, value)
         // if (quesData.type === 'ques') {
         let data = JSON.parse(JSON.stringify(formData))
         let finalFormData = mapSaveData(data, name, value)
+        console.log('name, value, quesData, formName', finalFormData)
         setFormValues(finalFormData)
         // console.log('check validation data', checkValidation(finalFormData))
         let isvalidform = checkValidation(finalFormData)
@@ -77,7 +78,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         }
     }, []);
     const renderElement = (formName, formValues, formik, title, newTitle, userType) => {
-        // console.log("checking===>", formName, formData, formValues, formik, title, formData)
+        console.log("checking===>", formName, formValues, formik, title)
         // const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
         // const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
         // let newFormData = []
@@ -119,9 +120,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         // console.log('payload', filterQuestion[0]?.id, formValues)
         dispatch(saveQuestionnaireAction(payload, res => {
             // console.log('res', res)
-            dispatch(dashboardAction(accDetails.proposalNumber, (res) => {
-
-            }))
+            dispatch(dashboardAction(accDetails.proposalNumber, (res) => { }))
         }))
     }
     return (

@@ -8,12 +8,12 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
         let value = e.target.value
         let name = e.target.name
         if (e.target.checked === true) {
-            value = radioInput === 'yes' ? true : false
+            value = radioInput 
         }
         else {
             value = e.target.value
         }
-        formChangeHandler({ name, value, quesData, formName })
+        formChangeHandler({ name, value, formData, formName })
     }
     return (
         <>
@@ -32,11 +32,11 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                                 <div className="radio">
                                                     <Input
                                                         type='radio'
-                                                        value={''}
+                                                        value={'Yes'}
                                                         name={`radio_${item.id}_${ele.id}`}
                                                         // checked={''}
                                                         changeHandler={(e) =>
-                                                            changeHandler(e, { ques: item, type: 'ques', parent: null, }, 'yes')}
+                                                            changeHandler(e, { ques: item, type: 'ques', parent: null, }, 'Yes')}
 
                                                     />
                                                     <label className="radio-label">Yes</label>
@@ -44,11 +44,11 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                                 <div className="radio">
                                                     <Input
                                                         type='radio'
-                                                        value={''}
+                                                        value={'No'}
                                                         name={`radio_${item.id}_${ele.id}`}
                                                         // checked={''}
                                                         changeHandler={(e) =>
-                                                            changeHandler(e, { ques: item, type: 'ques', parent: null }, 'no')}
+                                                            changeHandler(e, { ques: item, type: 'ques', parent: null }, 'No')}
                                                     />
                                                     <label className="radio-label">No</label>
                                                 </div>

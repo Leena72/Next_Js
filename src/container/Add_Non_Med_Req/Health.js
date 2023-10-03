@@ -28,8 +28,16 @@ const Health = ({ insureddata, proposerdata, category }) => {
   let uwId = accDetails?.additionalInfoDocs?.uwId
 
   const dispatch = useDispatch()
-  const toggleAccordion = (id) => {
-    setOpenAcc(openAcc === id ? null : id)
+  const toggleAccordion = (items, userType) => {
+    console.log(accDetails, items)
+    const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === items.newTitle.toLowerCase())
+    //   const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
+    // console.log("===========>", filterQuestion[0], filterQuestion && filterQuestion[0]?.data?.length > 0 && filterQuestion[0].url)
+    // if (filterQuestion && filterQuestion[0] && filterQuestion[0].url) {
+    //   toaster("warn", "It is filled by agent")
+    // } else {
+      setOpenAcc(openAcc === items.id ? null : items.id)
+    // }
   }
   const toggleCatAccordion = (id) => {
     setOpenCatAcc(openCatAcc === id ? null : id)
@@ -48,9 +56,10 @@ const Health = ({ insureddata, proposerdata, category }) => {
     />
   }
   // console.log('formValues',formValues)
-  const checkSubmitValidation = (data) => {
-    return data.forEach(item => {
-      if (item.data && item.data.length === 0) {
+  const checkSubmitValidation = (data,userType) => {
+    return data.forEach((item,i) => {
+      const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((items) => items.id === item.id)
+      if (item.data && item.data.length === 0 && !(filterQuestion && filterQuestion[0].url)) {
         // console.log('check submit otp4', item.data)
         setSubmitValid(false)
       }
@@ -60,10 +69,10 @@ const Health = ({ insureddata, proposerdata, category }) => {
     const { primaryInsuredDocumentDetail, proposerDocumentDetail } = accDetails?.additionalInfoDocs;
     setSubmitValid(true)
     if (primaryInsuredDocumentDetail && primaryInsuredDocumentDetail?.quesDataList?.length > 0) {
-      checkSubmitValidation(primaryInsuredDocumentDetail?.quesDataList)
+      checkSubmitValidation(primaryInsuredDocumentDetail?.quesDataList,"primaryInsuredDocumentDetail")
     }
     if (proposerDocumentDetail && proposerDocumentDetail?.quesDataList?.length > 0) {
-      checkSubmitValidation(proposerDocumentDetail?.quesDataList)
+      checkSubmitValidation(proposerDocumentDetail?.quesDataList,"proposerDocumentDetail")
     }
     // console.log("check submit otp1", submitValid)
     // setSubmitValid(submitValid)
@@ -136,7 +145,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
               {insureddata.map(item => {
                 return (
                   <li className='nonMedList' key={item.id} >
-                    <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                    <div className='non-block-heading ' onClick={() => toggleAccordion(item, 'primaryInsuredDocumentDetail')}>
                       <div>{item.title}</div>
                       <div className='acc-active-icon '>
                         <Image
@@ -169,7 +178,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
             {proposerdata.map(item => {
               return (
                 <li className='nonMedList' key={item.id} >
-                  <div className='non-block-heading ' onClick={() => toggleAccordion(item.id)}>
+                  <div className='non-block-heading ' onClick={() => toggleAccordion(item, 'proposerDocumentDetail')}>
                     <div>{item.title}</div>
                     <div className='acc-active-icon '>
                       <Image
