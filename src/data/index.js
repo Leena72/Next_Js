@@ -3261,253 +3261,333 @@ export const documentsUplaod = [
 
 // status api data
 
-export const statusApi =
-{
-    "proposalId": 3842398,
+export const statusApi = {
+    "proposalId": 3826740,
     "customerId": null,
-    "quoteId": 3842397,
-    "quoteRefNumber": "23750071864230823",
-    "customerName": "TESR ",
-    "firstName": "TESR",
+    "quoteId": 3826739,
+    "quoteRefNumber": "23750071257180823",
+    "customerName": "RAKESH PATIL",
+    "firstName": "RAKESH",
     "middleName": "",
-    "lastName": "",
-    "planName": "Bharti AXA Life Secure Income Plan",
-    "sumAssured": 89084,
-    "proposalNumber": "3108426548",
-    "premium": 150000,
+    "lastName": "PATIL",
+    "planName": "Bharti AXA Life Elite Advantage Plan",
+    "sumAssured": 1118569,
+    "proposalNumber": "3108426174",
+    "premium": 250800.17,
     "journeyStatus": "UNDERWRITING_SUBMITTED",
     "agentCode": null,
-    "emailId": "OK@OK.COM",
-    "mobileNo": "8826979056",
-    "dateOfBirth": "11-05-1994",
+    "emailId": "SUMIT.SAHANI.EXT@BHARTIAXA.COM",
+    "mobileNo": "7053872246",
+    "dateOfBirth": "31-01-1998",
     "channelName": "",
     "subChannelName": "",
     "sourceName": "MSell",
-    "policyFor": "OTHER",
-    "quotationRefNum": "23750071864230823",
-    "policyNumber": "506-8151504",
+    "policyFor": "SELF",
+    "quotationRefNum": "23750071257180823",
+    "policyNumber": "506-8150262",
     "overallUWDecisionCd": "Counter Offer",
-    "uniqueProposalId": "ajkxMnN4bVlxM0Q4c3I5R2xyalNuUT09",
+    "uniqueProposalId": "bXlyMDdEb0FWWk9zU1dTZFVkc09JZz09",
     "workFlowStage": null,
     "pasaCase": false,
     "premiumPaymentTerm": 5,
-    "policyTerm": 15,
+    "policyTerm": 10,
     "enachCompleted": false,
     "instaDetails": null,
-    "customerConsentRequired": false,
-    "agentConsentRequired": false,
     "instaRequired": true,
-    "proposerName": "ONEE",
-    "insuredName": null,
     "issuanceType": "NEWGEN",
-    "paymentDetails": [],
     "counterOfferCount": 0,
     "paymentRenewalRequired": false,
     "paymentCompleted": false,
     "paymentOtpCompleted": false,
-    "additionalQuestionnaireListDTO": {
-        "proposerAdditionalQuestionnaireDocs": [],
-        "insuredAdditionalQuestionnaireDocs": [],
-        "jointAdditionalQuestionnaireDocs": []
-    },
+    "customerConsentRequired": false,
+    "agentConsentRequired": false,
+    "proposerName": "RAKESH",
+    "insuredName": "RAKESH",
+    "counterOfferPaymentCompleted": true,
     "newgenStatusResponseDTOList": [
         {
-            "id": 3865816,
-            "status": "DATA_CHANGE",
-            "subStatus": 'AD',
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-02 12:28:31",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865814,
-            "status": "FINANCIAL_AND_MEDICAL_RISK_VERIFICATION",
-            "subStatus": null,
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-02 12:28:31",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865813,
-            "status": "MEDICAL_RISK_VERIFICATION",
-            "subStatus": null,
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-02 12:28:31",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865811,
-            "status": "PAYMENT_REQUIREMENT",
-            "subStatus": 'CO',
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-02 12:28:31",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-
-            "id": 3894934,
-            "status": "PAYMENT",
-            "subStatus": "PAYMENT",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-25 09:52:17",
-            "createdOn": "2023-09-25 09:52:17",
-            "additionalInfo": {},
-            "paymentInfo": {
-                "paymentAmountCompleted": true,
-                "paymentRenewal": false,
-                "enachCompleted": false,
-                "paymentOtpCompleted": false
-            }
-        },
-        {
-            "id": 3865807,
-            "status": "MEDICAL_REQUIREMENT",
-            "subStatus": null,
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-02 12:28:31",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865805,
-            "status": "PROPOSAL",
-            "subStatus": "Health_Details",
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 07:01:13",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865804,
-            "status": "PROPOSAL",
-            "subStatus": "Nominee_Details",
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 06:59:39",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3823063,
-            "status": "PROPOSAL",
-            "subStatus": "Insured_Details",
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-08-17 15:32:46",
-            "createdOn": "2023-08-17 15:32:46"
-        },
-        {
-            "id": 3894929,
-            "status": "PROPOSAL",
-            "subStatus": "Document_Details",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-25 09:52:17",
-            "createdOn": "2023-09-25 09:52:17",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865803,
+            "id": 3879358,
             "status": "PROPOSAL",
             "subStatus": "Personal_Details",
             "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 06:59:15",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
+            "updatedOn": "2023-09-11 06:21:39",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
             "paymentInfo": null
         },
         {
-            "id": 3865802,
-            "status": "QUOTE",
-            "subStatus": "QUOTE",
+            "id": 3879359,
+            "status": "PROPOSAL",
+            "subStatus": "Nominee_Details",
             "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 12:28:31",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
+            "updatedOn": "2023-09-11 06:21:48",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
             "paymentInfo": null
         },
         {
-            "id": 3865808,
-            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
-            "subStatus": 'AR',
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-02 12:28:31",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
+            "id": 3879361,
+            "status": "PROPOSAL_SUBMISSION",
+            "subStatus": "PROPOSAL_SUBMISSION",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-27 15:10:12",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
             "paymentInfo": null
         },
         {
-            "id": 3865809,
-            "status": "REVISED_OFFER",
-            "subStatus": "CO",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-07 06:48:54",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {
-                "counterOfferDetails": {
-                    "Id": "1",
-                    "planName": "ddDDA",
-                    "tempLoading": "DSADAd",
-                    "tempLoadingDuration": "asdd",
-                    "medicalLoding": "ddA",
-                    "pt": "5",
-                    "ppt": "7556",
-                    "riderStatus": [
-                        {
-                            "riderName": "jgvghjv",
-                            "partyRole": "dufh",
-                            "status": "dhfc"
-                        }
-                    ],
-                    "sa": "hf",
-                    "smoker": "jfvghg",
-                    "loadingType": "chgvchg",
-                    "counterOfferReason": "xhdcgf",
-                    "revisedPremium": 57685,
-                    "shortfallPremium": 76878
-                }
-            },
+            "id": 3879360,
+            "status": "PROPOSAL",
+            "subStatus": "Health_Details",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-11 06:22:14",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879365,
+            "status": "PAYMENT",
+            "subStatus": "PAYMENT",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-11 06:23:18",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
             "paymentInfo": {
-                'revisedOfferPaymentDone':true
+                "paymentAmountCompleted": true,
+                "paymentRenewal": true,
+                "enachCompleted": true,
+                "paymentOtpCompleted": true
             }
         },
         {
-            "id": 3865815,
+            "id": 3879357,
+            "status": "QUOTE",
+            "subStatus": "QUOTE",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879362,
+            "status": "MEDICAL_REQUIREMENT",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879363,
+            "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879366,
+            "status": "PAYMENT_REQUIREMENT",
+            "subStatus": 'CO',
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879367,
+            "status": "QUALITY_CHECK",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879368,
+            "status": "MEDICAL_RISK_VERIFICATION",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879369,
+            "status": "FINANCIAL_AND_MEDICAL_RISK_VERIFICATION",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879371,
+            "status": "DATA_CHANGE",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879364,
+            "status": "REVISED_OFFER",
+            "subStatus": "CO",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-20 08:08:01",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": {
+                "id": null,
+                "pt": "10",
+                "sa": "SA",
+                "ppt": "20",
+                "smoker": "YES",
+                "planName": "test Pan",
+                "loadingType": ":LoadingType",
+                "riderStatus": [
+                    {
+                        "status": "Axctive",
+                        "partyRole": "20",
+                        "riderName": "10"
+                    }
+                ],
+                "tempLoading": "testtemLoading",
+                "medicalLoading": null,
+                "revisedPremium": 20000,
+                "shortfallPremium": 100,
+                "counterOfferReason": "testC ounter Offer",
+                "tempLoadingDuration": "testeLoaduruation"
+            },
+            "paymentInfo": null
+        },
+        {
+            "id": 3879370,
             "status": "POLICY_STATUS",
             "subStatus": "PI",
             "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 08:46:58",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865806,
-            "status": "PROPOSAL_SUBMISSION",
-            "subStatus": "COMPLETED",
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-07 06:54:21",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
-            "paymentInfo": null
-        },
-        {
-            "id": 3865812,
-            "status": "QUALITY_CHECK",
-            "subStatus": null,
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-02 09:05:35",
-            "createdOn": "2023-09-02 06:58:31",
-            "additionalInfo": {},
+            "updatedOn": "2023-09-22 07:07:31",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": {
+                "PlanDetails": {
+                    "planOption": {
+                        "new": "planOptionnewData",
+                        "old": "planOptiomOldData"
+                    },
+                    "baseSumAssured": {
+                        "new": "planField1",
+                        "old": "planField1"
+                    },
+                    "riderPolicyTerm": {
+                        "new": "planField2",
+                        "old": "planField2"
+                    }
+                },
+                "InsuredDetails": {
+                    "title": {
+                        "olddetails": "OLDTitle",
+                        "revisedDetails": "NewTitle"
+                    },
+                    "gender": {
+                        "olddetails": "Male",
+                        "revisedDetails": "Male"
+                    },
+                    "pinCode": {
+                        "olddetails": "301701",
+                        "revisedDetails": "301701"
+                    },
+                    "ageProof": {
+                        "olddetails": "OLDAgeProdd",
+                        "revisedDetails": "NewAgeProdd"
+                    },
+                    "dateOfBirth": {
+                        "olddetails": "30-12-2030",
+                        "revisedDetails": "12-12-2012"
+                    },
+                    "fundDetails": {
+                        "olddetails": "OLDfundDeatails",
+                        "revisedDetails": "NewfundDeatails"
+                    },
+                    "residentialCountry": {
+                        "olddetails": "OLDRediCounrty",
+                        "revisedDetails": "newRediCounrty"
+                    }
+                },
+                "ProposerDetails": {
+                    "age": {
+                        "olddetails": "99",
+                        "revisedDetails": "99"
+                    },
+                    "pep": {
+                        "olddetails": "OLDtestPEP",
+                        "revisedDetails": "testPEPNew"
+                    },
+                    "name": {
+                        "olddetails": "OLDAjayNewName",
+                        "revisedDetails": "AjayNewName"
+                    },
+                    "title": {
+                        "olddetails": "OLDTitle",
+                        "revisedDetails": "NewTitle"
+                    },
+                    "gender": {
+                        "olddetails": "Male",
+                        "revisedDetails": "Male"
+                    },
+                    "pinCode": {
+                        "olddetails": "301701",
+                        "revisedDetails": "301701"
+                    },
+                    "ageProof": {
+                        "olddetails": "OLDAgeProdd",
+                        "revisedDetails": "NewAgeProdd"
+                    },
+                    "dateOfBirth": {
+                        "olddetails": "30-12-2030",
+                        "revisedDetails": "12-12-2012"
+                    },
+                    "fundDetails": {
+                        "olddetails": "OLDfundDeatails",
+                        "revisedDetails": "NewfundDeatails"
+                    },
+                    "residentialCountry": {
+                        "olddetails": "OLDRediCounrty",
+                        "revisedDetails": "newRediCounrty"
+                    }
+                },
+                "QuestionnaireDetails": {
+                    "insuredQuestionDetails": {
+                        "What is insured old Question1?": {
+                            "oldDetails": "this is insured old Answer1.",
+                            "revisedDetails": "this is insured new Answer1."
+                        },
+                        "What is insured old Question2?": {
+                            "oldDetails": "this is insured old Answer2",
+                            "revisedDetails": "this is insured new Answer2"
+                        }
+                    },
+                    "proposerQuestionDetails": {
+                        "What is proposer old Question1?": {
+                            "oldDetails": "this is proposer old Answer1.",
+                            "revisedDetails": "this is proposer new Answer1."
+                        },
+                        "What is prpposer old Question2?": {
+                            "oldDetails": "this is proposer old Answer2",
+                            "revisedDetails": "this is proposer new Answer2"
+                        }
+                    }
+                }
+            },
             "paymentInfo": null
         }
     ],
@@ -3611,20 +3691,22 @@ export const statusApi =
         ]
     },
     "policyDocuments": {
-        "BI_TAG_NAME": "23750071864230823.pdf",
-        "CDF_TAG_NAME": "3108426548CDF.pdf",
-        "FNA_TAG_NAME": "3108426548FNA.pdf",
-        "PDF_TAG_NAME": "3108426548_PF.pdf",
-        "COVID_TAG_NAME_2": "3108426548InsuredCovid19.pdf",
-        "NEW_ACR_TAG_NAME": "506-8151504_ACR.pdf",
-        "NEW_COVID_TAG_NAME_2": "3108426548covid_19.pdf",
-        "AGENT_CONFIDENTIAL_REPORT": "AgentConfidentialReport.pdf"
+        "BI_TAG_NAME": "70000600581.pdf",
+        "CDF_TAG_NAME": "3107424426CDF.pdf",
+        "FNA_TAG_NAME": "3107424426FNA.pdf",
+        "PDF_TAG_NAME": "3107424426_PF.pdf",
+        "COVID_TAG_NAME_2": "3107424426InsuredCovid19.pdf",
+        "NEW_ACR_TAG_NAME": "506-8143873_ACR.pdf",
+        "NEW_COVID_TAG_NAME_2": "3107424426covid_19.pdf",
+        "AGENT_CONFIDENTIAL_REPORT": "AgentConfidentialReport.pdf",
+        "REVISED_OFFER_DOC": " ",
+        "REVISED_BI_DOC": " "
     },
     "paymentReceipts": [
         "RECIEP_12321393232_1.pdf",
         "RECIEP_12321393232_2.pdf"
     ],
-    "counterOfferPaymentReceipts":[
+    "counterOfferPaymentReceipts": [
         "RECIEP_12321393232_3.pdf",
         "RECIEP_12321393232_4.pdf"
     ],
@@ -3948,7 +4030,7 @@ export const statusApi =
         "customerConsentLink": null,
         "agentConsentLink": null,
         "agentConsent": false,
-        "tpaConsentLink": "https://dev-onboarding.bhartiaxa.com/mcustomer/app?pn=MzEwODQyNjU0OA==&et=TW9uIEF1ZyAyOCAxMDowNzowNyBVVEMgMjAyMw==",
+        "tpaConsentLink": null,
         "refNumber": null,
         "verificationDate": null,
         "otp": null,
@@ -3961,8 +4043,23 @@ export const statusApi =
         "customerConsentRejectedReason": null,
         "customerConsentRejected": false
     },
+    "paymentDetails": [
+        {
+            "txReferenceNo": "DSDJ5678965435",
+            "proposalNumber": "3108426174",
+            "txAmount": 250800.17,
+            "counterOfferPayment": false,
+            "paymentReceipt": null
+        },
+        {
+            "txReferenceNo": "U1230001547656",
+            "proposalNumber": "3108426174",
+            "txAmount": 100.00,
+            "counterOfferPayment": true,
+            "paymentReceipt": null
+        }
+    ],
 }
-
 
 // consent data
 
@@ -4228,7 +4325,7 @@ export const consentForChangeData = [
 ]
 
 
-const PolicySubStatus = {
+export const PolicySubStatus = {
     "PM": "Policy Approved",
     "PI": "Policy Issued",
     "PD": "Policy declined",
@@ -4241,169 +4338,202 @@ const PolicySubStatus = {
 
 // sub status value
 
-const subStatus = [
-{'status':'AS',
-'agentView':'Pending for application Submission',
-'customerPortal':'Pending for application Submission'
+export const subStatusList = [
+    {
+        'status': 'AS',
+        'agentView': 'Pending for application Submission',
+        'customerPortal': 'Pending for application Submission'
 
-},
-{'status':'UD',
-'agentView':'Pending for system UW decision',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'UD',
+        'agentView': 'Pending for system UW decision',
+        'customerPortal': 'WIP'
 
-},
-{'status':'MP',
-'agentView':'Awaited medicals from Customer',
-'customerPortal':'Awaited medicals from Customer'
+    },
+    {
+        'status': 'MP',
+        'agentView': 'Awaited medicals from Customer',
+        'customerPortal': 'Awaited medicals from Customer'
 
-},
-{'status':'NP',
-'agentView':'Awaited Non-medical requirements from Customer',
-'customerPortal':'Awaited Non-medical requirements from Customer'
+    },
+    {
+        'status': 'NP',
+        'agentView': 'Awaited Non-medical requirements from Customer',
+        'customerPortal': 'Awaited Non-medical requirements from Customer'
 
-},
-{'status':'NM',
-'agentView':'Awaited medical and Non-Medical Req from Customer',
-'customerPortal':'Awaited medical and Non-Medical Req from Customer'
+    },
+    {
+        'status': 'NM',
+        'agentView': 'Awaited medical and Non-Medical Req from Customer',
+        'customerPortal': 'Awaited medical and Non-Medical Req from Customer'
 
-},
-{'status':'DS',
-'agentView':'Document awaited from Sales',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'DS',
+        'agentView': 'Document awaited from Sales',
+        'customerPortal': 'WIP'
 
-},
-{'status':'AR',
-'agentView':'Addditional requirement called in Branch/NB',
-'customerPortal':'Awaited for addditional requirements to receive'
+    },
+    {
+        'status': 'AR',
+        'agentView': 'Additional requirement called in Branch/NB',
+        'customerPortal': 'Awaited for additional requirements to receive'
 
-},
-{'status':'AI',
-'agentView':'Add info called in UW ',
-'customerPortal':'Awaited for addditional requirements to receive'
+    },
+    {
+        'status': 'AI',
+        'agentView': 'Add info called in UW ',
+        'customerPortal': 'Awaited for additional requirements to receive'
 
-},
-{'status':'CO',
-'agentView':'Pending for Counter offer acceptance ',
-'customerPortal':'Pending for Counter offer acceptance '
+    },
+    {
+        'status': 'CO',
+        'agentView': 'Pending for Counter offer acceptance ',
+        'customerPortal': 'Pending for Counter offer acceptance '
 
-},
-{'status':'SP',
-'agentView':'Pending for Short Premium payment',
-'customerPortal':'Pending for Short Premium payment'
+    },
+    {
+        'status': 'SP',
+        'agentView': 'Pending for Short Premium payment',
+        'customerPortal': 'Pending for Short Premium payment'
 
-},
-{'status':'DB',
-'agentView':'Pending for Data  quality checking with Branch',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'DB',
+        'agentView': 'Pending for Data  quality checking with Branch',
+        'customerPortal': 'WIP'
 
-},
-{'status':'PA',
-'agentView':'Pending for payment acknowledgement at Branch',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'PA',
+        'agentView': 'Pending for payment acknowledgement at Branch',
+        'customerPortal': 'WIP'
 
-},
-{'status':'DN',
-'agentView':'Pending for Data quality checking with NB',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'DN',
+        'agentView': 'Pending for Data quality checking with NB',
+        'customerPortal': 'WIP'
 
-},
-{'status':'DC',
-'agentView':'Pending for Data corrections/ changes in NB',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'DC',
+        'agentView': 'Pending for Data corrections/ changes in NB',
+        'customerPortal': 'WIP'
 
-},
-{'status':'RI',
-'agentView':'Pending for RCU investigation ',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'RI',
+        'agentView': 'Pending for RCU investigation ',
+        'customerPortal': 'WIP'
 
-},
-{'status':'MA',
-'agentView':'Pending for Medical Appointment',
-'customerPortal':'Pending for Medical Appointment'
+    },
+    {
+        'status': 'MA',
+        'agentView': 'Pending for Medical Appointment',
+        'customerPortal': 'Pending for Medical Appointment'
 
-},
-{'status':'MR',
-'agentView':'Pending for Medical Reports',
-'customerPortal':'Pending for Medical Reports'
+    },
+    {
+        'status': 'MR',
+        'agentView': 'Pending for Medical Reports',
+        'customerPortal': 'Pending for Medical Reports'
 
-},
-{'status':'TC',
-'agentView':'Pending for TPA clarification on medicals done',
-'customerPortal':'Pending for TPA clarification on medicals done'
+    },
+    {
+        'status': 'TC',
+        'agentView': 'Pending for TPA clarification on medicals done',
+        'customerPortal': 'Pending for TPA clarification on medicals done'
 
-},
-{'status':'RA',
-'agentView':'Pending for UW Risk Assesment ',
-'customerPortal':'Pending for UW Risk Assesment '
-},
-{'status':'CF',
-'agentView':'Pending for compliance opinion ',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'RA',
+        'agentView': 'Pending for UW Risk Assesment ',
+        'customerPortal': 'Pending for UW Risk Assesment '
+    },
+    {
+        'status': 'CF',
+        'agentView': 'Pending for compliance opinion ',
+        'customerPortal': 'WIP'
 
-},
-{'status':'VC',
-'agentView':'Pending for PIVC clearance',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'VC',
+        'agentView': 'Pending for PIVC clearance',
+        'customerPortal': 'WIP'
 
-},
-{'status':'CP',
-'agentView':'Pending for Local Cheque Clearance',
-'customerPortal':'Pending for Local Cheque Clearance'
+    },
+    {
+        'status': 'CP',
+        'agentView': 'Pending for Local Cheque Clearance',
+        'customerPortal': 'Pending for Local Cheque Clearance'
 
-},
-{'status':'OP',
-'agentView':'Pending for Direct Debit/NEFT clearance/Fund clearance on FT',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'OP',
+        'agentView': 'Pending for Direct Debit/NEFT clearance/Fund clearance on FT',
+        'customerPortal': 'WIP'
 
-},
-{'status':'CD',
-'agentView':'Pending for Fresh payment on Cheque Dishonour',
-'customerPortal':'Pending for Fresh payment on Cheque Dishonour'
+    },
+    {
+        'status': 'CD',
+        'agentView': 'Pending for Fresh payment on Cheque Dishonour',
+        'customerPortal': 'Pending for Fresh payment on Cheque Dishonour'
 
-},
-{'status':'WI',
-'agentView':'Pending for final issuance in Newgen',
-'customerPortal':'WIP'
+    },
+    {
+        'status': 'WI',
+        'agentView': 'Pending for final issuance in Newgen',
+        'customerPortal': 'WIP'
 
-},
-{'status':'PM',
-'agentView':'Policy moved to RLS for final isuance',
-'customerPortal':'Policy Approved'
+    },
+    {
+        'status': 'PM',
+        'agentView': 'Policy moved to RLS for final isuance',
+        'customerPortal': 'Policy Approved'
 
-},
-{'status':'PI',
-'agentView':'Policy issued ',
-'customerPortal':'Policy Issued'
+    },
+    {
+        'status': 'PI',
+        'agentView': 'Policy issued ',
+        'customerPortal': 'Policy Issued'
 
-},
-{'status':'PD',
-'agentView':'Policy Declined ',
-'customerPortal':'Policy declined'
+    },
+    {
+        'status': 'PD',
+        'agentView': 'Policy Declined ',
+        'customerPortal': 'Policy declined'
 
-},
-{'status':'PP',
-'agentView':'Policy Postponed ',
-'customerPortal':'policy postponed'
+    },
+    {
+        'status': 'PP',
+        'agentView': 'Policy Postponed ',
+        'customerPortal': 'policy postponed'
 
-},
-{'status':'PR',
-'agentView':'Policy rejected ',
-'customerPortal':'policy rejected'
+    },
+    {
+        'status': 'PR',
+        'agentView': 'Policy rejected ',
+        'customerPortal': 'policy rejected'
 
-},
-{'status':'PC',
-'agentView':'Policy cancelled ',
-'customerPortal':'Policy in WIP for dispatch'
+    },
+    {
+        'status': 'PC',
+        'agentView': 'Policy cancelled ',
+        'customerPortal': 'Policy in WIP for dispatch'
 
-},
-{'status':'PW',
-'agentView':'Policy waiting for dispatch',
-'customerPortal':'Policy in WIP for dispatch'
+    },
+    {
+        'status': 'PW',
+        'agentView': 'Policy waiting for dispatch',
+        'customerPortal': 'Policy in WIP for dispatch'
 
-},
-{'status':'PT',
-'agentView':'Policy Dispatched to Customer',
-'customerPortal':'Policy Dispatched'
+    },
+    {
+        'status': 'PT',
+        'agentView': 'Policy Dispatched to Customer',
+        'customerPortal': 'Policy Dispatched'
 
-},
+    },
 ]
