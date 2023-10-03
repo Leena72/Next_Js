@@ -118,10 +118,12 @@ ul {
   background-color: #f3f9ec !important;
   color: #000 !important;
 }
+
 .activebutton {
   background-color: #015289 !important;
   color: #fff !important;
 }
+
 // overlay
 .overlay__popup_nw {
   position: fixed;
@@ -382,7 +384,7 @@ ul {
   padding: 10px;
   border-radius: 10px;
   width: 96%;
-  margin:  auto;
+  margin: auto;
 
   p {
     color: $label-blue;
@@ -501,5 +503,20 @@ ul {
 
   @include mquery(desk) {
     font-size: $font-14;
+  }
+}
+
+// add more btn
+.add-more-container {
+  display: flex;
+  justify-content: end;
+
+  .add-more-btn {
+    margin: 10px 0 0;
+    background: none;
+    border: none;
+    color: $label-blue;
+    cursor: pointer;
+
   }
 }
