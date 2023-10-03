@@ -1,3 +1,4 @@
+'use client'
 import Axios from "axios";
 import { apiConstants } from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
