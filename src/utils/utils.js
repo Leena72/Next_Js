@@ -1,3 +1,4 @@
+'use client'
 import activeImg_1 from "../Assets/images/1_active.png";
 import img_1 from "../Assets/images/1.png";
 import activeImg_2 from "../Assets/images/2_2active.png";
