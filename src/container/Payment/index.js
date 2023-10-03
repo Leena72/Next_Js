@@ -150,8 +150,8 @@ const Payment = (props) => {
         let config = {
           responseHandler: (txn) => {
             // console.log("test222",txn)
-            () => { 
-              dispatch(dashboardAction(props.accDetails?.proposalNumber, (res) => {}))
+            () => {
+              dispatch(dashboardAction(props.accDetails?.proposalNumber, (res) => { }))
             }
           },
           merchantLogo: "/logo_2x.png",
@@ -345,15 +345,21 @@ const Payment = (props) => {
     // let file =documentList[fileName]
     dispatch(downloadAction(proposalNo, fileName))
   }
-  const paymentCompleted = props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted
+  const paymentCompleted = props.paymentDetail && props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted
   // console.log('paymentCompleted',paymentCompleted,props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted,props.showOffline )
   // console.log('>>>>>>>>>>>>.here')
+const revisedOfferPayment= props.accDetails?.newgenStatusResponseDTOList.filter(item => {
+  return item.status === 'REVISED_OFFER';
+})
+const revisedOfferPaymentDone=revisedOfferPayment[0]?.paymentInfo?.revisedOfferPaymentDone
+console.log('revisedOfferPaymentDone',revisedOfferPaymentDone)
 
   return (
     <div>
       <ul className="lst_prpsl">
         <li>
-          {(props.showOffline && !paymentCompleted) &&
+          {/* form-fill */}
+          {(!props.isRevised && !paymentCompleted) &&
             <div className="lnkbx">
               <span> Click here to initiate the</span>
               <span onClick={onlineBtnandler} className="lnktxtbx">
@@ -361,7 +367,8 @@ const Payment = (props) => {
               </span>
             </div>
           }
-          {!props.showOffline &&
+          {/* revised payment-- main acc */}
+          {props.isRevised && !revisedOfferPaymentDone &&
             <div className="lnkbx">
               <span> Click here to initiate the</span>
               <span onClick={onlineBtnandler} className="lnktxtbx">Pay Online</span>
@@ -369,15 +376,30 @@ const Payment = (props) => {
               <span className=" ml-5 lnktxtbx"><span onClick={offlineBtnHandler}>Pay Offline</span></span>
             </div>
           }
-          {(props.showOffline && paymentCompleted &&
+          {/* form-fill enach */}
+          {(!props.isRevised && paymentCompleted &&
             props.paymentDetail[0]?.paymentInfo?.paymentRenewal === false) &&
             <div className="lnkbx">
               <span> Click here to initiate the</span>
               <span onClick={enachHandler} className="lnktxtbx">E-Nach</span>
             </div>
           }
+          {/* main acc payment */}
           {
-          props.accDetails?.paymentReceipts.length > 0 ?
+            props.isRevised &&
+              props.accDetails?.counterOfferPaymentReceipts?.length > 0 &&
+              <div className="lnkbx receipt-download">
+                <span>Download Receipts:</span>
+                {
+                  props.accDetails?.counterOfferPaymentReceipts.map((item, idx) => {
+                    return <div key={idx} onClick={() => downloadHandler(item)}>{item}</div>
+                  })
+                }
+              </div>
+          }
+          {/* form -fill */}
+          {!props.isRevised &&
+            props.accDetails?.paymentReceipts.length > 0 &&
             <div className="lnkbx receipt-download">
               <span>Download Receipts:</span>
               {
@@ -386,10 +408,6 @@ const Payment = (props) => {
                 })
               }
             </div>
-          :
-          <div className='blue-block-container'>
-            <p>Receipts are not available</p>
-          </div>
           }
         </li>
       </ul>
