@@ -17,14 +17,17 @@ const SsoLogin = () => {
         }))
     }
     useEffect(() => {
-        const urlParams = new URLSearchParams(window.location.search);
-        const ssoid = urlParams.get('ssoid')
-        setSsoId(ssoid)
-        validateTokenSSO(ssoid)
+        if (typeof document !== "undefined" && typeof window !== "undefined") {
+            const urlParams = new URLSearchParams(window.location.search);
+            const ssoid = urlParams.get('ssoid')
+            setSsoId(ssoid)
+            validateTokenSSO(ssoid)
+        }
+
     }, [])
 
 
-   
+
     return (
         <div className='login-container'>
             {showLoader["isLoaderOn"] && (

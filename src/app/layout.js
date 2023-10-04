@@ -18,18 +18,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-         {/* uat billdesk links  */}
-	  {/* <script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
+        {/* uat billdesk links  */}
+        {/* <script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
     <script async noModule="" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script> */}
 
-    <Script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js" />
-    <Script async noModule=""  src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js" />
+        <Script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js" />
+        <Script async noModule="" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js" />
 
 
-    <link href="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet"/>
-    
-     {/* prod billdesk links  */}
-  	{/* <script type="module" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
+        <link href="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet" />
+
+        {/* prod billdesk links  */}
+        {/* <script type="module" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
     <script async noModule="" src="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
     <link href="https://pay.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet"/> */}
 
@@ -37,15 +37,15 @@ export default function RootLayout({ children }) {
         <link rel="shortcut icon" href="/bharti_axa_logo.ico" />
       </head>
       <body>
-      <Header/>
+        <Header />
         <Providers>
           {children}
         </Providers>
         <ToastContainer
-        className="toastContainer"
-        autoClose={3000}
-        hideProgressBar={true}
-      />
+          className="toastContainer"
+          autoClose={3000}
+          hideProgressBar={true}
+        />
       </body>
     </html>
   )
