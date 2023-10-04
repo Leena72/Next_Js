@@ -348,11 +348,11 @@ const Payment = (props) => {
   const paymentCompleted = props.paymentDetail && props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted
   // console.log('paymentCompleted',paymentCompleted,props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted,props.showOffline )
   // console.log('>>>>>>>>>>>>.here')
-const revisedOfferPayment= props.accDetails?.newgenStatusResponseDTOList.filter(item => {
-  return item.status === 'REVISED_OFFER';
-})
-const revisedOfferPaymentDone=revisedOfferPayment[0]?.paymentInfo?.revisedOfferPaymentDone
-console.log('revisedOfferPaymentDone',revisedOfferPaymentDone)
+  const revisedOfferPayment = props.accDetails?.newgenStatusResponseDTOList.filter(item => {
+    return item.status === 'REVISED_OFFER';
+  })
+  const revisedOfferPaymentDone = revisedOfferPayment[0]?.paymentInfo?.revisedOfferPaymentDone
+  console.log('revisedOfferPaymentDone', revisedOfferPaymentDone)
 
   return (
     <div>
@@ -367,16 +367,6 @@ console.log('revisedOfferPaymentDone',revisedOfferPaymentDone)
               </span>
             </div>
           }
-          {/* revised payment-- main acc */}
-          {props.isRevised && !revisedOfferPaymentDone &&
-            <div className="lnkbx">
-              <span> Click here to initiate the</span>
-              <span onClick={onlineBtnandler} className="lnktxtbx">Pay Online</span>
-              <span className='text'>OR</span>
-              <span className=" ml-5 lnktxtbx"><span onClick={offlineBtnHandler}>Pay Offline</span></span>
-            </div>
-          }
-          {/* form-fill enach */}
           {(!props.isRevised && paymentCompleted &&
             props.paymentDetail[0]?.paymentInfo?.paymentRenewal === false) &&
             <div className="lnkbx">
@@ -384,20 +374,11 @@ console.log('revisedOfferPaymentDone',revisedOfferPaymentDone)
               <span onClick={enachHandler} className="lnktxtbx">E-Nach</span>
             </div>
           }
-          {/* main acc payment */}
-          {
-            props.isRevised &&
-              props.accDetails?.counterOfferPaymentReceipts?.length > 0 &&
-              <div className="lnkbx receipt-download">
-                <span>Download Receipts:</span>
-                {
-                  props.accDetails?.counterOfferPaymentReceipts.map((item, idx) => {
-                    return <div key={idx} onClick={() => downloadHandler(item)}>{item}</div>
-                  })
-                }
-              </div>
+          {!props.isRevised && paymentCompleted && !props.accDetails?.paymentReceipts?.length &&
+            <div className="lnkbx">
+              <span>Payment completed. <br></br>Receipts are not generated yet.</span>
+            </div>
           }
-          {/* form -fill */}
           {!props.isRevised &&
             props.accDetails?.paymentReceipts.length > 0 &&
             <div className="lnkbx receipt-download">
@@ -409,6 +390,33 @@ console.log('revisedOfferPaymentDone',revisedOfferPaymentDone)
               }
             </div>
           }
+
+          {/* revised payment-- main acc */}
+          {props.isRevised && !revisedOfferPaymentDone &&
+            <div className="lnkbx">
+              <span> Click here to initiate the</span>
+              <span onClick={onlineBtnandler} className="lnktxtbx">Pay Online</span>
+              <span className='text'>OR</span>
+              <span className=" ml-5 lnktxtbx"><span onClick={offlineBtnHandler}>Pay Offline</span></span>
+            </div>
+          }
+          {
+            props.isRevised &&
+            props.accDetails?.counterOfferPaymentReceipts?.length > 0 &&
+            <div className="lnkbx receipt-download">
+              <span>Download Receipts:</span>
+              {
+                props.accDetails?.counterOfferPaymentReceipts.map((item, idx) => {
+                  return <div key={idx} onClick={() => downloadHandler(item)}>{item}</div>
+                })
+              }
+            </div>
+          }   
+          {props.isRevised && revisedOfferPaymentDone && !props.accDetails?.counterOfferPaymentReceipts?.length &&
+            <div className="lnkbx">
+              <span>Payment completed. <br></br>Receipts are not generated yet.</span>
+            </div>
+          }       
         </li>
       </ul>
 

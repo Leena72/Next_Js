@@ -216,8 +216,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
             {openCatAcc === item.id ?
               <div className='show'>
                 {
-                  renderCatElement(item, item.title)
-
+                  renderCatElement(item, item.heading)
                 }
               </div>
               : ''

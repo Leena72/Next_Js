@@ -21,11 +21,14 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
                     accDetails={accDetails}
                     category={[{
                         id: 1,
-                        title: 'Insured'
+                        heading: 'Insured',
+                        title:accDetails?.insuredName
+
                     },
                     {
                         id: 2,
-                        title: 'Proposer'
+                        heading: 'Proposer',
+                        title:accDetails?.proposerName
                     }]}
                 />
             case 'Documents':

@@ -3443,6 +3443,16 @@ export const statusApi = {
             "paymentInfo": null
         },
         {
+            "id": 3894929,
+            "status": "PROPOSAL",
+            "subStatus": "Document_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-25 09:52:17",
+            "createdOn": "2023-09-25 09:52:17",
+            "additionalInfo": {},
+            "paymentInfo": null
+            },
+        {
             "id": 3879370,
             "status": "POLICY_STATUS",
             "subStatus": "PI",
