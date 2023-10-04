@@ -47,7 +47,7 @@ export const validateToken = (sso,cb) => (dispatch) => {
     dispatch({
         type: "LOADER_ON",
     });
-    Axios.get(`${loginAPIConstant.API_URL}auth/customer-portal/token?tokenId=${sso}`, {
+    Axios.get(`${loginAPIConstant.API_URL}auth/tokenData/${sso}`, {
         headers: {
             "Content-Type": "application/json",
         }

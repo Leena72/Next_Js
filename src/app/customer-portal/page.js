@@ -18,7 +18,7 @@ const Login = () => {
   const [disabled, setdisabled] = useState(true)
   const dispatch = useDispatch()
   const showLoader = useSelector((state) => state.loaderReducer);
-  const [ssoTrue, ssoIdSet] = useState(false)
+  const [ssoTrue, ssoIdSet] = useState(true)
   useEffect(() => {
     const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
     const urlParams = new URLSearchParams(window.location.search);
@@ -26,6 +26,7 @@ const Login = () => {
     if (ssoid) {
       ssoIdSet(true)
     } else {
+      ssoIdSet(false)
       if ((DOB.length === 10 || panReg.test(PAN)) && (proposalNo.length >= 10)) {
         setdisabled(false)
       }

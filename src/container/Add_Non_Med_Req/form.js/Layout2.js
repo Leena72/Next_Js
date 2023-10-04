@@ -8,14 +8,22 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
         let value = e.target.value
         let name = e.target.name
         if (e.target.checked === true) {
-            value = radioInput 
+            value = radioInput
         }
         else {
             value = e.target.value
         }
         formChangeHandler({ name, value, formData, formName })
     }
-    const addMoreHandler = () => { }
+    const addMoreHandler = (e, item) => {
+        console.log(item)
+        // const data = { ...item };
+        // const addMoreQuestions = data?.subQuestions.map((ele, i) => {
+        //     ele.answer = ''
+        //     return ele;
+        // })
+        // console.log(data.subQuestions.concat(addMoreQuestions))
+    }
     return (
         <>
             {
@@ -27,15 +35,17 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                             {
                                 item.subQuestions.map(ele => (
                                     <div className='form-quesAns' key={ele.id}>
+                                        {((ele.ansBtn || ele.ansBtn == "true") && ele.ansBtn != "false")}
                                         <div className='form-question'>{ele.question}</div>
-                                        {ele.ansBtn ?
+
+                                        {((ele.ansBtn || ele.ansBtn == "true") && ele.ansBtn != "false") ?
                                             <div className='form-inputbtn'>
                                                 <div className="radio">
                                                     <Input
                                                         type='radio'
                                                         value={'Yes'}
-                                                        name={`radio_${item.id}_${ele.id}`}
-                                                        // checked={''}
+                                                        name={ele.name}
+                                                        checked={ele.answer === "Yes"}
                                                         changeHandler={(e) =>
                                                             changeHandler(e, { ques: item, type: 'ques', parent: null, }, 'Yes')}
 
@@ -46,8 +56,8 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                                     <Input
                                                         type='radio'
                                                         value={'No'}
-                                                        name={`radio_${item.id}_${ele.id}`}
-                                                        // checked={''}
+                                                        name={ele.name}
+                                                        checked={ele.answer === "No"}
                                                         changeHandler={(e) =>
                                                             changeHandler(e, { ques: item, type: 'ques', parent: null }, 'No')}
                                                     />
@@ -56,55 +66,55 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                             </div>
                                             :
                                             <div className='form-answer'>
-                                                <textarea id={ele.id} name={ele.name}
+                                                <textarea id={ele.id} name={ele.name} value={ele.answer}
                                                     onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: item })} />
                                             </div>
                                         }
                                     </div>
                                 ))
                             }
-                            {item.addMore && 
-                            <div className='add-more-container'>
-                            <Button
-                                className='add-more-btn'
-                                clickHandler={addMoreHandler}
-                                type='button'
-                                buttonText={'Add More'}
-                                // buttonIcon={AddImg}
-                            />
-                            </div>
+                            {item.addMore &&
+                                <div className='add-more-container'>
+                                    <Button
+                                        className='add-more-btn'
+                                        clickHandler={(e) => addMoreHandler(e, item)}
+                                        type='button'
+                                        buttonText={'Add More'}
+                                    // buttonIcon={AddImg}
+                                    />
+                                </div>
                             }
                             {item.type != 'HEADING' &&
                                 <div className='form-quesAns'>
                                     <div className='form-question'>{item.question}</div>
-                                    {item.ansBtn ?
+                                    {((item.ansBtn || item.ansBtn == "true") && item.ansBtn != "false") ?
                                         <div className='form-inputbtn'>
                                             <div className="radio">
                                                 <Input
                                                     type='radio'
-                                                    value={''}
-                                                    name={`radio_${item.id}`}
-                                                    // checked={''}
+                                                    value={'Yes'}
+                                                    name={item.name}
+                                                    checked={item.answer === "Yes"}
                                                     changeHandler={(e) =>
-                                                        changeHandler(e, { ques: item, type: 'ques', parent: null }, 'yes')}
+                                                        changeHandler(e, { ques: item, type: 'ques', parent: null }, 'Yes')}
                                                 />
                                                 <label className="radio-label">Yes</label>
                                             </div>
                                             <div className="radio">
                                                 <Input
                                                     type='radio'
-                                                    value={''}
-                                                    name={`radio_${item.id}`}
-                                                    // checked={''}
+                                                    value={'No'}
+                                                    name={item.name}
+                                                    checked={item.answer === "No"}
                                                     changeHandler={(e) =>
-                                                        changeHandler(e, { ques: item, type: 'ques', parent: null }, 'no')}
+                                                        changeHandler(e, { ques: item, type: 'ques', parent: null }, 'No')}
                                                 />
                                                 <label className="radio-label">No</label>
                                             </div>
                                         </div>
                                         :
                                         <div className='form-answer'>
-                                            <textarea id={item.id} name={item.name} onChange={(e) =>
+                                            <textarea id={item.id} name={item.name} value={item.answer} onChange={(e) =>
                                                 changeHandler(e, { ques: item, type: 'ques', parent: null })} />
                                         </div>
                                     }
