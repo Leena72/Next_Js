@@ -17,12 +17,16 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
     }
     const addMoreHandler = (e, item) => {
         console.log(item)
-        // const data = { ...item };
-        // const addMoreQuestions = data?.subQuestions.map((ele, i) => {
-        //     ele.answer = ''
-        //     return ele;
-        // })
-        // console.log(data.subQuestions.concat(addMoreQuestions))
+        const data = { ...item };
+        const addMoreQuestions = data?.subQuestions.map((ele, i) => {
+            ele.answer = ''
+            ele.id = ele.id + 1;
+            return ele;
+        })
+        console.log(data.subQuestions.concat(addMoreQuestions))
+    }
+    const deleteMoreHandler = (e, item, ele) => {
+        console.log(item, ele)
     }
     return (
         <>
@@ -32,6 +36,17 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         <div className='form-block' key={item.id}>
                             <div className={`${item.declaration !== '' ? 'form-declaration' : 'hide'}`}>{item.declaration}</div>
                             <div className={`${item.heading !== '' ? 'form-question' : 'hide'}`}>{item.heading}</div>
+                            {item.addMore && ele.id > 1 &&
+                                <div className='add-more-container'>
+                                    <Button
+                                        className='add-more-btn'
+                                        clickHandler={(e) => deleteMoreHandler(e, item, ele)}
+                                        type='button'
+                                        buttonText={'delete'}
+                                    // buttonIcon={AddImg}
+                                    />
+                                </div>
+                            }
                             {
                                 item.subQuestions.map(ele => (
                                     <div className='form-quesAns' key={ele.id}>

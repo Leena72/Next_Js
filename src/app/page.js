@@ -4,7 +4,7 @@ import Dashboard from "./customer-portal/dashboard/page";
 export default function Home() {
   return (
     <main>
-      <Dashboard />
+      {(typeof window !== 'undefined') && <Dashboard />}
     </main>
   )
 }

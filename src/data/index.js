@@ -1381,7 +1381,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '2',
+                    id: '1',
                     question: 'Address',
                     answer: '',
                     name: 'address',
@@ -1390,7 +1390,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '3',
+                    id: '1',
                     question: 'Date of last consult',
                     answer: '',
                     name: 'date_consult',
@@ -1421,7 +1421,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '2',
+                    id: '1',
                     question: 'Dose',
                     answer: '',
                     name: 'dose',
@@ -1430,7 +1430,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '3',
+                    id: '1',
                     question: 'Frequency',
                     answer: '',
                     name: 'frequency',
@@ -1653,7 +1653,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '2',
+                    id: '1',
                     question: 'Name of doctor, hospital or clinic',
                     answer: '',
                     name: 'name_doctor',
@@ -1662,7 +1662,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '3',
+                    id: '1',
                     question: 'Address',
                     answer: '',
                     name: 'add_doctor',
@@ -1671,7 +1671,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '4',
+                    id: '1',
                     question: 'Dates',
                     answer: '',
                     name: 'date_doc',
