@@ -8,10 +8,12 @@ export default function withAuth(Component) {
 
 
     useEffect(() => {
-      const proposalNo = JSON.parse(localStorage.getItem('proposalNo'));
-      const proposalNoIsAuthenticated = proposalNo !== null;
-      if (!proposalNoIsAuthenticated) {
-        router.push('/customer-portal');
+      if (typeof window !== "undefined") {
+        const proposalNo = JSON.parse(localStorage.getItem('proposalNo'));
+        const proposalNoIsAuthenticated = proposalNo !== null;
+        if (!proposalNoIsAuthenticated) {
+          router.push('/customer-portal');
+        }
       }
     }, [router]);
 

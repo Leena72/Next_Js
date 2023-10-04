@@ -12,6 +12,15 @@ import { dashboardAction } from '../../../redux/action/dashboardAction'
 
 
 const Dashboard = () => {
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            let proposalNo = localStorage.getItem("proposalNo")
+            dispatch(dashboardAction(proposalNo, (res) => {
+                setcustomerData(res)
+            }))
+            setcustomerData(proposalNo) // static data
+        }
+    }, [])
     const data = applicationData
     const [openAccordion, setOpenAccordion] = useState(false)
     const [customerData, setcustomerData] = useState(null)
@@ -29,13 +38,7 @@ const Dashboard = () => {
     }, [])
 
 
-    useEffect(() => {
-        let proposalNo = localStorage.getItem("proposalNo")
-        // dispatch(dashboardAction(proposalNo, (res) => {
-        //     setcustomerData(res)
-        // }))
-        setcustomerData(statusApi) // static data
-    }, [])
+
 
     // console.log('customerData', customerData)
     return (
