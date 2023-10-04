@@ -4,6 +4,9 @@ import { toaster } from "../../utils/toaster"
 
 
 export const sendOTPAction = (data, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+    });
     Axios({
         method: "post",
         mode: "no-cors",
@@ -15,6 +18,9 @@ export const sendOTPAction = (data, cb) => (dispatch) => {
         data: data
     })
         .then((res) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             if (res.data.status === "OK") {
                 toaster('success', res?.data?.message);
                 cb(res.data);
@@ -24,6 +30,9 @@ export const sendOTPAction = (data, cb) => (dispatch) => {
             }
         })
         .catch((error) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             toaster('error', error?.message);
         });
 };
@@ -32,7 +41,12 @@ export const verifyOTPAction = (data, proposalNo, fileName, cb) => (dispatch) =>
     Axios({
         method: "post",
         mode: "no-cors",
-        url: `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName}`,
+        url: data.key ==='REVISED_OFFER'
+        ? 
+        `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName[0]}&fileName=${fileName[1]}`
+        :
+        `${apiConstants.API_URL}customer-portal/validateOtp?proposalNumber=${proposalNo}&fileName=${fileName}`,
+
         headers: {
             "Content-Type": "application/json",
             "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
@@ -40,9 +54,15 @@ export const verifyOTPAction = (data, proposalNo, fileName, cb) => (dispatch) =>
         data: data
     })
         .then((res) => {
-            toaster('success', res?.data?.message);
-            cb(res.data);
-        })
+            if (res.data.status === 'OK') {
+                toaster('success', res?.data?.message);
+                cb(res.data);
+            }
+            else{
+                toaster('error', res?.data?.message);
+            }
+        }
+        )
         .catch((error) => {
             toaster('error', error?.message);
         });

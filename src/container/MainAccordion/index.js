@@ -9,12 +9,12 @@ import FormFieldConsent from '../../component/FormFieldConsent';
 import Consent from '../Consent';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import { scrollToTop,  convertToIST } from '../../utils/utils';
+import { scrollToTop, convertToIST } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
+import { subStatusList } from '../../data'
 
 const MainAccordion = ({ data }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
-
   const accDetails = useSelector((state) => state.customerDetailReducer);
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
   const policyDocuments = accDetails?.policyDocuments
@@ -23,23 +23,31 @@ const MainAccordion = ({ data }) => {
     // which list acc to be shown
     let renderItem = true // by default render 
     accordionDetails?.map((acc) => {
-      if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT' && item.heading === 'Additional Non-Medical Requirements') {
-        if (acc?.subStatus !== 'AR') {
+      if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT' &&
+        item.heading === 'Additional Non-Medical Requirements') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '' || acc?.subStatus !== 'AR') {
           renderItem = false
         }
       }
-      else if (renderItem && acc.status === 'REVISED_OFFER' && item.heading === 'Revised Offer') {
-        if (acc?.subStatus !== 'CO') {
+      else if (renderItem && acc.status === 'REVISED_OFFER' &&
+        item.heading === 'Revised Offer') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '' || acc?.subStatus !== 'CO') {
           renderItem = false
         }
       }
-      else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' && item.heading === 'Payment Required') {
-        if (acc?.subStatus !== 'CO' || acc?.subStatus !== 'SP') {
+      else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' &&
+        item.heading === 'Payment Required') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '') {
           renderItem = false
         }
       }
-      else if (renderItem && acc.status === 'DATA_CHANGE' && item.heading === 'Consent for change in the application details') {
-        if (acc?.subStatus !== 'AD') {
+      else if (renderItem && acc.status === 'DATA_CHANGE' &&
+        item.heading === 'Consent For Change In The Application Details') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '' || acc?.subStatus !== 'AD') {
           renderItem = false
         }
       }
@@ -51,16 +59,18 @@ const MainAccordion = ({ data }) => {
     // on click list acc 
     let showElement;
     let detail;
+    let subStatusText;
     switch (heading) {
       case 'Quote Generated':
         detail = accordionDetails?.filter(item => {
           return item.status === 'QUOTE';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <QuoteGenerated
             quoteDetail={detail && detail[0]}
             policyDocumentFile={policyDocuments['BI_TAG_NAME']}
+            proposalNo={accDetails?.proposalNumber}
           />
           :
           <div className='blue-block-container'>
@@ -71,12 +81,13 @@ const MainAccordion = ({ data }) => {
         return <FormFilling
           data={data.content}
           label='form-filling'
+          proposalNo={accDetails?.proposalNumber}
         />
       case 'Medical Requirement':
         detail = accordionDetails && accordionDetails?.filter(item => {
           return item.status === 'MEDICAL_REQUIREMENT';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('MEDICAL_REQUIREMENT')}
@@ -93,84 +104,106 @@ const MainAccordion = ({ data }) => {
 
         return <AddNonMedReq
           accDetails={accDetails} //whole data
-          addNonMedDetail={addNonMedDetail}
+          proposalNo={accDetails?.proposalNumber}
+        // addNonMedDetail={addNonMedDetail}
         />
       case 'Revised Offer':
         return <CounterPage />
-      case 'Consent for change in the application details':
+      case 'Consent For Change In The Application Details':
         return <Consent />
       case 'Payment Required':
+        let revisedOfferPayment = accordionDetails?.filter(item => {
+          return item.status === 'REVISED_OFFER';
+        })
+        // let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium
+        let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.shortfallPremium
+
+        
+        // console.log('revisedPayment',revisedPayment)
+        // console.log('revisedOfferPayment',revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium)
+
         detail = accordionDetails?.filter(item => {
           return item.status === 'PAYMENT_REQUIREMENT';
         })
-        showElement = detail[0]?.actual_status === 'COMPLETED'
-          ?
-          <FormFieldConsent
-            text='To initiate the Download the Payment Receipt'
-            buttonText='Click Here'
-            clickHandler={paymentReqHandler}
-          />
-          :
-          <Payment
-            paymentValue={accDetails?.premium} // change required
-            accDetails={accDetails}
-          />
-        return showElement
+
+        // showElement = detail && detail[0]?.actual_status === 'COMPLETED'
+        //   ?
+        //   <FormFieldConsent
+        //     text='To initiate the Download the Payment Receipt'
+        //     buttonText='Click Here'
+        //     clickHandler={paymentReqHandler}
+        //   />
+        //   :
+        return <Payment
+          paymentValue={revisedPayment} // revised offer --shortfall premium
+          accDetails={accDetails}
+          isRevised={true}
+        />
+
       case 'Quality Check':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'QUALITY_CHECK';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('QUALITY_CHECK')}
           </div>
           :
           <div className='blue-block-container'>
-            <p>Yet to Start</p>
+            <div>{subStatusText.length > 0 ? subStatusText[0]?.customerPortal : <div>Yet to Start</div>}</div>
           </div>
         return showElement
       case 'Medical Risk Verification':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'MEDICAL_RISK_VERIFICATION';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('MEDICAL_RISK_VERIFICATION')}
           </div>
           :
           <div className='blue-block-container'>
-            <p>Yet to Start</p>
+            <div>{subStatusText.length > 0 ? subStatusText[0]?.customerPortal : <div>Yet to Start</div>}</div>
           </div>
         return showElement
       case 'Financial and Medical Risk Verification':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           ?
           <div>
             {renderCreateOn('FINANCIAL_AND_MEDICAL_RISK_VERIFICATION')}
           </div>
           :
           <div className='blue-block-container'>
-            <p>Yet to Start</p>
+            <div>{subStatusText.length > 0 ? subStatusText[0]?.customerPortal : <div>Yet to Start</div>}</div>
           </div>
         return showElement
       case 'Policy Decision':
         detail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'POLICY_STATUS';
         });
-        showElement = detail[0]?.actual_status === 'COMPLETED'
-          ?
-          <div>
-            {renderCreateOn('POLICY_STATUS')}
-          </div>
-          :
-          <div className='blue-block-container'>
-            <p>Yet to Start</p>
-          </div>
+        subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
+        // console.log('subStatusText', subStatusText)
+        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
+          && <>
+            {subStatusText[0]?.status === 'PI' ?
+              <div className='blue-block-container'>
+                <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+                <p>{renderCreateOn('POLICY_STATUS')}</p>
+              </div>
+              :
+              <div className='blue-block-container'>
+                <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+              </div>
+            }
+          </>
         return showElement
       default:
         break;
@@ -260,13 +293,17 @@ const MainAccordion = ({ data }) => {
                     />
                   </div>
                   <div className='acc-content'>
-                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>{item.heading}</p>
-                    <div className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>{renderCreateOn(item.title)}</div>
+                    <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>
+                      {item.heading}
+                    </p>
+                    <div className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>
+                      {renderCreateOn(item.title)}
+                    </div>
                   </div>
                 </div>
                 <div className='acc-activeState'>
                   {
-                    renderStatus(item.heading, item.title)
+                    renderStatus(item.title)
                       ?
                       <div className='acc-completed'>
                         <Image

@@ -3,6 +3,9 @@ import {apiConstants} from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 export const customerDetailAction = (proposalNo, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+    });
     Axios({
         method: "get",
         mode: "no-cors",
@@ -13,12 +16,18 @@ export const customerDetailAction = (proposalNo, cb) => (dispatch) => {
         },
     })
         .then((res) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
             if(res.data.status='OK'){
             toaster('success', res.data.message)
                 cb(res.data.body)
             }
         })
         .catch((error) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
         });
 };
 

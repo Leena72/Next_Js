@@ -1,3 +1,4 @@
+'use client'
 import activeImg_1 from "../Assets/images/1_active.png";
 import img_1 from "../Assets/images/1.png";
 import activeImg_2 from "../Assets/images/2_2active.png";
@@ -25,14 +26,16 @@ import activeImg_15 from "../Assets/images/15active.png";
 import img_15 from "../Assets/images/15.png";
 
 export const scrollToTop = (id) => {
-  const element = document.getElementById(id);
-  if (element) {
-    setTimeout(() => {
-      element.scrollIntoView({
-        block: 'start',
-        behavior: 'smooth',
-      });
-    }, 800);
+  if (typeof window !== "undefined") {
+    const element = document.getElementById(id);
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({
+          block: 'start',
+          behavior: 'smooth',
+        });
+      }, 800);
+    }
   }
 }
 
@@ -87,8 +90,8 @@ export const dateFormat = (createdOn) => {
     dateArr = text.split(",");
     date = dateArr[0];
     arr1 = date.split("/");
-    mmm = arr1[1]?.length === 1 ? '0' + arr1?.[0] : arr1?.[0]
-    ddd = arr1[0]?.length === 1 ? '0' + arr1?.[1] : arr1?.[1]
+    mmm = arr1[0]?.length === 1 ? '0' + arr1?.[0] : arr1?.[0]
+    ddd = arr1[1]?.length === 1 ? '0' + arr1?.[1] : arr1?.[1]
     month = monthNames[mmm - 1]
     yyy = arr1[2]
 

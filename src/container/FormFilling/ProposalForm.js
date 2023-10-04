@@ -1,13 +1,13 @@
 import React from 'react'
-import { dateFormat, convertToIST } from '../../utils/utils'
+import { convertToIST } from '../../utils/utils'
 
-const ProposalForm = ({ data, proposalFormList, proposalReversedList }) => {
+const ProposalForm = ({accDetails, proposalReversedList }) => {
     const renderHeding = (heading) => {
         switch (heading) {
             case 'Personal_Details':
-                return 'Basic detail Section (Proposer)'
-            case 'Insured_Proposer_Details':
-                return 'Insured detail Section (Conditional only for Insured-Proposer cases)'
+                return `Basic detail Section (${accDetails.policyFor ==='OTHER'? accDetails.proposerName : accDetails.insuredName })`
+            case 'Insured_Details':
+                return `Insured detail Section (${accDetails.policyFor ==='OTHER'? accDetails.insuredName !==null?accDetails.insuredName :'Insured': accDetails.insuredName })`
             case 'Nominee_Details':
                 return 'Nominee detail Section'
             case 'Health_Details':
@@ -31,18 +31,22 @@ const ProposalForm = ({ data, proposalFormList, proposalReversedList }) => {
             return 'Completed:' + ' ' + newdate
         }
         else {
-            return <div>Yet to start</div>
+            return <div className='subHeading'>Yet to start</div>
         }
     }
 
+    let listItem = proposalReversedList.filter(ele => {
+        return ele !== undefined
+    })
 
     return (
         <ul className='acc-active-sub-container'>
             {
-                proposalReversedList?.map((item, idx) => (
+                listItem?.map((item, idx) => (
+
                     <li key={idx}>
-                        <p>{renderHeding(item.subStatus)}</p>
-                        <p>{renderCreateOn( item)}</p>
+                        <div className='heading'>{renderHeding(item.subStatus)}</div>
+                        <div className='subHeading'>{renderCreateOn(item)}</div>
                     </li>
                 ))
             }

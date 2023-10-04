@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Input from '@/component/Input'
 const ConsentLayout = ({ data, title }) => {
+    const changeHandler=()=>{}
     return (
         <div className='form-container'>
             <table className='form-table'>
@@ -13,14 +14,15 @@ const ConsentLayout = ({ data, title }) => {
                 </thead>
                 <tbody>
                     {data.map((item, id) => (
-                        <tr>
+                        <tr key={id}>
                             <td>{item.title}</td>
                             <td>
                                 <Input
                                     type='text'
                                     value={''}
                                     name={item.title}
-                                    changeHandler={''}
+                                    changeHandler={changeHandler}
+                                  
                                 />
                             </td>
                             <td>
@@ -28,7 +30,7 @@ const ConsentLayout = ({ data, title }) => {
                                     type='text'
                                     value={''}
                                     name={item.title}
-                                    changeHandler={''}
+                                    changeHandler={changeHandler}
                                 />
                             </td>
                         </tr>

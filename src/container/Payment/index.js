@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 // import PopUpPage from '@/component/PopUpPage';
 // import Input from "../../component/Input";
 import PopUpPage from '../../component/PopUpPage';
 import Input from '../../component/Input';
 import { toaster } from '@/utils/toaster';
 import Axios from "axios";
+import { downloadAction } from "../../redux/action/downloadAction";
+
 
 const Payment = (props) => {
   const [showOfflinePopup, setShowOfflinePopup] = useState(false)
@@ -13,7 +16,9 @@ const Payment = (props) => {
   const [dob, setDob] = useState();
   const [pan, setPan] = useState();
   const [enabled, setenabled] = useState(false)
+  const dispatch = useDispatch()
 
+  // console.log('accDetails>>', props.accDetails)
 
   useEffect(() => {
     const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
@@ -74,7 +79,7 @@ const Payment = (props) => {
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, data, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization":'Bearer'+' '+localStorage.getItem("accessToken")
+        "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
       },
     })
       .then((resp) => {
@@ -106,68 +111,78 @@ const Payment = (props) => {
     // })
     // openBillDesk = (txAmount) => {
     let billDeskReqData = {
-        currencyType: "INR",
-        // onlyMandate? !emandate: emandate,
-        onlyMandate: onlyMandate ? onlyMandate : false,
-        customerEmailId:props.accDetails?.emailId,
-        customerMobileNo:props.accDetails?.mobileNo,
-        proposalId: props.accDetails?.proposalId,
-        proposalNumber:props.accDetails?.proposalNumber,
-        // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
-        paymentMethod: "ONLINE_BILL_DESK",
-        // txAmount: '11287.05',
-        txAmount: props.paymentValue,
-        userAgent: navigator.userAgent,
+      currencyType: "INR",
+      // onlyMandate? !emandate: emandate,
+      onlyMandate: onlyMandate ? onlyMandate : false,
+      customerEmailId: props.accDetails?.emailId,
+      customerMobileNo: props.accDetails?.mobileNo,
+      proposalId: props.accDetails?.proposalId,
+      proposalNumber: props.accDetails?.proposalNumber,
+      // paymentMethod: onlyMandate?"ENACH": "ONLINE_BILL_DESK",
+      paymentMethod: "ONLINE_BILL_DESK",
+      // txAmount: '11287.05',
+      txAmount: props.paymentValue,
+      userAgent: navigator.userAgent,
     };
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": 'Bearer'+' '+localStorage.getItem("accessToken")
+        "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
       },
     })
-    .then((resp) => {
-      let flow_config = {
-                merchantId: resp.data.body.options.merchantId,
-                bdOrderId: resp.data.body.options.bdOrderId,
-                authToken: resp.data.body.options.orderToken,
-                childWindow: true,
-                retryCount: resp.data.body.options.retryCount,
-                prefs: {}
-            };
-       let mandate_flow_config = {
-                      merchantId: resp.data.body.options.merchantId,
-                      mandateTokenId: resp.data.body.options.mandateTokenId,
-                      authToken: resp.data.body.options.orderToken,
-                      childWindow: true,
-                      retryCount: resp.data.body.options.retryCount,
-                  }
-                  // console.log("test>>>>", flow_config)
-                  let config = {
-                            responseHandler: (txn) => {
-                              // console.log("test222",txn)
-                              ()=>{}
-                            },
-                            merchantLogo: "/logo_2x.png",
-                            flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
-                            flowType: resp.data.body.options.onlyMandate ? "emandate" : "payments",
-                        };
-                        // console.log('window',window.loadBillDeskSdk)
-                        window.loadBillDeskSdk(config);
+      .then((resp) => {
+        let flow_config = {
+          merchantId: resp.data.body.options.merchantId,
+          bdOrderId: resp.data.body.options.bdOrderId,
+          authToken: resp.data.body.options.orderToken,
+          childWindow: true,
+          retryCount: resp.data.body.options.retryCount,
+          prefs: {}
+        };
+        let mandate_flow_config = {
+          merchantId: resp.data.body.options.merchantId,
+          mandateTokenId: resp.data.body.options.mandateTokenId,
+          authToken: resp.data.body.options.orderToken,
+          childWindow: true,
+          retryCount: resp.data.body.options.retryCount,
+        }
+        // console.log("test>>>>", flow_config)
+        let config = {
+          responseHandler: (txn) => {
+            // console.log("test222",txn)
+            () => {
+              dispatch(dashboardAction(props.accDetails?.proposalNumber, (res) => { }))
+            }
+          },
+          merchantLogo: "/logo_2x.png",
+          flowConfig: resp.data.body.options.onlyMandate ? mandate_flow_config : flow_config,
+          flowType: resp.data.body.options.onlyMandate ? "emandate" : "payments",
+        };
+        // console.log('window',window.loadBillDeskSdk)
+        if (resp.data.status === 'OK') {
+          window.loadBillDeskSdk(config);
+        }
+        else {
+          toaster("error", 'BillDesk Order Creation Exception')
+        }
 
-      // dispatch({
-      //   type: actionTypes.loadingOff
-      // });
-    })
+        // dispatch({
+        //   type: actionTypes.loadingOff
+        // });
+      })
       .catch((err) => {
+        // console.log('err>>', err)
+        toaster("error", 'BillDesk Order Creation Exception')
+
         // if (err.status == '401') {
         //   window.location.href = apiConstants.TRACKER_URL
         // }
-        if (err.response && err.response.data) {
-          toaster("error", err.response.data.errors && err.response.data.errors.length > 0 &&
-            err.response.data.errors[0]);
-        } else {
-          toaster("error", err.data && err.data.message);
-        }
+        // if (err.response && err.response.data) {
+        //   toaster("error", err.response.data.errors && err.response.data.errors.length > 0 &&
+        //     err.response.data.errors[0]);
+        // } else {
+        //   toaster("error", err.data && err.data.message);
+        // }
         // dispatch({
         //   type: actionTypes.loadingOff
         // });
@@ -229,8 +244,8 @@ const Payment = (props) => {
     //     };
     //     window.loadBillDeskSdk(config);
     // });
-};
-  const validatePaymentLink = (query) => {
+  };
+  const validatePaymentLink = (query, cb) => {
     Axios
       .get(
         `https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/validatePaymentLink?${query}`,
@@ -242,20 +257,21 @@ const Payment = (props) => {
       )
       .then((resp) => {
         if (resp.data.body.DateValidate || resp.data.body.PanValidate) {
-          toaster("success", "Successfully validated")
+          // toaster("success", "Successfully validated")
           setValidationInput('')
           setDob('')
           setPan('')
           setShowOnlinePopup(false)
           openBillDesk();
+          cb(resp.data.body)
         }
-        else if(resp.data.body.DateValidate === false){
+        else if (resp.data.body.DateValidate === false) {
           toaster("error", "Please enter valid DOB")
           setValidationInput('')
           setDob('')
           setPan('')
         }
-        else if(resp.data.body.PanValidate === false){
+        else if (resp.data.body.PanValidate === false) {
           toaster("error", "Please enter valid PAN")
           setValidationInput('')
           setDob('')
@@ -272,25 +288,135 @@ const Payment = (props) => {
     let proposalNo = localStorage.getItem("proposalNo")
     if (dob && dob.length === 10) {
       query = `proposalNumber=${proposalNo}&dateOfBirth=${validationInput}&panNumber`;
-      validatePaymentLink(query);
-    } else if(pan && pan.length === 10) {
+      validatePaymentLink(query, (res) => {
+        if (res.DateValidate === true) {
+          toaster('success', 'DOB validated successfully')
+        }
+      });
+    } else if (pan && pan.length === 10) {
       query = `proposalNumber=${proposalNo}&panNumber=${validationInput}&dateOfBirth`;
-      validatePaymentLink(query);
+      validatePaymentLink(query, (res) => {
+        toaster('success', 'PAN validated successfully')
+      });
     }
   }
+
+  const enachInitiated = (payload, cb) => {
+
+    Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/eNACH/paymentBegin`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
+        // "Authorization" :"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjkyMTIiLCJhdXRob3JpdGllcyI6W3siYXV0aG9yaXR5IjoiQUdFTlQifV0sImlhdCI6MTY5NDc1NDgxMCwiZXhwIjoxNjk0ODQxMjEwfQ.u6VwxAj4GZuIIuSldDPXjTtE3NigvLZqlVQt8MDJokWTZaN4UjIjPC8A0PGeWiYvxfz7SXE2PMwET6-iJcTKTQ"
+
+      },
+    })
+      .then((resp) => {
+        toaster("success", "E-nach initiated successfully");
+        if (cb) {
+          cb(resp.data.body)
+        }
+      })
+      .catch((err) => {
+
+        toaster("error", err.response?.data?.errors);
+        if (err.status == '401') {
+          window.location.href = apiConstants.TRACKER_URL
+        }
+        if (cb) {
+          // cb(false)
+        }
+
+      });
+  }
+  const enachHandler = () => {
+    const data = {
+      paymentMode: "E_MANDATE",
+      proposalNumber: localStorage.getItem("proposalNo")
+    }
+    enachInitiated(data, (res) => {
+      let newWindow = window.open();
+      newWindow.location = res.DATA;
+    })
+  }
+  const downloadHandler = (fileName) => {
+    let proposalNo = props.accDetails.proposalNumber
+    // let file = "3108426724FNA.pdf"
+    // let file =documentList[fileName]
+    dispatch(downloadAction(proposalNo, fileName))
+  }
+  const paymentCompleted = props.paymentDetail && props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted
+  // console.log('paymentCompleted',paymentCompleted,props.paymentDetail[0]?.paymentInfo?.paymentAmountCompleted,props.showOffline )
+  // console.log('>>>>>>>>>>>>.here')
+  const revisedOfferPayment = props.accDetails?.newgenStatusResponseDTOList.filter(item => {
+    return item.status === 'REVISED_OFFER';
+  })
+  const revisedOfferPaymentDone = revisedOfferPayment[0]?.paymentInfo?.revisedOfferPaymentDone
+  console.log('revisedOfferPaymentDone', revisedOfferPaymentDone)
+
   return (
     <div>
       <ul className="lst_prpsl">
         <li>
-          <div className="lnkbx">Click here to initiate the
-            <span onClick={onlineBtnandler} className="lnktxtbx">{props.isText ? props.isText : 'Pay Online'}</span>
-            {!props.showOffline &&
-              <>
-                <span className='text'>OR</span>
-                <span className=" ml-5 lnktxtbx"><span onClick={offlineBtnHandler}>Pay Offline</span></span>
-              </>}
+          {/* form-fill */}
+          {(!props.isRevised && !paymentCompleted) &&
+            <div className="lnkbx">
+              <span> Click here to initiate the</span>
+              <span onClick={onlineBtnandler} className="lnktxtbx">
+                Online Payment
+              </span>
+            </div>
+          }
+          {(!props.isRevised && paymentCompleted &&
+            props.paymentDetail[0]?.paymentInfo?.paymentRenewal === false) &&
+            <div className="lnkbx">
+              <span> Click here to initiate the</span>
+              <span onClick={enachHandler} className="lnktxtbx">E-Nach</span>
+            </div>
+          }
+          {!props.isRevised && paymentCompleted && !props.accDetails?.paymentReceipts?.length &&
+            <div className="lnkbx">
+              <span>Payment completed. <br></br>Receipts are not generated yet.</span>
+            </div>
+          }
+          {!props.isRevised &&
+            props.accDetails?.paymentReceipts.length > 0 &&
+            <div className="lnkbx receipt-download">
+              <span>Download Receipts:</span>
+              {
+                props.accDetails?.paymentReceipts.map((item, idx) => {
+                  return <div key={idx} onClick={() => downloadHandler(item)}>{item}</div>
+                })
+              }
+            </div>
+          }
 
-          </div>
+          {/* revised payment-- main acc */}
+          {props.isRevised && !revisedOfferPaymentDone &&
+            <div className="lnkbx">
+              <span> Click here to initiate the</span>
+              <span onClick={onlineBtnandler} className="lnktxtbx">Pay Online</span>
+              <span className='text'>OR</span>
+              <span className=" ml-5 lnktxtbx"><span onClick={offlineBtnHandler}>Pay Offline</span></span>
+            </div>
+          }
+          {
+            props.isRevised &&
+            props.accDetails?.counterOfferPaymentReceipts?.length > 0 &&
+            <div className="lnkbx receipt-download">
+              <span>Download Receipts:</span>
+              {
+                props.accDetails?.counterOfferPaymentReceipts.map((item, idx) => {
+                  return <div key={idx} onClick={() => downloadHandler(item)}>{item}</div>
+                })
+              }
+            </div>
+          }   
+          {props.isRevised && revisedOfferPaymentDone && !props.accDetails?.counterOfferPaymentReceipts?.length &&
+            <div className="lnkbx">
+              <span>Payment completed. <br></br>Receipts are not generated yet.</span>
+            </div>
+          }       
         </li>
       </ul>
 

@@ -22,7 +22,7 @@ const Accordion1 = ({ openAccordion, item, toggleAccordion,renderCreateOn }) => 
                 <div className='acc-active-content'>
                     {/* <p>{item.status.split('_').join(' ')}</p> */}
                     <p>{item.heading}</p>
-                    <p>{renderCreateOnDate(item.title)}</p>
+                    <div>{renderCreateOnDate(item.title)}</div>
                 </div>
             </div>
             <div className='acc-active-icon'>

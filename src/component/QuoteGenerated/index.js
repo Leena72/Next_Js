@@ -3,13 +3,11 @@ import { downloadAction } from "../../redux/action/downloadAction";
 import { useDispatch } from 'react-redux';
 import { convertToIST } from '../../utils/utils'
 
-const QuoteGenerated = ({ quoteDetail, policyDocumentFile }) => {
+const QuoteGenerated = (props) => {
   const dispatch = useDispatch()
   const downloadHandler = () => {
-    let proposalNo = localStorage.getItem("proposalNo")
-    // let proposalNo="3108426548"
-    let file = policyDocumentFile
-    dispatch(downloadAction(proposalNo, file))
+    let file = props.policyDocumentFile
+    dispatch(downloadAction(props.proposalNo, file))
   }
   const renderDate = (date) => {
     const istDate = convertToIST(date);
@@ -18,7 +16,7 @@ const QuoteGenerated = ({ quoteDetail, policyDocumentFile }) => {
   return (
     <div className='quote text-center'>
       <div className='mb-3 quote-text'>
-        {renderDate(quoteDetail?.updatedOn)}
+        {renderDate(props.quoteDetail?.updatedOn)}
       </div>
       <button onClick={downloadHandler} className='quote-btn'>Download BI</button>
     </div>

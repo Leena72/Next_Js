@@ -10,7 +10,7 @@ import { videoPIVCAction } from '../../redux/action/videoPIVCAction'
 import { consentHandlerAction } from '../../redux/action/consentHandlerAction'
 import { dateFormat, convertToIST } from '../../utils/utils';
 
-const FormFilling = ({ data, label }) => {
+const FormFilling = ({ data, label, proposalNo }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
   const accDetails = useSelector((state) => state.customerDetailReducer);
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
@@ -23,16 +23,19 @@ const FormFilling = ({ data, label }) => {
   const videoPIVCHandler = () => {
     const payload = {
       "message": null,
-      "proposalNumber": localStorage.getItem("proposalNo"),
+      "proposalNumber": proposalNo,
     }
     dispatch(videoPIVCAction(payload))
   }
   const consentHandler = () => {
     const payload = {
       "message": null,
-      "proposalNumber": localStorage.getItem("proposalNo"),
+      "proposalNumber": proposalNo,
     }
     dispatch(consentHandlerAction(payload))
+  }
+  const downloadReceipt = () => {
+    // console.log('downloadReceipt')
   }
 
   const renderElement = (data, title) => {
@@ -42,13 +45,31 @@ const FormFilling = ({ data, label }) => {
         let proposalFormList = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PROPOSAL';
         });
-        // console.log('proposalFormList--', proposalFormList)
-        const proposalList = [...proposalFormList];
-        const proposalReversedList = proposalList.reverse();
-        showElement = proposalFormList.length !== 0
+        let Personal_Details = proposalFormList && proposalFormList.filter(item => {
+          return item.subStatus === 'Personal_Details';
+        });
+        let Insured_Details = proposalFormList && proposalFormList.filter(item => {
+          return item.subStatus === 'Insured_Details';
+        });
+        let Nominee_Details = proposalFormList && proposalFormList.filter(item => {
+          return item.subStatus === 'Nominee_Details';
+        });
+        let Health_Details = proposalFormList && proposalFormList.filter(item => {
+          return item.subStatus === 'Health_Details';
+        });
+        let proposalReversedList = []
+        proposalReversedList && proposalReversedList.push(
+          Personal_Details && Personal_Details[0],
+          Insured_Details && Insured_Details[0],
+          Nominee_Details && Nominee_Details[0],
+          Health_Details && Health_Details[0]
+          )
+          // console.log('proposalReversedList',proposalReversedList)
+
+        showElement = proposalFormList && proposalFormList?.length !== 0
           ?
           <ProposalForm
-            data={data.subContent}
+            accDetails={accDetails}
             proposalFormList={proposalFormList}
             proposalReversedList={proposalReversedList}
           />
@@ -87,54 +108,67 @@ const FormFilling = ({ data, label }) => {
         let paymentDetail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PAYMENT';
         })
-        // console.log('paymentDetail>>', paymentDetail)
-        showElement = paymentDetail[0]?.actual_status === 'COMPLETED'
-          ?
-          <FormFieldConsent
-            text='To Download the Payment Receipt'
-            buttonText='Click Here'
-            clickHandler={consentHandler}
-          />
-          :
+  // console.log('paymentDetail>>', paymentDetail , paymentDetail[0]?.paymentInfo?.paymentOtpCompleted )
+
+        // showElement = paymentDetail && paymentDetail[0]?.actual_status === 'COMPLETED'
+          // ?
+          // <FormFieldConsent
+          //   text='To Download the Payment Receipt'
+          //   buttonText='Click Here'
+          //   clickHandler={downloadReceipt}
+          // />
+          // :
+          // &&
+             showElement= paymentDetail && paymentDetail[0]?.paymentInfo?.paymentOtpCompleted === true 
+            ?
           <Payment
             showOffline={true}
             isText={'Online Payment'}
             paymentValue={accDetails?.premium}
             accDetails={accDetails}
+            paymentDetail={paymentDetail}
+            isRevised={false}
           />
-
+          :
+          <div className='blue-block-container'>
+          <p>User hasn't reached to payment page yet</p>
+        </div>
         return showElement
       case 'Document Upload':
-        if (label === 'form-filling') {
-          showElement = formFillDocDownload?.list.length !== 0
-            ?
+        let paymentDocShow = accordionDetails && accordionDetails.filter(item => {
+          return item.status === 'PAYMENT';
+        })
+        let showDocument = paymentDocShow && paymentDocShow[0]?.actual_status === 'COMPLETED'
+
+          showElement = !!formFillDocDownload?.list
+          &&
+          showDocument  
+          &&
             <DocumentUpload
               label='form-filling'
               formFillDocDownload={formFillDocDownload}
-              addDocUpload={accDetails?.additionalInfoDocs}
+              addDocUpl oad={accDetails?.additionalInfoDocs}
             />
-            :
-            <div className='blue-block-container'>
-              <p>Documents are not available!</p>
-            </div>
+            // :
+            // <div className='blue-block-container'>
+            //   <p>Documents are not available!</p>
+            // </div>
           return showElement
-        }
-        else {
-
-        }
+        
       case 'Proposal Submission':
         let proposalSub = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PROPOSAL_SUBMISSION';
         });
         // console.log('proposalSub', proposalSub)
-        showElement = proposalSub[0]?.actual_status === 'COMPLETED'
+        showElement = proposalSub && proposalSub[0]?.actual_status === 'COMPLETED'
           ?
           <div className='blue-block-container'>
-            <p>Policy Number: {accDetails?.policyNumber}</p>
+            <p>Policy Number: {proposalNo}</p>
           </div>
           :
           <div className='blue-block-container'>
-            <p>{proposalSub[0].subStatus}</p>
+            {/* <p>{proposalSub[0].subStatus}</p> */}
+            <p>Yet to Start</p>
           </div>
         return showElement
       default:
@@ -158,9 +192,9 @@ const FormFilling = ({ data, label }) => {
       propDetail = detail?.filter(item => {
         return item.subStatus === 'Health_Details';
       });
-      dateStatus = propDetail[0]?.actual_status === 'COMPLETED' ? true : false
+      dateStatus = propDetail && propDetail[0]?.actual_status === 'COMPLETED' ? true : false
       if (dateStatus) {
-        let date = propDetail[0]?.updatedOn
+        let date = propDetail && propDetail[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }
@@ -170,9 +204,9 @@ const FormFilling = ({ data, label }) => {
     }
 
     else {
-      dateStatus = detail[0]?.actual_status === 'COMPLETED' ? true : false
+      dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
       if (dateStatus) {
-        let date = detail[0]?.updatedOn
+        let date = detail && detail[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }
@@ -190,7 +224,6 @@ const FormFilling = ({ data, label }) => {
     <ul className='acc-active-container'>
       {
         data.map((item, idx) => {
-          console.log('item>>>>>>', item)
           if ((!accDetails?.instaRequired && item.heading === "Insta Verify")
             ||
             (!accDetails?.customerConsentRequired && item.heading === "Customer Consent")

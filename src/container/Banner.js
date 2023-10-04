@@ -5,7 +5,11 @@ import loginImg from "../Assets/images/top_img_new.png";
 
 const Banner = () => {
     const bannerDetail = useSelector((state) => state.customerDetailReducer);
-
+    const renderNumber = (num) => {
+        let value = num?.toString()
+            .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+        return value
+    }
     return (
         <div className='banner-container'>
             <div className='banner-content'>
@@ -30,13 +34,13 @@ const Banner = () => {
                         </div>
                         <div className='banner-card'>
                             <p>
-                                {<>&#8377;</>}{bannerDetail?.premium}
+                                {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}{<> *</>} 
                             </p>
                             <p>{'Premium to Pay(inc GST)'}</p>
                         </div>
                         <div className='banner-card'>
                             <p>
-                                {<>&#8377;</>}{bannerDetail?.sumAssured}
+                                {<>&#8377;</>} {renderNumber(bannerDetail?.sumAssured)}{<> **</>} 
                             </p>
                             <p>{'Sum Assured'}</p>
                         </div>

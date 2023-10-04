@@ -1,3 +1,4 @@
+import Script from 'next/script'
 import Header from "../container/Header";
 import { Providers } from "../redux/Provider";
 import { ToastContainer } from 'react-toastify';
@@ -18,8 +19,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
          {/* uat billdesk links  */}
-	  <script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
-    <script async noModule="" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script>
+	  {/* <script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js"></script>
+    <script async noModule="" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js"></script> */}
+
+    <Script type="module" src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.esm.js" />
+    <Script async noModule=""  src="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk.js" />
+
+
     <link href="https://uat.billdesk.com/jssdk/v1/dist/billdesksdk/billdesksdk.css" rel="stylesheet"/>
     
      {/* prod billdesk links  */}

@@ -60,7 +60,8 @@
 
             span {
                 font-size: $font-10;
-
+                padding-top: 3px;
+                
                 @include mquery(desk) {
                     font-size: $font-12;
                 }

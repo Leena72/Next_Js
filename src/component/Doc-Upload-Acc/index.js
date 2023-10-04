@@ -5,25 +5,57 @@ import previewImg from "../../Assets/images/preview.png"
 import deleteImg from "../../Assets/images/delete.png"
 
 
-export const UploadDoc = ({ data, key, clickHandler, clickHandleraddNon, label }) => {
+
+export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showViewDelete, deleteDocHandler, viewDocHandler,proposedDocList }) => {
+    const imageStyle = {
+        marginRight: '8px',
+        width: '20px',
+        height: '20px'
+    }
+// console.log('data proposedDocList',data)
     return (
         <div
             className={`upl-doc-container upl-doc`}
-            key={key}
-            onClick={label === 'form-filling' ?
-                () => clickHandler(data.indexValue, data.documents)
-                :
-                () => clickHandleraddNon(data.indexValue)
-            }
+            // key={key}
+
         >
             <div className='upl-heading'>{data.indexValue}</div>
-            <div className='upl-img'>
-                <a className='upl-img-link'>
-                    <Image
-                        src={uplImg}
-                        alt='uplImg'
-                    />
-                </a>
+            <div>
+                {!showViewDelete ? <div onClick={label === 'form-filling' ?
+                    () => clickHandler(data)
+                    :
+                    () => clickHandleraddNon(data.indexValue)
+                } className='upl-img'>
+                    <a className='upl-img-link'>
+                        <Image
+                            src={uplImg}
+                            alt='uplImg'
+                            style={imageStyle}
+                        />
+                    </a>
+                </div>
+                    :
+                    <div className='view-img'>
+                        <a className='view-img-link'
+                            onClick={viewDocHandler}
+                        >
+                            <Image
+                                src={previewImg}
+                                alt='uplImg'
+                                style={imageStyle}
+                            />
+                        </a>
+                        <a className='view-img-link'
+                            onClick={deleteDocHandler}
+                        >
+                            <Image
+                                src={deleteImg}
+                                alt='uplImg'
+                                style={imageStyle}
+                            />
+                        </a>
+                    </div>
+                }
             </div>
         </div>
     )
@@ -49,7 +81,7 @@ export const ViewDoc = ({ data, key, deleteDocHandler }) => {
                     />
                 </a>
                 <a className='view-img-link'
-                    onClick={deleteDocHandler}
+                // onClick={deleteDocHandler}
                 >
                     <Image
                         src={deleteImg}

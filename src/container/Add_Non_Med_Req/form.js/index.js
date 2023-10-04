@@ -6,115 +6,122 @@ import { questionnaireList, formikValidationSchema } from '../../../data'
 import OTPInput from '../../OTPInput'
 import Button from '@/component/Button'
 import FormLayout from './FormLayout'
-
+import { dashboardAction } from '@/redux/action/dashboardAction'
 import { questionnaireAction, saveQuestionnaireAction } from '../../../redux/action/questionnaireAction'
 import { toaster } from '@/utils/toaster';
 
 
-const NonMedForm = ({ formName, formValues, setFormValues }) => {
+const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, userType }) => {
     const accDetails = useSelector((state) => state.customerDetailReducer);
 
     let formData = questionnaireList[formName]
     let validationSchema = formikValidationSchema[formName].validationSchema
     let initialValues = formikValidationSchema[formName].initialValues
-
+    const [isValid, checkIsvalid] = useState(false)
     const dispatch = useDispatch()
-    const formChangeHandler = ({ name, value, quesData, formName, formData }) => {
-        // console.log('name, value, quesData, formName', name, value, quesData, formName, formData)
-        let formField
-        let subQuesFields
-        if (quesData.type === 'ques') {
-            formField = {
-                questionId: quesData.ques.id,
-                questionSetCD: '',
-                questionTypeCD: 'text',
-                dataElementCD: 'dataElelementCD',
-                answer: value,
-                question: quesData.ques.question,
-                details: 'testDeatils',
-                rowGuid: 'testRowGuide',
-                subQuestions: formValues?.[formName]?.[quesData.ques.id]?.subQuestions || [],
-                editable: true
-            }
-            let currentFormValue = formValues?.[formName] || {}
-            setFormValues({ ...formValues, ...{ [formName]: { ...currentFormValue, [quesData.ques.id]: formField } } });
-        }
-        else if (quesData.type === 'subQues') {
-            if (!formValues?.[formName]?.[quesData.parent.id]) {
-                formField = {
-                    questionId: quesData.parent.id,
-                    questionSetCD: '',
-                    questionTypeCD: 'text',
-                    dataElementCD: 'dataElelementCD',
-                    answer: '',
-                    question: quesData.parent.question,
-                    details: 'testDeatils',
-                    rowGuid: 'testRowGuide',
-                    subQuestions: [],
-                    editable: true
-                }
-            }
-            else {
-                formField = formValues?.[formName][quesData.parent.id]
-            }
-            subQuesFields = {
-                questionId: quesData.ques.id,
-                questionSetCD: '',
-                questionTypeCD: 'text',
-                dataElementCD: 'dataElelementCD',
-                answer: value,
-                question: quesData.ques.question,
-                details: 'testDeatils',
-                rowGuid: 'testRowGuide',
-                editable: true
+    const mapSaveData = (data, name, value) => {
+        data.forEach((item, index) => {
+            if (item.name === name) {
+                item.answer = value
+            } else if (item.subQuestions && item.subQuestions.length > 0) {
+                mapSaveData(item.subQuestions, name, value)
             }
 
-            let prevSubQues = formValues?.[formName]?.[quesData.parent.id]?.subQuestions?.filter(item => item.questionId != quesData.ques.id) || []
-            formField.subQuestions = [...prevSubQues, subQuesFields]
-
-            let currentFormValue = formValues?.[formName] || {}
-            // setFormValues({ ...formValues, ...{ [quesData.parent.id]: formField } });
-            setFormValues({ ...formValues, ...{ [formName]: { ...currentFormValue, [quesData.parent.id]: formField } } });
-
-        }
-
-
+        });
+        return data;
     }
-    const renderElement = (formName, formValues, formik) => {
+    const checkValidation = (finalFormData) => {
+        let check = true;
+        const datacheck = (formdata) => {
+            for (let i = 0; i < formdata.length; i++) {
+                const item = formdata[i];
+                // console.log("check1", item, item.type !== "HEADING", !item.answer, item.answer == "", item.type !== "HEADING" && (!item.answer || item.answer == ""))
+                if (item.type !== "HEADING" && (!item.answer || item.answer == "")) {
+                    // console.log("check validation1", item)
+                    check = false;
+                    return false;
+                    // break;
+                } else if (item.subQuestions && item.subQuestions.length > 0) {
+                    // console.log("check validation2")
+                    datacheck(item.subQuestions)
+                }
+                // return check
+            }
+        }
+
+        datacheck(finalFormData);
+        return check;
+    }
+    const formChangeHandler = ({ name, value, formData }) => {
+        // console.log('name, value, quesData, formName', name, value, quesData, formName, formData)
+        // if (quesData.type === 'ques') {
+        let data = JSON.parse(JSON.stringify(formData))
+        let finalFormData = mapSaveData(data, name, value)
+        setFormValues(finalFormData)
+        // console.log('check validation data', checkValidation(finalFormData))
+        let isvalidform = checkValidation(finalFormData)
+        checkIsvalid(isvalidform)
+        // console.log("maped data", finalFormData)
+    }
+    useEffect(() => {
+        const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
+        const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
+        let formData = questionnaireList[formName]
+        setFormValues(formData)
+        if (getApidata && getApidata[0]?.data?.length > 0) {
+            // console.log("checking data===", [...getApidata[0]?.data])
+            const data = [...getApidata[0]?.data]
+            setFormValues(data)
+            let isvalidform = checkValidation(data)
+            checkIsvalid(isvalidform)
+        }
+    }, []);
+    const renderElement = (formName, formValues, formik, title, newTitle, userType) => {
+        // console.log("checking===>", formName, formData, formValues, formik, title, formData)
+        // const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
+        // const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
+        // let newFormData = []
+        // // if (getApidata && getApidata[0]?.data?.length > 0) {
+        // //     newFormData = [...getApidata[0]?.data]
+        // // }else{
+        //     newFormData=formData;
+        // // }
+        // console.log("check data for new work", formData)
         return <FormLayout
             formName={formName}
-            formData={formData}
+            formData={formValues}
             formValues={formValues}
             formik={formik}
             formChangeHandler={formChangeHandler}
+            newTitle={newTitle}
         />
     }
 
 
-    const formSaveHandler = (e, formName) => {
-        console.log('formValues', formValues[formName], Object.values(formValues[formName]))
-        let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
-        let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
-        console.log('docQuesList',docQuesList)
-        let data = Object.values(formValues[formName])
+    const formSaveHandler = (e, formName, newTitle, userType) => {
+        // console.log('formValues', formName, formValues, formValues[formName], Object.values(formValues[formName]))
+        const filterQuestion = accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
+        // let addNonupload = accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
+        // let docQuesList = addNonupload?.filter(item => item.questionnaire === true)
+        // console.log('docQuesList', accDetails?.additionalInfoDocs[userType]?.quesList, userType, filterQuestion && filterQuestion[0])
+        // let data = Object.values(formValues[formName])
         let payload = {
             "policyNumber": accDetails?.policyNumber,
             "proposalNumber": accDetails?.proposalNumber,
             "uwId": accDetails?.additionalInfoDocs?.uwId,
             "additionalQuestionnaire": [
                 {
-                    "docCategoryCd": docQuesList[0].docCategoryCd,
-                    "docCategoryTypeCd": docQuesList[0].docCategoryTypeCd,
-                    "documentCd": docQuesList[0].documentCd,
-                    "partyType": docQuesList[0].partyType,
-                    "serviceDocListId": docQuesList[0].id,
-                    "data": data
+                    'id': filterQuestion[0]?.id,
+                    "data": formValues
                 }
             ]
         }
-        console.log('payload', payload)
+        // console.log('payload', filterQuestion[0]?.id, formValues)
         dispatch(saveQuestionnaireAction(payload, res => {
-            console.log('res', res)
+            // console.log('res', res)
+            dispatch(dashboardAction(accDetails.proposalNumber, (res) => {
+
+            }))
         }))
     }
     return (
@@ -128,7 +135,7 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
             >
                 {(formik) => (
                     <Form>
-                        {renderElement(formName, formValues, formik)}
+                        {renderElement(formName, formValues, formik, title, newTitle, userType)}
 
                         <div className='form-btn'>
                             <Button
@@ -140,8 +147,8 @@ const NonMedForm = ({ formName, formValues, setFormValues }) => {
                             />
                             <Button
                                 className={'props.className'}
-                                disabled={!(formik.dirty && formik.isValid)}
-                                clickHandler={(e) => formSaveHandler(e, formName)}
+                                disabled={!isValid}
+                                clickHandler={(e) => formSaveHandler(e, formName, newTitle, userType)}
                                 type={''}
                                 buttonText={'Save'}
                             />
