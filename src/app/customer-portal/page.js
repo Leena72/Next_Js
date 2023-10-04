@@ -1,13 +1,13 @@
 'use client';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { loginHandler } from '../../redux/action/login-action'
+import { loginHandler } from '@/redux/action/login-action';
 import Image from 'next/image'
 import { useRouter } from 'next/navigation';
-import Input from "../../component/Input"
-import Button from '../../component/Button'
+import Input from '@/component/Input';
+import Button from '@/component/Button';
 import loginImg from "../../Assets/images/prfress_img.png";
-import SsoLogin from './sso';
+import SsoLogin from '@/component/sso';
 
 const Login = () => {
   const router = useRouter();
