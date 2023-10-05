@@ -160,8 +160,9 @@ const Payment = (props) => {
         };
         // console.log('window',window.loadBillDeskSdk)
         if (resp.data.status === 'OK') {
+        if (typeof document !== "undefined" && typeof window !== "undefined") {
           window.loadBillDeskSdk(config);
-        }
+                }        }
         else {
           toaster("error", 'BillDesk Order Creation Exception')
         }
@@ -335,9 +336,10 @@ const Payment = (props) => {
       proposalNumber: localStorage.getItem("proposalNo")
     }
     enachInitiated(data, (res) => {
-      let newWindow = window.open();
+      if (typeof document !== "undefined" && typeof window !== "undefined") {
+      let newWindow = window?.open();
       newWindow.location = res.DATA;
-    })
+      }    })
   }
   const downloadHandler = (fileName) => {
     let proposalNo = props.accDetails.proposalNumber

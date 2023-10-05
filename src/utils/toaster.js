@@ -2,9 +2,9 @@
 import { toast } from "react-toastify";
 
 const CustomToast = ({ message, cssClass, icon }) => {
-  if (typeof window !== "undefined") {
-    let toastEl = document.getElementsByClassName('custom-toast-container')[0];
-    let toastmsgEl = document.querySelector('.custom-toast-container .success_text');
+  if (typeof window !== "undefined" && typeof document !== 'undefined') {
+    let toastEl = document?.getElementsByClassName('custom-toast-container')[0];
+    let toastmsgEl = document?.querySelector('.custom-toast-container .success_text');
     if (toastEl && (toastmsgEl && toastmsgEl.innerText === message)) {
         return null;
     }

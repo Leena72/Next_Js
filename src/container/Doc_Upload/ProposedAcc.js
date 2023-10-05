@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { UploadDoc, Document, ViewDoc } from '../../component/Doc-Upload-Acc'
+import { UploadDoc} from '../../component/Doc-Upload-Acc'
 import { uploadDocument, documentsUplaod } from '../../data'
 import AccPopUp from '../../component/PopUpPage/AccPopUp'
 import AccDocModal from '../../component/PopUpPage/AccDocModal'
@@ -13,7 +13,6 @@ import PopUpPage from '@/component/PopUpPage'
 import Image from 'next/image'
 import plaholderPdf from '../../Assets/images/placeholder.png'
 import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
-import { Button } from 'bootstrap'
 const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
@@ -267,14 +266,14 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                             //         type: "application/pdf",
                             //     }
                             // );
-                            if (typeof window !== "undefined") {
+                            if (typeof window !== "undefined" && typeof document !== 'undefined') {
                                 const fileName = "myDocument.pdf";
-                                const link = document.createElement("a");
+                                const link = document?.createElement("a");
                                 // create a blobURI pointing to our Blob
                                 link.href = preview.url; //URL.createObjectURL(previewList[currentImgIndex]?.src);
                                 link.download = fileName;
                                 // some browser needs the anchor to be in the doc
-                                document.body.append(link);
+                                document?.body.append(link);
                                 link.click();
                                 link.remove();
                                 // in case the Blob uses a lot of memory
