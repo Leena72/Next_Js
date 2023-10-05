@@ -26,8 +26,8 @@ import activeImg_15 from "../Assets/images/15active.png";
 import img_15 from "../Assets/images/15.png";
 
 export const scrollToTop = (id) => {
-  if (typeof window !== "undefined") {
-    const element = document.getElementById(id);
+  if (typeof window !== "undefined" && typeof document !== 'undefined') {
+    const element = document?.getElementById(id);
     if (element) {
       setTimeout(() => {
         element.scrollIntoView({

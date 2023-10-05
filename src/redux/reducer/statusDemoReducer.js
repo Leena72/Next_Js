@@ -1,6 +1,6 @@
 import {statusApi} from '../../data'
 const initialState = {};
-const customerDetailReducer = (state = statusApi, action) => {
+const customerDetailReducer = (state = initialState, action) => {
   switch (action.type) {
     case "STATUS_SUCCESS":
       return (action.info?action.info:state);

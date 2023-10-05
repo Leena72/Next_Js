@@ -21,6 +21,7 @@ const Login = () => {
   const [ssoTrue, ssoIdSet] = useState(true)
   useEffect(() => {
     const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
+    if (typeof document !== "undefined" && typeof window !== "undefined") {
     const urlParams = new URLSearchParams(window.location.search);
     const ssoid = urlParams.get('ssoid')
     if (ssoid) {
@@ -34,6 +35,7 @@ const Login = () => {
         setdisabled(true)
       }
     }
+  }
 
   }, [DOB, PAN, proposalNo])
 

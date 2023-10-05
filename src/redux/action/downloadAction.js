@@ -25,15 +25,15 @@ export const downloadAction = (proposalNo, file, type, cb) => (dispatch) => {
         if (type === "preview") {
             cb(href);
         } else {
-            if (typeof window !== "undefined") {
+            if (typeof window !== "undefined" && typeof document !== 'undefined') {
                 // create "a" HTML element with href to file & click
-                const link = document.createElement('a');
+                const link = document?.createElement('a');
                 link.href = href;
                 link.setAttribute('download', 'file.pdf'); //or any other extension
-                document.body.appendChild(link);
+                document?.body.appendChild(link);
                 link.click();
                 // clean up "a" element & remove ObjectURL
-                document.body.removeChild(link);
+                document?.body.removeChild(link);
                 URL.revokeObjectURL(href);
             }
         }
