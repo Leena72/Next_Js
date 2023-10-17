@@ -7,6 +7,7 @@ const Input = (props) => {
     onChange={props.changeHandler}
     checked={props.checked}
     placeholder={props.placeholder}
+    readOnly={props.readOnly}
     />
   )
 }

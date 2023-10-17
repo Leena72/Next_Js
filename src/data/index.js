@@ -488,6 +488,7 @@ export const formikValidationSchema = {
     "CHEST_PAIN_QUESTION": {
         validationSchema: Yup.object().shape({
             ﬁrst_attack: validateReq,
+            state_attack:validateReq,
             exact_site: validateReq,
             severity: validateReq,
             pain_radiate: validateReq,
@@ -503,6 +504,7 @@ export const formikValidationSchema = {
         }),
         initialValues: {
             ﬁrst_attack: '',
+            validateReq:'',
             exact_site: '',
             severity: '',
             pain_radiate: '',
@@ -1007,6 +1009,18 @@ export const questionnaireList = {
             type: 'textbox',
             validation: '',
             ansBtn: false,
+            subQuestions: [ ]
+        },
+        {
+            id: '2',
+            question: '',
+            answer: '',
+            name: 'state_attack',
+            declaration: '',
+            heading: 'State exact site, character and severity of the pain?',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
             subQuestions: [
                 {
                     id: '1',
@@ -1029,7 +1043,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '2',
+            id: '3',
             question: 'Did the pain radiate or spread outside the chest (e.g. to the arms, shoulders, jaw)?',
             answer: '',
             name: 'pain_radiate',
@@ -1041,7 +1055,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '3',
+            id: '4',
             question: 'Did the pain occur suddenly or gradually? At rest or on exertion? Did it worsen with deep inspiration?',
             answer: '',
             name: 'pain_suddenly_gradually',
@@ -1053,7 +1067,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '4',
+            id: '5',
             question: 'How long did the chest pain last?',
             answer: '',
             name: 'chest_pain',
@@ -1065,7 +1079,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '5',
+            id: '6',
             question: 'When did you last have such symptoms or experience an attack?',
             answer: '',
             name: 'last_symptoms',
@@ -1077,7 +1091,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '6',
+            id: '7',
             question: '',
             answer: '',
             name: '',
@@ -1117,7 +1131,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '7',
+            id: '8',
             question: 'Were you on any treatment? If so, please provide details including the name of the medication.',
             answer: '',
             name: 'any_treatment',
@@ -1129,7 +1143,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '8',
+            id: '9',
             question: 'Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.',
             answer: '',
             name: 'booked_off',
@@ -1141,7 +1155,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '10',
             question: 'Is there any additional information you can provide, with regards the chest pain which will assist in processing your proposal?',
             answer: '',
             name: 'additional_information',
@@ -1280,19 +1294,22 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '4',
-                    question: 'Please mention the parts of body affected by any thinning or wasting of muscles.',
-                    answer: '',
-                    name: 'body_affected',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
             ]
         },
         {
             id: '7',
+            question: 'Please mention the parts of body affected by any thinning or wasting of muscles.',
+            answer: '',
+            name: 'body_affected',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '8',
             question: '',
             answer: '',
             name: '',
@@ -1323,7 +1340,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '8',
+            id: '9',
             question: 'Do you use any walking or ambulatory aid/(s) such as crutches, callipers or a wheelchair? If ‘Yes’ please give details.',
             answer: '',
             name: 'ambulatory',
@@ -1335,7 +1352,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '10',
             question: 'Please do provide treatment details including name and dosage of the medicine/s.',
             answer: '',
             name: 'treatment_details',
@@ -3354,7 +3371,7 @@ export const statusApi = {
         {
             "id": 3879363,
             "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
-            "subStatus": null,
+            "subStatus": 'AR',
             "actual_status": "CREATED",
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
@@ -3374,104 +3391,23 @@ export const statusApi = {
         {
             "id": 3879367,
             "status": "QUALITY_CHECK",
-            "subStatus": null,
+            "subStatus": 'AD',
             "actual_status": "CREATED",
             "updatedOn": "2023-09-11 11:51:08",
-            "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": null,
-            "paymentInfo": null
-        },
-        {
-            "id": 3879368,
-            "status": "MEDICAL_RISK_VERIFICATION",
-            "subStatus": null,
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-11 11:51:08",
-            "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": null,
-            "paymentInfo": null
-        },
-        {
-            "id": 3879369,
-            "status": "FINANCIAL_AND_MEDICAL_RISK_VERIFICATION",
-            "subStatus": null,
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-11 11:51:08",
-            "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": null,
-            "paymentInfo": null
-        },
-        {
-            "id": 3879371,
-            "status": "DATA_CHANGE",
-            "subStatus": null,
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-11 11:51:08",
-            "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": null,
-            "paymentInfo": null
-        },
-        {
-            "id": 3879364,
-            "status": "REVISED_OFFER",
-            "subStatus": "CO",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-20 08:08:01",
-            "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": {
-                "id": null,
-                "pt": "10",
-                "sa": "SA",
-                "ppt": "20",
-                "smoker": "YES",
-                "planName": "test Pan",
-                "loadingType": ":LoadingType",
-                "riderStatus": [
-                    {
-                        "status": "Axctive",
-                        "partyRole": "20",
-                        "riderName": "10"
-                    }
-                ],
-                "tempLoading": "testtemLoading",
-                "medicalLoading": null,
-                "revisedPremium": 20000,
-                "shortfallPremium": 100,
-                "counterOfferReason": "testC ounter Offer",
-                "tempLoadingDuration": "testeLoaduruation"
-            },
-            "paymentInfo": null
-        },
-        {
-            "id": 3894929,
-            "status": "PROPOSAL",
-            "subStatus": "Document_Details",
-            "actual_status": "CREATED",
-            "updatedOn": "2023-09-25 09:52:17",
-            "createdOn": "2023-09-25 09:52:17",
-            "additionalInfo": {},
-            "paymentInfo": null
-            },
-        {
-            "id": 3879370,
-            "status": "POLICY_STATUS",
-            "subStatus": "PI",
-            "actual_status": "COMPLETED",
-            "updatedOn": "2023-09-22 07:07:31",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": {
                 "PlanDetails": {
                     "planOption": {
-                        "new": "planOptionnewData",
-                        "old": "planOptiomOldData"
+                        "revisedDetails": "planOptionnewData",
+                        "olddetails": "planOptiomOldData"
                     },
                     "baseSumAssured": {
-                        "new": "planField1",
-                        "old": "planField1"
+                        "revisedDetails": "planField1",
+                        "olddetails": "planField1"
                     },
                     "riderPolicyTerm": {
-                        "new": "planField2",
-                        "old": "planField2"
+                        "revisedDetails": "planField2",
+                        "olddetails": "planField2"
                     }
                 },
                 "InsuredDetails": {
@@ -3569,6 +3505,87 @@ export const statusApi = {
                     }
                 }
             },
+            "paymentInfo": null
+        },
+        {
+            "id": 3879368,
+            "status": "MEDICAL_RISK_VERIFICATION",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879369,
+            "status": "FINANCIAL_AND_MEDICAL_RISK_VERIFICATION",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879371,
+            "status": "DATA_CHANGE",
+            "subStatus": null,
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-11 11:51:08",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
+            "paymentInfo": null
+        },
+        {
+            "id": 3879364,
+            "status": "REVISED_OFFER",
+            "subStatus": "CO",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-20 08:08:01",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": {
+                "id": null,
+                "pt": "10",
+                "sa": "SA",
+                "ppt": "20",
+                "smoker": "YES",
+                "planName": "test Pan",
+                "loadingType": ":LoadingType",
+                "riderStatus": [
+                    {
+                        "status": "Axctive",
+                        "partyRole": "20",
+                        "riderName": "10"
+                    }
+                ],
+                "tempLoading": "testtemLoading",
+                "medicalLoading": null,
+                "revisedPremium": 20000,
+                "shortfallPremium": 100,
+                "counterOfferReason": "testC ounter Offer",
+                "tempLoadingDuration": "testeLoaduruation"
+            },
+            "paymentInfo": null
+        },
+        {
+            "id": 3894929,
+            "status": "PROPOSAL",
+            "subStatus": "Document_Details",
+            "actual_status": "CREATED",
+            "updatedOn": "2023-09-25 09:52:17",
+            "createdOn": "2023-09-25 09:52:17",
+            "additionalInfo": {},
+            "paymentInfo": null
+        },
+        {
+            "id": 3879370,
+            "status": "POLICY_STATUS",
+            "subStatus": "PI",
+            "actual_status": "COMPLETED",
+            "updatedOn": "2023-09-22 07:07:31",
+            "createdOn": "2023-09-11 06:21:08",
+            "additionalInfo": null,
             "paymentInfo": null
         }
     ],
@@ -4041,77 +4058,89 @@ export const statusApi = {
         }
     ],
 }
+// first time accordion open
 
 // consent data
 
 export const consentForChangeData = [
     {
         id: 1,
-        title: 'Proposer’s Detail',
+        title: 'Proposer Details',
         detail: [
             {
                 id: 1,
                 title: 'Pincode',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 2,
                 title: 'PFP',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 3,
                 title: 'Any ealth Questionnaire',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 4,
                 title: 'Residential Country',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 5,
                 title: 'Age proof',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 6,
                 title: 'Fund details',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 7,
                 title: 'Title',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 8,
                 title: 'Name',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 9,
                 title: 'Date of Birth',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 10,
                 title: 'Age',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 11,
                 title: 'Gender',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
@@ -4119,71 +4148,82 @@ export const consentForChangeData = [
     },
     {
         id: 2,
-        title: 'Insured’s Detail',
+        title: 'Insured Details',
         detail: [
             {
                 id: 1,
                 title: 'Pincode',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 2,
                 title: 'PFP',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 3,
                 title: 'Any ealth Questionnaire',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 4,
                 title: 'Residential Country',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 5,
                 title: 'Age proof',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 6,
                 title: 'Fund details',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 7,
                 title: 'Title',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 8,
                 title: 'Name',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 9,
                 title: 'Date of Birth',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 10,
                 title: 'Age',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 11,
                 title: 'Gender',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
@@ -4191,118 +4231,142 @@ export const consentForChangeData = [
     },
     {
         id: 3,
-        title: 'Plan Detail',
+        title: 'Plan Details',
         detail: [
             {
                 id: 1,
                 title: 'Plan option',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 2,
                 title: 'Base Sum Assured',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 3,
                 title: 'Base Premium Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 4,
                 title: 'Base Policy Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 5,
                 title: 'Base Modal Premium',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 6,
                 title: 'Payement Frequency',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 7,
                 title: 'Premium Payment Mode',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 8,
                 title: 'Premium Payment Method',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 9,
                 title: 'Existing Bharti Axa Customer',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 10,
                 title: 'Employee Discount',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 11,
                 title: 'Rider Name',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 12,
                 title: 'Rider Sum Assured',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 13,
                 title: 'Rider Policy Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 14,
                 title: 'Rider Premium Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 15,
                 title: 'Top Up Premium',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 16,
                 title: 'Loading Premium',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 17,
                 title: 'Payout Type',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
-                id: 11,
+                id: 18,
                 title: 'Payout Frequency',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             }
         ]
-    }
+    },
+    {
+        id: 4,
+        title: 'Health Questionnaire Details',
+        detail: []
+    },
+
 ]
 
 
@@ -4518,3 +4582,37 @@ export const subStatusList = [
 
     },
 ]
+
+// consent data
+
+export const consentDataList = {
+    'pincode':'Pincode',
+    'pep': 'PEP',
+    'anyHealthQuestionnaire':'Any Health Questionnaire',
+    'residentialCountry': 'Residential Country',
+    'ageProof': 'Age Proof',
+    'fundDetails': 'Fund Details',
+    'title': 'Title',
+    'name': 'Name',
+    'dateOfBirth': 'Date of birth',
+    'age': 'Age',
+    'gender': 'Gender',
+    'planOption': 'Plan Option',
+    'baseSumAssured': 'Base Sum Assured',
+    'basePremiumTerm': 'Base Premium Term',
+    'basePolicyTerm': 'Base Policy Term',
+    'baseModalPremium': 'Base Modal Premium',
+    'payementFrequency': 'Payment Frequency',
+    'premiumPaymentMode': 'Premium Payment Mode',
+    'premiumPaymentMethod': 'Premium Payment Method',
+    'existingBhartiAxaCustomer': 'Existing Bharti Axa Customer',
+    'employeeDiscount': 'Employee Discount',
+    'riderName': 'Rider Name',
+    'riderSumAssured': 'Rider Sum Assured',
+    'riderPolicyTerm': 'Rider Policy Term',
+    'riderPremiumTerm': 'Rider Premium Term',
+    'topUpPremium': 'Top Up Premium',
+    'loadingPremium':'Loading Premium',
+    'payoutType':'Payout Type',
+    'payoutFrequency':'Payout Frequency'
+}
