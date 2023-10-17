@@ -87,7 +87,7 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
                             consentData.map((item, idx) => {
                                 return (
                                     <tr
-                                    // key={idx}
+                                    key={idx}
                                     >
                                         <td>
                                             {/* {item[0]} */}

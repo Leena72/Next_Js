@@ -488,6 +488,7 @@ export const formikValidationSchema = {
     "CHEST_PAIN_QUESTION": {
         validationSchema: Yup.object().shape({
             ﬁrst_attack: validateReq,
+            state_attack:validateReq,
             exact_site: validateReq,
             severity: validateReq,
             pain_radiate: validateReq,
@@ -503,6 +504,7 @@ export const formikValidationSchema = {
         }),
         initialValues: {
             ﬁrst_attack: '',
+            validateReq:'',
             exact_site: '',
             severity: '',
             pain_radiate: '',
@@ -1007,6 +1009,18 @@ export const questionnaireList = {
             type: 'textbox',
             validation: '',
             ansBtn: false,
+            subQuestions: [ ]
+        },
+        {
+            id: '2',
+            question: '',
+            answer: '',
+            name: 'state_attack',
+            declaration: '',
+            heading: 'State exact site, character and severity of the pain?',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
             subQuestions: [
                 {
                     id: '1',
@@ -1029,7 +1043,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '2',
+            id: '3',
             question: 'Did the pain radiate or spread outside the chest (e.g. to the arms, shoulders, jaw)?',
             answer: '',
             name: 'pain_radiate',
@@ -1041,7 +1055,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '3',
+            id: '4',
             question: 'Did the pain occur suddenly or gradually? At rest or on exertion? Did it worsen with deep inspiration?',
             answer: '',
             name: 'pain_suddenly_gradually',
@@ -1053,7 +1067,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '4',
+            id: '5',
             question: 'How long did the chest pain last?',
             answer: '',
             name: 'chest_pain',
@@ -1065,7 +1079,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '5',
+            id: '6',
             question: 'When did you last have such symptoms or experience an attack?',
             answer: '',
             name: 'last_symptoms',
@@ -1077,7 +1091,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '6',
+            id: '7',
             question: '',
             answer: '',
             name: '',
@@ -1117,7 +1131,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '7',
+            id: '8',
             question: 'Were you on any treatment? If so, please provide details including the name of the medication.',
             answer: '',
             name: 'any_treatment',
@@ -1129,7 +1143,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '8',
+            id: '9',
             question: 'Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.',
             answer: '',
             name: 'booked_off',
@@ -1141,7 +1155,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '10',
             question: 'Is there any additional information you can provide, with regards the chest pain which will assist in processing your proposal?',
             answer: '',
             name: 'additional_information',
@@ -1280,19 +1294,22 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '4',
-                    question: 'Please mention the parts of body affected by any thinning or wasting of muscles.',
-                    answer: '',
-                    name: 'body_affected',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
             ]
         },
         {
             id: '7',
+            question: 'Please mention the parts of body affected by any thinning or wasting of muscles.',
+            answer: '',
+            name: 'body_affected',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '8',
             question: '',
             answer: '',
             name: '',
@@ -1323,7 +1340,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '8',
+            id: '9',
             question: 'Do you use any walking or ambulatory aid/(s) such as crutches, callipers or a wheelchair? If ‘Yes’ please give details.',
             answer: '',
             name: 'ambulatory',
@@ -1335,7 +1352,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '10',
             question: 'Please do provide treatment details including name and dosage of the medicine/s.',
             answer: '',
             name: 'treatment_details',
@@ -4041,6 +4058,7 @@ export const statusApi = {
         }
     ],
 }
+// first time accordion open
 
 // consent data
 
