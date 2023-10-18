@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { consentForChangeData } from '.././../data'
 import Accordion2 from '../../component/Accordion/Accordion2'
 import Button from '../../component/Button'
@@ -14,6 +14,8 @@ import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 import Aggree from '../../Assets/images/insta-verify.svg'
 import Reject from '../../Assets/images/reject-icon.png'
 import OTPInput from '../../container/OTPInput';
+import otpCross from "../../Assets/images/otp-cross-icon.png"
+import thankYou from "../../Assets/images/thank-you-bg.png";
 
 
 const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
@@ -67,7 +69,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
     }
     const acceptHandler = () => {
         const data = {
-            "consentType": "QUALITY_CHECK",
+            "consentType": "DATA_CHANGE",
             "proposalNumber": accDetails?.proposalNumber,
             "consentAction": "ACCEPTED",
         }
@@ -82,7 +84,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
         const data = {
             "otp": otp,
             "refId": refId,
-            "key": "QUALITY_CHECK",
+            "key": "DATA_CHANGE",
             // "action": revisedAction
         }
         let proposalNo = accDetails?.proposalNumber
