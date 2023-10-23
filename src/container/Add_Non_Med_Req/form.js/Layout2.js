@@ -36,7 +36,9 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         <div className='form-block' key={item.id}>
                             <div className={`${item.declaration !== '' ? 'form-declaration' : 'hide'}`}>{item.declaration}</div>
                             <div className={`${item.heading !== '' ? 'form-question' : 'hide'}`}>{item.heading}</div>
-                            {item.addMore && ele.id > 1 &&
+                            {item.addMore 
+                            && 
+                            // ele.id > 1 &&
                                 <div className='add-more-container'>
                                     <Button
                                         className='add-more-btn'
