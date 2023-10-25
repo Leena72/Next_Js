@@ -20,23 +20,52 @@ const Layout1 = ({ formName, formData, formChangeHandler, formik }) => {
                             {/* {console.log('errors>>',errors,touched)} */}
                             {
                                 item.subQuestions?.map((ele, idx) => (
-                                    <div className='form-quesAns' key={idx}>
-                                        <div className='form-question'>{ele.question}</div>
-                                        <div className='form-answer'>
-                                            {/* {ele.answer} */}
-                                            <Field
-                                                as="textarea"
-                                                id={ele.id}
-                                                name={ele.name}
-                                                value={ele.answer}
-                                                onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: item }, formik.handleChange)}
-                                            />
-                                            {formik.errors?.[ele.name] && formik.touched?.[ele.name] ? (
-                                                <div className='error-msg'>{formik.errors?.[ele.name]}</div>
-                                            ) : null}
+                                    // console.log('ele>>', ele)
+
+                                    ele.type !== 'HEADING' ?
+                                        <div className='form-quesAns' key={idx}>
+                                            <div className='form-question'>{ele.question}</div>
+                                            <div className='form-answer'>
+                                                {/* {ele.answer} */}
+                                                <Field
+                                                    as="textarea"
+                                                    id={ele.id}
+                                                    name={ele.name}
+                                                    value={ele.answer}
+                                                    onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: item }, formik.handleChange)}
+                                                />
+                                                {formik.errors?.[ele.name] && formik.touched?.[ele.name] ? (
+                                                    <div className='error-msg'>{formik.errors?.[ele.name]}</div>
+                                                ) : null}
+                                            </div>
                                         </div>
-                                    </div>
-                                ))
+                                        :
+                                        <div className='form-quesAns' key={idx}>
+                                            <div className='form-question'>{ele.heading}</div>
+                                            {
+                                                ele.subQuestions?.map((element, id) => (<>
+                                                    <div className='form-question' key={id}>
+                                                        {id+1}{'. '}{element.question}
+                                                    </div>
+                                                    <div className='form-answer'>
+                                                        <Field
+                                                            as="textarea"
+                                                            id={element.id}
+                                                            name={element.name}
+                                                            value={element.answer}
+                                                            onChange={(e) => changeHandler(e, { ques: element, type: 'subQues', parent: ele }, formik.handleChange)}
+                                                        />
+                                                        {formik.errors?.[element.name] && formik.touched?.[element.name] ? (
+                                                            <div className='error-msg'>{formik.errors?.[element.name]}</div>
+                                                        ) : null}
+                                                    </div>
+                                                </>
+                                                ))
+                                            }
+                                        </div>
+
+                                )
+                                )
                             }
                             {item.type != 'HEADING' &&
                                 <div className='form-quesAns'>
@@ -65,13 +94,13 @@ const Layout1 = ({ formName, formData, formChangeHandler, formik }) => {
                                                 <>
                                                     {/* <div className='form-question'>{item.question}</div> */}
                                                     <div className='form-answer'>
-                                                    <textarea
-                                                        id={item.id}
-                                                        name={item.name}
-                                                        value={item.answer}
-                                                        onChange={(e) =>
-                                                            changeHandler(e, { ques: item, type: 'ques', parent: null }, formik.handleChange)}
-                                                    />
+                                                        <textarea
+                                                            id={item.id}
+                                                            name={item.name}
+                                                            value={item.answer}
+                                                            onChange={(e) =>
+                                                                changeHandler(e, { ques: item, type: 'ques', parent: null }, formik.handleChange)}
+                                                        />
                                                     </div>
                                                 </>
                                             }
