@@ -2646,7 +2646,7 @@ export const questionnaireList = {
             subQuestions: [
                 {
                     id: '1',
-                    question: 'If so, what were the results? Please enclose the copy of above reports – if available.',
+                    question: 'If so, what were the results? Please share the copy of reports with Bharti Axa Representative/Agent',
                     answer: '',
                     name: 'results',
                     type: 'textbox',
@@ -3004,17 +3004,48 @@ export const questionnaireList = {
                 }
             ]
         },
+        // {
+        //     id: '5',
+        //     question: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+        //     answer: '',
+        //     name: 'treatment',
+        //     declaration: '',
+        //     heading: '',
+        //     type: 'textbox',
+        //     validation: '',
+        //     ansBtn: false,
+        //     subQuestions: []
+        // },
         {
             id: '5',
-            question: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+            question: '',
             answer: '',
             name: 'treatment',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Current Dosage',
+                    answer: '',
+                    name: 'current_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Past Dosage',
+                    answer: '',
+                    name: 'past_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '6',
@@ -3040,18 +3071,18 @@ export const questionnaireList = {
             ansBtn: true,
             subQuestions: []
         },
-        {
-            id: '8',
-            question: 'If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
-            answer: '',
-            name: 'consulting_physician',
-            declaration: '',
-            heading: '',
-            type: 'textbox',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
-        },
+        // {
+        //     id: '8',
+        //     question: 'If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
+        //     answer: '',
+        //     name: 'consulting_physician',
+        //     declaration: '',
+        //     heading: '',
+        //     type: 'textbox',
+        //     validation: '',
+        //     ansBtn: false,
+        //     subQuestions: []
+        // },
         {
             id: '9',
             question: 'Have you ever lost significant time off work due to this condition? If so please provide details including dates and time spent off work',
@@ -3062,6 +3093,7 @@ export const questionnaireList = {
             type: 'textbox',
             validation: '',
             ansBtn: true,
+            showTextbox:true,
             subQuestions: []
         },
         {
