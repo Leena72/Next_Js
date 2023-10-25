@@ -1806,39 +1806,38 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-            ]
-        },
-        {
-            id: '4',
-            question: '',
-            answer: '',
-            name: '',
-            declaration: '',
-            heading: 'Did the attacks ever produce any',
-            type: 'HEADING',
-            validation: '',
-            ansBtn: false,
-            subQuestions: [
                 {
-                    id: '1',
-                    question: 'pain in the chest or arms?',
+                    id: '4',
+                    question: '',
                     answer: '',
-                    name: 'chest_pain',
-                    type: 'textbox',
+                    name: 'attacks_ever',
+                    heading: 'Did the attacks ever produce any',
+                    type: 'HEADING',
                     validation: '',
                     ansBtn: false,
+                    subQuestions: [
+                        {
+                            id: '1',
+                            question: 'pain in the chest or arms?',
+                            answer: '',
+                            name: 'chest_pain',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        },
+                        {
+                            id: '2',
+                            question: 'breathlessness?',
+                            answer: '',
+                            name: 'breathlessness',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        }
+                    ]
                 },
                 {
-                    id: '2',
-                    question: 'breathlessness?',
-                    answer: '',
-                    name: 'breathlessness',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '3',
+                    id: '5',
                     question: 'Are the attacks aggravated by exercise?',
                     answer: '',
                     name: 'attack_aggravated',
@@ -1847,7 +1846,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '4',
+                    id: '6',
                     question: 'Are the attacks related to meals?',
                     answer: '',
                     name: 'attack_meal',
@@ -1855,41 +1854,40 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
+                {
+                    id: '7',
+                    question: 'Are the attacks related to meals? ',
+                    answer: '',
+                    name: 'attack_related',
+                    heading: 'If so, state',
+                    type: 'HEADING',
+                    validation: '',
+                    ansBtn: false,
+                    subQuestions: [
+                        {
+                            id: '1',
+                            question: 'how long after eating do they occur?',
+                            answer: '',
+                            name: 'eating_occur',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        },
+                        {
+                            id: '2',
+                            question: 'whether they are relieved or aggravated following a meal?',
+                            answer: '',
+                            name: 'meal_occur',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        }
+                    ]
+                },
             ]
         },
         {
-            id: '5',
-            question: '',
-            answer: '',
-            name: '',
-            declaration: '',
-            heading: 'If so, state',
-            type: 'HEADING',
-            validation: '',
-            ansBtn: false,
-            subQuestions: [
-                {
-                    id: '1',
-                    question: 'how long after eating do they occur?',
-                    answer: '',
-                    name: 'after_eating',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '2',
-                    question: 'whether they are relieved or aggravated following a meal?',
-                    answer: '',
-                    name: 'relieved_meal',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-            ]
-        },
-        {
-            id: '6',
+            id: '4',
             question: 'When did you last have symptoms or experience an attack?',
             answer: '',
             name: 'symptoms',
@@ -1901,7 +1899,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '7',
+            id: '5',
             question: '',
             answer: '',
             name: '',
@@ -1941,7 +1939,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '8',
+            id: '6',
             question: 'Have you had a barium meal or any other investigation like endoscopy? If so, please provide the details including date and result of the investigation.',
             answer: '',
             name: 'barium_meal',
@@ -1953,7 +1951,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '7',
             question: 'Have you had an operation for this or is an operation being considered? If so, please provide the complete details including name and address of the doctor, and discharge summary (if any).',
             answer: '',
             name: 'operation',
@@ -1965,7 +1963,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '10',
+            id: '8',
             question: 'Have you experienced any problems or complications following surgery? If so, please provide details.',
             answer: '',
             name: 'experienced_problem',
@@ -1977,7 +1975,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '11',
+            id: '9',
             question: '',
             answer: '',
             name: '',
