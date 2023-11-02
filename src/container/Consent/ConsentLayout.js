@@ -96,8 +96,8 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
                                         <td>
                                             <Input
                                                 type='text'
-                                                name={item[1].olddetails}
-                                                value={item[1].olddetails}
+                                                name={item[1].oldDetails}
+                                                value={item[1].oldDetails}
                                                 // changeHandler={changeHandler}
                                                 readOnly={true}
 

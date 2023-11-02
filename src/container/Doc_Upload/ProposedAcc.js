@@ -28,6 +28,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
     const [fileObject, setfileObject] = useState('')
     const [preview, setPreview] = useState({ url: '', data: null })
     const customerDetail = useSelector((state) => state.customerDetailReducer)
+    const [formFillDetail, setFormFillDetail] = useState('')
     const dispatch = useDispatch()
 
 
@@ -101,6 +102,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                 if (res.status === 'OK') {
                     dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
                     }))
+                    setFormFillDetail(res)
                     setuploadDocModal(false)
                     setshowViewDelete(true)
                 }
@@ -172,6 +174,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
     const closeHandler = () => {
         setPreview('')
     }
+    // console.log('formFillDetail',formFillDetail)
     // console.log('proposedDocList',proposedDocList)
     return (<>
         <ul className='nonMedListBlock'>

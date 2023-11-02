@@ -3441,86 +3441,86 @@ export const statusApi = {
                 "PlanDetails": {
                     "planOption": {
                         "revisedDetails": "planOptionnewData",
-                        "olddetails": "planOptiomOldData"
+                        "oldDetails": "planOptiomOldData"
                     },
                     "baseSumAssured": {
                         "revisedDetails": "planField1",
-                        "olddetails": "planField1"
+                        "oldDetails": "planField1"
                     },
                     "riderPolicyTerm": {
                         "revisedDetails": "planField2",
-                        "olddetails": "planField2"
+                        "oldDetails": "planField2"
                     }
                 },
                 "InsuredDetails": {
                     "title": {
-                        "olddetails": "OLDTitle",
+                        "oldDetails": "OLDTitle",
                         "revisedDetails": "NewTitle"
                     },
                     "gender": {
-                        "olddetails": "Male",
+                        "oldDetails": "Male",
                         "revisedDetails": "Male"
                     },
                     "pinCode": {
-                        "olddetails": "301701",
+                        "oldDetails": "301701",
                         "revisedDetails": "301701"
                     },
                     "ageProof": {
-                        "olddetails": "OLDAgeProdd",
+                        "oldDetails": "OLDAgeProdd",
                         "revisedDetails": "NewAgeProdd"
                     },
                     "dateOfBirth": {
-                        "olddetails": "30-12-2030",
+                        "oldDetails": "30-12-2030",
                         "revisedDetails": "12-12-2012"
                     },
                     "fundDetails": {
-                        "olddetails": "OLDfundDeatails",
+                        "oldDetails": "OLDfundDeatails",
                         "revisedDetails": "NewfundDeatails"
                     },
                     "residentialCountry": {
-                        "olddetails": "OLDRediCounrty",
+                        "oldDetails": "OLDRediCounrty",
                         "revisedDetails": "newRediCounrty"
                     }
                 },
                 "ProposerDetails": {
                     "age": {
-                        "olddetails": "99",
+                        "oldDetails": "99",
                         "revisedDetails": "99"
                     },
                     "pep": {
-                        "olddetails": "OLDtestPEP",
+                        "oldDetails": "OLDtestPEP",
                         "revisedDetails": "testPEPNew"
                     },
                     "name": {
-                        "olddetails": "OLDAjayNewName",
+                        "oldDetails": "OLDAjayNewName",
                         "revisedDetails": "AjayNewName"
                     },
                     "title": {
-                        "olddetails": "OLDTitle",
+                        "oldDetails": "OLDTitle",
                         "revisedDetails": "NewTitle"
                     },
                     "gender": {
-                        "olddetails": "Male",
+                        "oldDetails": "Male",
                         "revisedDetails": "Male"
                     },
                     "pinCode": {
-                        "olddetails": "301701",
+                        "oldDetails": "301701",
                         "revisedDetails": "301701"
                     },
                     "ageProof": {
-                        "olddetails": "OLDAgeProdd",
+                        "oldDetails": "OLDAgeProdd",
                         "revisedDetails": "NewAgeProdd"
                     },
                     "dateOfBirth": {
-                        "olddetails": "30-12-2030",
+                        "oldDetails": "30-12-2030",
                         "revisedDetails": "12-12-2012"
                     },
                     "fundDetails": {
-                        "olddetails": "OLDfundDeatails",
+                        "oldDetails": "OLDfundDeatails",
                         "revisedDetails": "NewfundDeatails"
                     },
                     "residentialCountry": {
-                        "olddetails": "OLDRediCounrty",
+                        "oldDetails": "OLDRediCounrty",
                         "revisedDetails": "newRediCounrty"
                     }
                 },
