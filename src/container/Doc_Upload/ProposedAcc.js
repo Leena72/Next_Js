@@ -78,19 +78,29 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         formData.append("file", file);
         let headerData
         // console.log('proposedDocList',proposedDocList)
-
+// console.log('customerDetail?.proposalNumber',customerDetail.proposalNumber,customerDetail?.policyNumber)
         if (label === 'form-filling') {
             headerData = {
                 documentCategory: proposalHeader?.category,
                 documentType: proposalHeader?.indexValue,
                 partyType: proposedDocList[0]?.name,
-                documentSide: "",
-                policyNo: customerDetail?.policyNumber,
+                documentSide: "FRONT_SIDE",
+                policyNo: customerDetail?.policyNumber !== null ?customerDetail?.policyNumber:'',
                 documentNumber: "",
                 proposalNo: customerDetail?.proposalNumber
+                // documentCategory: 'Age Proof',
+                // documentType: 'PAN Card',
+                // partyType: 'OWNER',
+                // documentSide: "FRONT_SIDE",
+                // policyNo: '',
+                // documentNumber: "",
+                // proposalNo: 3111429336
             };
+            console.log('headerData>>',headerData,proposalHeader?.category)
             dispatch(uploadFormAction(headerData, formData, (res) => {
                 if (res.status === 'OK') {
+                    dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+                    }))
                     setuploadDocModal(false)
                     setshowViewDelete(true)
                 }
