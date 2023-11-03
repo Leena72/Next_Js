@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Input from '@/component/Input'
 import Accordion2 from '../../component/Accordion/Accordion2'
-import {consentDataList} from '../../data'
+import { consentDataList } from '../../data'
 
 const ConsentLayout = ({ data, title, label, consentData }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
@@ -21,12 +21,12 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
     const toggleAccordion = (id) => {
         setOpenAccordion(openAccordion === id ? null : id)
     }
-    const renderListItem =(ele)=>{
+    const renderListItem = (ele) => {
         // console.log('consentDataList',consentDataList)
-        if(ele in consentDataList){
+        if (ele in consentDataList) {
             return consentDataList[ele]
         }
-        else{
+        else {
             return ele
         }
 
@@ -34,13 +34,13 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
     // health questionnaire 
     const renderElement = (title) => {
         console.log('consentData>>', consentData)
-        let detail = title==='Insured' ?  Object.entries(consentData.insuredQuestionDetails) :
-        Object.entries(consentData.proposerQuestionDetails)
-        const renderData= <div className='consent-ques-blk'>{
+        let detail = title === 'Insured' ? Object.entries(consentData.insuredQuestionDetails) :
+            Object.entries(consentData.proposerQuestionDetails)
+        const renderData = <div className='consent-ques-blk'>{
             detail.map((item, id) => {
                 return (<div className='consent-ques-ans' key={id}>
                     <div className='consent-ques'>
-                        {id+1}{'. '}{item[0]}
+                        {id + 1}{'. '}{item[0]}
                     </div>
                     <div className='consent-ans-blk'>
                         <div className='consent-ans'>
@@ -87,11 +87,11 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
                             consentData.map((item, idx) => {
                                 return (
                                     <tr
-                                    key={idx}
+                                        key={idx}
                                     >
                                         <td>
                                             {/* {item[0]} */}
-                                        <span>{renderListItem(item[0])}</span>
+                                            <span>{renderListItem(item[0])}</span>
                                         </td>
                                         <td>
                                             <Input
@@ -109,35 +109,14 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
                                                 name={item[1].revisedDetails}
                                                 value={item[1].revisedDetails}
                                                 // changeHandler={changeHandler}
-                                readOnly={true}
-                                                
+                                                readOnly={true}
+
                                             />
                                         </td>
                                     </tr>
                                 )
                             })
                         }
-                        {/* {data.map((item, id) => (
-                        <tr key={id}>
-                            <td>{item.title}</td>
-                            <td>
-                                <Input
-                                    type='text'
-                                    value={''}
-                                    name={item.title}
-                                    changeHandler={changeHandler}
-                                />
-                            </td>
-                            <td>
-                                <Input
-                                    type='text'
-                                    value={''}
-                                    name={item.title}
-                                    changeHandler={changeHandler}
-                                />
-                            </td>
-                        </tr>
-                    ))} */}
                     </tbody>
                 </table>
                 :
