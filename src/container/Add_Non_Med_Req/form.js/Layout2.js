@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@/component/Button';
 import Input from '@/component/Input';
 import AddImg from '../../../Assets/images/add.png'
-const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
+const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestions }) => {
 
     const changeHandler = (e, quesData, radioInput) => {
         let value = e.target.value
@@ -17,13 +17,15 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
     }
     const addMoreHandler = (e, item) => {
         console.log(item)
-        const data = { ...item };
-        const addMoreQuestions = data?.subQuestions.map((ele, i) => {
-            ele.answer = ''
-            ele.id = ele.id + 1;
+        const data = JSON.parse(JSON.stringify(item));
+        const subdata=JSON.parse(JSON.stringify(data));
+        const addMoreQues = subdata?.subQuestions.map((ele, i) => {
+            ele.answer.push('')
             return ele;
         })
-        console.log(data.subQuestions.concat(addMoreQuestions))
+        const finalData=data.subQuestions.concat(addMoreQues)
+        console.log(data, data.subQuestions.concat(addMoreQues))
+        addMoreQuestions(item.addMoreSubName,finalData,formData)
     }
     const deleteMoreHandler = (e, item, ele) => {
         console.log(item, ele)
@@ -31,12 +33,12 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
     return (
         <>
             {
-                formData && formData.length > 0 && formData.map(item => {
+                formData && formData.length > 0 && formData.map((item,index) => {
                     return (
-                        <div className='form-block' key={item.id}>
+                        <div className='form-block' key={index}>
                             <div className={`${item.declaration !== '' ? 'form-declaration' : 'hide'}`}>{item.declaration}</div>
                             <div className={`${item.heading !== '' ? 'form-question' : 'hide'}`}>{item.heading}</div>
-                            {item.addMore && ele.id > 1 &&
+                            {item.addMore && item.subQuestions.answer && item.subQuestions.answer > 1 &&
                                 <div className='add-more-container'>
                                     <Button
                                         className='add-more-btn'

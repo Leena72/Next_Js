@@ -52,6 +52,17 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
         datacheck(finalFormData);
         return check;
     }
+    const addMoreQuestions=(name,item,formData)=>{
+        let data = JSON.parse(JSON.stringify(formData))
+        data.forEach((item1, index) => {
+            if (name == item1.addMoreSubName) {
+                item1.subQuestions= item
+            } 
+
+        });
+        console.log('datacheck',data,item)
+        setFormValues(data)
+    }
     const formChangeHandler = ({ name, value, formData }) => {
          console.log('name, value, quesData, formName', name, value)
         // if (quesData.type === 'ques') {
@@ -95,6 +106,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
             formik={formik}
             formChangeHandler={formChangeHandler}
             newTitle={newTitle}
+            addMoreQuestions={addMoreQuestions}
         />
     }
 
