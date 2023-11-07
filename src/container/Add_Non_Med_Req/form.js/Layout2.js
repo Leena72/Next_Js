@@ -239,9 +239,9 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
             
                     {/* form[11] */}
                     <div>
-                        <div className={`form-declaration`}>{formData[12].heading}</div>
+                        <div className={`form-declaration`}>{formData[11].heading}</div>
                         {
-                            formData[12].subQuestions.map(ele => (
+                            formData[11].subQuestions.map(ele => (
                                 <div className='form-quesAns' key={ele.id}>
                                     <div className='form-question'>{ele.question}</div>
                                     <div className='form-inputbtn'>
