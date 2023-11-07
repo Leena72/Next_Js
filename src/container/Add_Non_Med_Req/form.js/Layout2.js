@@ -196,7 +196,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
 
                     {/* _____ */}
                     {/* form[6] */}
-                    <div>
+                    <div className='form-block'>
                         <div className={`form-declaration`}>{formData[6].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[6].id} name={formData[6].name} value={formData[6].answer}
@@ -204,7 +204,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         </div>
                     </div>
                     {/* form[7] */}
-                    <div>
+                    <div className='form-block'>
                         <div className={`form-declaration`}>{formData[7].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[7].id} name={formData[7].name} value={formData[7].answer}
@@ -213,7 +213,8 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                     </div>
 
                     {/* form[8] */}
-                    <div>
+                    <div className='form-block'>
+
                         <div className={`form-declaration`}>{formData[8].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[8].id} name={formData[8].name} value={formData[5].answer}
@@ -221,7 +222,8 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         </div>
                     </div>
                     {/* form[9] */}
-                    <div>
+                    <div className='form-block'>
+
                         <div className={`form-declaration`}>{formData[9].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[9].id} name={formData[9].name} value={formData[9].answer}
@@ -229,16 +231,17 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         </div>
                     </div>
                     {/* form[10] */}
-                    <div>
+                    <div className='form-block'>
+
                         <div className={`form-declaration`}>{formData[10].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[10].id} name={formData[10].name} value={formData[10].answer}
                                 onChange={(e) => changeHandler(e, { ques: formData[10], type: 'ques', parent: formData[10] })} />
                         </div>
                     </div>
-            
+
                     {/* form[11] */}
-                    <div>
+                    <div className='form-block'>
                         <div className={`form-declaration`}>{formData[11].heading}</div>
                         {
                             formData[11].subQuestions.map(ele => (
@@ -253,7 +256,6 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                                 checked={ele.answer === "Yes"}
                                                 changeHandler={(e) =>
                                                     changeHandler(e, { ques: ele, type: 'ques', parent: null, }, 'Yes')}
-
                                             />
                                             <label className="radio-label">Yes</label>
                                         </div>
@@ -269,12 +271,114 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                             <label className="radio-label">No</label>
                                         </div>
                                     </div>
-
                                 </div>
                             ))
                         }
                     </div>
+                    {/* form[12] */}
+                    <div className='form-block'>
+                        <div className={`form-declaration`}>{formData[12].question}</div>
+                        <div className='form-inputbtn'>
+                            <div className="radio">
+                                <Input
+                                    type='radio'
+                                    value={'Yes'}
+                                    name={formData[12].name}
+                                    checked={formData[12].answer === "Yes"}
+                                    changeHandler={(e) =>
+                                        changeHandler(e, { ques: formData[12], type: 'ques', parent: null, }, 'Yes')}
+                                />
+                                <label className="radio-label">Yes</label>
+                            </div>
+                            <div className="radio">
+                                <Input
+                                    type='radio'
+                                    value={'No'}
+                                    name={formData[5].name}
+                                    checked={formData[5].answer === "No"}
+                                    changeHandler={(e) =>
+                                        changeHandler(e, { ques: formData[12], type: 'ques', parent: null }, 'No')}
+                                />
+                                <label className="radio-label">No</label>
+                            </div>
+                        </div>
+                        {
+                            formData[12].answer === "Yes" &&
+                            <div className='form-block'>
+                                <div className={`form-declaration`}>{formData[12].refQues}</div>
+                                <div className='form-answer'>
+                                    <textarea id={formData[12].id} name={formData[12].name} value={formData[12].answer}
+                                        onChange={(e) => changeHandler(e, { ques: formData[12], type: 'subQues', parent: formData[12] })} />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    {/* form[13] */}
+                    <div className='form-block'>
+                        <div className={`form-declaration`}>{formData[13].question}</div>
+                        <div className='form-inputbtn'>
+                            <div className="radio">
+                                <Input
+                                    type='radio'
+                                    value={'Yes'}
+                                    name={formData[13].name}
+                                    checked={formData[13].answer === "Yes"}
+                                    changeHandler={(e) =>
+                                        changeHandler(e, { ques: formData[13], type: 'ques', parent: null, }, 'Yes')}
+                                />
+                                <label className="radio-label">Yes</label>
+                            </div>
+                            <div className="radio">
+                                <Input
+                                    type='radio'
+                                    value={'No'}
+                                    name={formData[13].name}
+                                    checked={formData[13].answer === "No"}
+                                    changeHandler={(e) =>
+                                        changeHandler(e, { ques: formData[13], type: 'ques', parent: null }, 'No')}
+                                />
+                                <label className="radio-label">No</label>
+                            </div>
+                        </div>
+                        {
+                            formData[13].answer === "Yes" &&
+                            <div >
+                                <div className={`form-declaration`}>{formData[13].refQues}</div>
 
+                                {
+                                    formData[13].subQuestions.map(ele => {
+                                        return (
+                                            <div>
+                                                <div className='form-quesAns' key={ele.id}>{ele.question}
+                                                </div>
+                                                <div className='form-answer'>
+                                                    <textarea id={ele.id} name={ele.name} value={ele.answer}
+                                                        onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[13] })} />
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                    )
+                                }
+                                <div className='add-more-container'>
+                                    <Button
+                                        className='add-more-btn'
+                                        clickHandler={(e) => addMoreHandler(e, formData[13])}
+                                        type='button'
+                                        buttonText={'Add More'}
+                                    />
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    {/* form[14] */}
+                    <div className='form-block'>
+                        <div className={`form-declaration`}>{formData[14].question}</div>
+                        <div className='form-answer'>
+                            <textarea id={formData[14].id} name={formData[14].name} value={formData[14].answer}
+                                onChange={(e) => changeHandler(e, { ques: formData[14], type: 'ques', parent: formData[14] })} />
+                        </div>
+                    </div>
                 </>
             }
         </>
