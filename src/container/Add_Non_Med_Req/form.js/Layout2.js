@@ -294,8 +294,8 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                 <Input
                                     type='radio'
                                     value={'No'}
-                                    name={formData[5].name}
-                                    checked={formData[5].answer === "No"}
+                                    name={formData[12].name}
+                                    checked={formData[12].answer === "No"}
                                     changeHandler={(e) =>
                                         changeHandler(e, { ques: formData[12], type: 'ques', parent: null }, 'No')}
                                 />
