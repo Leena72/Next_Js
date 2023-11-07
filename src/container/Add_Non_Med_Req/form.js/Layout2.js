@@ -28,7 +28,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
     const deleteMoreHandler = (e, item, ele) => {
         console.log(item, ele)
     }
-    console.log('formdata>>>',formData)
+    console.log('formdata>>>', formData)
     return (
         <>
             {/* form[0] */}
@@ -220,20 +220,34 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                     </div>
                     {/* form[9] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[9].question}</div>
-                        <div className='form-answer'>
-                            <textarea id={formData[9].id} name={formData[9].name} value={formData[9].answer}
-                                onChange={(e) => changeHandler(e, { ques: formData[9], type: 'ques', parent: null })} />
-                        </div>
-                    </div>
+                        <div className={`form-declaration`}>{formData[9].heading}</div>
+                        {
+                            formData[9].subQuestions.map(ele => (
+                                <>
+                                    <div className={`form-declaration`}>{ele.question}</div>
+                                    <div className='form-answer'>
+                                        <textarea id={ele.id} name={ele.name} value={ele.answer}
+                                            onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[9] })} />
+                                    </div>
+                                </>
+                            ))
+                        }
+                    </div >
                     {/* form[10] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[10].question}</div>
-                        <div className='form-answer'>
-                            <textarea id={formData[10].id} name={formData[10].name} value={formData[10].answer}
-                                onChange={(e) => changeHandler(e, { ques: formData[10], type: 'ques', parent: null })} />
-                        </div>
-                    </div>
+                        <div className={`form-declaration`}>{formData[10].heading}</div>
+                        {
+                            formData[10].subQuestions.map(ele => (
+                                <>
+                                    <div className={`form-declaration`}>{ele.question}</div>
+                                    <div className='form-answer'>
+                                        <textarea id={ele.id} name={ele.name} value={ele.answer}
+                                            onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[10] })} />
+                                    </div>
+                                </>
+                            ))
+                        }
+                    </div >
                     {/* form[11] */}
                     <div className='form-block'>
                         <div className={`form-declaration`}>{formData[11].heading}</div>
