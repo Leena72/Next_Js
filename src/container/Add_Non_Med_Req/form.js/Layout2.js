@@ -106,10 +106,10 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                     <div className='form-block'>
                         <div className={`form-declaration`}>{formData[3].heading}</div>
                         {
-                            formData[3].subQuestions.map(ele => {
+                            formData[3].subQuestions.map((ele) => {
                                 return (
-                                    <div>
-                                        <div className='form-quesAns' key={ele.id}>{ele.question}
+                                    <div key={ele.id}>
+                                        <div className='form-quesAns'>{ele.question}
                                         </div>
                                         <div className='form-answer'>
                                             <textarea id={ele.id} name={ele.name} value={ele.answer}
@@ -135,8 +135,8 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         {
                             formData[4].subQuestions.map(ele => {
                                 return (
-                                    <div>
-                                        <div className='form-quesAns' key={ele.id}>{ele.question}
+                                    <div key={ele.id}>
+                                        <div className='form-quesAns' >{ele.question}
                                         </div>
                                         <div className='form-answer'>
                                             <textarea id={ele.id} name={ele.name} value={ele.answer}
@@ -223,13 +223,13 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         <div className={`form-declaration`}>{formData[9].heading}</div>
                         {
                             formData[9].subQuestions.map(ele => (
-                                <>
+                                <div key={ele.id}>
                                     <div className={`form-declaration`}>{ele.question}</div>
                                     <div className='form-answer'>
                                         <textarea id={ele.id} name={ele.name} value={ele.answer}
                                             onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[9] })} />
                                     </div>
-                                </>
+                                </div>
                             ))
                         }
                     </div >
@@ -238,13 +238,13 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         <div className={`form-declaration`}>{formData[10].heading}</div>
                         {
                             formData[10].subQuestions.map(ele => (
-                                <>
+                                <div key={ele.id}>
                                     <div className={`form-declaration`}>{ele.question}</div>
                                     <div className='form-answer'>
                                         <textarea id={ele.id} name={ele.name} value={ele.answer}
                                             onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[10] })} />
                                     </div>
-                                </>
+                                </div>
                             ))
                         }
                     </div >
@@ -355,8 +355,8 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                 {
                                     formData[13].subQuestions.map(ele => {
                                         return (
-                                            <div>
-                                                <div className='form-quesAns' key={ele.id}>{ele.question}
+                                            <div key={ele.id}>
+                                                <div className='form-quesAns' >{ele.question}
                                                 </div>
                                                 <div className='form-answer'>
                                                     <textarea id={ele.id} name={ele.name} value={ele.answer}
