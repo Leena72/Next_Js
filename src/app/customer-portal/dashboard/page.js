@@ -21,6 +21,8 @@ const Dashboard = () => {
             // setcustomerData(statusApi) // static data
         }
     }, [])
+    
+    // console.log('statusApi',statusApi)
     const data = applicationData
     const [openAccordion, setOpenAccordion] = useState(false)
     const [customerData, setcustomerData] = useState(null)

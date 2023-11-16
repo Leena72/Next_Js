@@ -1,4 +1,4 @@
-import { statusApi } from "@/data";
+// import { statusApi } from "@/data";
 const initialState = {};
 const customerDetailReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -488,6 +488,7 @@ export const formikValidationSchema = {
     "CHEST_PAIN_QUESTION": {
         validationSchema: Yup.object().shape({
             ﬁrst_attack: validateReq,
+            state_attack:validateReq,
             exact_site: validateReq,
             severity: validateReq,
             pain_radiate: validateReq,
@@ -503,6 +504,7 @@ export const formikValidationSchema = {
         }),
         initialValues: {
             ﬁrst_attack: '',
+            validateReq:'',
             exact_site: '',
             severity: '',
             pain_radiate: '',
@@ -684,6 +686,8 @@ export const formikValidationSchema = {
             consciousness: validateReq,
             tongue: validateReq,
             prevent_attack: validateReq,
+            current_dosage:validateReq,
+            past_dosage:validateReq,
             head_injury: validateReq,
             X_ray_carried: validateReq,
             significant_time: validateReq,
@@ -702,6 +706,8 @@ export const formikValidationSchema = {
             consciousness: '',
             tongue: '',
             prevent_attack: '',
+            current_dosage:'',
+            past_dosage:'',
             head_injury: '',
             X_ray_carried: '',
             significant_time: '',
@@ -1007,6 +1013,18 @@ export const questionnaireList = {
             type: 'textbox',
             validation: '',
             ansBtn: false,
+            subQuestions: [ ]
+        },
+        {
+            id: '2',
+            question: '',
+            answer: '',
+            name: 'state_attack',
+            declaration: '',
+            heading: 'State exact site, character and severity of the pain?',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
             subQuestions: [
                 {
                     id: '1',
@@ -1029,7 +1047,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '2',
+            id: '3',
             question: 'Did the pain radiate or spread outside the chest (e.g. to the arms, shoulders, jaw)?',
             answer: '',
             name: 'pain_radiate',
@@ -1041,7 +1059,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '3',
+            id: '4',
             question: 'Did the pain occur suddenly or gradually? At rest or on exertion? Did it worsen with deep inspiration?',
             answer: '',
             name: 'pain_suddenly_gradually',
@@ -1053,7 +1071,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '4',
+            id: '5',
             question: 'How long did the chest pain last?',
             answer: '',
             name: 'chest_pain',
@@ -1065,7 +1083,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '5',
+            id: '6',
             question: 'When did you last have such symptoms or experience an attack?',
             answer: '',
             name: 'last_symptoms',
@@ -1077,7 +1095,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '6',
+            id: '7',
             question: '',
             answer: '',
             name: '',
@@ -1117,7 +1135,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '7',
+            id: '8',
             question: 'Were you on any treatment? If so, please provide details including the name of the medication.',
             answer: '',
             name: 'any_treatment',
@@ -1129,7 +1147,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '8',
+            id: '9',
             question: 'Have you ever been booked off from work due to chest pain? If so please provide details including dates and time spent off work.',
             answer: '',
             name: 'booked_off',
@@ -1141,7 +1159,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '10',
             question: 'Is there any additional information you can provide, with regards the chest pain which will assist in processing your proposal?',
             answer: '',
             name: 'additional_information',
@@ -1280,19 +1298,22 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '4',
-                    question: 'Please mention the parts of body affected by any thinning or wasting of muscles.',
-                    answer: '',
-                    name: 'body_affected',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
             ]
         },
         {
             id: '7',
+            question: 'Please mention the parts of body affected by any thinning or wasting of muscles.',
+            answer: '',
+            name: 'body_affected',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '8',
             question: '',
             answer: '',
             name: '',
@@ -1323,7 +1344,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '8',
+            id: '9',
             question: 'Do you use any walking or ambulatory aid/(s) such as crutches, callipers or a wheelchair? If ‘Yes’ please give details.',
             answer: '',
             name: 'ambulatory',
@@ -1335,7 +1356,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '10',
             question: 'Please do provide treatment details including name and dosage of the medicine/s.',
             answer: '',
             name: 'treatment_details',
@@ -1371,11 +1392,11 @@ export const questionnaireList = {
             ansBtn: false,
             addMoreSubName:'treatment',
             addMore: true,
-            subQuestions: [
+            subQuestions: [[
                 {
                     id: '2.1',
                     question: 'Name of doctor, hospital or clinic',
-                    answer: [''],
+                    answer: '',
                     name: 'doctor_name',
                     type: 'textbox',
                     validation: '',
@@ -1384,7 +1405,7 @@ export const questionnaireList = {
                 {
                     id: '2.2',
                     question: 'Address',
-                    answer: [''],
+                    answer: '',
                     name: 'address',
                     type: 'textbox',
                     validation: '',
@@ -1393,13 +1414,13 @@ export const questionnaireList = {
                 {
                     id: '2.3',
                     question: 'Date of last consult',
-                    answer: [''],
+                    answer: '',
                     name: 'date_consult',
                     type: 'textbox',
                     validation: '',
                     ansBtn: false,
                 }
-            ]
+            ]]
         },
         {
             id: '3',
@@ -1788,39 +1809,38 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-            ]
-        },
-        {
-            id: '4',
-            question: '',
-            answer: '',
-            name: '',
-            declaration: '',
-            heading: 'Did the attacks ever produce any',
-            type: 'HEADING',
-            validation: '',
-            ansBtn: false,
-            subQuestions: [
                 {
-                    id: '1',
-                    question: 'pain in the chest or arms?',
+                    id: '4',
+                    question: '',
                     answer: '',
-                    name: 'chest_pain',
-                    type: 'textbox',
+                    name: 'attacks_ever',
+                    heading: 'Did the attacks ever produce any',
+                    type: 'HEADING',
                     validation: '',
                     ansBtn: false,
+                    subQuestions: [
+                        {
+                            id: '1',
+                            question: 'pain in the chest or arms?',
+                            answer: '',
+                            name: 'chest_pain',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        },
+                        {
+                            id: '2',
+                            question: 'breathlessness?',
+                            answer: '',
+                            name: 'breathlessness',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        }
+                    ]
                 },
                 {
-                    id: '2',
-                    question: 'breathlessness?',
-                    answer: '',
-                    name: 'breathlessness',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '3',
+                    id: '5',
                     question: 'Are the attacks aggravated by exercise?',
                     answer: '',
                     name: 'attack_aggravated',
@@ -1829,7 +1849,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '4',
+                    id: '6',
                     question: 'Are the attacks related to meals?',
                     answer: '',
                     name: 'attack_meal',
@@ -1837,41 +1857,40 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
+                {
+                    id: '7',
+                    question: 'Are the attacks related to meals? ',
+                    answer: '',
+                    name: 'attack_related',
+                    heading: 'If so, state',
+                    type: 'HEADING',
+                    validation: '',
+                    ansBtn: false,
+                    subQuestions: [
+                        {
+                            id: '1',
+                            question: 'how long after eating do they occur?',
+                            answer: '',
+                            name: 'eating_occur',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        },
+                        {
+                            id: '2',
+                            question: 'whether they are relieved or aggravated following a meal?',
+                            answer: '',
+                            name: 'meal_occur',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        }
+                    ]
+                },
             ]
         },
         {
-            id: '5',
-            question: '',
-            answer: '',
-            name: '',
-            declaration: '',
-            heading: 'If so, state',
-            type: 'HEADING',
-            validation: '',
-            ansBtn: false,
-            subQuestions: [
-                {
-                    id: '1',
-                    question: 'how long after eating do they occur?',
-                    answer: '',
-                    name: 'after_eating',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '2',
-                    question: 'whether they are relieved or aggravated following a meal?',
-                    answer: '',
-                    name: 'relieved_meal',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-            ]
-        },
-        {
-            id: '6',
+            id: '4',
             question: 'When did you last have symptoms or experience an attack?',
             answer: '',
             name: 'symptoms',
@@ -1883,7 +1902,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '7',
+            id: '5',
             question: '',
             answer: '',
             name: '',
@@ -1920,19 +1939,22 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '4',
-                    question: 'Have you had a barium meal or any other investigation like endoscopy? If so, please provide the details including date and result of the investigation.',
-                    answer: '',
-                    name: 'barium_meal',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
             ]
         },
         {
-            id: '8',
+            id: '6',
+            question: 'Have you had a barium meal or any other investigation like endoscopy? If so, please provide the details including date and result of the investigation.',
+            answer: '',
+            name: 'barium_meal',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '7',
             question: 'Have you had an operation for this or is an operation being considered? If so, please provide the complete details including name and address of the doctor, and discharge summary (if any).',
             answer: '',
             name: 'operation',
@@ -1944,7 +1966,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '8',
             question: 'Have you experienced any problems or complications following surgery? If so, please provide details.',
             answer: '',
             name: 'experienced_problem',
@@ -1956,7 +1978,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '10',
+            id: '9',
             question: '',
             answer: '',
             name: '',
@@ -2122,15 +2144,34 @@ export const questionnaireList = {
         },
         {
             id: '8',
-            question: 'Are you taking drugs to prevent the attacks? If so, please provide the details.',
+            question: '',
             answer: '',
-            name: 'prevent_attack',
+            name: '',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Are you taking drugs to prevent the attacks? If so, please provide the details.',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Current Dosage',
+                    answer: '',
+                    name: 'current_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Past Dosage',
+                    answer: '',
+                    name: 'past_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '9',
@@ -2438,37 +2479,18 @@ export const questionnaireList = {
             validation: '',
             ansBtn: false,
             subQuestions: []
-        },
+        }, 
         {
             id: '7',
-            question: '',
+            question: 'Were the episodes severe? Did they necessitate absence from work? If so, how long were you absent from work?',
             answer: '',
-            name: '',
+            name: 'necessitate',
             declaration: '',
-            heading: 'Were the episodes severe?',
-            type: 'HEADING',
+            heading: '',
+            type: 'textbox',
             validation: '',
             ansBtn: false,
-            subQuestions: [
-                {
-                    id: '2',
-                    question: 'Did they necessitate absence from work? ',
-                    answer: '',
-                    name: 'necessitate',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '2',
-                    question: 'If so, how long were you absent from work?',
-                    answer: '',
-                    name: 'absent',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                }
-            ]
+            subQuestions: []
         },
         {
             id: '8',
@@ -2625,22 +2647,22 @@ export const questionnaireList = {
             subQuestions: [
                 {
                     id: '1',
-                    question: 'If so, what were the results?',
+                    question: 'If so, what were the results? Please share the copy of reports with Bharti Axa Representative/Agent',
                     answer: '',
                     name: 'results',
                     type: 'textbox',
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '2',
-                    question: 'Please enclose the copy of above reports – if available.',
-                    answer: '',
-                    name: 'enclose',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
+                // {
+                //     id: '2',
+                //     question: 'Please enclose the copy of above reports – if available.',
+                //     answer: '',
+                //     name: 'enclose',
+                //     type: 'textbox',
+                //     validation: '',
+                //     ansBtn: false,
+                // },
             ]
         },
         {
@@ -2983,17 +3005,48 @@ export const questionnaireList = {
                 }
             ]
         },
+        // {
+        //     id: '5',
+        //     question: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+        //     answer: '',
+        //     name: 'treatment',
+        //     declaration: '',
+        //     heading: '',
+        //     type: 'textbox',
+        //     validation: '',
+        //     ansBtn: false,
+        //     subQuestions: []
+        // },
         {
             id: '5',
-            question: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+            question: '',
             answer: '',
             name: 'treatment',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Current Dosage',
+                    answer: '',
+                    name: 'current_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Past Dosage',
+                    answer: '',
+                    name: 'past_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '6',
@@ -3019,18 +3072,18 @@ export const questionnaireList = {
             ansBtn: true,
             subQuestions: []
         },
-        {
-            id: '8',
-            question: 'If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
-            answer: '',
-            name: 'consulting_physician',
-            declaration: '',
-            heading: '',
-            type: 'textbox',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
-        },
+        // {
+        //     id: '8',
+        //     question: 'If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
+        //     answer: '',
+        //     name: 'consulting_physician',
+        //     declaration: '',
+        //     heading: '',
+        //     type: 'textbox',
+        //     validation: '',
+        //     ansBtn: false,
+        //     subQuestions: []
+        // },
         {
             id: '9',
             question: 'Have you ever lost significant time off work due to this condition? If so please provide details including dates and time spent off work',
@@ -3041,6 +3094,7 @@ export const questionnaireList = {
             type: 'textbox',
             validation: '',
             ansBtn: true,
+            showTextbox:true,
             subQuestions: []
         },
         {
@@ -3307,7 +3361,8 @@ export const statusApi = {
             "updatedOn": "2023-09-27 15:10:12",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc":false
         },
         {
             "id": 3879360,
@@ -3352,17 +3407,20 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc":false
+
         },
         {
             "id": 3879363,
             "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENT",
-            "subStatus": null,
+            "subStatus": 'AR',
             "actual_status": "CREATED",
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc":true
         },
         {
             "id": 3879366,
@@ -3372,17 +3430,128 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc":false
         },
         {
             "id": 3879367,
             "status": "QUALITY_CHECK",
-            "subStatus": null,
+            "subStatus": 'AD',
             "actual_status": "CREATED",
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": null,
-            "paymentInfo": null
+            "additionalInfo": {
+                "PlanDetails": {
+                    "planOption": {
+                        "revisedDetails": "planOptionnewData",
+                        "oldDetails": "planOptiomOldData"
+                    },
+                    "baseSumAssured": {
+                        "revisedDetails": "planField1",
+                        "oldDetails": "planField1"
+                    },
+                    "riderPolicyTerm": {
+                        "revisedDetails": "planField2",
+                        "oldDetails": "planField2"
+                    }
+                },
+                "InsuredDetails": {
+                    "title": {
+                        "oldDetails": "OLDTitle",
+                        "revisedDetails": "NewTitle"
+                    },
+                    "gender": {
+                        "oldDetails": "Male",
+                        "revisedDetails": "Male"
+                    },
+                    "pinCode": {
+                        "oldDetails": "301701",
+                        "revisedDetails": "301701"
+                    },
+                    "ageProof": {
+                        "oldDetails": "OLDAgeProdd",
+                        "revisedDetails": "NewAgeProdd"
+                    },
+                    "dateOfBirth": {
+                        "oldDetails": "30-12-2030",
+                        "revisedDetails": "12-12-2012"
+                    },
+                    "fundDetails": {
+                        "oldDetails": "OLDfundDeatails",
+                        "revisedDetails": "NewfundDeatails"
+                    },
+                    "residentialCountry": {
+                        "oldDetails": "OLDRediCounrty",
+                        "revisedDetails": "newRediCounrty"
+                    }
+                },
+                "ProposerDetails": {
+                    "age": {
+                        "oldDetails": "99",
+                        "revisedDetails": "99"
+                    },
+                    "pep": {
+                        "oldDetails": "OLDtestPEP",
+                        "revisedDetails": "testPEPNew"
+                    },
+                    "name": {
+                        "oldDetails": "OLDAjayNewName",
+                        "revisedDetails": "AjayNewName"
+                    },
+                    "title": {
+                        "oldDetails": "OLDTitle",
+                        "revisedDetails": "NewTitle"
+                    },
+                    "gender": {
+                        "oldDetails": "Male",
+                        "revisedDetails": "Male"
+                    },
+                    "pinCode": {
+                        "oldDetails": "301701",
+                        "revisedDetails": "301701"
+                    },
+                    "ageProof": {
+                        "oldDetails": "OLDAgeProdd",
+                        "revisedDetails": "NewAgeProdd"
+                    },
+                    "dateOfBirth": {
+                        "oldDetails": "30-12-2030",
+                        "revisedDetails": "12-12-2012"
+                    },
+                    "fundDetails": {
+                        "oldDetails": "OLDfundDeatails",
+                        "revisedDetails": "NewfundDeatails"
+                    },
+                    "residentialCountry": {
+                        "oldDetails": "OLDRediCounrty",
+                        "revisedDetails": "newRediCounrty"
+                    }
+                },
+                "QuestionnaireDetails": {
+                    "insuredQuestionDetails": {
+                        "What is insured old Question1?": {
+                            "oldDetails": "this is insured old Answer1.",
+                            "revisedDetails": "this is insured new Answer1."
+                        },
+                        "What is insured old Question2?": {
+                            "oldDetails": "this is insured old Answer2",
+                            "revisedDetails": "this is insured new Answer2"
+                        }
+                    },
+                    "proposerQuestionDetails": {
+                        "What is proposer old Question1?": {
+                            "oldDetails": "this is proposer old Answer1.",
+                            "revisedDetails": "this is proposer new Answer1."
+                        },
+                        "What is prpposer old Question2?": {
+                            "oldDetails": "this is proposer old Answer2",
+                            "revisedDetails": "this is proposer new Answer2"
+                        }
+                    }
+                }
+            },
+            "paymentInfo": null,
+            "openAcc":false
         },
         {
             "id": 3879368,
@@ -3392,7 +3561,8 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc":false
         },
         {
             "id": 3879369,
@@ -3412,7 +3582,8 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc":false
         },
         {
             "id": 3879364,
@@ -3443,7 +3614,8 @@ export const statusApi = {
                 "counterOfferReason": "testC ounter Offer",
                 "tempLoadingDuration": "testeLoaduruation"
             },
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc":false
         },
         {
             "id": 3894929,
@@ -3454,7 +3626,7 @@ export const statusApi = {
             "createdOn": "2023-09-25 09:52:17",
             "additionalInfo": {},
             "paymentInfo": null
-            },
+        },
         {
             "id": 3879370,
             "status": "POLICY_STATUS",
@@ -3462,116 +3634,7 @@ export const statusApi = {
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-22 07:07:31",
             "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": {
-                "PlanDetails": {
-                    "planOption": {
-                        "new": "planOptionnewData",
-                        "old": "planOptiomOldData"
-                    },
-                    "baseSumAssured": {
-                        "new": "planField1",
-                        "old": "planField1"
-                    },
-                    "riderPolicyTerm": {
-                        "new": "planField2",
-                        "old": "planField2"
-                    }
-                },
-                "InsuredDetails": {
-                    "title": {
-                        "olddetails": "OLDTitle",
-                        "revisedDetails": "NewTitle"
-                    },
-                    "gender": {
-                        "olddetails": "Male",
-                        "revisedDetails": "Male"
-                    },
-                    "pinCode": {
-                        "olddetails": "301701",
-                        "revisedDetails": "301701"
-                    },
-                    "ageProof": {
-                        "olddetails": "OLDAgeProdd",
-                        "revisedDetails": "NewAgeProdd"
-                    },
-                    "dateOfBirth": {
-                        "olddetails": "30-12-2030",
-                        "revisedDetails": "12-12-2012"
-                    },
-                    "fundDetails": {
-                        "olddetails": "OLDfundDeatails",
-                        "revisedDetails": "NewfundDeatails"
-                    },
-                    "residentialCountry": {
-                        "olddetails": "OLDRediCounrty",
-                        "revisedDetails": "newRediCounrty"
-                    }
-                },
-                "ProposerDetails": {
-                    "age": {
-                        "olddetails": "99",
-                        "revisedDetails": "99"
-                    },
-                    "pep": {
-                        "olddetails": "OLDtestPEP",
-                        "revisedDetails": "testPEPNew"
-                    },
-                    "name": {
-                        "olddetails": "OLDAjayNewName",
-                        "revisedDetails": "AjayNewName"
-                    },
-                    "title": {
-                        "olddetails": "OLDTitle",
-                        "revisedDetails": "NewTitle"
-                    },
-                    "gender": {
-                        "olddetails": "Male",
-                        "revisedDetails": "Male"
-                    },
-                    "pinCode": {
-                        "olddetails": "301701",
-                        "revisedDetails": "301701"
-                    },
-                    "ageProof": {
-                        "olddetails": "OLDAgeProdd",
-                        "revisedDetails": "NewAgeProdd"
-                    },
-                    "dateOfBirth": {
-                        "olddetails": "30-12-2030",
-                        "revisedDetails": "12-12-2012"
-                    },
-                    "fundDetails": {
-                        "olddetails": "OLDfundDeatails",
-                        "revisedDetails": "NewfundDeatails"
-                    },
-                    "residentialCountry": {
-                        "olddetails": "OLDRediCounrty",
-                        "revisedDetails": "newRediCounrty"
-                    }
-                },
-                "QuestionnaireDetails": {
-                    "insuredQuestionDetails": {
-                        "What is insured old Question1?": {
-                            "oldDetails": "this is insured old Answer1.",
-                            "revisedDetails": "this is insured new Answer1."
-                        },
-                        "What is insured old Question2?": {
-                            "oldDetails": "this is insured old Answer2",
-                            "revisedDetails": "this is insured new Answer2"
-                        }
-                    },
-                    "proposerQuestionDetails": {
-                        "What is proposer old Question1?": {
-                            "oldDetails": "this is proposer old Answer1.",
-                            "revisedDetails": "this is proposer new Answer1."
-                        },
-                        "What is prpposer old Question2?": {
-                            "oldDetails": "this is proposer old Answer2",
-                            "revisedDetails": "this is proposer new Answer2"
-                        }
-                    }
-                }
-            },
+            "additionalInfo": null,
             "paymentInfo": null
         }
     ],
@@ -4044,77 +4107,89 @@ export const statusApi = {
         }
     ],
 }
+// first time accordion open
 
 // consent data
 
 export const consentForChangeData = [
     {
         id: 1,
-        title: 'Proposer’s Detail',
+        title: 'Proposer Details',
         detail: [
             {
                 id: 1,
                 title: 'Pincode',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 2,
                 title: 'PFP',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 3,
                 title: 'Any ealth Questionnaire',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 4,
                 title: 'Residential Country',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 5,
                 title: 'Age proof',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 6,
                 title: 'Fund details',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 7,
                 title: 'Title',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 8,
                 title: 'Name',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 9,
                 title: 'Date of Birth',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 10,
                 title: 'Age',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 11,
                 title: 'Gender',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
@@ -4122,71 +4197,82 @@ export const consentForChangeData = [
     },
     {
         id: 2,
-        title: 'Insured’s Detail',
+        title: 'Insured Details',
         detail: [
             {
                 id: 1,
                 title: 'Pincode',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 2,
                 title: 'PFP',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 3,
                 title: 'Any ealth Questionnaire',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 4,
                 title: 'Residential Country',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 5,
                 title: 'Age proof',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 6,
                 title: 'Fund details',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 7,
                 title: 'Title',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 8,
                 title: 'Name',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 9,
                 title: 'Date of Birth',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 10,
                 title: 'Age',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 11,
                 title: 'Gender',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
@@ -4194,118 +4280,142 @@ export const consentForChangeData = [
     },
     {
         id: 3,
-        title: 'Plan Detail',
+        title: 'Plan Details',
         detail: [
             {
                 id: 1,
                 title: 'Plan option',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 2,
                 title: 'Base Sum Assured',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 3,
                 title: 'Base Premium Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 4,
                 title: 'Base Policy Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 5,
                 title: 'Base Modal Premium',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 6,
                 title: 'Payement Frequency',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 7,
                 title: 'Premium Payment Mode',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 8,
                 title: 'Premium Payment Method',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 9,
                 title: 'Existing Bharti Axa Customer',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 10,
                 title: 'Employee Discount',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 11,
                 title: 'Rider Name',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 12,
                 title: 'Rider Sum Assured',
+                key: '',
                 oldDetail: '',
                 reviseDetail: ''
             },
             {
                 id: 13,
                 title: 'Rider Policy Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 14,
                 title: 'Rider Premium Term',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 15,
                 title: 'Top Up Premium',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 16,
                 title: 'Loading Premium',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
                 id: 17,
                 title: 'Payout Type',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             },
             {
-                id: 11,
+                id: 18,
                 title: 'Payout Frequency',
+                key: '',
                 oldDetail: '',
                 revisedDetail: ''
             }
         ]
-    }
+    },
+    {
+        id: 4,
+        title: 'Health Questionnaire Details',
+        detail: []
+    },
+
 ]
 
 
@@ -4521,3 +4631,37 @@ export const subStatusList = [
 
     },
 ]
+
+// consent data
+
+export const consentDataList = {
+    'pincode':'Pincode',
+    'pep': 'PEP',
+    'anyHealthQuestionnaire':'Any Health Questionnaire',
+    'residentialCountry': 'Residential Country',
+    'ageProof': 'Age Proof',
+    'fundDetails': 'Fund Details',
+    'title': 'Title',
+    'name': 'Name',
+    'dateOfBirth': 'Date of birth',
+    'age': 'Age',
+    'gender': 'Gender',
+    'planOption': 'Plan Option',
+    'baseSumAssured': 'Base Sum Assured',
+    'basePremiumTerm': 'Base Premium Term',
+    'basePolicyTerm': 'Base Policy Term',
+    'baseModalPremium': 'Base Modal Premium',
+    'payementFrequency': 'Payment Frequency',
+    'premiumPaymentMode': 'Premium Payment Mode',
+    'premiumPaymentMethod': 'Premium Payment Method',
+    'existingBhartiAxaCustomer': 'Existing Bharti Axa Customer',
+    'employeeDiscount': 'Employee Discount',
+    'riderName': 'Rider Name',
+    'riderSumAssured': 'Rider Sum Assured',
+    'riderPolicyTerm': 'Rider Policy Term',
+    'riderPremiumTerm': 'Rider Premium Term',
+    'topUpPremium': 'Top Up Premium',
+    'loadingPremium':'Loading Premium',
+    'payoutType':'Payout Type',
+    'payoutFrequency':'Payout Frequency'
+}

@@ -213,7 +213,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
         className="overlay__popup_nw"
         style={{ display: overlay ? "block" : "none" }}
       ></div>
-      <ul>
+      <ul className='nonMedListBlock'>
         {category?.map((item, id) =>
           <li
             key={id}>

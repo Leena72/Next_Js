@@ -44,10 +44,10 @@ const MainAccordion = ({ data }) => {
           renderItem = false
         }
       }
-      else if (renderItem && acc.status === 'DATA_CHANGE' &&
+      else if (renderItem && acc.status === 'QUALITY_CHECK' &&
         item.heading === 'Consent For Change In The Application Details') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
-          || acc?.subStatus === '' || acc?.subStatus !== 'AD') {
+          || acc?.subStatus === '' || acc?.subStatus !== 'DC') {
           renderItem = false
         }
       }
@@ -110,7 +110,11 @@ const MainAccordion = ({ data }) => {
       case 'Revised Offer':
         return <CounterPage />
       case 'Consent For Change In The Application Details':
-        return <Consent />
+        return <Consent
+        accDetails={accDetails}
+        accordionDetails={accordionDetails}
+        proposalNo={accDetails?.proposalNumber}
+        />
       case 'Payment Required':
         let revisedOfferPayment = accordionDetails?.filter(item => {
           return item.status === 'REVISED_OFFER';

@@ -28,6 +28,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
     const [fileObject, setfileObject] = useState('')
     const [preview, setPreview] = useState({ url: '', data: null })
     const customerDetail = useSelector((state) => state.customerDetailReducer)
+    const [formFillDetail, setFormFillDetail] = useState('')
     const dispatch = useDispatch()
 
 
@@ -78,19 +79,30 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         formData.append("file", file);
         let headerData
         // console.log('proposedDocList',proposedDocList)
-
+// console.log('customerDetail?.proposalNumber',customerDetail.proposalNumber,customerDetail?.policyNumber)
         if (label === 'form-filling') {
             headerData = {
                 documentCategory: proposalHeader?.category,
                 documentType: proposalHeader?.indexValue,
                 partyType: proposedDocList[0]?.name,
-                documentSide: "",
-                policyNo: customerDetail?.policyNumber,
+                documentSide: "FRONT_SIDE",
+                policyNo: customerDetail?.policyNumber !== null ?customerDetail?.policyNumber:'',
                 documentNumber: "",
                 proposalNo: customerDetail?.proposalNumber
+                // documentCategory: 'Age Proof',
+                // documentType: 'PAN Card',
+                // partyType: 'OWNER',
+                // documentSide: "FRONT_SIDE",
+                // policyNo: '',
+                // documentNumber: "",
+                // proposalNo: 3111429336
             };
+            console.log('headerData>>',headerData,proposalHeader?.category)
             dispatch(uploadFormAction(headerData, formData, (res) => {
                 if (res.status === 'OK') {
+                    dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+                    }))
+                    setFormFillDetail(res)
                     setuploadDocModal(false)
                     setshowViewDelete(true)
                 }
@@ -162,6 +174,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
     const closeHandler = () => {
         setPreview('')
     }
+    // console.log('formFillDetail',formFillDetail)
     // console.log('proposedDocList',proposedDocList)
     return (<>
         <ul className='nonMedListBlock'>
