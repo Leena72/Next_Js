@@ -30,6 +30,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
     const consentDetail = accordionDetails.filter((item) => item.status === 'QUALITY_CHECK')
     const addConsentInfo = consentDetail && consentDetail[0]?.additionalInfo
     const policyDocuments = accDetails?.policyDocuments
+    const [action, setAction] = useState('')
     const renderElement = (data, title) => {
         let label
         if (title === 'Proposer Details') {
@@ -67,7 +68,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             toaster('error', 'File not exist');
         }
     }
-    const acceptHandler = () => {
+    const acceptHandler = (action) => {
         const data = {
             "consentType": "DATA_CHANGE",
             "proposalNumber": accDetails?.proposalNumber,
@@ -78,6 +79,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             setRefId(resp?.body?.body?.refId)
             setShowOtp(true);
             setOverlay(true)
+            setAction(action)
         }))
     }
     const verifyOtp = () => {
@@ -85,7 +87,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             "otp": otp,
             "refId": refId,
             "key": "DATA_CHANGE",
-            // "action": revisedAction
+            "action": action
         }
         let proposalNo = accDetails?.proposalNumber
         let fileName = ''
@@ -186,7 +188,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             <div className='consent-btn'>
                 <Button
                     className={'activeBtn'}
-                    clickHandler={acceptHandler}
+                    clickHandler={()=>acceptHandler('accepted')}
                     type='button'
                     buttonText={'Accept'}
                     // buttonIcon={Aggree}
@@ -195,6 +197,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
                 <Button
                     className={'activeBtn'}
                     clickHandler={rejectHandler}
+                    // clickHandler={()=>acceptHandler('rejected')}
                     type='button'
                     // buttonIcon={Reject}
                     buttonText={'Reject'}

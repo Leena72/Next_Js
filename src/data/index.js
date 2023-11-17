@@ -242,7 +242,7 @@ export const applicationData = [
     {
         id: 6,
         heading: 'Consent For Change In The Application Details',
-        title: 'DATA_CHANGE',
+        title: 'QUALITY_CHECK',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -488,7 +488,7 @@ export const formikValidationSchema = {
     "CHEST_PAIN_QUESTION": {
         validationSchema: Yup.object().shape({
             ﬁrst_attack: validateReq,
-            state_attack:validateReq,
+            state_attack: validateReq,
             exact_site: validateReq,
             severity: validateReq,
             pain_radiate: validateReq,
@@ -504,7 +504,7 @@ export const formikValidationSchema = {
         }),
         initialValues: {
             ﬁrst_attack: '',
-            validateReq:'',
+            validateReq: '',
             exact_site: '',
             severity: '',
             pain_radiate: '',
@@ -686,6 +686,8 @@ export const formikValidationSchema = {
             consciousness: validateReq,
             tongue: validateReq,
             prevent_attack: validateReq,
+            current_dosage: validateReq,
+            past_dosage: validateReq,
             head_injury: validateReq,
             X_ray_carried: validateReq,
             significant_time: validateReq,
@@ -704,6 +706,8 @@ export const formikValidationSchema = {
             consciousness: '',
             tongue: '',
             prevent_attack: '',
+            current_dosage: '',
+            past_dosage: '',
             head_injury: '',
             X_ray_carried: '',
             significant_time: '',
@@ -1009,7 +1013,7 @@ export const questionnaireList = {
             type: 'textbox',
             validation: '',
             ansBtn: false,
-            subQuestions: [ ]
+            subQuestions: []
         },
         {
             id: '2',
@@ -1379,6 +1383,29 @@ export const questionnaireList = {
         },
         {
             id: '2',
+            question: 'Please state the date when diabetes was first diagnosed (DD/MM/YY)',
+            answer: '',
+            name: 'diabetes_date',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '3',
+            question: 'Please state the type of Diabetes(Type I or Type II)*',
+            answer: '',
+            name: 'diabetes_type',
+            heading: '',
+            type: '',
+            validation: '',
+            ansBtn: true,
+            subQuestions: []
+        },
+        {
+            id: '4',
             question: '',
             answer: '',
             declaration: '',
@@ -1398,7 +1425,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '1',
+                    id: '2',
                     question: 'Address',
                     answer: '',
                     name: 'address',
@@ -1407,7 +1434,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '1',
+                    id: '3',
                     question: 'Date of last consult',
                     answer: '',
                     name: 'date_consult',
@@ -1418,7 +1445,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '3',
+            id: '5',
             question: '',
             answer: '',
             declaration: '',
@@ -1438,7 +1465,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '1',
+                    id: '2',
                     question: 'Dose',
                     answer: '',
                     name: 'dose',
@@ -1447,7 +1474,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '1',
+                    id: '3',
                     question: 'Frequency',
                     answer: '',
                     name: 'frequency',
@@ -1458,7 +1485,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '4',
+            id: '6',
             question: 'Has your treatment been changed in last one year?',
             answer: '',
             name: 'treatment',
@@ -1467,10 +1494,11 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
+            refQues: 'If yes, please provide details including dates and durations:',
             subQuestions: []
         },
         {
-            id: '5',
+            id: '7',
             question: 'Please provide us the frequencies of medical check up you undergo in a month. ( Viz: Once,twice,thrice,etc)',
             answer: '',
             name: 'frequencies',
@@ -1482,7 +1510,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '6',
+            id: '8',
             question: 'How often do you test your blood and/or urine for glucose (Frequency per month)',
             answer: '',
             name: 'blood_test',
@@ -1494,7 +1522,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '7',
+            id: '9',
             question: 'When your urine was last tested?',
             answer: '',
             name: 'last_tested',
@@ -1506,43 +1534,96 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '8',
-            question: 'Were there any abnormalities? (E.g., ketone, glucose or protein.)',
-            answer: '',
-            name: 'abnormalities',
-            declaration: '',
-            heading: '',
-            type: '',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
-        },
-        {
-            id: '9',
-            question: 'Last result (FBS & Hba1c)',
+            id: '10',
+            question: '',
             answer: '',
             name: 'last_result',
             declaration: '',
-            heading: '',
-            type: '',
+            heading: 'Last result (FBS & Hba1c)',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
-        },
-        {
-            id: '10',
-            question: 'Latest result of Urininalysis (Ketone, Glucose, Protein, RBC’s)',
-            answer: '',
-            name: 'urininalysis',
-            declaration: '',
-            heading: '',
-            type: '',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'FBS',
+                    answer: '',
+                    name: 'FBS',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'PPBS',
+                    answer: '',
+                    name: 'PPBS',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '3',
+                    question: 'Hba1c',
+                    answer: '',
+                    name: 'Hba1c',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '11',
+            question: '',
+            answer: '',
+            name: 'urininalysis',
+            declaration: '',
+            heading: 'Latest result of Urininalysis (Ketone, Glucose, Protein, RBC’s)',
+            type: 'HEADING',
+            validation: '',
+            ansBtn: false,
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Ketone',
+                    answer: '',
+                    name: 'Ketone',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Glucose',
+                    answer: '',
+                    name: 'Glucose',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '3',
+                    question: 'Protein',
+                    answer: '',
+                    name: 'Protein',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '4',
+                    question: 'RBC’s',
+                    answer: '',
+                    name: 'RBC’s',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
+        },
+        {
+            id: '12',
             question: '',
             answer: '',
             declaration: '',
@@ -1626,19 +1707,20 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '12',
+            id: '13',
             question: 'Have you ever taken time off work because of your diabetes?',
             answer: '',
-            name: 'time_off',
+            name: 'treatment',
             declaration: '',
             heading: '',
             type: '',
             validation: '',
             ansBtn: true,
+            refQues: 'If yes, please provide details including dates and durations:',
             subQuestions: []
         },
         {
-            id: '13',
+            id: '14',
             question: 'Have you ever been admitted to hospital or required emergency care?',
             answer: '',
             name: 'admitted',
@@ -1647,19 +1729,10 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            subQuestions: []
-        },
-        {
-            id: '14',
-            question: '',
-            answer: '',
-            declaration: '',
-            heading: 'If yes, please provide details along with all the hospitalization reports.',
-            type: 'HEADING',
-            validation: '',
-            ansBtn: false,
-            addMore: true,
+            refQues: 'If yes, please provide details along with all the hospitalization reports.',
             subQuestions: [
+
+
                 {
                     id: '1',
                     question: 'Reason',
@@ -1670,7 +1743,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '1',
+                    id: '2',
                     question: 'Name of doctor, hospital or clinic',
                     answer: '',
                     name: 'name_doctor',
@@ -1679,7 +1752,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '1',
+                    id: '3',
                     question: 'Address',
                     answer: '',
                     name: 'add_doctor',
@@ -1688,7 +1761,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '1',
+                    id: '4',
                     question: 'Dates',
                     answer: '',
                     name: 'date_doc',
@@ -1802,39 +1875,38 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-            ]
-        },
-        {
-            id: '4',
-            question: '',
-            answer: '',
-            name: '',
-            declaration: '',
-            heading: 'Did the attacks ever produce any',
-            type: 'HEADING',
-            validation: '',
-            ansBtn: false,
-            subQuestions: [
                 {
-                    id: '1',
-                    question: 'pain in the chest or arms?',
+                    id: '4',
+                    question: '',
                     answer: '',
-                    name: 'chest_pain',
-                    type: 'textbox',
+                    name: 'attacks_ever',
+                    heading: 'Did the attacks ever produce any',
+                    type: 'HEADING',
                     validation: '',
                     ansBtn: false,
+                    subQuestions: [
+                        {
+                            id: '1',
+                            question: 'pain in the chest or arms?',
+                            answer: '',
+                            name: 'chest_pain',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        },
+                        {
+                            id: '2',
+                            question: 'breathlessness?',
+                            answer: '',
+                            name: 'breathlessness',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        }
+                    ]
                 },
                 {
-                    id: '2',
-                    question: 'breathlessness?',
-                    answer: '',
-                    name: 'breathlessness',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '3',
+                    id: '5',
                     question: 'Are the attacks aggravated by exercise?',
                     answer: '',
                     name: 'attack_aggravated',
@@ -1843,7 +1915,7 @@ export const questionnaireList = {
                     ansBtn: false,
                 },
                 {
-                    id: '4',
+                    id: '6',
                     question: 'Are the attacks related to meals?',
                     answer: '',
                     name: 'attack_meal',
@@ -1851,41 +1923,40 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
+                {
+                    id: '7',
+                    question: 'Are the attacks related to meals? ',
+                    answer: '',
+                    name: 'attack_related',
+                    heading: 'If so, state',
+                    type: 'HEADING',
+                    validation: '',
+                    ansBtn: false,
+                    subQuestions: [
+                        {
+                            id: '1',
+                            question: 'how long after eating do they occur?',
+                            answer: '',
+                            name: 'eating_occur',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        },
+                        {
+                            id: '2',
+                            question: 'whether they are relieved or aggravated following a meal?',
+                            answer: '',
+                            name: 'meal_occur',
+                            type: 'textbox',
+                            validation: '',
+                            ansBtn: false,
+                        }
+                    ]
+                },
             ]
         },
         {
-            id: '5',
-            question: '',
-            answer: '',
-            name: '',
-            declaration: '',
-            heading: 'If so, state',
-            type: 'HEADING',
-            validation: '',
-            ansBtn: false,
-            subQuestions: [
-                {
-                    id: '1',
-                    question: 'how long after eating do they occur?',
-                    answer: '',
-                    name: 'after_eating',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '2',
-                    question: 'whether they are relieved or aggravated following a meal?',
-                    answer: '',
-                    name: 'relieved_meal',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-            ]
-        },
-        {
-            id: '6',
+            id: '4',
             question: 'When did you last have symptoms or experience an attack?',
             answer: '',
             name: 'symptoms',
@@ -1897,7 +1968,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '7',
+            id: '5',
             question: '',
             answer: '',
             name: '',
@@ -1934,19 +2005,22 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '4',
-                    question: 'Have you had a barium meal or any other investigation like endoscopy? If so, please provide the details including date and result of the investigation.',
-                    answer: '',
-                    name: 'barium_meal',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
             ]
         },
         {
-            id: '8',
+            id: '6',
+            question: 'Have you had a barium meal or any other investigation like endoscopy? If so, please provide the details including date and result of the investigation.',
+            answer: '',
+            name: 'barium_meal',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+        {
+            id: '7',
             question: 'Have you had an operation for this or is an operation being considered? If so, please provide the complete details including name and address of the doctor, and discharge summary (if any).',
             answer: '',
             name: 'operation',
@@ -1958,7 +2032,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '8',
             question: 'Have you experienced any problems or complications following surgery? If so, please provide details.',
             answer: '',
             name: 'experienced_problem',
@@ -1970,7 +2044,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '10',
+            id: '9',
             question: '',
             answer: '',
             name: '',
@@ -2136,15 +2210,34 @@ export const questionnaireList = {
         },
         {
             id: '8',
-            question: 'Are you taking drugs to prevent the attacks? If so, please provide the details.',
+            question: '',
             answer: '',
-            name: 'prevent_attack',
+            name: '',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Are you taking drugs to prevent the attacks? If so, please provide the details.',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Current Dosage',
+                    answer: '',
+                    name: 'current_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Past Dosage',
+                    answer: '',
+                    name: 'past_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '9',
@@ -2455,34 +2548,15 @@ export const questionnaireList = {
         },
         {
             id: '7',
-            question: '',
+            question: 'Were the episodes severe? Did they necessitate absence from work? If so, how long were you absent from work?',
             answer: '',
-            name: '',
+            name: 'necessitate',
             declaration: '',
-            heading: 'Were the episodes severe?',
-            type: 'HEADING',
+            heading: '',
+            type: 'textbox',
             validation: '',
             ansBtn: false,
-            subQuestions: [
-                {
-                    id: '2',
-                    question: 'Did they necessitate absence from work? ',
-                    answer: '',
-                    name: 'necessitate',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
-                {
-                    id: '2',
-                    question: 'If so, how long were you absent from work?',
-                    answer: '',
-                    name: 'absent',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                }
-            ]
+            subQuestions: []
         },
         {
             id: '8',
@@ -2639,22 +2713,22 @@ export const questionnaireList = {
             subQuestions: [
                 {
                     id: '1',
-                    question: 'If so, what were the results?',
+                    question: 'If so, what were the results? Please share the copy of reports with Bharti Axa Representative/Agent',
                     answer: '',
                     name: 'results',
                     type: 'textbox',
                     validation: '',
                     ansBtn: false,
                 },
-                {
-                    id: '2',
-                    question: 'Please enclose the copy of above reports – if available.',
-                    answer: '',
-                    name: 'enclose',
-                    type: 'textbox',
-                    validation: '',
-                    ansBtn: false,
-                },
+                // {
+                //     id: '2',
+                //     question: 'Please enclose the copy of above reports – if available.',
+                //     answer: '',
+                //     name: 'enclose',
+                //     type: 'textbox',
+                //     validation: '',
+                //     ansBtn: false,
+                // },
             ]
         },
         {
@@ -2997,17 +3071,48 @@ export const questionnaireList = {
                 }
             ]
         },
+        // {
+        //     id: '5',
+        //     question: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+        //     answer: '',
+        //     name: 'treatment',
+        //     declaration: '',
+        //     heading: '',
+        //     type: 'textbox',
+        //     validation: '',
+        //     ansBtn: false,
+        //     subQuestions: []
+        // },
         {
             id: '5',
-            question: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+            question: '',
             answer: '',
             name: 'treatment',
             declaration: '',
-            heading: '',
-            type: 'textbox',
+            heading: 'Please provide treatment details e.g. medicines, laceration, cryotherapy, radiotherapy, chemotherapy etc including the name/s of the medication',
+            type: 'HEADING',
             validation: '',
             ansBtn: false,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Current Dosage',
+                    answer: '',
+                    name: 'current_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+                {
+                    id: '2',
+                    question: 'Past Dosage',
+                    answer: '',
+                    name: 'past_dosage',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
             id: '6',
@@ -3033,18 +3138,18 @@ export const questionnaireList = {
             ansBtn: true,
             subQuestions: []
         },
-        {
-            id: '8',
-            question: 'If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
-            answer: '',
-            name: 'consulting_physician',
-            declaration: '',
-            heading: '',
-            type: 'textbox',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
-        },
+        // {
+        //     id: '8',
+        //     question: 'If ‘Yes’, kindly provide detailed report of your consulting physician pre and post operation with operation summary sheet, hospital discharge card and histopathology report',
+        //     answer: '',
+        //     name: 'consulting_physician',
+        //     declaration: '',
+        //     heading: '',
+        //     type: 'textbox',
+        //     validation: '',
+        //     ansBtn: false,
+        //     subQuestions: []
+        // },
         {
             id: '9',
             question: 'Have you ever lost significant time off work due to this condition? If so please provide details including dates and time spent off work',
@@ -3055,6 +3160,7 @@ export const questionnaireList = {
             type: 'textbox',
             validation: '',
             ansBtn: true,
+            showTextbox: true,
             subQuestions: []
         },
         {
@@ -3069,6 +3175,19 @@ export const questionnaireList = {
             ansBtn: false,
             subQuestions: []
         },
+        {
+            id: '10',
+            question: 'Is there any additional information you can provide, with regards to this condition which will assist in processing your proposal?',
+            answer: '',
+            name: 'additional_information',
+            declaration: '',
+            heading: '',
+            type: 'textbox',
+            validation: '',
+            ansBtn: false,
+            subQuestions: []
+        },
+
     ],
 }
 
@@ -3321,7 +3440,8 @@ export const statusApi = {
             "updatedOn": "2023-09-27 15:10:12",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": false
         },
         {
             "id": 3879360,
@@ -3366,7 +3486,9 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": false
+
         },
         {
             "id": 3879363,
@@ -3376,7 +3498,8 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": true
         },
         {
             "id": 3879366,
@@ -3386,7 +3509,8 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": false
         },
         {
             "id": 3879367,
@@ -3399,86 +3523,86 @@ export const statusApi = {
                 "PlanDetails": {
                     "planOption": {
                         "revisedDetails": "planOptionnewData",
-                        "olddetails": "planOptiomOldData"
+                        "oldDetails": "planOptiomOldData"
                     },
                     "baseSumAssured": {
                         "revisedDetails": "planField1",
-                        "olddetails": "planField1"
+                        "oldDetails": "planField1"
                     },
                     "riderPolicyTerm": {
                         "revisedDetails": "planField2",
-                        "olddetails": "planField2"
+                        "oldDetails": "planField2"
                     }
                 },
                 "InsuredDetails": {
                     "title": {
-                        "olddetails": "OLDTitle",
+                        "oldDetails": "OLDTitle",
                         "revisedDetails": "NewTitle"
                     },
                     "gender": {
-                        "olddetails": "Male",
+                        "oldDetails": "Male",
                         "revisedDetails": "Male"
                     },
                     "pinCode": {
-                        "olddetails": "301701",
+                        "oldDetails": "301701",
                         "revisedDetails": "301701"
                     },
                     "ageProof": {
-                        "olddetails": "OLDAgeProdd",
+                        "oldDetails": "OLDAgeProdd",
                         "revisedDetails": "NewAgeProdd"
                     },
                     "dateOfBirth": {
-                        "olddetails": "30-12-2030",
+                        "oldDetails": "30-12-2030",
                         "revisedDetails": "12-12-2012"
                     },
                     "fundDetails": {
-                        "olddetails": "OLDfundDeatails",
+                        "oldDetails": "OLDfundDeatails",
                         "revisedDetails": "NewfundDeatails"
                     },
                     "residentialCountry": {
-                        "olddetails": "OLDRediCounrty",
+                        "oldDetails": "OLDRediCounrty",
                         "revisedDetails": "newRediCounrty"
                     }
                 },
                 "ProposerDetails": {
                     "age": {
-                        "olddetails": "99",
+                        "oldDetails": "99",
                         "revisedDetails": "99"
                     },
                     "pep": {
-                        "olddetails": "OLDtestPEP",
+                        "oldDetails": "OLDtestPEP",
                         "revisedDetails": "testPEPNew"
                     },
                     "name": {
-                        "olddetails": "OLDAjayNewName",
+                        "oldDetails": "OLDAjayNewName",
                         "revisedDetails": "AjayNewName"
                     },
                     "title": {
-                        "olddetails": "OLDTitle",
+                        "oldDetails": "OLDTitle",
                         "revisedDetails": "NewTitle"
                     },
                     "gender": {
-                        "olddetails": "Male",
+                        "oldDetails": "Male",
                         "revisedDetails": "Male"
                     },
                     "pinCode": {
-                        "olddetails": "301701",
+                        "oldDetails": "301701",
                         "revisedDetails": "301701"
                     },
                     "ageProof": {
-                        "olddetails": "OLDAgeProdd",
+                        "oldDetails": "OLDAgeProdd",
                         "revisedDetails": "NewAgeProdd"
                     },
                     "dateOfBirth": {
-                        "olddetails": "30-12-2030",
+                        "oldDetails": "30-12-2030",
                         "revisedDetails": "12-12-2012"
                     },
                     "fundDetails": {
-                        "olddetails": "OLDfundDeatails",
+                        "oldDetails": "OLDfundDeatails",
                         "revisedDetails": "NewfundDeatails"
                     },
                     "residentialCountry": {
-                        "olddetails": "OLDRediCounrty",
+                        "oldDetails": "OLDRediCounrty",
                         "revisedDetails": "newRediCounrty"
                     }
                 },
@@ -3505,7 +3629,8 @@ export const statusApi = {
                     }
                 }
             },
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": false
         },
         {
             "id": 3879368,
@@ -3515,7 +3640,8 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": false
         },
         {
             "id": 3879369,
@@ -3535,7 +3661,8 @@ export const statusApi = {
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": false
         },
         {
             "id": 3879364,
@@ -3566,7 +3693,8 @@ export const statusApi = {
                 "counterOfferReason": "testC ounter Offer",
                 "tempLoadingDuration": "testeLoaduruation"
             },
-            "paymentInfo": null
+            "paymentInfo": null,
+            "openAcc": false
         },
         {
             "id": 3894929,
@@ -4586,9 +4714,9 @@ export const subStatusList = [
 // consent data
 
 export const consentDataList = {
-    'pincode':'Pincode',
+    'pincode': 'Pincode',
     'pep': 'PEP',
-    'anyHealthQuestionnaire':'Any Health Questionnaire',
+    'anyHealthQuestionnaire': 'Any Health Questionnaire',
     'residentialCountry': 'Residential Country',
     'ageProof': 'Age Proof',
     'fundDetails': 'Fund Details',
@@ -4612,7 +4740,7 @@ export const consentDataList = {
     'riderPolicyTerm': 'Rider Policy Term',
     'riderPremiumTerm': 'Rider Premium Term',
     'topUpPremium': 'Top Up Premium',
-    'loadingPremium':'Loading Premium',
-    'payoutType':'Payout Type',
-    'payoutFrequency':'Payout Frequency'
+    'loadingPremium': 'Loading Premium',
+    'payoutType': 'Payout Type',
+    'payoutFrequency': 'Payout Frequency'
 }
