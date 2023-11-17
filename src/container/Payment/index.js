@@ -124,6 +124,9 @@ const Payment = (props) => {
       txAmount: props.paymentValue,
       userAgent: navigator.userAgent,
     };
+    dispatch({
+      type: "LOADER_ON",
+    });
     Axios.post(`https://dev-api-proposal.bhartiaxa.com/public/api/v1/newbilldesk/fetchPaymentReqInfo`, billDeskReqData, {
       headers: {
         "Content-Type": "application/json",
@@ -131,6 +134,9 @@ const Payment = (props) => {
       },
     })
       .then((resp) => {
+        dispatch({
+          type: "LOADER_OFF",
+        });
         let flow_config = {
           merchantId: resp.data.body.options.merchantId,
           bdOrderId: resp.data.body.options.bdOrderId,
@@ -149,8 +155,9 @@ const Payment = (props) => {
         // console.log("test>>>>", flow_config)
         let config = {
           responseHandler: (txn) => {
-            // console.log("test222",txn)
+            // console.log("test222",txn),
             () => {
+              // console.log('>>chk')
               dispatch(dashboardAction(props.accDetails?.proposalNumber, (res) => { }))
             }
           },
@@ -173,6 +180,9 @@ const Payment = (props) => {
       })
       .catch((err) => {
         // console.log('err>>', err)
+        dispatch({
+          type: "LOADER_OFF",
+        });
         toaster("error", 'BillDesk Order Creation Exception')
 
         // if (err.status == '401') {

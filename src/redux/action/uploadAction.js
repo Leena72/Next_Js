@@ -63,8 +63,9 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
       dispatch({
         type: "LOADER_OFF",
       });
-      if (res.data.body) {
-        cb(res.data.body)
+      if (res.data.status === "OK") {
+        toaster("success", res.data.message);
+        cb(res.data)
       }
       if (res.data.status === "LOCKED") {
         toaster("error", res.data.message);
