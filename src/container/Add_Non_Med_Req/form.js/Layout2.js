@@ -4,7 +4,7 @@ import Input from '@/component/Input';
 import AddImg from '../../../Assets/images/add.png'
 const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
 
-    const changeHandler = (e, quesData, radioInput) => {
+    const changeHandler = (e, quesData, radioInput, referenceAns) => {
         let value = e.target.value
         let name = e.target.name
         if (e.target.checked === true) {
@@ -13,22 +13,24 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
         else {
             value = e.target.value
         }
-        formChangeHandler({ name, value, formData, formName })
+        formChangeHandler({ name, value, formData, formName, referenceAns })
     }
     const addMoreHandler = (e, item) => {
-        console.log(item)
+        // console.log(item)
         const data = { ...item };
         const addMoreQuestions = data?.subQuestions.map((ele, i) => {
             ele.answer = ''
             ele.id = ele.id + 1;
             return ele;
         })
-        console.log(data.subQuestions.concat(addMoreQuestions))
+        // console.log(data.subQuestions.concat(addMoreQuestions))
     }
     const deleteMoreHandler = (e, item, ele) => {
-        console.log(item, ele)
+        // console.log(item, ele)
     }
     console.log('formdata>>>', formData)
+    const forMultipleYes = formData && formData[11].subQuestions.filter(ele => ele.answer === 'Yes')
+    // console.log('forMu>>', forMultipleYes, forMultipleYes.length)
     return (
         <>
             {/* form[0] */}
@@ -188,8 +190,13 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                             <div>
                                 <div className={`form-declaration`}>{formData[5].refQues}</div>
                                 <div className='form-answer'>
-                                    <textarea id={formData[5].id} name={formData[5].name} value={formData[5].answer}
-                                        onChange={(e) => changeHandler(e, { ques: formData[5], type: 'ques', parent: null })} />
+                                    <textarea id={formData[5].id} name={formData[5].name} value={formData[5].refAns}
+                                        onChange={(e) => changeHandler(
+                                            e,
+                                            { ques: formData[5], type: 'ques', parent: null },
+                                            formData[5].answer,
+                                            true //if reference ans is yes
+                                        )} />
                                 </div>
                             </div>
                         }
@@ -282,6 +289,21 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                 </div>
                             ))
                         }
+                        {
+                            forMultipleYes && forMultipleYes.length > 0 &&
+                            <div>
+                                <div className={`form-declaration`}>{formData[11].refQues}</div>
+                                <div className='form-answer'>
+                                    <textarea id={formData[11].id} name={formData[11].name} value={formData[11].refAns}
+                                        onChange={(e) => changeHandler(
+                                            e,
+                                            { ques: formData[11], type: 'ques', parent: null },
+                                            forMultipleYes && forMultipleYes.length > 0 && 'Yes',
+                                            true
+                                        )} />
+                                </div>
+                            </div>
+                        }
                     </div>
                     {/* form[12] */}
                     <div className='form-block'>
@@ -305,7 +327,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                     name={formData[12].name}
                                     checked={formData[12].answer === "No"}
                                     changeHandler={(e) =>
-                                        changeHandler(e, { ques: formData[12], type: 'ques', parent: null }, 'No')}
+                                        changeHandler(e, { ques: formData[12], type: 'ques', parent: null, }, 'No')}
                                 />
                                 <label className="radio-label">No</label>
                             </div>
@@ -315,8 +337,13 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                             <div>
                                 <div className={`form-declaration`}>{formData[12].refQues}</div>
                                 <div className='form-answer'>
-                                    <textarea id={formData[12].id} name={formData[12].name} value={formData[12].answer}
-                                        onChange={(e) => changeHandler(e, { ques: formData[12], type: 'ques', parent: null })} />
+                                    <textarea id={formData[12].id} name={formData[12].name} value={formData[12].refAns}
+                                        onChange={(e) => changeHandler(
+                                            e,
+                                            { ques: formData[12], type: 'ques', parent: null },
+                                            formData[12].answer,
+                                            true
+                                        )} />
                                 </div>
                             </div>
                         }
@@ -351,7 +378,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                         {
                             formData[13].answer === "Yes" &&
                             <div >
-                                <div className={`form-declaration`}>{formData[13].refQues}</div>
+                                <div className={`form-declaration`}>{formData[13].heading}</div>
                                 {
                                     formData[13].subQuestions.map(ele => {
                                         return (
