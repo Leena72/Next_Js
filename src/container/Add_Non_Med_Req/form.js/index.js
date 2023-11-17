@@ -33,10 +33,10 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
             else if (item.subQuestions && item.subQuestions.length > 0) {
                 mapSaveData(item.subQuestions, name, value)
                 // saving ans for multiple questions in form diabetes ques 11
-                referenceAns === true ?
+                if(referenceAns === true && name==='diabetes_cause'){
                 item.refAns = value
-                :
-                item.answer = ''
+                }
+                else{return}
             }
 
         });

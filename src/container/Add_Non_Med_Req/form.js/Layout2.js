@@ -387,7 +387,12 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                                 </div>
                                                 <div className='form-answer'>
                                                     <textarea id={ele.id} name={ele.name} value={ele.answer}
-                                                        onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[13] })} />
+                                                        onChange={(e) => changeHandler(
+                                                        e, 
+                                                        { ques: ele, type: 'subQues', parent: formData[13] },
+                                                        formData[13].answer === "Yes",
+                                                        false
+                                                        )} />
                                                 </div>
                                             </div>
                                         )

@@ -587,7 +587,8 @@ export const formikValidationSchema = {
             add_doctor: validateReq,
             date_doc: validateReq,
             add_info: validateReq,
-            diabetes_treatment: validateReq
+            diabetes_treatment: validateReq,
+            diabetes_cause:validateReq
         }),
         initialValues: {
             diagnosed: '',
@@ -622,7 +623,8 @@ export const formikValidationSchema = {
             add_doctor: '',
             date_doc: '',
             add_info: '',
-            diabetes_treatment: ''
+            diabetes_treatment: '',
+            diabetes_cause:''
         }
     },
     "DIGESTIVE_DISORDER_QUESTION": {
@@ -1629,6 +1631,7 @@ export const questionnaireList = {
             id: '12',
             question: '',
             answer: '',
+            name:'diabetes_cause',
             declaration: '',
             heading: 'Have you ever experienced or treated for:',
             type: 'HEADING',
