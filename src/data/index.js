@@ -242,7 +242,7 @@ export const applicationData = [
     {
         id: 6,
         heading: 'Consent For Change In The Application Details',
-        title: 'DATA_CHANGE',
+        title: 'QUALITY_CHECK',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
@@ -587,6 +587,8 @@ export const formikValidationSchema = {
             add_doctor: validateReq,
             date_doc: validateReq,
             add_info: validateReq,
+            diabetes_treatment: validateReq,
+            diabetes_cause:validateReq
         }),
         initialValues: {
             diagnosed: '',
@@ -621,6 +623,8 @@ export const formikValidationSchema = {
             add_doctor: '',
             date_doc: '',
             add_info: '',
+            diabetes_treatment: '',
+            diabetes_cause:''
         }
     },
     "DIGESTIVE_DISORDER_QUESTION": {
@@ -1495,6 +1499,7 @@ export const questionnaireList = {
             validation: '',
             ansBtn: true,
             refQues: 'If yes, please provide details including dates and durations:',
+            refAns:'',
             subQuestions: []
         },
         {
@@ -1613,10 +1618,10 @@ export const questionnaireList = {
                 },
                 {
                     id: '4',
-                    question: 'Protein',
+                    question: 'RBC’s',
                     answer: '',
-                    name: 'Protein',
-                    type: 'RBC’s',
+                    name: 'RBC’s',
+                    type: 'textbox',
                     validation: '',
                     ansBtn: false,
                 },
@@ -1626,11 +1631,14 @@ export const questionnaireList = {
             id: '12',
             question: '',
             answer: '',
+            name:'diabetes_cause',
             declaration: '',
             heading: 'Have you ever experienced or treated for:',
             type: 'HEADING',
             validation: '',
             ansBtn: false,
+            refQues: 'If you answered yes to any of the above questions, please provide details:',
+            refAns: '',
             subQuestions: [
                 {
                     id: '1',
@@ -1710,13 +1718,13 @@ export const questionnaireList = {
             id: '13',
             question: 'Have you ever taken time off work because of your diabetes?',
             answer: '',
-            name: 'treatment',
-            declaration: '',
+            name: 'diabetes_treatment',
             heading: '',
             type: '',
             validation: '',
             ansBtn: true,
             refQues: 'If yes, please provide details including dates and durations:',
+            refAns: '',
             subQuestions: []
         },
         {
@@ -1725,14 +1733,12 @@ export const questionnaireList = {
             answer: '',
             name: 'admitted',
             declaration: '',
-            heading: '',
+            heading: 'If yes, please provide details along with all the hospitalization reports.',
             type: '',
             validation: '',
             ansBtn: true,
-            refQues: 'If yes, please provide details along with all the hospitalization reports.',
+            refQues: '',
             subQuestions: [
-
-
                 {
                     id: '1',
                     question: 'Reason',

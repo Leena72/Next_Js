@@ -97,7 +97,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                 // documentNumber: "",
                 // proposalNo: 3111429336
             };
-            console.log('headerData>>',headerData,proposalHeader?.category)
+            // console.log('headerData>>',headerData,proposalHeader?.category)
             dispatch(uploadFormAction(headerData, formData, (res) => {
                 if (res.status === 'OK') {
                     dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {

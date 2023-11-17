@@ -364,7 +364,7 @@ const Payment = (props) => {
     return item.status === 'REVISED_OFFER';
   })
   const revisedOfferPaymentDone = revisedOfferPayment[0]?.paymentInfo?.revisedOfferPaymentDone
-  console.log('revisedOfferPaymentDone', revisedOfferPaymentDone)
+  // console.log('revisedOfferPaymentDone', revisedOfferPaymentDone)
 
   return (
     <div>

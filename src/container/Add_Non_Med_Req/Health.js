@@ -29,7 +29,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
 
   const dispatch = useDispatch()
   const toggleAccordion = (items, userType) => {
-    console.log(accDetails, items)
+    // console.log(accDetails, items)
     const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === items.newTitle.toLowerCase())
     //   const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
     // console.log("===========>", filterQuestion[0], filterQuestion && filterQuestion[0]?.data?.length > 0 && filterQuestion[0].url)
