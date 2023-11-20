@@ -304,7 +304,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID }) => {
                                             e,
                                             { ques: formData[9], type: 'ques', parent: null },
                                             forMultipleYes && forMultipleYes.length > 0 && 'Yes',
-                                            true
+                                            false
                                         )} />
                                 </div>
                             </div>
