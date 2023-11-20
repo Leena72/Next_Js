@@ -2,7 +2,8 @@ import React from 'react'
 import Button from '@/component/Button';
 import Input from '@/component/Input';
 import AddImg from '../../../Assets/images/add.png'
-const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestions }) => {
+import { toaster } from '@/utils/toaster';
+const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestionsNew,deleteMoreHandlerNew }) => {
 
     const changeHandler = (e, quesData, radioInput, referenceAns) => {
         let value = e.target.value
@@ -15,18 +16,28 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
         }
         formChangeHandler({ name, value, formData, formName, referenceAns })
     }
-    const addMoreHandler = (e, item) => {
-        // console.log(item)
-        const data = { ...item };
-        const addMoreQuestions = data?.subQuestions.map((ele, i) => {
-            ele.answer = ''
-            ele.id = ele.id + 1;
-            return ele;
+    const addMoreHandler = (e, item,quesName,idx) => {
+        console.log("addmore ===>",item,item.totalAdd,idx)
+        if(idx+1>item.totalAdd){
+            toaster("success","Max limit reached")
+        }else{
+        const data = JSON.parse(JSON.stringify(item));
+        const addMoreQuestions = data?.subQuestions[0].map((ele, i) => {
+            // return res.map(ele=>{
+                ele.answer = ''
+                ele.name=ele.name+idx
+                ele.id = ele.id + idx;
+                return ele;
+            // })
+          
         })
-        // console.log(data.subQuestions.concat(addMoreQuestions))
+        //  data.subQuestions= data.subQuestions.concat([addMoreQuestions])
+        addMoreQuestionsNew(item.subQuestions.concat([addMoreQuestions]),item,quesName)
+        console.log("addmore1 ===>",data,addMoreQuestions)
     }
-    const deleteMoreHandler = (e, item, ele) => {
-        // console.log(item, ele)
+    }
+    const deleteMoreHandler = (e,item, idx,quesName) => {
+       deleteMoreHandlerNew(item, idx,quesName)
     }
     console.log('formdata>>>', formData)
     const forMultipleYes = formData && formData[9].subQuestions.filter(ele => ele.answer === 'Yes')
@@ -67,22 +78,22 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                         <>
                             {/* form[0] subquestion 1 */}
                             <div className='form-block'>
-                                <div className={`form-declaration`}>{formData[0].subQuestions[0].question}</div>
+                                <div className={`form-declaration`}>{formData[0].subQuestions[0]?.question}</div>
                                 <div className='form-answer'>
-                                    <textarea id={formData[0].subQuestions[0].id} name={formData[0].subQuestions[0].name} value={formData[0].subQuestions[0].answer}
+                                    <textarea id={formData[0].subQuestions[0]?.id} name={formData[0].subQuestions[0]?.name} value={formData[0].subQuestions[0]?.answer}
                                         onChange={(e) => changeHandler(e, { ques: formData[0].subQuestions[0], type: 'ques', parent: formData[0] })} />
                                 </div>
                             </div>
                             {/* form[0] subqusetion 2 */}
                             <div className='form-block'>
-                                <div className={`form-declaration`}>{formData[0].subQuestions[1].question}</div>
+                                <div className={`form-declaration`}>{formData[0].subQuestions[1]?.question}</div>
                                 <div className='form-inputbtn'>
                                     <div className="radio">
                                         <Input
                                             type='radio'
                                             value={'Yes'}
-                                            name={formData[0].subQuestions[1].name}
-                                            checked={formData[0].subQuestions[1].answer === "Yes"}
+                                            name={formData[0].subQuestions[1]?.name}
+                                            checked={formData[0].subQuestions[1]?.answer === "Yes"}
                                             changeHandler={(e) =>
                                                 changeHandler(e, { ques: formData[0].subQuestions[1], type: 'ques', parent: formData[0], }, 'Yes')}
                                         />
@@ -92,8 +103,8 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                                         <Input
                                             type='radio'
                                             value={'No'}
-                                            name={formData[0].subQuestions[1].name}
-                                            checked={formData[0].subQuestions[1].answer === "No"}
+                                            name={formData[0].subQuestions[1]?.name}
+                                            checked={formData[0].subQuestions[1]?.answer === "No"}
                                             changeHandler={(e) =>
                                                 changeHandler(e, { ques: formData[0].subQuestions[1], type: 'ques', parent: formData[0] }, 'No')}
                                         />
@@ -113,9 +124,24 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     <div className='form-block'>
                         <div className={`form-declaration`}>{formData[1].heading}</div>
                         {
-                            formData[1].subQuestions.map((ele) => {
+                            formData[1].subQuestions?.map((res,idx) => {
+                          return  (<>  
+                              <div className='add-more-container'>
+                           {formData[1].subQuestions?.length>1 && <Button
+                                className='add-more-btn'
+                                clickHandler={(e) => deleteMoreHandler(e,formData[1],idx,formData[1].addMoreSubName)}
+                                type='button'
+                                buttonText={'Delete'}
+                            />
+                        } 
+                        </div>
+                               {
+                            // return
+                             res?.map(ele=>{
                                 return (
+                                    
                                     <div key={ele.id}>
+                                        
                                         <div className='form-quesAns'>{ele.question}
                                         </div>
                                         <div className='form-answer'>
@@ -124,13 +150,15 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                                         </div>
                                     </div>
                                 )
-                            }
-                            )
+                            } )
+                        }
+                            </>)
+                        })
                         }
                         <div className='add-more-container'>
                             <Button
                                 className='add-more-btn'
-                                clickHandler={(e) => addMoreHandler(e, formData[1])}
+                                clickHandler={(e) => addMoreHandler(e, formData[1],formData[1].addMoreSubName,formData[1].subQuestions.length)}
                                 type='button'
                                 buttonText={'Add More'}
                             />
@@ -140,7 +168,18 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     <div className='form-block'>
                         <div className={`form-declaration`}>{formData[2].heading}</div>
                         {
-                            formData[2].subQuestions.map(ele => {
+                            formData[2].subQuestions.map((res,idx) => {
+                                 return  (<>  
+                              <div className='add-more-container'>
+                           {formData[2].subQuestions?.length>1 && <Button
+                                className='add-more-btn'
+                                clickHandler={(e) => deleteMoreHandler(e,formData[1],idx,formData[2].addMoreSubName)}
+                                type='button'
+                                buttonText={'Delete'}
+                            />
+                        } 
+                        </div>
+                               {res?.map(ele=>{
                                 return (
                                     <div key={ele.id}>
                                         <div className='form-quesAns' >{ele.question}
@@ -152,12 +191,14 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                                     </div>
                                 )
                             }
-                            )
+                            )}
+                            </>)
+                          })
                         }
                         <div className='add-more-container'>
                             <Button
                                 className='add-more-btn'
-                                clickHandler={(e) => addMoreHandler(e, formData[2])}
+                                clickHandler={(e) => addMoreHandler(e, formData[2],formData[2].addMoreSubName,formData[1].subQuestions.length)}
                                 type='button'
                                 buttonText={'Add More'}
                             />
@@ -385,7 +426,18 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                             <div >
                                 <div className={`form-declaration`}>{formData[11].heading}</div>
                                 {
-                                    formData[11].subQuestions.map(ele => {
+                                    formData[11].subQuestions.map((res,idx) => {
+                                        return  (<>  
+                                            <div className='add-more-container'>
+                                         {formData[11].subQuestions?.length>1 && <Button
+                                              className='add-more-btn'
+                                              clickHandler={(e) => deleteMoreHandler(e,formData[1],idx,formData[11].addMoreSubName)}
+                                              type='button'
+                                              buttonText={'Delete'}
+                                          />
+                                      } 
+                                      </div>
+                                             {res?.map(ele=>{
                                         return (
                                             <div key={ele.id}>
                                                 <div className='form-quesAns' >{ele.question}
@@ -401,13 +453,15 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                                                 </div>
                                             </div>
                                         )
-                                    }
-                                    )
+                                    })
+                                }
+                                </>)
+                                })
                                 }
                                 <div className='add-more-container'>
                                     <Button
                                         className='add-more-btn'
-                                        clickHandler={(e) => addMoreHandler(e, formData[11])}
+                                        clickHandler={(e) => addMoreHandler(e, formData[11],formData[11].addMoreSubName,formData[1].subQuestions.length)}
                                         type='button'
                                         buttonText={'Add More'}
                                     />

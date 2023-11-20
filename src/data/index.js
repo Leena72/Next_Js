@@ -1376,7 +1376,7 @@ export const questionnaireList = {
         {
             id: '1',
             question: 'Have you ever been diagnosed as a diabetic?',
-            answer: '',
+            answer: 'No',
             name: 'diagnosed',
             declaration: 'I hereby agree that the statements below shall form part of my proposal for insurance and I declare that such statements together with the said proposal and declaration shall be the basis of the contract between Bharti AXA Life Insurance Company Limited and myself.',
             heading: '',
@@ -1419,7 +1419,9 @@ export const questionnaireList = {
             ansBtn: false,
             addMoreSubName:'treatment',
             addMore: true,
-            subQuestions: [[
+            totalAdd:3,
+            subQuestions: [
+                [
                 {
                     id: '2.1',
                     question: 'Name of doctor, hospital or clinic',
@@ -1447,7 +1449,8 @@ export const questionnaireList = {
                     validation: '',
                     ansBtn: false,
                 }
-            ]]
+            ]
+        ]
         },
         {
             id: '3',
@@ -1459,12 +1462,13 @@ export const questionnaireList = {
             validation: '',
             ansBtn: false,
             addMore: true,
+            totalAdd:4,
             addMoreSubName:'mdeication',
             subQuestions: [
-                {
+             [   {
                     id: '3.1',
                     question: 'Name of medication/therapy',
-                    answer: [''],
+                    answer: '',
                     name: 'medication',
                     type: 'textbox',
                     validation: '',
@@ -1473,7 +1477,7 @@ export const questionnaireList = {
                 {
                     id: '2',
                     question: 'Dose',
-                    answer:[''],
+                    answer:'',
                     name: 'dose',
                     type: 'textbox',
                     validation: '',
@@ -1482,18 +1486,18 @@ export const questionnaireList = {
                 {
                     id: '3',
                     question: 'Frequency',
-                    answer: [''],
+                    answer: '',
                     name: 'frequency',
                     type: 'textbox',
                     validation: '',
                     ansBtn: false,
-                }
+                }]
             ]
         },
         {
             id: '4',
             question: 'Has your treatment been changed in last one year?',
-            answer: '',
+            answer: 'No',
             name: 'treatment',
             declaration: '',
             heading: '',
@@ -1656,7 +1660,7 @@ export const questionnaireList = {
                 {
                     id: '11.1',
                     question: 'Eye problems?',
-                    answer: '',
+                    answer:'No',
                     name: 'eye_problem',
                     type: 'input',
                     validation: '',
@@ -1665,7 +1669,7 @@ export const questionnaireList = {
                 {
                     id: '11.2',
                     question: 'Heart or circulatory problems?',
-                    answer: '',
+                    answer: 'No',
                     name: 'circulatory',
                     type: 'input',
                     validation: '',
@@ -1674,7 +1678,7 @@ export const questionnaireList = {
                 {
                     id: '11.3',
                     question: 'High blood pressure?',
-                    answer: '',
+                    answer: 'No',
                     name: 'blood_pressure',
                     type: 'input',
                     validation: '',
@@ -1683,7 +1687,7 @@ export const questionnaireList = {
                 {
                     id: '11.4',
                     question: 'Hyperlipidemia',
-                    answer: '',
+                    answer: 'No',
                     name: 'hyperlipidemia',
                     type: 'input',
                     validation: '',
@@ -1692,7 +1696,7 @@ export const questionnaireList = {
                 {
                     id: '11.5',
                     question: 'Kidney problems (including protein or albumin in your urine)?',
-                    answer: '',
+                    answer: 'No',
                     name: 'kidney',
                     type: 'input',
                     validation: '',
@@ -1701,7 +1705,7 @@ export const questionnaireList = {
                 {
                     id: '11.6',
                     question: 'Sensory problems (Numbness or tingling in the feet or legs)?',
-                    answer: '',
+                    answer: 'No',
                     name: 'sensory',
                     type: 'input',
                     validation: '',
@@ -1710,7 +1714,7 @@ export const questionnaireList = {
                 {
                     id: '11.7',
                     question: 'Amputation or history of abscess',
-                    answer: '',
+                    answer: 'No',
                     name: 'amputation',
                     type: 'input',
                     validation: '',
@@ -1719,7 +1723,7 @@ export const questionnaireList = {
                 {
                     id: '11.8',
                     question: 'Any other complication?',
-                    answer: '',
+                    answer: 'No',
                     name: 'complication',
                     type: 'input',
                     validation: '',
@@ -1730,7 +1734,7 @@ export const questionnaireList = {
         {
             id: '11',
             question: 'Have you ever taken time off work because of your diabetes?',
-            answer: '',
+            answer: 'No',
             name: 'diabetes_treatment',
             heading: '',
             type: '',
@@ -1753,19 +1757,22 @@ export const questionnaireList = {
         {
             id: '12',
             question: 'Have you ever been admitted to hospital or required emergency care?',
-            answer: '',
+            answer: 'No',
             name: 'admitted',
             declaration: '',
             heading: 'If yes, please provide details along with all the hospitalization reports.',
             type: '',
             validation: '',
             ansBtn: true,
+            addMore: true,
+            totalAdd:3,
+            addMoreSubName:'admitted',
             refQues: 'Have you ever been admitted to hospital or required emergency care?',
-            subQuestions: [
+            subQuestions: [[
                 {
                     id: '14.1',
                     question: 'Reason',
-                    answer: [''],
+                    answer: '',
                     name: 'reason',
                     type: 'textbox',
                     validation: '',
@@ -1774,7 +1781,7 @@ export const questionnaireList = {
                 {
                     id: '2',
                     question: 'Name of doctor, hospital or clinic',
-                    answer: [''],
+                    answer:'',
                     name: 'name_doctor',
                     type: 'textbox',
                     validation: '',
@@ -1783,7 +1790,7 @@ export const questionnaireList = {
                 {
                     id: '3',
                     question: 'Address',
-                    answer: [''],
+                    answer: '',
                     name: 'add_doctor',
                     type: 'textbox',
                     validation: '',
@@ -1792,13 +1799,13 @@ export const questionnaireList = {
                 {
                     id: '4',
                     question: 'Dates',
-                    answer: [''],
+                    answer: '',
                     name: 'date_doc',
                     type: 'textbox',
                     validation: '',
                     ansBtn: false,
                 }
-            ]
+            ]]
         },
         {
             id: '13',
