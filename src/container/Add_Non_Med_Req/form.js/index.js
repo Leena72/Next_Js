@@ -256,7 +256,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
                 }
             })
             console.log("final data",dataCheckDia)
-            // payload.additionalQuestionnaire[0].data=dataCheckDia;
+            payload.additionalQuestionnaire[0].data=dataCheckDia;
         }else{
             payload.additionalQuestionnaire[0].data=formValues;
         }
