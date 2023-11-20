@@ -1383,6 +1383,7 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
+            refQues:'',
             subQuestions: [
                 {
                     id: '1',
@@ -1504,7 +1505,7 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            refQues: 'Has your treatment been changed in last one year?',
+            refQues: '',
             // refAns:'',
             subQuestions: [
                 {
@@ -1654,7 +1655,7 @@ export const questionnaireList = {
             type: 'HEADING',
             validation: '',
             ansBtn: false,
-            refQues: 'If you answered yes to any of the above questions, please provide details:',
+            refQues: '',
             refAns: '',
             subQuestions: [
                 {
@@ -1740,7 +1741,7 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            refQues: 'If yes, please provide details including dates and durations:',
+            refQues: '',
             refAns: '',
             subQuestions: [
                 {
@@ -1767,7 +1768,7 @@ export const questionnaireList = {
             addMore: true,
             totalAdd:3,
             addMoreSubName:'admitted',
-            refQues: 'Have you ever been admitted to hospital or required emergency care?',
+            refQues: '',
             subQuestions: [[
                 {
                     id: '14.1',
