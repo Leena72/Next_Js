@@ -19,12 +19,24 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
     let initialValues = formikValidationSchema[formName].initialValues
     const [isValid, checkIsvalid] = useState(false)
     const dispatch = useDispatch()
-    const mapSaveData = (data, name, value) => {
+    const mapSaveData = (data, name, value, referenceAns) => {
+        console.log('reference>>', data, name, value, referenceAns)
         data.forEach((item, index) => {
             if (item.name === name) {
-                item.answer = value
-            } else if (item.subQuestions && item.subQuestions.length > 0) {
+                console.log('refname',name)
+                referenceAns === true ?
+                    item.refAns = value
+                    :
+                    item.answer = value
+            }
+
+            else if (item.subQuestions && item.subQuestions.length > 0) {
                 mapSaveData(item.subQuestions, name, value)
+                // saving ans for multiple questions in form diabetes ques 11
+                if(referenceAns === true && name==='diabetes_cause'){
+                item.refAns = value
+                }
+                else{return}
             }
 
         });
@@ -48,33 +60,26 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
                 // return check
             }
         }
-
         datacheck(finalFormData);
+
         return check;
     }
-    const addMoreQuestions=(name,item,formData)=>{
-        let data = JSON.parse(JSON.stringify(formData))
-        data.forEach((item1, index) => {
-            if (name == item1.addMoreSubName) {
-                item1.subQuestions= item
-            } 
-
-        });
-        console.log('datacheck',data,item)
-        setFormValues(data)
-    }
-    const formChangeHandler = ({ name, value, formData }) => {
-         console.log('name, value, quesData, formName', name, value)
+    const formChangeHandler = ({ name, value, formData, formChangeHandler, referenceAns }) => {
+        //  console.log('name, value, quesData, formName', name, value)
         // if (quesData.type === 'ques') {
         let data = JSON.parse(JSON.stringify(formData))
-        let finalFormData = mapSaveData(data, name, value)
-        console.log('name, value, quesData, formName', finalFormData)
+        let finalFormData = mapSaveData(data, name, value, referenceAns)
+        // console.log('name, value, quesData, formName', finalFormData)
         setFormValues(finalFormData)
         // console.log('check validation data', checkValidation(finalFormData))
         let isvalidform = checkValidation(finalFormData)
         checkIsvalid(isvalidform)
         // console.log("maped data", finalFormData)
+
+        // diabetes form on 'No' click save open
+
     }
+
     useEffect(() => {
         const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
         const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
@@ -87,9 +92,12 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
             let isvalidform = checkValidation(data)
             checkIsvalid(isvalidform)
         }
+
     }, []);
+
+
     const renderElement = (formName, formValues, formik, title, newTitle, userType) => {
-        console.log("checking===>", formName, formValues, formik, title)
+        // console.log("checking===>", formName, formValues, formik, title)
         // const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === newTitle.toLowerCase())
         // const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
         // let newFormData = []

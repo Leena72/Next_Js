@@ -33,7 +33,7 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
     }
     // health questionnaire 
     const renderElement = (title) => {
-        console.log('consentData>>', consentData)
+        // console.log('consentData>>', consentData)
         let detail = title === 'Insured' ? Object.entries(consentData.insuredQuestionDetails) :
             Object.entries(consentData.proposerQuestionDetails)
         const renderData = <div className='consent-ques-blk'>{
