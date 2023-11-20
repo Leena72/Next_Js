@@ -588,7 +588,7 @@ export const formikValidationSchema = {
             date_doc: validateReq,
             add_info: validateReq,
             diabetes_treatment: validateReq,
-            diabetes_cause:validateReq
+            diabetes_cause: validateReq
         }),
         initialValues: {
             diagnosed: '',
@@ -624,7 +624,7 @@ export const formikValidationSchema = {
             date_doc: '',
             add_info: '',
             diabetes_treatment: '',
-            diabetes_cause:''
+            diabetes_cause: ''
         }
     },
     "DIGESTIVE_DISORDER_QUESTION": {
@@ -1383,33 +1383,33 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'Please state the date when diabetes was first diagnosed (DD/MM/YY)',
+                    answer: '',
+                    name: 'diabetes_date',
+                    heading: '',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                    subQuestions: []
+                },
+                {
+                    id: '2',
+                    question: 'Please state the type of Diabetes(Type I or Type II)*',
+                    answer: '',
+                    name: 'diabetes_type',
+                    heading: '',
+                    type: '',
+                    validation: '',
+                    ansBtn: true,
+                    subQuestions: []
+                },
+            ]
         },
         {
             id: '2',
-            question: 'Please state the date when diabetes was first diagnosed (DD/MM/YY)',
-            answer: '',
-            name: 'diabetes_date',
-            declaration: '',
-            heading: '',
-            type: 'textbox',
-            validation: '',
-            ansBtn: false,
-            subQuestions: []
-        },
-        {
-            id: '3',
-            question: 'Please state the type of Diabetes(Type I or Type II)*',
-            answer: '',
-            name: 'diabetes_type',
-            heading: '',
-            type: '',
-            validation: '',
-            ansBtn: true,
-            subQuestions: []
-        },
-        {
-            id: '4',
             question: '',
             answer: '',
             declaration: '',
@@ -1449,7 +1449,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '5',
+            id: '3',
             question: '',
             answer: '',
             declaration: '',
@@ -1489,7 +1489,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '6',
+            id: '4',
             question: 'Has your treatment been changed in last one year?',
             answer: '',
             name: 'treatment',
@@ -1498,12 +1498,23 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            refQues: 'If yes, please provide details including dates and durations:',
-            refAns:'',
-            subQuestions: []
+            refQues: 'Has your treatment been changed in last one year?',
+            // refAns:'',
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'If yes, please provide details including dates and durations:',
+                    answer: '',
+                    name: 'treatment_sub',
+                    heading: '',
+                    type: 'textbox',
+                    validation: '',
+                    subQuestions: []
+                },
+            ]
         },
         {
-            id: '7',
+            id: '5',
             question: 'Please provide us the frequencies of medical check up you undergo in a month. ( Viz: Once,twice,thrice,etc)',
             answer: '',
             name: 'frequencies',
@@ -1515,7 +1526,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '8',
+            id: '6',
             question: 'How often do you test your blood and/or urine for glucose (Frequency per month)',
             answer: '',
             name: 'blood_test',
@@ -1527,7 +1538,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '9',
+            id: '7',
             question: 'When your urine was last tested?',
             answer: '',
             name: 'last_tested',
@@ -1539,7 +1550,7 @@ export const questionnaireList = {
             subQuestions: []
         },
         {
-            id: '10',
+            id: '8',
             question: '',
             answer: '',
             name: 'last_result',
@@ -1579,7 +1590,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '11',
+            id: '9',
             question: '',
             answer: '',
             name: 'urininalysis',
@@ -1628,10 +1639,10 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '12',
+            id: '10',
             question: '',
             answer: '',
-            name:'diabetes_cause',
+            name: 'diabetes_cause',
             declaration: '',
             heading: 'Have you ever experienced or treated for:',
             type: 'HEADING',
@@ -1715,7 +1726,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '13',
+            id: '11',
             question: 'Have you ever taken time off work because of your diabetes?',
             answer: '',
             name: 'diabetes_treatment',
@@ -1725,10 +1736,20 @@ export const questionnaireList = {
             ansBtn: true,
             refQues: 'If yes, please provide details including dates and durations:',
             refAns: '',
-            subQuestions: []
+            subQuestions: [
+                {
+                    id: '1',
+                    question: 'If yes, please provide details including dates and durations:',
+                    answer: '',
+                    name: 'diabetes_duration',
+                    type: 'textbox',
+                    validation: '',
+                    ansBtn: false,
+                },
+            ]
         },
         {
-            id: '14',
+            id: '12',
             question: 'Have you ever been admitted to hospital or required emergency care?',
             answer: '',
             name: 'admitted',
@@ -1737,7 +1758,7 @@ export const questionnaireList = {
             type: '',
             validation: '',
             ansBtn: true,
-            refQues: '',
+            refQues: 'Have you ever been admitted to hospital or required emergency care?',
             subQuestions: [
                 {
                     id: '1',
@@ -1778,7 +1799,7 @@ export const questionnaireList = {
             ]
         },
         {
-            id: '15',
+            id: '13',
             question: 'Please provide any additional information that you feel is important:',
             answer: '',
             name: 'add_info',
