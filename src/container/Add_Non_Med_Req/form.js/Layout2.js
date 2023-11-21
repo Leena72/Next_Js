@@ -173,7 +173,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                               <div className='add-more-container'>
                            {formData[2].subQuestions?.length>1 && <Button
                                 className='add-more-btn'
-                                clickHandler={(e) => deleteMoreHandler(e,formData[1],idx,formData[2].addMoreSubName)}
+                                clickHandler={(e) => deleteMoreHandler(e,formData[2],idx,formData[2].addMoreSubName)}
                                 type='button'
                                 buttonText={'Delete'}
                             />
@@ -198,7 +198,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                         <div className='add-more-container'>
                             <Button
                                 className='add-more-btn'
-                                clickHandler={(e) => addMoreHandler(e, formData[2],formData[2].addMoreSubName,formData[1].subQuestions.length)}
+                                clickHandler={(e) => addMoreHandler(e, formData[2],formData[2].addMoreSubName,formData[2].subQuestions.length)}
                                 type='button'
                                 buttonText={'Add More'}
                             />
@@ -431,7 +431,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                                             <div className='add-more-container'>
                                          {formData[11].subQuestions?.length>1 && <Button
                                               className='add-more-btn'
-                                              clickHandler={(e) => deleteMoreHandler(e,formData[1],idx,formData[11].addMoreSubName)}
+                                              clickHandler={(e) => deleteMoreHandler(e,formData[11],idx,formData[11].addMoreSubName)}
                                               type='button'
                                               buttonText={'Delete'}
                                           />
@@ -461,7 +461,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                                 <div className='add-more-container'>
                                     <Button
                                         className='add-more-btn'
-                                        clickHandler={(e) => addMoreHandler(e, formData[11],formData[11].addMoreSubName,formData[1].subQuestions.length)}
+                                        clickHandler={(e) => addMoreHandler(e, formData[11],formData[11].addMoreSubName,formData[11].subQuestions.length)}
                                         type='button'
                                         buttonText={'Add More'}
                                     />

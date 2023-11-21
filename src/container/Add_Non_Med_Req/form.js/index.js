@@ -22,6 +22,7 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
 
     const createChunckArray=(arr,size)=>{
         // const size = 3; 
+       console.log("size.....",size)
        const res = arr?.reduce((acc, curr, i) => {
                     if ( !(i % size)  ) {    // if index is 0 or can be divided by the `size`...
                         acc.push(arr.slice(i, i + size));   // ..push a chunk of the original array to the accumulator
@@ -82,7 +83,8 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
             // data[11]. addMoreSubName='admitted',
             data.forEach(ele=>{
                 if(ele.addMore){
-                    ele.subQuestions=createChunckArray(ele.subQuestions,ele.totalAdd)
+                    let size=ele.addMoreSubName==="admitted"?4:3
+                    ele.subQuestions=createChunckArray(ele.subQuestions,size)
                 }
             })
         }
@@ -166,7 +168,8 @@ const NonMedForm = ({ formName, formValues, setFormValues, title, newTitle, user
                 data[11].totalAdd=3;
                 data.forEach(ele=>{
                     if(ele.addMore){
-                        ele.subQuestions=createChunckArray(ele.subQuestions,ele.totalAdd)
+                        let size=ele.addMoreSubName==="admitted"?4:3
+                        ele.subQuestions=createChunckArray(ele.subQuestions,size)
                     }
                 })
             }
