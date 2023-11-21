@@ -506,7 +506,8 @@ ul {
   }
 }
 
-// add more btn
+// add more 
+
 .add-more-container {
   display: flex;
   justify-content: end;
@@ -518,5 +519,14 @@ ul {
     color: $label-blue;
     cursor: pointer;
 
+    img {
+      width: 15px;
+      height: 15px;
+      transform: rotate(45deg);
+    }
+
+    span {
+      padding-left: 5px;
+    }
   }
 }

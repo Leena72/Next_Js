@@ -1,4 +1,5 @@
 import React from 'react'
+import Image from 'next/image'
 
 const Button = (props) => {
     return (
@@ -10,10 +11,13 @@ const Button = (props) => {
             type={props.type}
             autoFocus={props.autofocus}
             value={props.buttonText}
-            name={props.name?props.name:'cta button'}
+            name={props.name ? props.name : 'cta button'}
         >
-            {props.buttonIcon }
-            {props.buttonText}
+            <Image
+                src={props.buttonIcon}
+                alt={props.buttonIcon}
+            />
+           <span>{props.buttonText}</span>
         </button>
     )
 }
