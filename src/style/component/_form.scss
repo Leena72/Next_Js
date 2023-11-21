@@ -14,6 +14,11 @@
     padding: 20px 0;
 }
 
+.form-field{
+    padding: 20px 0 0;
+
+}
+
 .form-declaration {
     color: $black;
     padding-bottom: 16px;
@@ -226,7 +231,8 @@
         border: 0px;
         background-size: 20px;
         border-radius: 5px;
-        padding: 10px 40px 10px 60px;
+        // padding: 10px 40px 10px 60px;
+        padding: 10px 40px 10px 40px;
         font-size: $font-18;
         font-weight: 600;
         text-decoration: none;
@@ -367,4 +373,13 @@
         height: 30px;
 
     }
+}
+
+
+.add-more-block{
+    background: $light-blue;
+    padding: 10px;
+}
+.add-more-section{
+    margin: 10px 0;
 }

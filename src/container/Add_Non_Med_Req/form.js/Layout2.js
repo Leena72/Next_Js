@@ -1,9 +1,11 @@
 import React from 'react'
 import Button from '@/component/Button';
 import Input from '@/component/Input';
-import AddImg from '../../../Assets/images/add.png'
+import AddIcon from '../../../Assets/images/add.png'
+import DeleteIcon from '../../../Assets/images/blueDelete.svg'
+
 import { toaster } from '@/utils/toaster';
-const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestionsNew,deleteMoreHandlerNew }) => {
+const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuestionsNew, deleteMoreHandlerNew }) => {
 
     const changeHandler = (e, quesData, radioInput, referenceAns) => {
         let value = e.target.value
@@ -16,28 +18,28 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
         }
         formChangeHandler({ name, value, formData, formName, referenceAns })
     }
-    const addMoreHandler = (e, item,quesName,idx) => {
-        console.log("addmore ===>",item,item.totalAdd,idx)
-        if(idx+1>item.totalAdd){
-            toaster("success","Max limit reached")
-        }else{
-        const data = JSON.parse(JSON.stringify(item));
-        const addMoreQuestions = data?.subQuestions[0].map((ele, i) => {
-            // return res.map(ele=>{
+    const addMoreHandler = (e, item, quesName, idx) => {
+        console.log("addmore ===>", item, item.totalAdd, idx)
+        if (idx + 1 > item.totalAdd) {
+            toaster("success", "Max limit reached")
+        } else {
+            const data = JSON.parse(JSON.stringify(item));
+            const addMoreQuestions = data?.subQuestions[0].map((ele, i) => {
+                // return res.map(ele=>{
                 ele.answer = ''
-                ele.name=ele.name+idx
+                ele.name = ele.name + idx
                 ele.id = ele.id + idx;
                 return ele;
-            // })
-          
-        })
-        //  data.subQuestions= data.subQuestions.concat([addMoreQuestions])
-        addMoreQuestionsNew(item.subQuestions.concat([addMoreQuestions]),item,quesName)
-        console.log("addmore1 ===>",data,addMoreQuestions)
+                // })
+
+            })
+            //  data.subQuestions= data.subQuestions.concat([addMoreQuestions])
+            addMoreQuestionsNew(item.subQuestions.concat([addMoreQuestions]), item, quesName)
+            console.log("addmore1 ===>", data, addMoreQuestions)
+        }
     }
-    }
-    const deleteMoreHandler = (e,item, idx,quesName) => {
-       deleteMoreHandlerNew(item, idx,quesName)
+    const deleteMoreHandler = (e, item, idx, quesName) => {
+        deleteMoreHandlerNew(item, idx, quesName)
     }
     console.log('formdata>>>', formData)
     const forMultipleYes = formData && formData[9].subQuestions.filter(ele => ele.answer === 'Yes')
@@ -77,16 +79,16 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                         formData && formData[0] && formData[0].answer === "Yes" &&
                         <>
                             {/* form[0] subquestion 1 */}
-                            <div className='form-block'>
-                                <div className={`form-declaration`}>{formData[0].subQuestions[0]?.question}</div>
+                            <div className='form-field'>
+                                <div className={`form-question`}>{formData[0].subQuestions[0]?.question}</div>
                                 <div className='form-answer'>
                                     <textarea id={formData[0].subQuestions[0]?.id} name={formData[0].subQuestions[0]?.name} value={formData[0].subQuestions[0]?.answer}
                                         onChange={(e) => changeHandler(e, { ques: formData[0].subQuestions[0], type: 'ques', parent: formData[0] })} />
                                 </div>
                             </div>
                             {/* form[0] subqusetion 2 */}
-                            <div className='form-block'>
-                                <div className={`form-declaration`}>{formData[0].subQuestions[1]?.question}</div>
+                            <div className='form-field'>
+                                <div className={`form-question`}>{formData[0].subQuestions[1]?.question}</div>
                                 <div className='form-inputbtn'>
                                     <div className="radio">
                                         <Input
@@ -122,91 +124,100 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                 <>
                     {/*field[2]*/}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[1].heading}</div>
-                        {
-                            formData[1].subQuestions?.map((res,idx) => {
-                          return  (<>  
-                              <div className='add-more-container'>
-                           {formData[1].subQuestions?.length>1 && <Button
-                                className='add-more-btn'
-                                clickHandler={(e) => deleteMoreHandler(e,formData[1],idx,formData[1].addMoreSubName)}
-                                type='button'
-                                buttonText={'Delete'}
-                            />
-                        } 
+                        <div className={`form-question`}>{formData[1].heading}</div>
+                        <div className='add-more-block'>
+                            {
+                                formData[1].subQuestions?.map((res, idx) => {
+                                    return (<>
+                                        <div className='add-more-container'>
+                                            {formData[1].subQuestions?.length > 1 && <Button
+                                                className='add-more-btn'
+                                                clickHandler={(e) => deleteMoreHandler(e, formData[1], idx, formData[1].addMoreSubName)}
+                                                type='button'
+
+                                                buttonText={'Delete'}
+                                                buttonIcon={DeleteIcon}
+                                            />
+                                            }
+                                        </div>
+                                        {
+                                            // return
+                                            res?.map(ele => {
+                                                return (
+
+                                                    <div key={ele.id}>
+
+                                                        <div className='form-question'>{ele.question}
+                                                        </div>
+                                                        <div className='form-answer'>
+                                                            <textarea id={ele.id} name={ele.name} value={ele.answer}
+                                                                onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[1] })} />
+                                                        </div>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                    </>)
+                                })
+                            }
                         </div>
-                               {
-                            // return
-                             res?.map(ele=>{
-                                return (
-                                    
-                                    <div key={ele.id}>
-                                        
-                                        <div className='form-quesAns'>{ele.question}
-                                        </div>
-                                        <div className='form-answer'>
-                                            <textarea id={ele.id} name={ele.name} value={ele.answer}
-                                                onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[1] })} />
-                                        </div>
-                                    </div>
-                                )
-                            } )
-                        }
-                            </>)
-                        })
-                        }
                         <div className='add-more-container'>
                             <Button
-                                className='add-more-btn'
-                                clickHandler={(e) => addMoreHandler(e, formData[1],formData[1].addMoreSubName,formData[1].subQuestions.length)}
+                                className='add-more-btn addIcon'
+                                clickHandler={(e) => addMoreHandler(e, formData[1], formData[1].addMoreSubName, formData[1].subQuestions.length)}
                                 type='button'
                                 buttonText={'Add More'}
+                                buttonIcon={AddIcon}
                             />
                         </div>
                     </div>
                     {/* field[3] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[2].heading}</div>
-                        {
-                            formData[2].subQuestions.map((res,idx) => {
-                                 return  (<>  
-                              <div className='add-more-container'>
-                           {formData[2].subQuestions?.length>1 && <Button
-                                className='add-more-btn'
-                                clickHandler={(e) => deleteMoreHandler(e,formData[2],idx,formData[2].addMoreSubName)}
-                                type='button'
-                                buttonText={'Delete'}
-                            />
-                        } 
-                        </div>
-                               {res?.map(ele=>{
-                                return (
-                                    <div key={ele.id}>
-                                        <div className='form-quesAns' >{ele.question}
+                        <div className={`form-question`}>{formData[2].heading}</div>
+                        <div className='add-more-block'>
+                            {
+                                formData[2].subQuestions.map((res, idx) => {
+                                    return (<>
+                                        <div className='add-more-container'>
+                                            {formData[2].subQuestions?.length > 1 && <Button
+                                                className='add-more-btn deleteIcon'
+                                                clickHandler={(e) => deleteMoreHandler(e, formData[2], idx, formData[2].addMoreSubName)}
+                                                type='button'
+                                                buttonText={'Delete'}
+                                                buttonIcon={DeleteIcon}
+                                            />
+                                            }
                                         </div>
-                                        <div className='form-answer'>
-                                            <textarea id={ele.id} name={ele.name} value={ele.answer}
-                                                onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[2] })} />
-                                        </div>
-                                    </div>
-                                )
+                                        {res?.map(ele => {
+                                            return (
+                                                <div key={ele.id}>
+                                                    <div className='form-question' >{ele.question}
+                                                    </div>
+                                                    <div className='form-answer'>
+                                                        <textarea id={ele.id} name={ele.name} value={ele.answer}
+                                                            onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[2] })} />
+                                                    </div>
+                                                </div>
+                                            )
+                                        }
+                                        )}
+                                    </>)
+                                })
                             }
-                            )}
-                            </>)
-                          })
-                        }
+                        </div>
                         <div className='add-more-container'>
                             <Button
-                                className='add-more-btn'
-                                clickHandler={(e) => addMoreHandler(e, formData[2],formData[2].addMoreSubName,formData[2].subQuestions.length)}
+                                className='add-more-btn addIcon'
+                                clickHandler={(e) => addMoreHandler(e, formData[2], formData[2].addMoreSubName, formData[2].subQuestions.length)}
                                 type='button'
                                 buttonText={'Add More'}
+                                buttonIcon={AddIcon}
                             />
                         </div>
                     </div>
                     {/* field[4] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[3].question}</div>
+                        <div className={`form-question`}>{formData[3].question}</div>
                         <div className='form-inputbtn'>
                             <div className="radio">
                                 <Input
@@ -234,7 +245,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                         {
                             formData[3].answer === "Yes" &&
                             <div>
-                                <div className={`form-declaration`}>{formData[3].subQuestions[0].question}</div>
+                                <div className={`form-question`}>{formData[3].subQuestions[0].question}</div>
                                 <div className='form-answer'>
                                     <textarea id={formData[3].subQuestions[0].id} name={formData[3].subQuestions[0].name} value={formData[3].subQuestions[0].answer}
                                         onChange={(e) => changeHandler(
@@ -249,7 +260,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div>
                     {/* field[5] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[4].question}</div>
+                        <div className={`form-question`}>{formData[4].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[4].id} name={formData[4].name} value={formData[4].answer}
                                 onChange={(e) => changeHandler(e, { ques: formData[4], type: 'ques', parent: null })} />
@@ -257,7 +268,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div>
                     {/* field[6] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[5].question}</div>
+                        <div className={`form-question`}>{formData[5].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[5].id} name={formData[5].name} value={formData[5].answer}
                                 onChange={(e) => changeHandler(e, { ques: formData[5], type: 'ques', parent: null })} />
@@ -265,7 +276,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div>
                     {/* field[7] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[6].question}</div>
+                        <div className={`form-question`}>{formData[6].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[6].id} name={formData[6].name} value={formData[6].answer}
                                 onChange={(e) => changeHandler(e, { ques: formData[6], type: 'ques', parent: null })} />
@@ -273,11 +284,11 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div>
                     {/* field[8] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[7].heading}</div>
+                        <div className={`form-question`}>{formData[7].heading}</div>
                         {
                             formData[7].subQuestions.map(ele => (
                                 <div key={ele.id}>
-                                    <div className={`form-declaration`}>{ele.question}</div>
+                                    <div className={`form-question`}>{ele.question}</div>
                                     <div className='form-answer'>
                                         <textarea id={ele.id} name={ele.name} value={ele.answer}
                                             onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[7] })} />
@@ -288,11 +299,11 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div >
                     {/* field[9] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[8].heading}</div>
+                        <div className={`form-question`}>{formData[8].heading}</div>
                         {
                             formData[8].subQuestions.map(ele => (
                                 <div key={ele.id}>
-                                    <div className={`form-declaration`}>{ele.question}</div>
+                                    <div className={`form-question`}>{ele.question}</div>
                                     <div className='form-answer'>
                                         <textarea id={ele.id} name={ele.name} value={ele.answer}
                                             onChange={(e) => changeHandler(e, { ques: ele, type: 'subQues', parent: formData[8] })} />
@@ -303,7 +314,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div >
                     {/* field[10] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[9].heading}</div>
+                        <div className={`form-question`}>{formData[9].heading}</div>
                         {
                             formData[9].subQuestions.map(ele => (
                                 <div className='form-quesAns' key={ele.id}>
@@ -338,7 +349,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                         {
                             forMultipleYes && forMultipleYes.length > 0 &&
                             <div>
-                                <div className={`form-declaration`}>{formData[9].refQues}</div>
+                                <div className={`form-question`}>{formData[9].refQues}</div>
                                 <div className='form-answer'>
                                     <textarea id={formData[9].id} name={formData[9].name} value={formData[9].answer}
                                         onChange={(e) => changeHandler(
@@ -353,7 +364,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div>
                     {/* field[11] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[10].question}</div>
+                        <div className={`form-question`}>{formData[10].question}</div>
                         <div className='form-inputbtn'>
                             <div className="radio">
                                 <Input
@@ -381,7 +392,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                         {
                             formData[10].answer === "Yes" &&
                             <div>
-                                <div className={`form-declaration`}>{formData[10].subQuestions[0].question}</div>
+                                <div className={`form-question`}>{formData[10].subQuestions[0].question}</div>
                                 <div className='form-answer'>
                                     <textarea id={formData[10].subQuestions[0].id} name={formData[10].subQuestions[0].name} value={formData[10].subQuestions[0].answer}
                                         onChange={(e) => changeHandler(
@@ -396,7 +407,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div>
                     {/* field[12] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[11].question}</div>
+                        <div className={`form-question`}>{formData[11].question}</div>
                         <div className='form-inputbtn'>
                             <div className="radio">
                                 <Input
@@ -424,46 +435,50 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                         {
                             formData[11].answer === "Yes" &&
                             <div >
-                                <div className={`form-declaration`}>{formData[11].heading}</div>
-                                {
-                                    formData[11].subQuestions.map((res,idx) => {
-                                        return  (<>  
-                                            <div className='add-more-container'>
-                                         {formData[11].subQuestions?.length>1 && <Button
-                                              className='add-more-btn'
-                                              clickHandler={(e) => deleteMoreHandler(e,formData[11],idx,formData[11].addMoreSubName)}
-                                              type='button'
-                                              buttonText={'Delete'}
-                                          />
-                                      } 
-                                      </div>
-                                             {res?.map(ele=>{
-                                        return (
-                                            <div key={ele.id}>
-                                                <div className='form-quesAns' >{ele.question}
+                                <div className={`form-question`}>{formData[11].heading}</div>
+                                <div className='add-more-block'>
+                                    {
+                                        formData[11].subQuestions.map((res, idx) => {
+                                            return (<>
+                                                <div className='add-more-container'>
+                                                    {formData[11].subQuestions?.length > 1 && <Button
+                                                        className='add-more-btn'
+                                                        clickHandler={(e) => deleteMoreHandler(e, formData[11], idx, formData[11].addMoreSubName)}
+                                                        type='button'
+                                                        buttonText={'Delete'}
+                                                        buttonIcon={DeleteIcon}
+                                                    />
+                                                    }
                                                 </div>
-                                                <div className='form-answer'>
-                                                    <textarea id={ele.id} name={ele.name} value={ele.answer}
-                                                        onChange={(e) => changeHandler(
-                                                            e,
-                                                            { ques: ele, type: 'subQues', parent: formData[11] },
-                                                            formData[11].answer === "Yes",
-                                                            false
-                                                        )} />
-                                                </div>
-                                            </div>
-                                        )
-                                    })
-                                }
-                                </>)
-                                })
-                                }
+                                                {res?.map(ele => {
+                                                    return (
+                                                        <div key={ele.id}>
+                                                            <div className='form-question' >{ele.question}
+                                                            </div>
+                                                            <div className='form-answer'>
+                                                                <textarea id={ele.id} name={ele.name} value={ele.answer}
+                                                                    onChange={(e) => changeHandler(
+                                                                        e,
+                                                                        { ques: ele, type: 'subQues', parent: formData[11] },
+                                                                        formData[11].answer === "Yes",
+                                                                        false
+                                                                    )} />
+                                                            </div>
+                                                        </div>
+                                                    )
+                                                })
+                                                }
+                                            </>)
+                                        })
+                                    }
+                                </div>
                                 <div className='add-more-container'>
                                     <Button
-                                        className='add-more-btn'
-                                        clickHandler={(e) => addMoreHandler(e, formData[11],formData[11].addMoreSubName,formData[11].subQuestions.length)}
+                                        className='add-more-btn addIcon'
+                                        clickHandler={(e) => addMoreHandler(e, formData[11], formData[11].addMoreSubName, formData[11].subQuestions.length)}
                                         type='button'
                                         buttonText={'Add More'}
+                                        buttonIcon={AddIcon}
                                     />
                                 </div>
                             </div>
@@ -471,7 +486,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID,addMoreQuestio
                     </div>
                     {/* field[13] */}
                     <div className='form-block'>
-                        <div className={`form-declaration`}>{formData[12].question}</div>
+                        <div className={`form-question`}>{formData[12].question}</div>
                         <div className='form-answer'>
                             <textarea id={formData[12].id} name={formData[12].name} value={formData[12].answer}
                                 onChange={(e) => changeHandler(e, { ques: formData[12], type: 'ques', parent: formData[12] })} />

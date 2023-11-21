@@ -31,13 +31,13 @@ const Health = ({ insureddata, proposerdata, category }) => {
   const toggleAccordion = (items, userType) => {
     // console.log(accDetails, items)
     const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === items.newTitle.toLowerCase())
-    //   const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
+      const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id) 
     // console.log("===========>", filterQuestion[0], filterQuestion && filterQuestion[0]?.data?.length > 0 && filterQuestion[0].url)
-    // if (filterQuestion && filterQuestion[0] && filterQuestion[0].url) {
-    //   toaster("warn", "It is filled by agent")
-    // } else {
+    if (filterQuestion && filterQuestion[0] && filterQuestion[0].url && getApidata[0].data?.length<1) {
+      toaster("warn", "It is filled by agent")
+    } else {
       setOpenAcc(openAcc === items.id ? null : items.id)
-    // }
+    }
   }
   const toggleCatAccordion = (id) => {
     setOpenCatAcc(openCatAcc === id ? null : id)
