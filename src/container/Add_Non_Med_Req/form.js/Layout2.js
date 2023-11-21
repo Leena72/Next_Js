@@ -2,6 +2,8 @@ import React from 'react'
 import Button from '@/component/Button';
 import Input from '@/component/Input';
 import AddIcon from '../../../Assets/images/add.png'
+import DeleteIcon from '../../../Assets/images/blueDelete.svg'
+
 import { toaster } from '@/utils/toaster';
 const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuestionsNew, deleteMoreHandlerNew }) => {
 
@@ -127,6 +129,17 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuesti
                             {
                                 formData[1].subQuestions?.map((res, idx) => {
                                     return (<>
+                                        <div className='add-more-container'>
+                                            {formData[1].subQuestions?.length > 1 && <Button
+                                                className='add-more-btn'
+                                                clickHandler={(e) => deleteMoreHandler(e, formData[1], idx, formData[1].addMoreSubName)}
+                                                type='button'
+
+                                                buttonText={'Delete'}
+                                                buttonIcon={DeleteIcon}
+                                            />
+                                            }
+                                        </div>
                                         {
                                             // return
                                             res?.map(ele => {
@@ -150,7 +163,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuesti
                         </div>
                         <div className='add-more-container'>
                             <Button
-                                className='add-more-btn'
+                                className='add-more-btn addIcon'
                                 clickHandler={(e) => addMoreHandler(e, formData[1], formData[1].addMoreSubName, formData[1].subQuestions.length)}
                                 type='button'
                                 buttonText={'Add More'}
@@ -167,10 +180,11 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuesti
                                     return (<>
                                         <div className='add-more-container'>
                                             {formData[2].subQuestions?.length > 1 && <Button
-                                                className='add-more-btn'
+                                                className='add-more-btn deleteIcon'
                                                 clickHandler={(e) => deleteMoreHandler(e, formData[1], idx, formData[2].addMoreSubName)}
                                                 type='button'
                                                 buttonText={'Delete'}
+                                                buttonIcon={DeleteIcon}
                                             />
                                             }
                                         </div>
@@ -193,7 +207,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuesti
                         </div>
                         <div className='add-more-container'>
                             <Button
-                                className='add-more-btn'
+                                className='add-more-btn addIcon'
                                 clickHandler={(e) => addMoreHandler(e, formData[2], formData[2].addMoreSubName, formData[1].subQuestions.length)}
                                 type='button'
                                 buttonText={'Add More'}
@@ -432,6 +446,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuesti
                                                         clickHandler={(e) => deleteMoreHandler(e, formData[1], idx, formData[11].addMoreSubName)}
                                                         type='button'
                                                         buttonText={'Delete'}
+                                                        buttonIcon={DeleteIcon}
                                                     />
                                                     }
                                                 </div>
@@ -459,7 +474,7 @@ const Layout2 = ({ formName, formData, formChangeHandler, radioID, addMoreQuesti
                                 </div>
                                 <div className='add-more-container'>
                                     <Button
-                                        className='add-more-btn'
+                                        className='add-more-btn addIcon'
                                         clickHandler={(e) => addMoreHandler(e, formData[11], formData[11].addMoreSubName, formData[1].subQuestions.length)}
                                         type='button'
                                         buttonText={'Add More'}

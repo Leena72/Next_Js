@@ -522,11 +522,21 @@ ul {
     img {
       width: 15px;
       height: 15px;
-      transform: rotate(45deg);
     }
 
     span {
       padding-left: 5px;
     }
+  }
+}
+
+.deleteIcon{
+  img {
+    transform: rotate(90deg);
+  }
+}
+.addIcon{
+  img {
+    transform: rotate(45deg);
   }
 }
