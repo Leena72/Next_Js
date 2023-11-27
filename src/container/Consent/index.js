@@ -16,6 +16,9 @@ import Reject from '../../Assets/images/reject-icon.png'
 import OTPInput from '../../container/OTPInput';
 import otpCross from "../../Assets/images/otp-cross-icon.png"
 import thankYou from "../../Assets/images/thank-you-bg.png";
+import ConsentReject from '../../component/PopUpPage/ConsentReject';
+import ConsentRejectMsg from '../../component/PopUpPage/ConsentRejectMsg';
+
 
 
 const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
@@ -26,6 +29,9 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
     const [otp, setOtp] = useState('');
     const [refId, setRefId] = useState();
     const [overlay, setOverlay] = useState(false);
+    const [showRejectPopUp, setshowRejectPopUp] = useState(false)
+    const [showRejectMsgPopUp, setShowRejectMsgPopUp] = useState(false)
+    const [rejectMsg, setRejectMsg] = useState('')
     const dispatch = useDispatch()
     const consentDetail = accordionDetails.filter((item) => item.status === 'QUALITY_CHECK')
     const addConsentInfo = consentDetail && consentDetail[0]?.additionalInfo
@@ -73,12 +79,22 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             "consentType": "DATA_CHANGE",
             "proposalNumber": accDetails?.proposalNumber,
             "consentAction": "ACCEPTED",
+            "rejectionReason":action === 'rejected' ? rejectMsg : ''
         }
 
         dispatch(sendOTPAction(data, (resp) => {
             setRefId(resp?.body?.body?.refId)
+          if(action === 'rejected'){
+            setshowRejectPopUp(false)
+            setShowRejectMsgPopUp(false)
             setShowOtp(true);
+
+          }
+          else{
+            setShowOtp(true);
+          }
             setOverlay(true)
+            
             setAction(action)
         }))
     }
@@ -102,8 +118,9 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
     const submitHandler = () => {
         verifyOtp();
     }
-
-    const rejectHandler = () => { }
+    const rejectChangeHandler = (value) => {
+        setRejectMsg(value)
+    }
     return (<>
         <ul className='addNonMedAcc'>
             {
@@ -188,7 +205,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             <div className='consent-btn'>
                 <Button
                     className={'activeBtn'}
-                    clickHandler={()=>acceptHandler('accepted')}
+                    clickHandler={() => acceptHandler('accepted')}
                     type='button'
                     buttonText={'Accept'}
                     // buttonIcon={Aggree}
@@ -196,8 +213,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
                 />
                 <Button
                     className={'activeBtn'}
-                    clickHandler={rejectHandler}
-                    // clickHandler={()=>acceptHandler('rejected')}
+                    clickHandler={() =>setshowRejectPopUp(true)}
                     type='button'
                     // buttonIcon={Reject}
                     buttonText={'Reject'}
@@ -251,6 +267,27 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
                     </div>
                 </div>
             </div>
+        }
+        {
+            showRejectPopUp &&
+            <ConsentReject
+                text={'Please reconfirm if you want to reject the application'}
+                leftHandler={() => setShowRejectMsgPopUp(true)}
+                leftSideBtnText={'Yes'}
+                rightHandler={''}
+                rightSideBtnText={'No'}
+            />
+        }
+        {
+            showRejectMsgPopUp &&
+            <ConsentRejectMsg
+                text={'Please let us know what went wrong'}
+                message={rejectMsg}
+                changeHandler={rejectChangeHandler}
+                btnHandler={() => acceptHandler('rejected')}
+                btnText={'Submit'}
+                onClose={()=>setShowRejectMsgPopUp(false)}
+            />
         }
     </>
     )
