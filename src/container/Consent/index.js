@@ -36,7 +36,12 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
     const consentDetail = accordionDetails.filter((item) => item.status === 'QUALITY_CHECK')
     const addConsentInfo = consentDetail && consentDetail[0]?.additionalInfo
     const policyDocuments = accDetails?.policyDocuments
+    console.log('>>>', policyDocuments, policyDocuments.hasOwnProperty('BI_TAG_NAME'),
+
+        policyDocuments.hasOwnProperty('REVISED_BI_DOC') &&
+        policyDocuments['REVISED_BI_DOC'] !== ' ')
     const [action, setAction] = useState('')
+
     const renderElement = (data, title) => {
         let label
         if (title === 'Proposer Details') {
@@ -79,22 +84,22 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             "consentType": "DATA_CHANGE",
             "proposalNumber": accDetails?.proposalNumber,
             "consentAction": "ACCEPTED",
-            "rejectionReason":action === 'rejected' ? rejectMsg : ''
+            "rejectionReason": action === 'rejected' ? rejectMsg : ''
         }
 
         dispatch(sendOTPAction(data, (resp) => {
             setRefId(resp?.body?.body?.refId)
-          if(action === 'rejected'){
-            setshowRejectPopUp(false)
-            setShowRejectMsgPopUp(false)
-            setShowOtp(true);
+            if (action === 'rejected') {
+                setshowRejectPopUp(false)
+                setShowRejectMsgPopUp(false)
+                setShowOtp(true);
 
-          }
-          else{
-            setShowOtp(true);
-          }
+            }
+            else {
+                setShowOtp(true);
+            }
             setOverlay(true)
-            
+
             setAction(action)
         }))
     }
@@ -121,10 +126,16 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
     const rejectChangeHandler = (value) => {
         setRejectMsg(value)
     }
+    const consentAcc = accDetails.policyFor === 'OTHER' ? consentForChangeData : 
+    consentForChangeData.filter((item)=>{
+        return item.title !== 'Proposer Details'
+    })
+    // console.log('consentAcc',consentAcc)
     return (<>
         <ul className='addNonMedAcc'>
             {
-                consentForChangeData.map(item => {
+                consentAcc.map(item => {
+                    
                     return (
                         <li className='addNonMedAccList' key={item.id} >
                             <Accordion2
@@ -148,50 +159,75 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
         <div className='consent-blk consent-tag-blk'>
             <div className='consent-tag'>Please check the below documents for your reference</div>
             <div className='consent-down-container'>
-                <div className='consent-download'>
-                    <span>Revised Benefit Illustration</span>
-                    <a onClick={() => downloadHandler('REVISED_BI_DOC')}>
-                        <Image
-                            src={dwnImg}
-                            alt='dwnImg'
-                            width={15}
-                            height={15}
-                        />
-                    </a>
-                </div>
-                <div className='consent-download'>
-                    <span>Revised Proposal Form</span>
-                    <a onClick={() => downloadHandler('PDF_TAG_NAME')}>
-                        <Image
-                            src={dwnImg}
-                            alt='dwnImg'
-                            width={15}
-                            height={15}
-                        />
-                    </a>
-                </div>
-                <div className='consent-download'>
-                    <span>Covid Questionnaire</span>
-                    <a onClick={() => downloadHandler('COVID_TAG_NAME_2')}>
-                        <Image
-                            src={dwnImg}
-                            alt='dwnImg'
-                            width={15}
-                            height={15}
-                        />
-                    </a>
-                </div>
-                <div className='consent-download'>
-                    <span>Form 60</span>
-                    <a onClick={() => downloadHandler('FORM60_TAG_NAME')}>
-                        <Image
-                            src={dwnImg}
-                            alt='dwnImg'
-                            width={15}
-                            height={15}
-                        />
-                    </a>
-                </div>
+                {policyDocuments.hasOwnProperty('REVISED_BI_DOC') &&
+                    policyDocuments['REVISED_BI_DOC'].length !== 0 &&
+                    policyDocuments['REVISED_BI_DOC'] !== ' ' &&
+                        policyDocuments['REVISED_BI_DOC'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Revised Benefit Illustration</span>
+                        <a onClick={() => downloadHandler('REVISED_BI_DOC')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
+                {policyDocuments.hasOwnProperty('PDF_TAG_NAME') &&
+                    policyDocuments['PDF_TAG_NAME'].length !== 0 &&
+                    policyDocuments['PDF_TAG_NAME'] !== ' ' &&
+                        policyDocuments['PDF_TAG_NAME'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Revised Proposal Form</span>
+                        <a onClick={() => downloadHandler('PDF_TAG_NAME')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
+                {
+                    policyDocuments.hasOwnProperty('COVID_TAG_NAME_2') &&
+                    policyDocuments['COVID_TAG_NAME_2'].length !== 0 &&
+                    policyDocuments['COVID_TAG_NAME_2'] !== ' ' &&
+                        policyDocuments['COVID_TAG_NAME_2'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Covid Questionnaire</span>
+                        <a onClick={() => downloadHandler('COVID_TAG_NAME_2')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
+                {policyDocuments.hasOwnProperty('FORM60_TAG_NAME') &&
+                    policyDocuments['FORM60_TAG_NAME'].length !== 0 &&
+                    policyDocuments['FORM60_TAG_NAME'] !== ' ' &&
+                        policyDocuments['FORM60_TAG_NAME'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Form 60</span>
+                        <a onClick={() => downloadHandler('FORM60_TAG_NAME')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
             </div>
             <label>
                 <Input
@@ -213,7 +249,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
                 />
                 <Button
                     className={'activeBtn'}
-                    clickHandler={() =>setshowRejectPopUp(true)}
+                    clickHandler={() => setshowRejectPopUp(true)}
                     type='button'
                     // buttonIcon={Reject}
                     buttonText={'Reject'}
@@ -276,6 +312,8 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
                 leftSideBtnText={'Yes'}
                 rightHandler={''}
                 rightSideBtnText={'No'}
+                onClose={() => setshowRejectPopUp(false)}
+
             />
         }
         {
@@ -286,7 +324,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
                 changeHandler={rejectChangeHandler}
                 btnHandler={() => acceptHandler('rejected')}
                 btnText={'Submit'}
-                onClose={()=>setShowRejectMsgPopUp(false)}
+                onClose={() => setShowRejectMsgPopUp(false)}
             />
         }
     </>
