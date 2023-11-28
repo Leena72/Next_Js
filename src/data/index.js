@@ -173,28 +173,28 @@ export const applicationData = [
             },
         ]
     },
-    {
-        id: 3,
-        heading: 'Medical Requirement',
-        title: 'MEDICAL_REQUIREMENT',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        active_icon: activeImg_7,
-        img: img_7,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
+    // {
+    //     id: 3,
+    //     heading: 'Medical Requirement',
+    //     title: 'MEDICAL_REQUIREMENT',
+    //     subHeading: 'Yet to start',
+    //     completed: false,
+    //     dummyContent: 'Dummy Content',
+    //     contentStatus: false,
+    //     active_icon: activeImg_7,
+    //     img: img_7,
+    //     content: [
+    //         {
+    //             id: 1,
+    //             heading: '',
+    //             subHeading: '',
+    //             img: '',
+    //             dummyContent: '',
+    //             contentStatus: false,
+    //             subContent: []
+    //         },
+    //     ]
+    // },
     {
         id: 4,
         heading: 'Additional Non-Medical Requirements',

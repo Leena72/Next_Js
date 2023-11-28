@@ -3,11 +3,11 @@ import Input from '@/component/Input'
 import Accordion2 from '../../component/Accordion/Accordion2'
 import { consentDataList } from '../../data'
 
-const ConsentLayout = ({ data, title, label, consentData }) => {
+const ConsentLayout = ({ accDetails, data, title, label, consentData }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
 
 
-    const dataAcc = [
+    const dataAcc = accDetails?.policyFor === 'OTHER' ? [
         {
             id: 1,
             title: 'Insured'
@@ -17,6 +17,13 @@ const ConsentLayout = ({ data, title, label, consentData }) => {
             title: 'Proposer'
         },
     ]
+        : [
+            {
+                id: 1,
+                title: 'Insured'
+            }
+        ]
+
     const changeHandler = () => { }
     const toggleAccordion = (id) => {
         setOpenAccordion(openAccordion === id ? null : id)
