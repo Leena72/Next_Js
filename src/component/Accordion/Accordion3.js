@@ -52,20 +52,36 @@ const Accordion3 = ({ data }) => {
                             <span className='doc-sub-heading'>{item.msg ? `(${item.msg})` : ''}</span>
                         </div>
                         <div className='doc-img'>
-                            {item.proposer && <a className='doc-img-link' onClick={() => downloadHandler(proposerFile)}>
-                                <Image
-                                    src={dwnImg}
-                                    alt='dwnImg'
-                                />
-                                {(item.title === 'COVID Questionnaire' || item.title === 'Form 60') && <span>{customerDetail?.proposerName}</span>}
-                            </a>}
-                            {item.insured && <a className='doc-img-link' onClick={() => downloadHandler(insuredFile)}>
-                                <Image
-                                    src={dwnImg}
-                                    alt='dwnImg'
-                                />
-                                {(item.title === 'COVID Questionnaire' || item.title === 'Form 60') && <span>{!customerDetail?.insuredName ? 'INSURER' : customerDetail?.insuredName}</span>}
-                            </a>}
+                            {
+                                (customerDetail.policyFor !== 'OTHER'
+                                    &&
+                                    (item.title === 'COVID Questionnaire' || item.title === 'Form 60'))
+                                    ?
+                                    <>
+                                        <a className='doc-img-link' onClick={() => downloadHandler(proposerFile)}>
+                                            <Image
+                                                src={dwnImg}
+                                                alt='dwnImg'
+                                            />
+                                            {(item.title === 'COVID Questionnaire' || item.title === 'Form 60') && <span>{customerDetail?.proposerName}</span>}
+                                        </a>
+                                        <a className='doc-img-link' onClick={() => downloadHandler(insuredFile)}>
+                                            <Image
+                                                src={dwnImg}
+                                                alt='dwnImg'
+                                            />
+                                            {(item.title === 'COVID Questionnaire' || item.title === 'Form 60') && <span>{!customerDetail?.insuredName ? 'INSURER' : customerDetail?.insuredName}</span>}
+                                        </a>
+                                    </>
+                                    :
+                                    <a className='doc-img-link' onClick={() => downloadHandler(proposerFile)}>
+                                        <Image
+                                            src={dwnImg}
+                                            alt='dwnImg'
+                                        />
+                                        {(item.title === 'COVID Questionnaire' || item.title === 'Form 60') && <span>{customerDetail?.proposerName}</span>}
+                                    </a>
+                            }
                         </div>
                     </li>
                 )
