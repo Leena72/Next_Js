@@ -16,7 +16,7 @@ export const downloadAction = (proposalNo, file, type, cb) => (dispatch) => {
             "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
         },
         responseType: "blob",
-    }).then((response) => {
+    }).then((response) => { 
         dispatch({
             type: "LOADER_OFF",
         });

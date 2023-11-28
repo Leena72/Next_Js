@@ -53,7 +53,7 @@ const Accordion3 = ({ data }) => {
                         </div>
                         <div className='doc-img'>
                             {
-                                (customerDetail.policyFor !== 'OTHER'
+                                (customerDetail.policyFor === 'OTHER'
                                     &&
                                     (item.title === 'COVID Questionnaire' || item.title === 'Form 60'))
                                     ?
