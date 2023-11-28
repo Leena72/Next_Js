@@ -109,9 +109,13 @@ const CounterPage = () => {
   }
   const downloadHandler = (fileName) => {
     let proposalNo = localStorage.getItem("proposalNo")
-    // let file = "3108426724FNA.pdf"
     let file = documentList[fileName]
-    dispatch(downloadAction(proposalNo, file))
+    if (file === '' || file === ' ') { 
+      toaster('error','File not exist.')
+    }
+    else {
+      dispatch(downloadAction(proposalNo, file))
+    }
   }
   return (
     <div className='card-body'>
@@ -121,72 +125,72 @@ const CounterPage = () => {
           <span className="lnktxtbx" onClick={() => downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
-      { customerDetail?.counterOfferCount < 3 &&
+      {customerDetail?.counterOfferCount < 3 &&
         <div>
-        <div className='mb-2 rvsd-conatiner'>
-          <div className='rvsd_blk'>
-            <div className='list'>
-              <Input
-                type='radio'
-                value='Accept the revised offer'
-                name='counterReason'
-                changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
-                checked={
-                  inputValue === "Accept the revised offer"
-                }
-              />
+          <div className='mb-2 rvsd-conatiner'>
+            <div className='rvsd_blk'>
+              <div className='list'>
+                <Input
+                  type='radio'
+                  value='Accept the revised offer'
+                  name='counterReason'
+                  changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
+                  checked={
+                    inputValue === "Accept the revised offer"
+                  }
+                />
+              </div>
+              <div className='label'>Accept the revised offer</div>
             </div>
-            <div className='label'>Accept the revised offer</div>
+            <div className='rvsd_blk-tooltip'>
+              <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
+                <span className="tooltiptext">Check the counter offer letter and revised benefit illustration for your revised offer and if you are ok then please select this option to provide consent via OTP</span>
+              </span>
+            </div>
           </div>
-          <div className='rvsd_blk-tooltip'>
-            <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-              <span className="tooltiptext">Check the counter offer letter and revised benefit illustration for your revised offer and if you are ok then please select this option to provide consent via OTP</span>
-            </span>
+          <div className='mb-2 rvsd-conatiner'>
+            <div className='rvsd_blk'>
+              <div className='list'>
+                <Input
+                  type='radio'
+                  value='Adjust the Sum Assured to match Existing Premium'
+                  name='counterReason'
+                  changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
+                  checked={
+                    inputValue === "Adjust the Sum Assured to match Existing Premium"
+                  }
+                />
+              </div>
+              <div className='label'>Adjust the Sum Assured to match Existing Premium</div>
+            </div>
+            <div className='rvsd_blk-tooltip'>
+              <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
+                <span className="tooltiptext">Select this option and provide OTP consent if you want to adjust your insurance cover and keep the premium same as what you have already paid.</span>
+              </span>
+            </div>
+          </div>
+          <div className='mb-2 rvsd-conatiner'>
+            <div className='rvsd_blk'>
+              <div className='list display_flex'>
+                <Input
+                  type='radio'
+                  value='Decline the revised offer'
+                  name='counterReason'
+                  changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
+                  checked={
+                    inputValue === "Decline the revised offer"
+                  }
+                />
+              </div>
+              <div className='label'>Decline the revised offer</div>
+            </div>
+            <div className='rvsd_blk-tooltip'>
+              <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
+                <span className="tooltiptext">If you are not ok with the revised offer as either you are no more interested to buy this plan or you want to request for a reconsideration (proof required for the reason for reconsideration). OTP consent is required</span>
+              </span>
+            </div>
           </div>
         </div>
-        <div className='mb-2 rvsd-conatiner'>
-          <div className='rvsd_blk'>
-            <div className='list'>
-              <Input
-                type='radio'
-                value='Adjust the Sum Assured to match Existing Premium'
-                name='counterReason'
-                changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
-                checked={
-                  inputValue === "Adjust the Sum Assured to match Existing Premium"
-                }
-              />
-            </div>
-            <div className='label'>Adjust the Sum Assured to match Existing Premium</div>
-          </div>
-          <div className='rvsd_blk-tooltip'>
-            <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-              <span className="tooltiptext">Select this option and provide OTP consent if you want to adjust your insurance cover and keep the premium same as what you have already paid.</span>
-            </span>
-          </div>
-        </div>
-        <div className='mb-2 rvsd-conatiner'>
-          <div className='rvsd_blk'>
-            <div className='list display_flex'>
-              <Input
-                type='radio'
-                value='Decline the revised offer'
-                name='counterReason'
-                changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
-                checked={
-                  inputValue === "Decline the revised offer"
-                }
-              />
-            </div>
-            <div className='label'>Decline the revised offer</div>
-          </div>
-          <div className='rvsd_blk-tooltip'>
-            <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-              <span className="tooltiptext">If you are not ok with the revised offer as either you are no more interested to buy this plan or you want to request for a reconsideration (proof required for the reason for reconsideration). OTP consent is required</span>
-            </span>
-          </div>
-        </div>
-      </div>
       }
       <div
         className="overlay__popup_nw"

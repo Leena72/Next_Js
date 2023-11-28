@@ -63,7 +63,7 @@ export const validateToken = (sso,cb) => (dispatch) => {
                 cb();
             }
             else {
-                toaster('error', res.data.message)
+                // toaster('error', res.data.message)
             }
             dispatch({
                 type: "LOADER_OFF",
