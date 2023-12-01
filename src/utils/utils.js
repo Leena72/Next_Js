@@ -55,7 +55,7 @@ export const HomePageImage = (status, isActive) => {
       return isActive ? activeImg_12 : img_12
     case 'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION':
       return isActive ? activeImg_13 : img_13
-    case 'ADDITIONAL_NON_MEDICAL_REQUIREMENT':
+    case 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS':
       return isActive ? activeImg_8 : img_8
     case 'Quality_Check':
       return isActive ? activeImg_11 : img_11
