@@ -23,7 +23,7 @@ const MainAccordion = ({ data }) => {
     // which list acc to be shown
     let renderItem = true // by default render 
     accordionDetails?.map((acc) => {
-      if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT' &&
+      if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS' &&
         item.heading === 'Additional Non-Medical Requirements') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
           || acc?.subStatus === '' || acc?.subStatus !== 'AR') {
@@ -51,6 +51,21 @@ const MainAccordion = ({ data }) => {
           renderItem = false
         }
       }
+      else if (renderItem && acc.status === 'MEDICAL_RISK_VERIFICATION' &&
+        item.heading === 'Medical Risk Verification') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '') {
+          renderItem = false
+        }
+      }
+      else if (renderItem && acc.status === 'MEDICAL_REQUIREMENT' &&
+        item.heading === 'Medical Requirement') {
+        if (acc?.subStatus === null || acc?.subStatus === undefined
+          || acc?.subStatus === '') {
+          renderItem = false
+        }
+      }
+      
     })
     return renderItem
   }
@@ -99,7 +114,7 @@ const MainAccordion = ({ data }) => {
         return showElement
       case 'Additional Non-Medical Requirements':
         detail = accordionDetails && accordionDetails.filter(item => {
-          return item.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENT';
+          return item.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS';
         });
 
         return <AddNonMedReq
