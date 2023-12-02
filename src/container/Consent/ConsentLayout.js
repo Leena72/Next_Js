@@ -41,8 +41,9 @@ const ConsentLayout = ({ accDetails, data, title, label, consentData }) => {
     // health questionnaire 
     const renderElement = (title) => {
         // console.log('consentData>>', consentData)
-        let detail = title === 'Insured' ? Object.entries(consentData.insuredQuestionDetails) :
-            Object.entries(consentData.proposerQuestionDetails)
+        let detail = title === 'Insured' ? Object.entries(consentData.insuredQuestionDetails).slice(0,6) :
+            Object.entries(consentData.proposerQuestionDetails).slice(0,6)
+            // console.log('detail',detail)
         const renderData = <div className='consent-ques-blk'>{
             detail.map((item, id) => {
                 return (<div className='consent-ques-ans' key={id}>

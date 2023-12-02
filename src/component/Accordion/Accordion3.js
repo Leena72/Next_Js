@@ -29,7 +29,7 @@ const Accordion3 = ({ data }) => {
 
     // console.log('listItem', listItem)
 
-    const downloadHandler = (file) => {
+    const downloadHandler = (file) => { 
         let proposalNo = customerDetail?.proposalNumber
         dispatch(downloadAction(proposalNo, file))
     }

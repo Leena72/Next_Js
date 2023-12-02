@@ -34,7 +34,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
       const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id) 
     // console.log("===========>", filterQuestion[0], filterQuestion && filterQuestion[0]?.data?.length > 0 && filterQuestion[0].url)
     if (filterQuestion && filterQuestion[0] && filterQuestion[0].url && getApidata[0].data?.length<1) {
-      toaster("warn", "It is filled by agent")
+      toaster("success", "It is filled by agent")
     } else {
       setOpenAcc(openAcc === items.id ? null : items.id)
     }
@@ -207,6 +207,9 @@ const Health = ({ insureddata, proposerdata, category }) => {
         break;
     }
   }
+  const addNonMedlock= accDetails?.newgenStatusResponseDTOList.filter(item=>item.status==="ADDITIONAL_NON_MEDICAL_REQUIREMENTS")
+const lockForm=addNonMedlock[0]?.additionalInfo?.questionLock
+  // console.log('lockForm',lockForm)
   return (
     <>
       <div
@@ -240,7 +243,7 @@ const Health = ({ insureddata, proposerdata, category }) => {
               clickHandler={finalFormSubmit}
               type='button'
               buttonText={'Submit'}
-              disabled={!submitOtpValid}
+              disabled={lockForm ? true : !submitOtpValid}
             />
           </div>
         </div>

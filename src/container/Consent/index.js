@@ -131,7 +131,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
         consentForChangeData.filter((item) => {
             return item.title !== 'Proposer Details'
         })
-    console.log('consentAcc',consentDetail[0]?.actual_status,consentDetail[0]?.actual_status === 'COMPLETED')
+    // console.log('consentAcc', consentDetail[0]?.actual_status, consentDetail[0]?.actual_status === 'COMPLETED')
     return (<>
         <ul className='addNonMedAcc'>
             {
@@ -157,108 +157,110 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
                 })
             }
         </ul>
-        {consentDetail[0]?.actual_status !== 'COMPLETED' &&
-            <div className='consent-blk consent-tag-blk'>
-                <div className='consent-tag'>Please check the below documents for your reference</div>
-                <div className='consent-down-container'>
-                    {policyDocuments.hasOwnProperty('REVISED_BI_DOC') &&
-                        policyDocuments['REVISED_BI_DOC'].length !== 0 &&
-                        policyDocuments['REVISED_BI_DOC'] !== ' ' &&
-                        policyDocuments['REVISED_BI_DOC'] !== ''
-                        &&
-                        <div className='consent-download'>
-                            <span>Revised Benefit Illustration</span>
-                            <a onClick={() => downloadHandler('REVISED_BI_DOC')}>
-                                <Image
-                                    src={dwnImg}
-                                    alt='dwnImg'
-                                    width={15}
-                                    height={15}
-                                />
-                            </a>
-                        </div>
-                    }
-                    {policyDocuments.hasOwnProperty('PDF_TAG_NAME') &&
-                        policyDocuments['PDF_TAG_NAME'].length !== 0 &&
-                        policyDocuments['PDF_TAG_NAME'] !== ' ' &&
-                        policyDocuments['PDF_TAG_NAME'] !== ''
-                        &&
-                        <div className='consent-download'>
-                            <span>Revised Proposal Form</span>
-                            <a onClick={() => downloadHandler('PDF_TAG_NAME')}>
-                                <Image
-                                    src={dwnImg}
-                                    alt='dwnImg'
-                                    width={15}
-                                    height={15}
-                                />
-                            </a>
-                        </div>
-                    }
-                    {
-                        policyDocuments.hasOwnProperty('COVID_TAG_NAME_2') &&
-                        policyDocuments['COVID_TAG_NAME_2'].length !== 0 &&
-                        policyDocuments['COVID_TAG_NAME_2'] !== ' ' &&
-                        policyDocuments['COVID_TAG_NAME_2'] !== ''
-                        &&
-                        <div className='consent-download'>
-                            <span>Covid Questionnaire</span>
-                            <a onClick={() => downloadHandler('COVID_TAG_NAME_2')}>
-                                <Image
-                                    src={dwnImg}
-                                    alt='dwnImg'
-                                    width={15}
-                                    height={15}
-                                />
-                            </a>
-                        </div>
-                    }
-                    {policyDocuments.hasOwnProperty('FORM60_TAG_NAME') &&
-                        policyDocuments['FORM60_TAG_NAME'].length !== 0 &&
-                        policyDocuments['FORM60_TAG_NAME'] !== ' ' &&
-                        policyDocuments['FORM60_TAG_NAME'] !== ''
-                        &&
-                        <div className='consent-download'>
-                            <span>Form 60</span>
-                            <a onClick={() => downloadHandler('FORM60_TAG_NAME')}>
-                                <Image
-                                    src={dwnImg}
-                                    alt='dwnImg'
-                                    width={15}
-                                    height={15}
-                                />
-                            </a>
-                        </div>
-                    }
-                </div>
-                <label>
-                    <Input
-                        type='radio'
-                        id='agree'
-                        name='radio'
-                        changeHandler={(e) => { e.target.checked ? setDisabled(false) : setDisabled(true) }}
-                    />
-                    <span>I agree to the above changes</span>
-                </label>
-                <div className='consent-btn'>
-                    <Button
-                        className={'activeBtn'}
-                        clickHandler={() => acceptHandler('accepted')}
-                        type='button'
-                        buttonText={'Accept'}
-                        // buttonIcon={Aggree}
-                        disabled={disabled}
-                    />
-                    <Button
-                        className={'activeBtn'}
-                        clickHandler={() => { setshowRejectPopUp(true), setShowOtp(false) }}
-                        type='button'
-                        // buttonIcon={Reject}
-                        buttonText={'Reject'}
-                    />
-                </div>
+        <div className='consent-blk consent-tag-blk'>
+            <div className='consent-tag'>Please check the below documents for your reference</div>
+            <div className='consent-down-container'>
+                {policyDocuments.hasOwnProperty('REVISED_BI_DOC') &&
+                    policyDocuments['REVISED_BI_DOC'].length !== 0 &&
+                    policyDocuments['REVISED_BI_DOC'] !== ' ' &&
+                    policyDocuments['REVISED_BI_DOC'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Revised Benefit Illustration</span>
+                        <a onClick={() => downloadHandler('REVISED_BI_DOC')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
+                {policyDocuments.hasOwnProperty('PDF_TAG_NAME') &&
+                    policyDocuments['PDF_TAG_NAME'].length !== 0 &&
+                    policyDocuments['PDF_TAG_NAME'] !== ' ' &&
+                    policyDocuments['PDF_TAG_NAME'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Revised Proposal Form</span>
+                        <a onClick={() => downloadHandler('PDF_TAG_NAME')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
+                {
+                    policyDocuments.hasOwnProperty('COVID_TAG_NAME_2') &&
+                    policyDocuments['COVID_TAG_NAME_2'].length !== 0 &&
+                    policyDocuments['COVID_TAG_NAME_2'] !== ' ' &&
+                    policyDocuments['COVID_TAG_NAME_2'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Covid Questionnaire</span>
+                        <a onClick={() => downloadHandler('COVID_TAG_NAME_2')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
+                {policyDocuments.hasOwnProperty('FORM60_TAG_NAME') &&
+                    policyDocuments['FORM60_TAG_NAME'].length !== 0 &&
+                    policyDocuments['FORM60_TAG_NAME'] !== ' ' &&
+                    policyDocuments['FORM60_TAG_NAME'] !== ''
+                    &&
+                    <div className='consent-download'>
+                        <span>Form 60</span>
+                        <a onClick={() => downloadHandler('FORM60_TAG_NAME')}>
+                            <Image
+                                src={dwnImg}
+                                alt='dwnImg'
+                                width={15}
+                                height={15}
+                            />
+                        </a>
+                    </div>
+                }
             </div>
-        }
+            {consentDetail[0]?.actual_status !== 'COMPLETED' &&
+                <>
+                    <label>
+                        <Input
+                            type='radio'
+                            id='agree'
+                            name='radio'
+                            changeHandler={(e) => { e.target.checked ? setDisabled(false) : setDisabled(true) }}
+                        />
+                        <span>I agree to the above changes</span>
+                    </label>
+                    <div className='consent-btn'>
+                        <Button
+                            className={'activeBtn'}
+                            clickHandler={() => acceptHandler('accepted')}
+                            type='button'
+                            buttonText={'Accept'}
+                            // buttonIcon={Aggree}
+                            disabled={disabled}
+                        />
+                        <Button
+                            className={'activeBtn'}
+                            clickHandler={() => { setshowRejectPopUp(true), setShowOtp(false) }}
+                            type='button'
+                            // buttonIcon={Reject}
+                            buttonText={'Reject'}
+                        />
+                    </div>
+                </>
+            }
+        </div>
 
         {showOtp &&
             <div className={`header-otp-popup popupcmn ${showOtp && 'active'}`} >
