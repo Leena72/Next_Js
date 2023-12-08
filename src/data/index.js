@@ -382,7 +382,7 @@ export const questionnaireData = [
         list: [
             {
                 id: 1,
-                title: 'Alcohol Habit Questionnaire ',
+                title: 'Alcohol Habit Questionnaire',
                 formName: 'ALCOHOL_HABIT_QUESTION',
                 newTitle: 'Alcohol Questionnaire'
             },
