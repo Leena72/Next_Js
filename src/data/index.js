@@ -242,7 +242,7 @@ export const applicationData = [
     {
         id: 6,
         heading: 'Consent For Change In The Application Details',
-        title: 'QUALITY_CHECK',
+        title: 'CONSENT_FOR_CHANGE',
         subHeading: 'Yet to start',
         completed: false,
         dummyContent: 'Dummy Content',
