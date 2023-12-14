@@ -19,6 +19,16 @@ const MainAccordion = ({ data }) => {
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
   const policyDocuments = accDetails?.policyDocuments
 
+  useEffect(() => {
+    if (typeof document !== "undefined" && typeof window !== "undefined") {
+        const urlParams = new URLSearchParams(window.location.search);
+        const sectionId = urlParams.get('section')
+        const matchTitle = data?.filter(item=>item.title=== sectionId)
+        console.log('matchTitle',matchTitle,data)
+        toggleAccordion(matchTitle?.[0]?.id)
+    }
+}, [])
+
   const renderList = (accordionDetails, item) => {
     // which list acc to be shown
     let renderItem = true // by default render 

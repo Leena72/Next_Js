@@ -24,6 +24,7 @@ const Login = () => {
     if (typeof document !== "undefined" && typeof window !== "undefined") {
     const urlParams = new URLSearchParams(window.location.search);
     const ssoid = urlParams.get('ssoid')
+    console.log('ssoid>>',ssoid,urlParams)
     if (ssoid) {
       ssoIdSet(true)
     } else {
