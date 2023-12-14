@@ -3298,6 +3298,14 @@ export const downloadData = [
     },
     {
         id: 9,
+        title: 'Decision Letter',
+        msg: '',
+        downloadStatus: false,
+        proposer: 'Decision Letter',
+        insured: ''
+    },
+    {
+        id: 10,
         title: 'Revised Benefit',
         msg: '',
         downloadStatus: false,
@@ -3448,6 +3456,7 @@ export const statusApi = {
     "proposerName": "RAKESH",
     "insuredName": "RAKESH",
     "counterOfferPaymentCompleted": true,
+    "currentSectionTab":'ADDITIONAL_NON_MEDICAL_REQUIREMENTS',
     "newgenStatusResponseDTOList": [
         {
             "id": 3879358,
@@ -3863,7 +3872,8 @@ export const statusApi = {
         "NEW_COVID_TAG_NAME_2": "3107424426covid_19.pdf",
         "AGENT_CONFIDENTIAL_REPORT": "AgentConfidentialReport.pdf",
         "REVISED_OFFER_DOC": " ",
-        "REVISED_BI_DOC": " "
+        "REVISED_BI_DOC": " ",
+        "Decision Letter":""
     },
     "paymentReceipts": [
         "RECIEP_12321393232_1.pdf",

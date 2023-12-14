@@ -20,13 +20,15 @@ const MainAccordion = ({ data }) => {
   const policyDocuments = accDetails?.policyDocuments
 
   useEffect(() => {
-    if (typeof document !== "undefined" && typeof window !== "undefined") {
-        const urlParams = new URLSearchParams(window.location.search);
-        const sectionId = urlParams.get('section')
-        const matchTitle = data?.filter(item=>item.title=== sectionId)
-        console.log('matchTitle',matchTitle,data)
-        toggleAccordion(matchTitle?.[0]?.id)
-    }
+        const sectionId = accDetails?.currentSectionTab
+        let matchTitle
+        if(sectionId==='QUALITY_CHECK'){
+          matchTitle = data?.filter(item=>item.title=== 'CONSENT_FOR_DATA_CHANGE')
+        }
+        else{
+          matchTitle = data?.filter(item=>item.title=== sectionId)
+        }
+        toggleAccordion(matchTitle?.[0]?.id) 
 }, [])
 
   const renderList = (accordionDetails, item) => {
