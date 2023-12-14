@@ -11,19 +11,22 @@ const SsoLogin = () => {
     const dispatch = useDispatch()
     const showLoader = useSelector((state) => state.loaderReducer);
 
-    const validateTokenSSO = (ssoid) => {
+    const validateTokenSSO = (ssoid,sectionId) => {
         dispatch(validateToken(ssoid, () => {
-            router.push('/customer-portal/dashboard');
+
+            let url=  sectionId !== null  ? `/customer-portal/dashboard?section=${sectionId}`:
+            `/customer-portal/dashboard`
+            router.push(url);
         }))
     }
     useEffect(() => {
         if (typeof document !== "undefined" && typeof window !== "undefined") {
             const urlParams = new URLSearchParams(window.location.search);
             const ssoid = urlParams.get('ssoid')
+            const sectionId = urlParams.get('section')
             setSsoId(ssoid)
-            validateTokenSSO(ssoid)
+            validateTokenSSO(ssoid,sectionId)
         }
-
     }, [])
 
 

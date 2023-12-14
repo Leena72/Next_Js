@@ -9,9 +9,18 @@ import Accordion3 from '../../../component/Accordion/Accordion3';
 import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
 import { dashboardAction } from '../../../redux/action/dashboardAction'
+import { scrollToTop } from '../../../utils/utils';
 
 
 const Dashboard = () => {
+   
+    const data = applicationData
+    const [openAccordion, setOpenAccordion] = useState(false)
+    const [customerData, setcustomerData] = useState(null)
+    const dispatch = useDispatch()
+    const showLoader = useSelector((state) => state.loaderReducer);
+    const storeState = useSelector((state) => state);
+
     useEffect(() => {
         if (typeof document !== "undefined" && typeof window !== "undefined") {
             let proposalNo = localStorage.getItem("proposalNo")
@@ -21,15 +30,17 @@ const Dashboard = () => {
             // setcustomerData(statusApi) // static data
         }
     }, [])
-    
-    // console.log('statusApi',statusApi)
-    const data = applicationData
-    const [openAccordion, setOpenAccordion] = useState(false)
-    const [customerData, setcustomerData] = useState(null)
-    const dispatch = useDispatch()
-    const showLoader = useSelector((state) => state.loaderReducer);
-    const storeState = useSelector((state) => state);
+    useEffect(() => {
+        if (typeof document !== "undefined" && typeof window !== "undefined") {
+            const urlParams = new URLSearchParams(window.location.search);
+            const sectionId = urlParams.get('section')
+            scrollToTop(sectionId)
+            setOpenAccordion(true)
+        }
+    }, [])
 
+
+    // console.log('statusApi',statusApi)
     // console.log('storeState', storeState)
 
     useEffect(() => {
@@ -62,7 +73,7 @@ const Dashboard = () => {
                 data={data}
             />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
-            <div className='dashboard-acc'>
+            <div className='dashboard-acc' id='POLICY_DOCUMENTS_DOWNLOAD'>
                 <div
                     className='acc-non-block'
                     onClick={() => setOpenAccordion(!openAccordion)}
