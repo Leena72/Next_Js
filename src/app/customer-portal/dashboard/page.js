@@ -13,7 +13,7 @@ import { scrollToTop } from '../../../utils/utils';
 
 
 const Dashboard = () => {
-   
+
     const data = applicationData
     const [openAccordion, setOpenAccordion] = useState(false)
     const [customerData, setcustomerData] = useState(null)
@@ -30,18 +30,17 @@ const Dashboard = () => {
             // setcustomerData(statusApi) // static data
         }
     }, [])
+
     useEffect(() => {
-        if (typeof document !== "undefined" && typeof window !== "undefined") {
-            const urlParams = new URLSearchParams(window.location.search);
-            const sectionId = urlParams.get('section')
-            scrollToTop(sectionId)
+        if (customerData?.currentSectionTab === 'POLICY_STATUS') {
+            scrollToTop(customerData?.currentSectionTab)
             setOpenAccordion(true)
         }
+        else {
+            setOpenAccordion(false)
+        }
+
     }, [])
-
-
-    // console.log('statusApi',statusApi)
-    // console.log('storeState', storeState)
 
     useEffect(() => {
         if (typeof document !== "undefined" && typeof window !== "undefined") {
@@ -52,10 +51,10 @@ const Dashboard = () => {
         }
     }, [])
 
-
-
-
+    // console.log('statusApi',statusApi)
+    // console.log('storeState', storeState)
     // console.log('customerData', customerData)
+
     return (
         <div className='dashboard-container'>
             {showLoader["isLoaderOn"] && (
@@ -73,7 +72,7 @@ const Dashboard = () => {
                 data={data}
             />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
-            <div className='dashboard-acc' id='POLICY_DOCUMENTS_DOWNLOAD'>
+            <div className='dashboard-acc' id='POLICY_STATUS'>
                 <div
                     className='acc-non-block'
                     onClick={() => setOpenAccordion(!openAccordion)}

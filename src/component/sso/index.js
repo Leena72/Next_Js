@@ -14,8 +14,7 @@ const SsoLogin = () => {
     const validateTokenSSO = (ssoid,sectionId) => {
         dispatch(validateToken(ssoid, () => {
 
-            let url=  sectionId !== null  ? `/customer-portal/dashboard?section=${sectionId}`:
-            `/customer-portal/dashboard`
+            let url= `/customer-portal/dashboard`
             router.push(url);
         }))
     }
@@ -23,10 +22,11 @@ const SsoLogin = () => {
         if (typeof document !== "undefined" && typeof window !== "undefined") {
             const urlParams = new URLSearchParams(window.location.search);
             const ssoid = urlParams.get('ssoid')
-            const sectionId = urlParams.get('section')
+            // const sectionId = urlParams.get('sectionId')
             setSsoId(ssoid)
-            validateTokenSSO(ssoid,sectionId)
+            validateTokenSSO(ssoid)
         }
+
     }, [])
 
 
