@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import Accordion1 from '../../component/Accordion/Accordion1';
 import ProposalForm from './ProposalForm';
@@ -8,9 +8,10 @@ import Payment from '../../container/Payment';
 import FormFieldConsent from '../../component/FormFieldConsent';
 import { videoPIVCAction } from '../../redux/action/videoPIVCAction'
 import { consentHandlerAction } from '../../redux/action/consentHandlerAction'
-import { dateFormat, convertToIST } from '../../utils/utils';
+import { dateFormat, scrollToTop, convertToIST } from '../../utils/utils';
 
-const FormFilling = ({ data, label, proposalNo }) => {
+
+const FormFilling = ({ data, label, proposalNo, sectionId }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
   const accDetails = useSelector((state) => state.customerDetailReducer);
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
@@ -19,6 +20,22 @@ const FormFilling = ({ data, label, proposalNo }) => {
   // console.log('accordionDetails?.additionalInfoDocs', accordionDetails)
 
   const dispatch = useDispatch()
+
+  // accordion open based on value of currentSectionTab 
+  useEffect(() => {
+    let matchTitle
+    if (sectionId === 'CUSTOMER_DETAILS' || sectionId === 'INSURED_DETAILS'
+      || sectionId === 'NOMINEE_DETAILS' || sectionId === 'QUESTION_DETAILS') {
+      matchTitle = data?.filter(item => item.title === 'PROPOSAL')
+    }
+    else if (sectionId === 'PAYMENT_DETAILS') {
+      matchTitle = data?.filter(item => item.title === 'PAYMENT')
+    }
+    else if (sectionId === 'DOCUMENT_DETAILS') {
+      matchTitle = data?.filter(item => item.title === 'DOC_UPLOAD')
+    }
+    toggleAccordion(matchTitle?.[0]?.id)
+  }, [])
 
   const videoPIVCHandler = () => {
     const payload = {
@@ -63,15 +80,15 @@ const FormFilling = ({ data, label, proposalNo }) => {
           Insured_Details && Insured_Details[0],
           Nominee_Details && Nominee_Details[0],
           Health_Details && Health_Details[0]
-          )
-          // console.log('proposalReversedList',proposalReversedList)
-
+        )
+        
         showElement = proposalFormList && proposalFormList?.length !== 0
           ?
           <ProposalForm
             accDetails={accDetails}
             proposalFormList={proposalFormList}
             proposalReversedList={proposalReversedList}
+            sectionId={sectionId}
           />
           :
           <div className='blue-block-container'>
@@ -108,19 +125,19 @@ const FormFilling = ({ data, label, proposalNo }) => {
         let paymentDetail = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PAYMENT';
         })
-  // console.log('paymentDetail>>', paymentDetail , paymentDetail[0]?.paymentInfo?.paymentOtpCompleted )
+        // console.log('paymentDetail>>', paymentDetail , paymentDetail[0]?.paymentInfo?.paymentOtpCompleted )
 
         // showElement = paymentDetail && paymentDetail[0]?.actual_status === 'COMPLETED'
-          // ?
-          // <FormFieldConsent
-          //   text='To Download the Payment Receipt'
-          //   buttonText='Click Here'
-          //   clickHandler={downloadReceipt}
-          // />
-          // :
-          // &&
-             showElement= paymentDetail && paymentDetail[0]?.paymentInfo?.paymentOtpCompleted === true 
-            ?
+        // ?
+        // <FormFieldConsent
+        //   text='To Download the Payment Receipt'
+        //   buttonText='Click Here'
+        //   clickHandler={downloadReceipt}
+        // />
+        // :
+        // &&
+        showElement = paymentDetail && paymentDetail[0]?.paymentInfo?.paymentOtpCompleted === true
+          ?
           <Payment
             showOffline={true}
             isText={'Online Payment'}
@@ -131,8 +148,8 @@ const FormFilling = ({ data, label, proposalNo }) => {
           />
           :
           <div className='blue-block-container'>
-          <p>User hasn't reached to payment page yet</p>
-        </div>
+            <p>User hasn't reached to payment page yet</p>
+          </div>
         return showElement
       case 'Document Upload':
         let paymentDocShow = accordionDetails && accordionDetails.filter(item => {
@@ -140,21 +157,21 @@ const FormFilling = ({ data, label, proposalNo }) => {
         })
         let showDocument = paymentDocShow && paymentDocShow[0]?.actual_status === 'COMPLETED'
 
-          showElement = !!formFillDocDownload?.list
+        showElement = !!formFillDocDownload?.list
           &&
-          showDocument  
+          showDocument
           &&
-            <DocumentUpload
-              label='form-filling'
-              formFillDocDownload={formFillDocDownload}
-              addDocUpl oad={accDetails?.additionalInfoDocs}
-            />
-            // :
-            // <div className='blue-block-container'>
-            //   <p>Documents are not available!</p>
-            // </div>
-          return showElement
-        
+          <DocumentUpload
+            label='form-filling'
+            formFillDocDownload={formFillDocDownload}
+            addDocUpl oad={accDetails?.additionalInfoDocs}
+          />
+        // :
+        // <div className='blue-block-container'>
+        //   <p>Documents are not available!</p>
+        // </div>
+        return showElement
+
       case 'Proposal Submission':
         let proposalSub = accordionDetails && accordionDetails.filter(item => {
           return item.status === 'PROPOSAL_SUBMISSION';
@@ -217,6 +234,7 @@ const FormFilling = ({ data, label, proposalNo }) => {
   }
 
   const toggleAccordion = (id) => {
+    scrollToTop(id)
     setOpenAccordion(openAccordion === id ? null : id)
   }
 

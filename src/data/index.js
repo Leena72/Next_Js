@@ -3456,7 +3456,7 @@ export const statusApi = {
     "proposerName": "RAKESH",
     "insuredName": "RAKESH",
     "counterOfferPaymentCompleted": true,
-    "currentSectionTab":'ADDITIONAL_NON_MEDICAL_REQUIREMENTS',
+    "currentSectionTab":'JOURNEY_SELECTION',
     "newgenStatusResponseDTOList": [
         {
             "id": 3879358,
@@ -3561,7 +3561,7 @@ export const statusApi = {
         {
             "id": 3879367,
             "status": "QUALITY_CHECK",
-            "subStatus": 'AD',
+            "subStatus": 'DC',
             "actual_status": "CREATED",
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",

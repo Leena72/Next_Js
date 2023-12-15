@@ -31,16 +31,6 @@ const Dashboard = () => {
         }
     }, [])
 
-    useEffect(() => {
-        if (customerData?.currentSectionTab === 'POLICY_STATUS') {
-            scrollToTop(customerData?.currentSectionTab)
-            setOpenAccordion(true)
-        }
-        else {
-            setOpenAccordion(false)
-        }
-
-    }, [])
 
     useEffect(() => {
         if (typeof document !== "undefined" && typeof window !== "undefined") {
@@ -50,6 +40,16 @@ const Dashboard = () => {
             }
         }
     }, [])
+    // policy download document
+    const toggleOnPolicyDownload = (id) => {
+        if (id) {
+            scrollToTop(id)
+            setOpenAccordion(true)
+        }
+        else {
+            setOpenAccordion(false)
+        }
+    }
 
     // console.log('statusApi',statusApi)
     // console.log('storeState', storeState)
@@ -70,9 +70,10 @@ const Dashboard = () => {
             <div className='doc-heading'><p>Application Status</p></div>
             <MainAccordion
                 data={data}
+                toggleOnPolicyDownload={toggleOnPolicyDownload}
             />
             <div className='doc-heading'><p>Policy Related Documents</p></div>
-            <div className='dashboard-acc' id='POLICY_STATUS'>
+            <div className='dashboard-acc' id='POLICY_DOWNLOAD_DOC'>
                 <div
                     className='acc-non-block'
                     onClick={() => setOpenAccordion(!openAccordion)}

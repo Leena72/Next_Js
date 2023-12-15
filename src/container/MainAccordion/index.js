@@ -13,24 +13,34 @@ import { scrollToTop, convertToIST } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
 import { subStatusList } from '../../data'
 
-const MainAccordion = ({ data }) => {
+const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
   const [openAccordion, setOpenAccordion] = useState(null)
   const accDetails = useSelector((state) => state.customerDetailReducer);
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
   const policyDocuments = accDetails?.policyDocuments
+  const sectionId = accDetails?.currentSectionTab
 
+  // accordion open based on value of currentSectionTab 
   useEffect(() => {
-        const sectionId = accDetails?.currentSectionTab
-        let matchTitle
-        if(sectionId==='QUALITY_CHECK'){
-          matchTitle = data?.filter(item=>item.title=== 'CONSENT_FOR_DATA_CHANGE')
-        }
-        else{
-          matchTitle = data?.filter(item=>item.title=== sectionId)
-        }
-        toggleAccordion(matchTitle?.[0]?.id) 
-}, [])
+    let matchTitle
+    if (sectionId === 'JOURNEY_SELECTION') {
+      matchTitle = data?.filter(item => item.title === 'QUOTE')
+    }
+    else if (sectionId === 'QUALITY_CHECK') {
+      matchTitle = data?.filter(item => item.title === 'CONSENT_FOR_DATA_CHANGE')
+    }
+    else if (sectionId === 'CUSTOMER_DETAILS' || sectionId === 'INSURED_DETAILS'
+      || sectionId === 'NOMINEE_DETAILS' || sectionId === 'QUESTION_DETAILS' 
+      ||sectionId==='PAYMENT_DETAILS' || sectionId==='DOCUMENT_DETAILS') {
+      matchTitle = data?.filter(item => item.title === 'FORM_FILLING')
+    }
+    else {
+      matchTitle = data?.filter(item => item.title === sectionId)
+    }
+    toggleAccordion(matchTitle?.[0]?.id)
+  }, [])
 
+  // dynamic accordion shown 
   const renderList = (accordionDetails, item) => {
     // which list acc to be shown
     let renderItem = true // by default render 
@@ -77,7 +87,6 @@ const MainAccordion = ({ data }) => {
           renderItem = false
         }
       }
-      
     })
     return renderItem
   }
@@ -109,6 +118,7 @@ const MainAccordion = ({ data }) => {
           data={data.content}
           label='form-filling'
           proposalNo={accDetails?.proposalNumber}
+          sectionId={sectionId}
         />
       case 'Medical Requirement':
         detail = accordionDetails && accordionDetails?.filter(item => {
@@ -138,9 +148,9 @@ const MainAccordion = ({ data }) => {
         return <CounterPage />
       case 'Consent For Change In The Application Details':
         return <Consent
-        accDetails={accDetails}
-        accordionDetails={accordionDetails}
-        proposalNo={accDetails?.proposalNumber}
+          accDetails={accDetails}
+          accordionDetails={accordionDetails}
+          proposalNo={accDetails?.proposalNumber}
         />
       case 'Payment Required':
         let revisedOfferPayment = accordionDetails?.filter(item => {
@@ -149,7 +159,7 @@ const MainAccordion = ({ data }) => {
         // let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium
         let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.shortfallPremium
 
-        
+
         // console.log('revisedPayment',revisedPayment)
         // console.log('revisedOfferPayment',revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium)
 
@@ -298,6 +308,9 @@ const MainAccordion = ({ data }) => {
   const paymentReqHandler = () => { }
 
   const toggleAccordion = (id) => {
+    if (id === 'POLICY_DOWNLOAD_DOC') {
+      toggleOnPolicyDownload(id)
+    }
     scrollToTop(id)
     setOpenAccordion(openAccordion === id ? null : id)
   }
