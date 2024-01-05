@@ -247,21 +247,24 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
                 //   <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
                 // </div>
                 (subStatusText[0]?.status === 'PD' || subStatusText[0]?.status === 'PP') ?
-                  <div className='blue-block-container'>
-                    <p>{detail[0]?.additionalInfo?.postponedDeclinedReason}</p>
+                  <div className='blue-block-container' >
+                    <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+                    <p>Reason: {detail[0]?.additionalInfo?.postponedDeclinedReason}</p>
                   </div>
                   :
                   (subStatusText[0]?.status === 'PR') ?
                     <div className='blue-block-container'>
-                      <p>{'Due to non-compliance of Requirements called'}</p>
+                      <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+                      <p>Reason: {'Due to non-compliance of Requirements called'}</p>
                     </div>
                     :
                     (subStatusText[0]?.status === 'PC') ?
                       <div className='blue-block-container'>
-                        <p>{'As per cancellation request received from Customer'}</p>
+                        <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+                        <p>Reason: {'As per cancellation request received from Customer'}</p>
                       </div>
                       :
-                      
+
                       <div className='blue-block-container'>
                         <p>{'Yet to start'}</p>
                       </div>

@@ -378,8 +378,8 @@ ul {
 
 // FormFieldConsent
 .blue-block-container {
-  display: flex;
-  align-items: center;
+  // display: flex;
+  // align-items: center;
   background: $light-blue1;
   padding: 10px;
   border-radius: 10px;
@@ -391,6 +391,9 @@ ul {
     font-size: $font-14;
     font-family: $font-family-OpenSanaRegular;
     margin-right: 10px;
+    &:nth-of-type(2){
+      padding-top: 10px;
+    }
 
     @include mquery(ipad) {
       font-size: $font-16;
