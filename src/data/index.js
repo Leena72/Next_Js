@@ -3755,11 +3755,13 @@ export const statusApi = {
         {
             "id": 3879370,
             "status": "POLICY_STATUS",
-            "subStatus": "PI",
+            "subStatus": "PR",
             "actual_status": "COMPLETED",
             "updatedOn": "2023-09-22 07:07:31",
             "createdOn": "2023-09-11 06:21:08",
-            "additionalInfo": null,
+            "additionalInfo": {
+                "postponedDeclinedReason": "testResontest"
+            },
             "paymentInfo": null
         }
     ],

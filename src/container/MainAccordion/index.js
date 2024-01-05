@@ -30,8 +30,8 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
       matchTitle = data?.filter(item => item.title === 'CONSENT_FOR_DATA_CHANGE')
     }
     else if (sectionId === 'CUSTOMER_DETAILS' || sectionId === 'INSURED_DETAILS'
-      || sectionId === 'NOMINEE_DETAILS' || sectionId === 'QUESTION_DETAILS' 
-      ||sectionId==='PAYMENT_DETAILS' || sectionId==='DOCUMENT_DETAILS') {
+      || sectionId === 'NOMINEE_DETAILS' || sectionId === 'QUESTION_DETAILS'
+      || sectionId === 'PAYMENT_DETAILS' || sectionId === 'DOCUMENT_DETAILS') {
       matchTitle = data?.filter(item => item.title === 'FORM_FILLING')
     }
     else {
@@ -231,18 +231,40 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
           return item.status === 'POLICY_STATUS';
         });
         subStatusText = subStatusList.filter(item => item.status === detail[0]?.subStatus)
-        // console.log('subStatusText', subStatusText)
+        console.log('subStatusText', subStatusText, detail[0]?.additionalInfo?.postponedDeclinedReason)
         showElement = detail && detail[0]?.actual_status === 'COMPLETED'
           && <>
-            {subStatusText[0]?.status === 'PI' ?
-              <div className='blue-block-container'>
-                <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
-                <p>{renderCreateOn('POLICY_STATUS')}</p>
-              </div>
-              :
-              <div className='blue-block-container'>
-                <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
-              </div>
+            {
+
+              (subStatusText[0]?.status === 'PI' || subStatusText[0]?.status === 'PM' ||
+                subStatusText[0]?.status === 'PW' || subStatusText[0]?.status === 'PT') ?
+                <div className='blue-block-container'>
+                  <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+                </div>
+                :
+                // for 'PD','PP','PR','PC'
+                // <div className='blue-block-container'>
+                //   <p>{subStatusText.length > 0 && subStatusText[0]?.customerPortal}</p>
+                // </div>
+                (subStatusText[0]?.status === 'PD' || subStatusText[0]?.status === 'PP') ?
+                  <div className='blue-block-container'>
+                    <p>{detail[0]?.additionalInfo?.postponedDeclinedReason}</p>
+                  </div>
+                  :
+                  (subStatusText[0]?.status === 'PR') ?
+                    <div className='blue-block-container'>
+                      <p>{'Due to non-compliance of Requirements called'}</p>
+                    </div>
+                    :
+                    (subStatusText[0]?.status === 'PC') ?
+                      <div className='blue-block-container'>
+                        <p>{'As per cancellation request received from Customer'}</p>
+                      </div>
+                      :
+                      
+                      <div className='blue-block-container'>
+                        <p>{'Yet to start'}</p>
+                      </div>
             }
           </>
         return showElement
