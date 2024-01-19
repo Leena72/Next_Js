@@ -180,7 +180,7 @@ const FormFilling = ({ data, label, proposalNo, sectionId }) => {
         showElement = proposalSub && proposalSub[0]?.actual_status === 'COMPLETED'
           ?
           <div className='blue-block-container'>
-            <p>Policy Number: {proposalNo}</p>
+            <p>Policy Number: {policyNumber}</p>
           </div>
           :
           <div className='blue-block-container'>
