@@ -363,7 +363,7 @@ const Payment = (props) => {
   const revisedOfferPayment = props.accDetails?.newgenStatusResponseDTOList.filter(item => {
     return item.status === 'REVISED_OFFER';
   })
-  const revisedOfferPaymentDone = revisedOfferPayment[0]?.paymentInfo?.revisedOfferPaymentDone
+  const revisedOfferPaymentDone = revisedOfferPayment[0]?.paymentInfo?.counterOfferPaymentCompleted
   // console.log('revisedOfferPaymentDone', revisedOfferPaymentDone)
 
   return (
