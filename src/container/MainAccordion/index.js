@@ -43,12 +43,13 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
   // dynamic accordion shown 
   const renderList = (accordionDetails, item) => {
     // which list acc to be shown
+    console.log(accordionDetails,item)
     let renderItem = true // by default render 
     accordionDetails?.map((acc) => {
       if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS' &&
         item.heading === 'Additional Non-Medical Requirements') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
-          || acc?.subStatus === '' || acc?.subStatus !== 'AR') {
+          || acc?.subStatus === '' || (acc?.subStatus !== 'AR' && acc?.subStatus !== 'AI') ) {
           renderItem = false
         }
       }
