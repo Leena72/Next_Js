@@ -7,6 +7,8 @@ import thankYou from "../../Assets/images/thank-you-bg.png";
 import questionMark from "../../Assets/images/qstn.png"
 import Image from 'next/image';
 import { downloadAction } from '../../redux/action/downloadAction';
+import { dashboardAction } from '@/redux/action/dashboardAction'
+
 import { downloadData } from '../../data'
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 import { toaster } from "../../utils/toaster"
@@ -75,6 +77,7 @@ const CounterPage = () => {
   }
 
   const sendOtp = () => {
+    console.log('declineReason',declineReason)
     const data = {
       "consentType": "REVISED_OFFER",
       "proposalNumber": localStorage.getItem("proposalNo"),
@@ -90,7 +93,7 @@ const CounterPage = () => {
     }))
   }
 
-  const verifyOtp = () => {
+  const verifyOtp = () => { 
     const data = {
       "otp": otp,
       "refId": refId,
@@ -101,10 +104,13 @@ const CounterPage = () => {
     let fileName = [documentList['REVISED_OFFER_DOC'], documentList['REVISED_BI_DOC']]
 
     dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
-      // console.log('resp',resp.data.body)
+      console.log('resp',resp)
       setOtp("")
       setShowOtp(false);
       setShowThankyou(true)
+      dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+      }))      
+      window.location.reload();
     }))
   }
   const downloadHandler = (fileName) => {
@@ -117,6 +123,7 @@ const CounterPage = () => {
       dispatch(downloadAction(proposalNo, file))
     }
   }
+  console.log('inputValue',inputValue)
   return (
     <div className='card-body'>
       <div className="rvsd_dwnld_outr">
@@ -136,7 +143,7 @@ const CounterPage = () => {
                   name='counterReason'
                   changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
                   checked={
-                    inputValue === "Accept the revised offer"
+                    inputValue.counterReason === "Accept the revised offer"
                   }
                 />
               </div>
@@ -157,7 +164,7 @@ const CounterPage = () => {
                   name='counterReason'
                   changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
                   checked={
-                    inputValue === "Adjust the Sum Assured to match Existing Premium"
+                    inputValue.counterReason === "Adjust the Sum Assured to match Existing Premium"
                   }
                 />
               </div>
@@ -178,7 +185,7 @@ const CounterPage = () => {
                   name='counterReason'
                   changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
                   checked={
-                    inputValue === "Decline the revised offer"
+                    inputValue.counterReason === "Decline the revised offer"
                   }
                 />
               </div>
