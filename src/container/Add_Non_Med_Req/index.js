@@ -40,6 +40,7 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
             case 'Documents':
                 return <DocumentUpload label={'add-form'}
                     addDocUpload={accDetails}
+                    listItem={data?.list} //proposer, insured
                 />
             default:
                 break;

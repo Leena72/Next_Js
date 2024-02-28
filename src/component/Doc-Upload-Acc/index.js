@@ -24,7 +24,7 @@ export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showV
                 {!showViewDelete ? <div onClick={label === 'form-filling' ?
                     () => clickHandler(data)
                     :
-                    () => clickHandleraddNon(data.indexValue)
+                    () => clickHandleraddNon(data.documentCdValue)
                 } className='upl-img'>
                     <a className='upl-img-link'>
                         <Image

@@ -4,8 +4,9 @@ import Image from 'next/image'
 import dwnArrow from "../../Assets/images/dwn-arw.png";
 import ProposedAcc from './ProposedAcc'
 
-const DocumentUpload = ({ label, formFillDocDownload, addDocUpload }) => {
+const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) => {
     const accDetails = useSelector((state) => state.customerDetailReducer);
+    const policyFor = accDetails.policyFor
     const [openAcc, setOpenAcc] = useState(null)
     const [openInAcc, setOpenInAcc] = useState(null)
     let addNonupload
@@ -73,68 +74,66 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload }) => {
                 </ul>
                 :
                 <ul className='nonMedListBlock'>
-                    {
-                        docQuesList?.map((item, idx) => (
-                            <li className='nonMedList' key={idx} >
-                                <div className='non-block-heading ' onClick={() => toggleAccordion(idx)}>
-                                    <div>{
-                                        item.partyType === "OWNER"
-                                            ?
-                                            !accDetails?.proposerName ? item.partyType : accDetails?.proposerName
+                    {policyFor === 'SELF' ?
+                        listItem?.map((item, idx) => {
+                            if (item.title === 'INSURER') {
+                                return (
+                                    <li className='nonMedList' key={idx}>
+                                        <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
+                                            <div>{accDetails?.insuredName}
+                                            </div>
+                                            <div className='acc-active-icon '>
+                                                <Image
+                                                    className={openInAcc === idx ? 'upArrow' : ''}
+                                                    src={dwnArrow}
+                                                    alt='icon'
+                                                />
+                                            </div>
+                                        </div>
+                                        {openInAcc === idx ?
+                                            <div className='show'>
+                                                {
+                                                    renderElement('INSURER', docInsuredQuesList)
+                                                }
+                                            </div>
                                             :
-                                            item.partyType
-                                    }</div>
-                                    <div className='acc-active-icon '>
-                                        <Image
-                                            className={openAcc === idx ? 'upArrow' : ''}
-                                            src={dwnArrow}
-                                            alt='icon'
-                                        />
-                                    </div>
-                                </div>
-                                {openAcc === idx ?
-                                    <div className='show'>
-                                        {
-                                            renderElement(item.partyType, docQuesList)
+                                            ''
                                         }
-                                    </div>
-                                    :
-                                    ''
-                                }
-                            </li>
-                        ))
-                    }
-                    {
-                        docInsuredQuesList?.map((item, idx) => (
-                            <li className='nonMedList' key={idx}>
-                                <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
-                                    <div>{item.partyType === "INSURER"
-                                        ?
-                                        !accDetails?.insuredName ? item.partyType : accDetails?.insuredName
-                                        :
-                                        item.partyType
-                                    }
-                                    </div>
-                                    <div className='acc-active-icon '>
-                                        <Image
-                                            className={openInAcc === idx ? 'upArrow' : ''}
-                                            src={dwnArrow}
-                                            alt='icon'
-                                        />
-                                    </div>
-                                </div>
-                                {openInAcc === idx ?
-                                    <div className='show'>
-                                        {
-                                            renderElement(item.partyType, docInsuredQuesList)
+                                    </li>)
+                            }
+                        })
+                        : 
+                        listItem?.map((item, idx) =>  (
+                                    <li className='nonMedList' key={idx}>
+                                        <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
+                                            <div>{(item.title === 'INSURER'? accDetails?.insuredName :'INSURER')
+                                            ||
+                                            (item.title === 'PROPOSER'? accDetails?.proposerName :'PROPOSER')
+                                            }
+                                            </div>
+                                            <div className='acc-active-icon '>
+                                                <Image
+                                                    className={openInAcc === idx ? 'upArrow' : ''}
+                                                    src={dwnArrow}
+                                                    alt='icon'
+                                                />
+                                            </div>
+                                        </div>
+                                        {openInAcc === idx ?
+                                            <div className='show'>
+                                                {
+                                                    renderElement('INSURER', docInsuredQuesList)
+                                                }
+                                            </div>
+                                            :
+                                            ''
                                         }
-                                    </div>
-                                    :
-                                    ''
-                                }
-                            </li>
-                        ))
+                                    </li>
+                                    )
+                        )
                     }
+
+                    {/* --- */}
                     {
                         !docQuesList && !docInsuredQuesList
                         &&
