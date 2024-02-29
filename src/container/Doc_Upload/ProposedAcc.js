@@ -16,6 +16,7 @@ import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
 const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
+    const [idaddNon, setIdaddNon] = useState(0)
     const [uploadModalHeading, setuploadModalHeading] = useState('')
     const [documentList, setdocumentList] = useState(null)
     const [openDocModal, setopenDocModal] = useState(false)
@@ -59,7 +60,8 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
         setProposalHeader(data)
         setopenUploadModal(!openUploadModal)
     }
-    const clickHandleraddNon = (heading) => {
+    const clickHandleraddNon = (heading,id) => {
+        setIdaddNon(id)
         setuploadDocModal(true)
         setmodalHeading(heading)
     }
@@ -109,16 +111,17 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
             }))
         }
         else {
+            let idx=demoDoc.findIndex(item=>item.id===idaddNon)
             headerData = {
-                documentCd: demoDoc[0].documentCd,
-                docCategoryCd: demoDoc[0].docCategoryCd,
-                docCategoryTypeCd: demoDoc[0].docCategoryTypeCd,
-                documentType: demoDoc[0].indexValue,
-                partyType: demoDoc[0].partyType,
-                id: demoDoc[0].id,
-                documentSide: demoDoc[0].side ? demoDoc[0].side : 'FRONT_SIDE',
+                documentCd: demoDoc[idx].documentCd,
+                docCategoryCd: demoDoc[idx].docCategoryCd,
+                docCategoryTypeCd: demoDoc[idx].docCategoryTypeCd,
+                documentType: demoDoc[idx].indexValue,
+                partyType: demoDoc[idx].partyType,
+                id: demoDoc[idx].id,
+                documentSide: demoDoc[idx].side ? demoDoc[idx].side : 'FRONT_SIDE',
                 policyNo: customerDetail?.policyNumber,
-                documentNumber: demoDoc[0].documentNumber,
+                documentNumber: demoDoc[idx].documentNumber,
                 proposalNo: customerDetail?.proposalNumber,
                 uwId: uwId
             };
@@ -200,7 +203,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                     <UploadDoc
                         label={label}
                         data={item}
-                        showViewDelete={showViewDelete || item.url}
+                        showViewDelete={item.url}
                         clickHandleraddNon={clickHandleraddNon}
                         // deleteDocHandler={() => AddInfodeleteDocHandler(item)}
                         deleteDocHandler={() => openDeletePopUp(item)}
