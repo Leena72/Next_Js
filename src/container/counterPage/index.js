@@ -81,7 +81,7 @@ const CounterPage = () => {
     const data = {
       "consentType": "REVISED_OFFER",
       "proposalNumber": localStorage.getItem("proposalNo"),
-      "consentAction": "ACCEPTED",
+      "consentAction":revisedAction,
       "rejectionReason": declineReason
     }
 
