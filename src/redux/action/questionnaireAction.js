@@ -70,4 +70,39 @@ export const saveQuestionnaireAction = (payload, cb) => (dispatch) => {
         });
 };
 
+// final doc submit
+export const docSubmitAction = (docPayload, cb) => (dispatch) => {
+    dispatch({
+        type: "LOADER_ON",
+    });
+    Axios({
+        method: "post",
+        mode: "no-cors",
+        url: `${apiConstants.API_URL}customer-portal/additionalInfo/complete`,
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": 'Bearer' + ' ' + localStorage.getItem("accessToken")
+        },
+        data:docPayload
+    })
+        .then((res) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
+            if (res.data.status==='OK') {
+                toaster('success', res.data.message)
+                cb(res.data);
+            }
+            else {
+                toaster('error', res.data.message)
+                // cb(res.data); // need to remobved
+            }
+        })
+        .catch((error) => {
+            dispatch({
+                type: "LOADER_OFF",
+            });
+        });
+};
 
