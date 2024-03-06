@@ -10,6 +10,11 @@ import { dashboardAction } from '@/redux/action/dashboardAction'
 const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) => {
     const dispatch = useDispatch()
     const accDetails = useSelector((state) => state.customerDetailReducer);
+    const accordionDetails = accDetails?.newgenStatusResponseDTOList
+    const addNonMedDocDetail = accordionDetails && accordionDetails.filter(item => {
+        return item.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS';
+      });
+      const addNonMedDocLock=addNonMedDocDetail[0]?.additionalInfo?.docLock
     const policyFor = accDetails.policyFor
     const [openAcc, setOpenAcc] = useState(null)
     const [openInAcc, setOpenInAcc] = useState(null)
@@ -31,7 +36,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
         docQuesList = addNonupload?.filter(item => item.questionnaire === false)
         uwId = addDocUpload?.additionalInfoDocs?.uwId
 
-        // form lock
+        // form lock unable disable submit form
         lockForm = addInsuredNonupload.every((x) => {
             return x.url !== '';
          })
@@ -50,6 +55,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
             formFillDocDownload={formFillDocDownload}
             addNonupload={documentList}
             uwId={uwId}
+            hideSection={!addNonMedDocLock}
         />
     }
     const finaldocFormSubmit = () => {
@@ -166,7 +172,9 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
                                 <p>Documents are not available!</p>
                             </div>}
                     </ul>
-                    <div className='consent-blk submit-consent-btn'>
+                   {
+                   !addNonMedDocLock && 
+                   <div className='consent-blk submit-consent-btn'>
                         <div className='form-btn'>
                             <Button
                                 className={'activeBtn'}
@@ -177,6 +185,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
                             />
                         </div>
                     </div>
+                    }
                 </>
             }
         </>

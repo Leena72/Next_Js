@@ -13,7 +13,7 @@ import PopUpPage from '@/component/PopUpPage'
 import Image from 'next/image'
 import plaholderPdf from '../../Assets/images/placeholder.png'
 import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
-const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) => {
+const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hideSection }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
     const [idaddNon, setIdaddNon] = useState(0)
@@ -209,6 +209,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId }) 
                         deleteDocHandler={() => openDeletePopUp(item)}
                         viewDocHandler={() => viewDocHandler(item)}
                         uwId={uwId}
+                        hideSection={hideSection}
                     />
                 </li>)
                 )
