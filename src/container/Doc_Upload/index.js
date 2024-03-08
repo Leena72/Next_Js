@@ -3,12 +3,22 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image'
 import dwnArrow from "../../Assets/images/dwn-arw.png";
 import ProposedAcc from './ProposedAcc'
+import Button from '../../component/Button'
+import { docSubmitAction } from '../../redux/action/questionnaireAction'
+import { dashboardAction } from '@/redux/action/dashboardAction'
 
 const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) => {
+    const dispatch = useDispatch()
     const accDetails = useSelector((state) => state.customerDetailReducer);
+    const accordionDetails = accDetails?.newgenStatusResponseDTOList
+    const addNonMedDocDetail = accordionDetails && accordionDetails.filter(item => {
+        return item.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS';
+      });
+      const addNonMedDocLock=addNonMedDocDetail[0]?.additionalInfo?.docLock
     const policyFor = accDetails.policyFor
     const [openAcc, setOpenAcc] = useState(null)
     const [openInAcc, setOpenInAcc] = useState(null)
+    let lockForm
     let addNonupload
     let addInsuredNonupload
     let docInsuredQuesList
@@ -24,7 +34,12 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
         // proposer
         addNonupload = addDocUpload?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         docQuesList = addNonupload?.filter(item => item.questionnaire === false)
-        uwId=addDocUpload?.additionalInfoDocs?.uwId
+        uwId = addDocUpload?.additionalInfoDocs?.uwId
+
+        // form lock unable disable submit form
+        lockForm = addInsuredNonupload.every((x) => {
+            return x.url !== '';
+         })
     }
 
     const toggleAccordion = (id) => {
@@ -40,7 +55,22 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
             formFillDocDownload={formFillDocDownload}
             addNonupload={documentList}
             uwId={uwId}
+            hideSection={!addNonMedDocLock}
         />
+    }
+    const finaldocFormSubmit = () => {
+        let payload = {
+            proposalNumber: addDocUpload?.proposalNumber,
+            policyNumber: addDocUpload?.policyNumber,
+            uwId: addDocUpload?.additionalInfoDocs?.uwId,
+            otp: "",
+            docLock: lockForm, //when all doc upload
+            questionLock: false
+        }
+        dispatch(docSubmitAction(payload, () => {
+            dispatch(dashboardAction(addDocUpload?.proposalNumber, (res) => {
+            }))
+        }))
     }
     return (
         <>
@@ -73,74 +103,90 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
                     }
                 </ul>
                 :
-                <ul className='nonMedListBlock'>
-                    {policyFor === 'SELF' ?
-                        listItem?.map((item, idx) => {
-                            if (item.title === 'INSURER') {
-                                return (
-                                    <li className='nonMedList' key={idx}>
-                                        <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
-                                            <div>{accDetails?.insuredName}
+                <>
+                    <ul className='nonMedListBlock'>
+                        {policyFor === 'SELF' ?
+                            listItem?.map((item, idx) => {
+                                if (item.title === 'INSURER') {
+                                    return (
+                                        <li className='nonMedList' key={idx}>
+                                            <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
+                                                <div>{accDetails?.insuredName}
+                                                </div>
+                                                <div className='acc-active-icon '>
+                                                    <Image
+                                                        className={openInAcc === idx ? 'upArrow' : ''}
+                                                        src={dwnArrow}
+                                                        alt='icon'
+                                                    />
+                                                </div>
                                             </div>
-                                            <div className='acc-active-icon '>
-                                                <Image
-                                                    className={openInAcc === idx ? 'upArrow' : ''}
-                                                    src={dwnArrow}
-                                                    alt='icon'
-                                                />
-                                            </div>
-                                        </div>
-                                        {openInAcc === idx ?
-                                            <div className='show'>
-                                                {
-                                                    renderElement('INSURER', docInsuredQuesList)
-                                                }
-                                            </div>
-                                            :
-                                            ''
-                                        }
-                                    </li>)
-                            }
-                        })
-                        : 
-                        listItem?.map((item, idx) =>  (
-                                    <li className='nonMedList' key={idx}>
-                                        <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
-                                            <div>{(item.title === 'INSURER'? accDetails?.insuredName :'INSURER')
-                                            ||
-                                            (item.title === 'PROPOSER'? accDetails?.proposerName :'PROPOSER')
+                                            {openInAcc === idx ?
+                                                <div className='show'>
+                                                    {
+                                                        renderElement('INSURER', docInsuredQuesList)
+                                                    }
+                                                </div>
+                                                :
+                                                ''
                                             }
-                                            </div>
-                                            <div className='acc-active-icon '>
-                                                <Image
-                                                    className={openInAcc === idx ? 'upArrow' : ''}
-                                                    src={dwnArrow}
-                                                    alt='icon'
-                                                />
-                                            </div>
-                                        </div>
-                                        {openInAcc === idx ?
-                                            <div className='show'>
-                                                {
-                                                    renderElement('INSURER', docInsuredQuesList)
-                                                }
-                                            </div>
-                                            :
-                                            ''
+                                        </li>)
+                                }
+                            })
+                            :
+                            listItem?.map((item, idx) => (
+                                <li className='nonMedList' key={idx}>
+                                    <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
+                                        <div>{(item.title === 'INSURER' ? accDetails?.insuredName : 'INSURER')
+                                            ||
+                                            (item.title === 'PROPOSER' ? accDetails?.proposerName : 'PROPOSER')
                                         }
-                                    </li>
-                                    )
-                        )
-                    }
+                                        </div>
+                                        <div className='acc-active-icon '>
+                                            <Image
+                                                className={openInAcc === idx ? 'upArrow' : ''}
+                                                src={dwnArrow}
+                                                alt='icon'
+                                            />
+                                        </div>
+                                    </div>
+                                    {openInAcc === idx ?
+                                        <div className='show'>
+                                            {
+                                                renderElement('INSURER', docInsuredQuesList)
+                                            }
+                                        </div>
+                                        :
+                                        ''
+                                    }
+                                </li>
+                            )
+                            )
+                        }
 
-                    {/* --- */}
-                    {
-                        !docQuesList && !docInsuredQuesList
-                        &&
-                        <div className='blue-block-container'>
-                            <p>Documents are not available!</p>
-                        </div>}
-                </ul>
+                        {/* --- */}
+                        {
+                            !docQuesList && !docInsuredQuesList
+                            &&
+                            <div className='blue-block-container'>
+                                <p>Documents are not available!</p>
+                            </div>}
+                    </ul>
+                   {
+                   !addNonMedDocLock && 
+                   <div className='consent-blk submit-consent-btn'>
+                        <div className='form-btn'>
+                            <Button
+                                className={'activeBtn'}
+                                clickHandler={finaldocFormSubmit}
+                                type='button'
+                                buttonText={'Submit'}
+                                disabled={!lockForm}
+                            />
+                        </div>
+                    </div>
+                    }
+                </>
             }
         </>
 

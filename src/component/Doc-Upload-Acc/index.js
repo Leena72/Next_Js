@@ -6,7 +6,15 @@ import deleteImg from "../../Assets/images/delete.png"
 
 
 
-export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showViewDelete, deleteDocHandler, viewDocHandler,proposedDocList }) => {
+export const UploadDoc = ({ hideSection,
+    data, 
+    clickHandler, 
+    clickHandleraddNon, 
+    label, 
+    showViewDelete, 
+    deleteDocHandler, 
+    viewDocHandler,
+    proposedDocList }) => {
     const imageStyle = {
         marginRight: '8px',
         width: '20px',
@@ -45,6 +53,8 @@ export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showV
                                 style={imageStyle}
                             />
                         </a>
+                        {
+                        hideSection && 
                         <a className='view-img-link'
                             onClick={deleteDocHandler}
                         >
@@ -53,7 +63,7 @@ export const UploadDoc = ({ data, clickHandler, clickHandleraddNon, label, showV
                                 alt='uplImg'
                                 style={imageStyle}
                             />
-                        </a>
+                        </a>}
                     </div>
                 }
             </div>
