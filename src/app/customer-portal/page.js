@@ -104,7 +104,7 @@ const Login = () => {
   }
 
   const clickHandler = () => {
-    dispatch(loginHandler(proposalNo, DOB, () => {
+    dispatch(loginHandler(proposalNo, isDob ? DOB : PAN,isDob, () => {
       router.push('/customer-portal/dashboard');
     }))
   }

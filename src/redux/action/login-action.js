@@ -3,7 +3,7 @@ import { apiConstants, loginAPIConstant } from "../../constants/apiConstants";
 import { toaster } from "../../utils/toaster"
 
 
-export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
+export const loginHandler = (proposalNo, DOBPan,isDob, cb) => (dispatch) => {
     dispatch({
         type: "LOADER_ON",
     });
@@ -16,7 +16,7 @@ export const loginHandler = (proposalNo, DOB, cb) => (dispatch) => {
         },
         data: {
             "input1": proposalNo,
-            "input2": DOB + ' ' + '00:00:00'
+            "input2": isDob ? DOBPan + ' ' + '00:00:00':DOBPan
         },
     })
         .then((res) => {
