@@ -29,15 +29,15 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
     }
     else if (label === 'add-form') {
         //insured
-        addInsuredNonupload = addDocUpload?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList
-        docInsuredQuesList = addInsuredNonupload?.filter(item => item.questionnaire === false)
+        addInsuredNonupload = addDocUpload && addDocUpload?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList
+        docInsuredQuesList =addInsuredNonupload && addInsuredNonupload?.filter(item => item.questionnaire === false)
         // proposer
         addNonupload = addDocUpload?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         docQuesList = addNonupload?.filter(item => item.questionnaire === false)
         uwId = addDocUpload?.additionalInfoDocs?.uwId
 
         // form lock unable disable submit form
-        lockForm = addInsuredNonupload.every((x) => {
+        lockForm =addInsuredNonupload && addInsuredNonupload?.every((x) => {
             return x.url !== '';
          })
     }
