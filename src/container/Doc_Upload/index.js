@@ -13,8 +13,8 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
     const accordionDetails = accDetails?.newgenStatusResponseDTOList
     const addNonMedDocDetail = accordionDetails && accordionDetails.filter(item => {
         return item.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS';
-      });
-      const addNonMedDocLock=addNonMedDocDetail[0]?.additionalInfo?.docLock
+    });
+    const addNonMedDocLock = addNonMedDocDetail[0]?.additionalInfo?.docLock
     const policyFor = accDetails.policyFor
     const [openAcc, setOpenAcc] = useState(null)
     const [openInAcc, setOpenInAcc] = useState(null)
@@ -30,16 +30,16 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
     else if (label === 'add-form') {
         //insured
         addInsuredNonupload = addDocUpload && addDocUpload?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList
-        docInsuredQuesList =addInsuredNonupload && addInsuredNonupload?.filter(item => item.questionnaire === false)
+        docInsuredQuesList = addInsuredNonupload && addInsuredNonupload?.filter(item => item.questionnaire === false)
         // proposer
         addNonupload = addDocUpload?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
         docQuesList = addNonupload?.filter(item => item.questionnaire === false)
         uwId = addDocUpload?.additionalInfoDocs?.uwId
 
         // form lock unable disable submit form
-        lockForm =addInsuredNonupload && addInsuredNonupload?.every((x) => {
+        lockForm = addInsuredNonupload && addInsuredNonupload?.every((x) => {
             return x.url !== '';
-         })
+        })
     }
 
     const toggleAccordion = (id) => {
@@ -71,6 +71,17 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
             dispatch(dashboardAction(addDocUpload?.proposalNumber, (res) => {
             }))
         }))
+    }
+    const renderTitle = (title) => {
+        let item
+        if (title === 'INSURER') {
+            item = title === 'INSURER' ? accDetails?.insuredName : 'INSURER'
+            return item
+        }
+        if (title === 'PROPOSER') {
+            item = title === 'PROPOSER' ? accDetails?.proposerName : 'PROPOSER'
+            return item
+        }
     }
     return (
         <>
@@ -134,13 +145,18 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
                                 }
                             })
                             :
-                            listItem?.map((item, idx) => (
+                            listItem?.map((item, idx) =>
+                            (
                                 <li className='nonMedList' key={idx}>
                                     <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
-                                        <div>{(item.title === 'INSURER' ? accDetails?.insuredName : 'INSURER')
-                                            ||
-                                            (item.title === 'PROPOSER' ? accDetails?.proposerName : 'PROPOSER')
-                                        }
+                                        <div className='block-heading'>
+                                            {/* {(item.title === 'INSURER' ? accDetails?.insuredName : 'INSURER')
+                                                        ||
+                                                        (item.title === 'PROPOSER' ? accDetails?.proposerName : 'PROPOSER')
+                                                    } */}
+                                            {
+                                                renderTitle(item.title)
+                                            }
                                         </div>
                                         <div className='acc-active-icon '>
                                             <Image
@@ -159,8 +175,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
                                         :
                                         ''
                                     }
-                                </li>
-                            )
+                                </li>)
                             )
                         }
 
@@ -172,19 +187,19 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
                                 <p>Documents are not available!</p>
                             </div>}
                     </ul>
-                   {
-                   !addNonMedDocLock && 
-                   <div className='consent-blk submit-consent-btn'>
-                        <div className='form-btn'>
-                            <Button
-                                className={'activeBtn'}
-                                clickHandler={finaldocFormSubmit}
-                                type='button'
-                                buttonText={'Submit'}
-                                disabled={!lockForm}
-                            />
+                    {
+                        !addNonMedDocLock &&
+                        <div className='consent-blk submit-consent-btn'>
+                            <div className='form-btn'>
+                                <Button
+                                    className={'activeBtn'}
+                                    clickHandler={finaldocFormSubmit}
+                                    type='button'
+                                    buttonText={'Submit'}
+                                    disabled={!lockForm}
+                                />
+                            </div>
                         </div>
-                    </div>
                     }
                 </>
             }
