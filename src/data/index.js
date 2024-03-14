@@ -3298,7 +3298,7 @@ export const downloadData = [
     //     insured: ''
     // },
     {
-        id: 8,
+        id: 7,
         title: 'Counter Offer',
         msg: '',
         downloadStatus: false,
@@ -3306,7 +3306,7 @@ export const downloadData = [
         insured: ''
     },
     {
-        id: 9,
+        id: 8,
         title: 'Decision Letter',
         msg: '',
         downloadStatus: false,
@@ -3314,7 +3314,7 @@ export const downloadData = [
         insured: ''
     },
     {
-        id: 10,
+        id: 9,
         title: 'Revised Benefit',
         msg: '',
         downloadStatus: false,
