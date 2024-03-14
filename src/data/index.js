@@ -154,7 +154,7 @@ export const applicationData = [
             {
                 id: 5,
                 heading: 'Document Upload',
-                title: 'DOC_UPLOAD',
+                title: 'PROPOSAL',
                 subHeading: 'Yet to start',
                 img: img_5,
                 dummyContent: '3',
@@ -3289,14 +3289,14 @@ export const downloadData = [
         proposer: '',
         insured: ''
     },
-    {
-        id: 7,
-        title: 'CDF',
-        msg: '',
-        downloadStatus: false,
-        proposer: 'CDF_TAG_NAME',
-        insured: ''
-    },
+    // {
+    //     id: 7,
+    //     title: 'CDF',
+    //     msg: '',
+    //     downloadStatus: false,
+    //     proposer: 'CDF_TAG_NAME',
+    //     insured: ''
+    // },
     {
         id: 8,
         title: 'Counter Offer',
