@@ -75,11 +75,11 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
     const renderTitle = (title) => {
         let item
         if (title === 'INSURER') {
-            item = title === 'INSURER' ? accDetails?.insuredName : 'INSURER'
+            item = accDetails?.insuredName !== null ?accDetails?.insuredName  : 'INSURER'
             return item
         }
         if (title === 'PROPOSER') {
-            item = title === 'PROPOSER' ? accDetails?.proposerName : 'PROPOSER'
+            item = accDetails?.proposerName !== null ?accDetails?.proposerName :  'PROPOSER'
             return item
         }
     }

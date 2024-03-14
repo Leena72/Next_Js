@@ -22,18 +22,17 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
                     category={accDetails.policyFor === 'OTHER' ? [{
                         id: 1,
                         heading: 'Insured',
-                        title: accDetails?.insuredName
-
+                        title: accDetails?.insuredName !== null ? accDetails?.insuredName  : 'INSURER'
                     },
                     {
                         id: 2,
                         heading: 'Proposer',
-                        title: accDetails?.proposerName
+                        title: accDetails?.proposerName !== null ? accDetails?.proposerName  : 'PROPOSER'
                     }] :
                         [ {
-                            id: 2,
+                            id: 1,
                             heading: 'Insured',
-                            title: accDetails?.proposerName
+                            title: accDetails?.insuredName !== null ? accDetails?.insuredName  : 'INSURER'
                         }]
                     }
                 />
