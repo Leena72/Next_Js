@@ -6,6 +6,8 @@ import DocumentUpload from '../Doc_Upload';
 
 const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
+    let isProposerDocPresent
+    let isInsurerDocPresent
     const renderElement = (data, title) => {
         const InsuredCheckData = accDetails && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.quesList?.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
@@ -13,12 +15,18 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
         const proposerCheckData = accDetails && accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList?.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
         });
+         isProposerDocPresent=accDetails && accDetails?.additionalQuestionnaireListDTO?.proposerAdditionalQuestionnaireDocs.length!==0
+         isInsurerDocPresent=accDetails && accDetails?.additionalQuestionnaireListDTO?.insuredAdditionalQuestionnaireDocs.length!==0
+         
+        //  console.log('isProposerDocPresent',isProposerDocPresent)
         // console.log("checkData for medical===", data.list, InsuredCheckData.flat(), proposerCheckData.flat())
         switch (title) {
             case 'Health and Lifestyle Questionnaire':
                 return <Health insureddata={InsuredCheckData && InsuredCheckData.flat()}
                     proposerdata={proposerCheckData && proposerCheckData.flat()}
                     accDetails={accDetails}
+                    isProposerDocPresent={isProposerDocPresent}
+                    isInsurerDocPresent={isInsurerDocPresent}
                     category={accDetails.policyFor === 'OTHER' ? [{
                         id: 1,
                         heading: 'Insured',
@@ -58,6 +66,8 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
                                 item={item}
                                 openAccordion={openAccordion}
                                 toggleAccordion={toggleAccordion}
+                                isProposerDocPresent={isProposerDocPresent}
+                                isInsurerDocPresent={isInsurerDocPresent}
                             />
                             {openAccordion === item.id ?
                                 <div className='show'>

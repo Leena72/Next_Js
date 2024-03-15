@@ -13,7 +13,7 @@ import { toaster } from '@/utils/toaster';
 import Accordion2 from '../../component/Accordion/Accordion2.js';
 import { questionnaireList } from '../../data'
 
-const Health = ({ insureddata, proposerdata, category }) => {
+const Health = ({ insureddata, proposerdata, category,isInsurerDocPresent }) => {
   const [formValues, setFormValues] = useState()
   const [openAcc, setOpenAcc] = useState(null)
   const [openCatAcc, setOpenCatAcc] = useState(null)
@@ -31,9 +31,9 @@ const Health = ({ insureddata, proposerdata, category }) => {
   const toggleAccordion = (items, userType) => {
     // console.log(accDetails, items)
     const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((item) => item.documentCdValue?.toLowerCase() === items.newTitle.toLowerCase())
-      const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id) 
+    const getApidata = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesDataList?.filter((item) => filterQuestion[0]?.id === item.id)
     // console.log("===========>", filterQuestion[0], filterQuestion && filterQuestion[0]?.data?.length > 0 && filterQuestion[0].url)
-    if (filterQuestion && filterQuestion[0] && filterQuestion[0].url && getApidata[0].data?.length<1) {
+    if (filterQuestion && filterQuestion[0] && filterQuestion[0].url && getApidata[0].data?.length < 1) {
       toaster("success", "It is filled by agent")
     } else {
       setOpenAcc(openAcc === items.id ? null : items.id)
@@ -56,8 +56,8 @@ const Health = ({ insureddata, proposerdata, category }) => {
     />
   }
   // console.log('formValues',formValues)
-  const checkSubmitValidation = (data,userType) => {
-    return data.forEach((item,i) => {
+  const checkSubmitValidation = (data, userType) => {
+    return data.forEach((item, i) => {
       const filterQuestion = accDetails?.additionalInfoDocs && accDetails?.additionalInfoDocs[userType]?.quesList.filter((items) => items.id === item.id)
       if (item.data && item.data.length === 0 && !(filterQuestion && filterQuestion[0].url)) {
         // console.log('check submit otp4', item.data)
@@ -69,10 +69,10 @@ const Health = ({ insureddata, proposerdata, category }) => {
     const { primaryInsuredDocumentDetail, proposerDocumentDetail } = accDetails?.additionalInfoDocs;
     setSubmitValid(true)
     if (primaryInsuredDocumentDetail && primaryInsuredDocumentDetail?.quesDataList?.length > 0) {
-      checkSubmitValidation(primaryInsuredDocumentDetail?.quesDataList,"primaryInsuredDocumentDetail")
+      checkSubmitValidation(primaryInsuredDocumentDetail?.quesDataList, "primaryInsuredDocumentDetail")
     }
     if (proposerDocumentDetail && proposerDocumentDetail?.quesDataList?.length > 0) {
-      checkSubmitValidation(proposerDocumentDetail?.quesDataList,"proposerDocumentDetail")
+      checkSubmitValidation(proposerDocumentDetail?.quesDataList, "proposerDocumentDetail")
     }
     // console.log("check submit otp1", submitValid)
     // setSubmitValid(submitValid)
@@ -207,8 +207,8 @@ const Health = ({ insureddata, proposerdata, category }) => {
         break;
     }
   }
-  const addNonMedlock= accDetails?.newgenStatusResponseDTOList.filter(item=>item.status==="ADDITIONAL_NON_MEDICAL_REQUIREMENTS")
-const lockForm=addNonMedlock[0]?.additionalInfo?.questionLock
+  const addNonMedlock = accDetails?.newgenStatusResponseDTOList.filter(item => item.status === "ADDITIONAL_NON_MEDICAL_REQUIREMENTS")
+  const lockForm = addNonMedlock[0]?.additionalInfo?.questionLock
   // console.log('lockForm',lockForm)
   return (
     <>
@@ -216,39 +216,40 @@ const lockForm=addNonMedlock[0]?.additionalInfo?.questionLock
         className="overlay__popup_nw"
         style={{ display: overlay ? "block" : "none" }}
       ></div>
-      <ul className='nonMedListBlock'>
-        {category?.map((item, id) =>
-          <li
-            key={id}>
-            <Accordion2
-              item={item}
-              openAccordion={openCatAcc}
-              toggleAccordion={toggleCatAccordion}
-            />
-            {openCatAcc === item.id ?
-              <div className='show'>
-                {
-                  renderCatElement(item, item.heading)
-                }
-              </div>
-              : ''
-            }
+      {isInsurerDocPresent &&
+        <ul className='nonMedListBlock'>
+          {category?.map((item, id) =>
+            <li
+              key={id}>
+              <Accordion2
+                item={item}
+                openAccordion={openCatAcc}
+                toggleAccordion={toggleCatAccordion}
+              />
+              {openCatAcc === item.id ?
+                <div className='show'>
+                  {
+                    renderCatElement(item, item.heading)
+                  }
+                </div>
+                : ''
+              }
 
-          </li>
-        )}
-        <div className='consent-blk submit-consent-btn'>
-          <div className='form-btn'>
-            <Button
-              className={'activeBtn'}
-              clickHandler={finalFormSubmit}
-              type='button'
-              buttonText={'Submit'}
-              disabled={lockForm ? true : !submitOtpValid}
-            />
+            </li>
+          )}
+          <div className='consent-blk submit-consent-btn'>
+            <div className='form-btn'>
+              <Button
+                className={'activeBtn'}
+                clickHandler={finalFormSubmit}
+                type='button'
+                buttonText={'Submit'}
+                disabled={lockForm ? true : !submitOtpValid}
+              />
+            </div>
           </div>
-        </div>
-      </ul>
-
+        </ul>
+      }
       {showOtp &&
         <div className={`header-otp-popup popupcmn ${showOtp && 'active'}`} >
           <div className="header-otp-popup-head">

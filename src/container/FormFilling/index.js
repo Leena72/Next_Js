@@ -205,32 +205,43 @@ const FormFilling = ({ data, label, proposalNo, sectionId }) => {
     let detail = accordionDetails && accordionDetails?.filter(item => {
       return item.status === title;
     });
-    if (title === 'PROPOSAL') {
-      propDetail = detail?.filter(item => {
-        return item.subStatus === 'Health_Details';
-      });
-      dateStatus = propDetail && propDetail[0]?.actual_status === 'COMPLETED' ? true : false
-      if (dateStatus) {
-        let date = propDetail && propDetail[0]?.updatedOn
-        let newdate = renderDate(date)
-        return 'Completed:' + ' ' + newdate
-      }
-      else {
-        return <div>Yet to start</div>
-      }
-    }
 
-    else {
-      dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
-      if (dateStatus) {
-        let date = detail && detail[0]?.updatedOn
-        let newdate = renderDate(date)
-        return 'Completed:' + ' ' + newdate
-      }
-      else {
-        return <div>Yet to start</div>
-      }
+    dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
+    if (dateStatus) {
+      let date = detail && detail[0]?.updatedOn
+      let newdate = renderDate(date)
+      return 'Completed:' + ' ' + newdate
     }
+    else {
+      return <div>Yet to start</div>
+    }
+    
+    // if (title === 'PROPOSAL') {
+    //   propDetail = detail?.filter(item => {
+    //     return item.subStatus === 'Health_Details';
+    //   });
+    //   dateStatus = propDetail && propDetail[0]?.actual_status === 'COMPLETED' ? true : false
+    //   if (dateStatus) {
+    //     let date = propDetail && propDetail[0]?.updatedOn
+    //     let newdate = renderDate(date)
+    //     return 'Completed:' + ' ' + newdate
+    //   }
+    //   else {
+    //     return <div>Yet to start</div>
+    //   }
+    // }
+
+    // else {
+    //   dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
+    //   if (dateStatus) {
+    //     let date = detail && detail[0]?.updatedOn
+    //     let newdate = renderDate(date)
+    //     return 'Completed:' + ' ' + newdate
+    //   }
+    //   else {
+    //     return <div>Yet to start</div>
+    //   }
+    // }
   }
 
   const toggleAccordion = (id) => {
