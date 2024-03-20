@@ -3778,7 +3778,7 @@ export const statusApi = {
         "list": [
             {
                 "name": "OWNER",
-                "personName": "TESR ",
+                "personName": "Madhubala Patil",
                 "documentList": [
                     {
                         "mandatoryDoc": "1",
@@ -3786,27 +3786,39 @@ export const statusApi = {
                         "indexValue": "Age Proof",
                         "documents": {
                             "Age Proof": [
-                                "PAN Card"
+                                "Pan Card"
                             ]
                         }
                     },
                     {
                         "mandatoryDoc": "1",
-                        "category": "Identity Proof",
-                        "indexValue": "Identity Proof",
+                        "category": "PAN Card/Form 60",
+                        "indexValue": "AML-Others",
                         "documents": {
-                            "Identity Proof": [
-                                "PAN Card"
+                            "PAN Card/Form 60": [
+                                "PAN or Form 60"
                             ]
                         }
                     },
                     {
-                        "mandatoryDoc": "1",
-                        "category": "Initial Payment Instrument Scan",
-                        "indexValue": "Other Documents",
+                        "mandatoryDoc": "2",
+                        "category": "AutoPay",
+                        "indexValue": "ECS Mandate",
                         "documents": {
-                            "Initial Payment Instrument Scan": [
-                                "Initial Payment Cheque Scan"
+                            "AutoPay": [
+                                "ACH / ECS Form",
+                                "Cancelled Cheque or Bank Statement"
+                            ]
+                        }
+                    },
+                    {
+                        "mandatoryDoc": "2",
+                        "category": "Documents",
+                        "indexValue": "Cancelled Cheque Copy",
+                        "documents": {
+                            "Documents": [
+                                "Cancelled Cheque or Bank Statement",
+                                "Recent Colour Photograph"
                             ]
                         }
                     },
@@ -3827,51 +3839,167 @@ export const statusApi = {
                         }
                     },
                     {
-                        "mandatoryDoc": "3",
-                        "category": "Documents",
-                        "indexValue": "Cancelled Cheque Copy",
+                        "mandatoryDoc": "1",
+                        "category": "Identity Proof",
+                        "indexValue": "Identity Proof",
                         "documents": {
-                            "Documents": [
-                                "Cancelled Cheque or Bank Statement",
-                                "PAN or Form 60",
-                                "Recent Colour Photograph"
+                            "Identity Proof": [
+                                "PAN"
                             ]
                         }
                     },
                     {
-                        "mandatoryDoc": "0",
-                        "category": "Other Document",
-                        "indexValue": "OTHERS",
+                        "mandatoryDoc": "2",
+                        "category": "Test3",
+                        "indexValue": "Customer Medical reports",
                         "documents": {
-                            "Other Document": [
-                                "Other Document 1",
-                                "Other Document 2",
-                                "Other Document 3",
-                                "Other Document 4",
-                                "Other Document 5"
+                            "Test3": [
+                                "Hospital discharge summary report",
+                                "Attending physician statement"
                             ]
                         }
                     }
                 ]
-            },
-            {
-                "name": "INSURER",
-                "personName": "TESR ",
-                "documentList": [
-                    {
-                        "mandatoryDoc": "1",
-                        "category": "Age Proof",
-                        "indexValue": "Age Proof",
-                        "documents": {
-                            "Age Proof": [
-                                "PAN Card"
-                            ]
-                        }
-                    },
-                ]
-            },
-
+            }
         ]
+    },
+    "documentDetails": {
+        "OWNER": {
+            "Test3": [
+                {
+                    "type": "Hospital discharge summary report",
+                    "docs": [
+                        {
+                            "url": "owner_hospitaldischargesummaryreport_test3_1709787082041_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Customer Medical reports"
+                        }
+                    ],
+                    "indexValue": "Customer Medical reports",
+                    "locked": false
+                },
+                {
+                    "type": "Attending physician statement",
+                    "docs": [
+                        {
+                            "url": "owner_attendingphysicianstatement_test3_1709787082763_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Customer Medical reports"
+                        }
+                    ],
+                    "indexValue": "Customer Medical reports",
+                    "locked": false
+                }
+            ],
+            "AutoPay": [
+                {
+                    "type": "ACH / ECS Form",
+                    "docs": [
+                        {
+                            "url": "owner_achecsform_autopay_1709787019351_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "ECS Mandate"
+                        }
+                    ],
+                    "indexValue": "ECS Mandate",
+                    "locked": false
+                },
+                {
+                    "type": "Cancelled Cheque or Bank Statement",
+                    "docs": [
+                        {
+                            "url": "owner_cancelledchequeorbankstatement_autopay_1709787020154_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Cancelled Cheque Copy"
+                        }
+                    ],
+                    "indexValue": "ECS Mandate",
+                    "locked": false
+                }
+            ],
+            "Age Proof": [
+                {
+                    "type": "Pan Card",
+                    "docs": [
+                        {
+                            "url": "owner_pancard_ageproof_1709786993023_front_side.png",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Age Proof"
+                        }
+                    ],
+                    "indexValue": "Age Proof",
+                    "locked": false
+                }
+            ],
+            "Documents": [
+                {
+                    "type": "Cancelled Cheque or Bank Statement",
+                    "docs": [
+                        {
+                            "url": "owner_cancelledchequeorbankstatement_documents_1709787036335_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Cancelled Cheque Copy"
+                        }
+                    ],
+                    "indexValue": "Cancelled Cheque Copy",
+                    "locked": false
+                },
+                {
+                    "type": "Recent Colour Photograph",
+                    "docs": [
+                        {
+                            "url": "owner_recentcolourphotograph_documents_1709787037237_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Photograph"
+                        }
+                    ],
+                    "indexValue": "Cancelled Cheque Copy",
+                    "locked": false
+                }
+            ],
+            "Identity Proof": [
+                {
+                    "type": "PAN",
+                    "docs": [
+                        {
+                            "url": "owner_pan_identityproof_1709787063297_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Identity Proof"
+                        }
+                    ],
+                    "indexValue": "Identity Proof",
+                    "locked": false
+                }
+            ],
+            "PAN Card/Form 60": [
+                {
+                    "type": "PAN or Form 60",
+                    "docs": [
+                        {
+                            "url": "owner_panorform60_pancardform60_1709787003390_front_side.png",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "AML-Others"
+                        }
+                    ],
+                    "indexValue": "AML-Others",
+                    "locked": false
+                }
+            ],
+            "Permanent Address proof": [
+                {
+                    "type": "Voters Id",
+                    "docs": [
+                        {
+                            "url": "owner_votersid_permanentaddressproof_1709787053906_front_side.jpg",
+                            "side": "FRONT_SIDE",
+                            "indexValue": "Permanent Address Proof"
+                        }
+                    ],
+                    "indexValue": "Permanent Address Proof",
+                    "locked": false
+                }
+            ]
+        }
     },
     "policyDocuments": {
         "BI_TAG_NAME": "70000600581.pdf",
@@ -4226,12 +4354,12 @@ export const statusApi = {
     },
     "additionalQuestionnaireListDTO": {
         "proposerAdditionalQuestionnaireDocs": [
-            "Hypertension_Questionnaire.pdf",
-            "Digestive_Disorder_Questionnaire.pdf"
+            // "Hypertension_Questionnaire.pdf",
+            // "Digestive_Disorder_Questionnaire.pdf"
         ],
         "insuredAdditionalQuestionnaireDocs": [
-            "Thyroid_Disorder_Questionnaire.pdf",
-            "Chest_Pain_Questionnaire.pdf"
+            // "Thyroid_Disorder_Questionnaire.pdf",
+            // "Chest_Pain_Questionnaire.pdf"
         ],
         "jointAdditionalQuestionnaireDocs": []
     },
