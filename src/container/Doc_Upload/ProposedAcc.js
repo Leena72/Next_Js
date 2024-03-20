@@ -106,7 +106,6 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
                     setFormFillDetail(res)
                     setuploadDocModal(false)
                     setshowViewDelete(true)
-                    setfileObject(res.body)
                 }
             }))
         }
@@ -138,9 +137,16 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
         }
     }
 
-    const deleteDocHandler = () => { 
-        let payload = fileObject
-
+    const deleteDocHandler = (deleteItem) => {
+        let payload = {
+            documentCategory: docCategoryCd,
+            documentType: docCategoryTypeCd,
+            partyType: partyType,
+            documentSide: "",
+            policyNo: policyNo,
+            // documentNumber: '',
+            proposalNo: payload.proposalNo
+        }
         dispatch(deleteDoc(payload, (res) => {
             dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
 
@@ -187,11 +193,11 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
                     return documentDetails[title][ele][0]
                 }
                 )
-// let finalData
-                let finalData= docPrev.filter((ele)=>ele?.indexValue === item?.indexValue)
+                // let finalData
+                let finalData = docPrev.filter((ele) => ele?.indexValue === item?.indexValue)
 
 
-                console.log('docPrev', docPrev,finalData)
+                console.log('docPrev', docPrev, finalData)
 
                 // console.log('docPrev',documentDetails[title],documentPreview,docPrev)
                 return (<li key={idx}>
@@ -200,7 +206,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
                         data={item}
                         showViewDelete={finalData[0]?.docs[0]?.url}
                         clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
-                        deleteDocHandler={()=>openDeletePopUp(finalData[0]?.docs[0])}
+                        deleteDocHandler={() => openDeletePopUp(finalData[0]?.docs[0])}
                         viewDocHandler={() => viewDocHandler(finalData[0]?.docs[0])}
                     // proposedDocList={proposedDocList}
                     />
@@ -330,7 +336,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
         {
             showDeletePopup && <DeletePopUpPage
                 onClose={() => setShowDeletePopup(false)}
-                deleteHandler={label === 'add-form' ? AddInfodeleteDocHandler :deleteDocHandler}
+                deleteHandler={label === 'add-form' ? AddInfodeleteDocHandler : () => deleteDocHandler(deleteItem)}
             />
         }
     </>

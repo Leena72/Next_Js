@@ -94,8 +94,8 @@ export const deleteDoc = (payload, cb) => (dispatch) => {
       {
         headers: {
           "Content-Type": "application/json",
-          documentCategory: payload.docCategoryCd,
-          documentType: payload.docCategoryTypeCd,
+          documentCategory: payload.documentCategory,
+          documentType: payload.documentType,
           partyType: payload.partyType,
           documentSide: "",
           policyNo: payload.policyNo,

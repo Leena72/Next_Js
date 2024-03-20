@@ -59,7 +59,7 @@ export const UploadDoc = ({ hideSection,
                             />
                         </a>
                         {
-                            // hideSection &&
+                            // (hideSection && label === 'add-form') &&
                             <a className='view-img-link'
                                 onClick={deleteDocHandler}
                             >
