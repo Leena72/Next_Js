@@ -13,7 +13,7 @@ import PopUpPage from '@/component/PopUpPage'
 import Image from 'next/image'
 import plaholderPdf from '../../Assets/images/placeholder.png'
 import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
-const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hideSection }) => {
+const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hideSection,documentDetails }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
     const [idaddNon, setIdaddNon] = useState(0)
@@ -54,7 +54,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
         demoDoc = addNonupload?.filter(item => item.questionnaire === false)
     }
 
-    const clickHandler = (data) => {
+    const clickHandler = (data,heading,id) => {
         setmodalHeading(data.indexValue)
         setdocumentList(data.documents)
         setProposalHeader(data)
@@ -80,8 +80,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
         let formData = new FormData();
         formData.append("file", file);
         let headerData
-        // console.log('proposedDocList',proposedDocList)
-// console.log('customerDetail?.proposalNumber',customerDetail.proposalNumber,customerDetail?.policyNumber)
+        console.log('data-->>',proposalHeader?.category,proposalHeader?.indexValue,proposedDocList[0]?.name,customerDetail?.proposalNumber)
         if (label === 'form-filling') {
             headerData = {
                 documentCategory: proposalHeader?.category,
@@ -178,11 +177,19 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
         setPreview('')
     }
     // console.log('formFillDetail',formFillDetail)
-    // console.log('proposedDocList',proposedDocList)
+    console.log('proposedDocList',proposedDocList)
     return (<>
         <ul className='nonMedListBlock'>
-            {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>
-            (<li key={idx}>
+            {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>{
+let documentPreview=Object.keys(documentDetails[title])
+let docPrev=documentPreview?.filter((ele)=>{
+console.log('documentDetails[title][ele]',item)
+  return  documentDetails[title][ele][0]?.docs[0]?.indexValue=== item.indexValue
+}
+)
+
+console.log('docPrev',documentDetails[title],documentPreview,docPrev)
+            return(<li key={idx}>
                 <UploadDoc
                     label={label}
                     data={item}
@@ -193,7 +200,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
                 // proposedDocList={proposedDocList}
                 />
             </li>
-            )
+            )}
             )
             }
             {

@@ -164,7 +164,8 @@ const FormFilling = ({ data, label, proposalNo, sectionId }) => {
           <DocumentUpload
             label='form-filling'
             formFillDocDownload={formFillDocDownload}
-            addDocUpl oad={accDetails?.additionalInfoDocs}
+            addDocUpload={accDetails?.additionalInfoDocs}
+            documentDetails={accDetails?.documentDetails}
           />
         // :
         // <div className='blue-block-container'>

@@ -7,7 +7,7 @@ import Button from '../../component/Button'
 import { docSubmitAction } from '../../redux/action/questionnaireAction'
 import { dashboardAction } from '@/redux/action/dashboardAction'
 
-const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) => {
+const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem,documentDetails }) => {
     const dispatch = useDispatch()
     const accDetails = useSelector((state) => state.customerDetailReducer);
     const accordionDetails = accDetails?.newgenStatusResponseDTOList
@@ -56,6 +56,7 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem }) 
             addNonupload={documentList}
             uwId={uwId}
             hideSection={!addNonMedDocLock}
+            documentDetails={documentDetails}
         />
     }
     const finaldocFormSubmit = () => {
