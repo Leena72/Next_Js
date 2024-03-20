@@ -14,9 +14,14 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
     // const isInsurerDocPresentHide = accDetails && accDetails?.additionalQuestionnaireListDTO?.insuredAdditionalQuestionnaireDocs.length > 0
    
     //document
-    const addInsuredNonupload = accDetails && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList.every((x) => {
-        return x.questionnaire === false;
-    })
+    // const addInsuredNonupload = accDetails && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList?.length>0 && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList.every((x) => {
+    //     return x.questionnaire === false;
+    // })
+    // const addProposerNonupload = accDetails && accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList?.length>0 && accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList.every((x) => {
+    //     return x.questionnaire === false;
+    // })
+    const addInsuredNonupload = accDetails && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList?.length>0 
+    const addProposerNonupload = accDetails && accDetails?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList?.length>0 
 
     console.log('addInsuredNonupload',addInsuredNonupload)
     // console.log('isInsurerDocPresent',  isProposerDocPresentHide,isInsurerDocPresentHide)
@@ -30,7 +35,6 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
         const proposerCheckData = accDetails && accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList?.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
         });
-
         //  console.log('isProposerDocPresent',isProposerDocPresent)
         // console.log("checkData for medical===", data.list, InsuredCheckData.flat(), proposerCheckData.flat())
         switch (title) {
@@ -104,7 +108,7 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
                         }
                     }
                     else if (item.title === 'Documents') {
-                        if(addInsuredNonupload){
+                        if(addInsuredNonupload || addProposerNonupload){
                         return (
                             <li className='addNonMedAccList' key={item.id} >
 
