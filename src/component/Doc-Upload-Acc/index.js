@@ -7,41 +7,46 @@ import deleteImg from "../../Assets/images/delete.png"
 
 
 export const UploadDoc = ({ hideSection,
-    data, 
-    clickHandler, 
-    clickHandleraddNon, 
-    label, 
-    showViewDelete, 
-    deleteDocHandler, 
+    data,
+    clickHandler,
+    clickHandleraddNon,
+    label,
+    showViewDelete,
+    deleteDocHandler,
     viewDocHandler,
     proposedDocList }) => {
+    
     const imageStyle = {
         marginRight: '8px',
         width: '20px',
         height: '20px'
     }
-// console.log('data proposedDocList',data)
+    // console.log('data proposedDocList',data)
+    console.log('data>>',data)
+    console.log('showViewDelete',showViewDelete)
     return (
         <div
             className={`upl-doc-container upl-doc`}
-            // key={key}
+        // key={key}
 
         >
             <div className='upl-heading'>{data.indexValue}</div>
             <div>
-                {!showViewDelete ? <div onClick={label === 'form-filling' ?
-                    () => clickHandler(data)
-                    :
-                    () => clickHandleraddNon(data.documentCdValue,data.id)
-                } className='upl-img'>
-                    <a className='upl-img-link'>
-                        <Image
-                            src={uplImg}
-                            alt='uplImg'
-                            style={imageStyle}
-                        />
-                    </a>
-                </div>
+                {!showViewDelete ?
+                    <div onClick={label === 'form-filling' ?
+                        () => clickHandler(data,data.documentCdValue,data.id)
+                        :
+                        () => clickHandleraddNon(data.documentCdValue, data.id)
+                    }
+                        className='upl-img'>
+                        <a className='upl-img-link'>
+                            <Image
+                                src={uplImg}
+                                alt='uplImg'
+                                style={imageStyle}
+                            />
+                        </a>
+                    </div>
                     :
                     <div className='view-img'>
                         <a className='view-img-link'
@@ -54,16 +59,16 @@ export const UploadDoc = ({ hideSection,
                             />
                         </a>
                         {
-                        hideSection && 
-                        <a className='view-img-link'
-                            onClick={deleteDocHandler}
-                        >
-                            <Image
-                                src={deleteImg}
-                                alt='uplImg'
-                                style={imageStyle}
-                            />
-                        </a>}
+                            // (hideSection && label === 'add-form') &&
+                            <a className='view-img-link'
+                                onClick={deleteDocHandler}
+                            >
+                                <Image
+                                    src={deleteImg}
+                                    alt='uplImg'
+                                    style={imageStyle}
+                                />
+                            </a>}
                     </div>
                 }
             </div>
