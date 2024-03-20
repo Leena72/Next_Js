@@ -13,6 +13,7 @@ import PopUpPage from '@/component/PopUpPage'
 import Image from 'next/image'
 import plaholderPdf from '../../Assets/images/placeholder.png'
 import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
+
 const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hideSection, documentDetails }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
@@ -27,6 +28,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
     const [proposalHeader, setProposalHeader] = useState('')
     const [deleteItem, setDeleteItem] = useState('')
     const [fileObject, setfileObject] = useState('')
+    const [deleteDocUrl, setDeleteDocUrl] = useState('')
     const [preview, setPreview] = useState({ url: '', data: null })
     const customerDetail = useSelector((state) => state.customerDetailReducer)
     const [formFillDetail, setFormFillDetail] = useState('')
@@ -137,21 +139,15 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
         }
     }
 
-    const deleteDocHandler = (deleteItem) => {
-        let payload = {
-            documentCategory: docCategoryCd,
-            documentType: docCategoryTypeCd,
-            partyType: partyType,
-            documentSide: "",
-            policyNo: policyNo,
-            // documentNumber: '',
-            proposalNo: payload.proposalNo
-        }
-        dispatch(deleteDoc(payload, (res) => {
-            dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
-
+    const deleteDocHandler = (proposalHeader) => {
+        dispatch(deleteDoc(deleteDocUrl.url, customerDetail?.proposalNumber,
+            proposedDocList[0]?.name, proposalHeader?.category, proposalHeader?.indexValue, (res) => {
+                if (res.status === 'OK') {
+                    dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+                    }))
+                    setShowDeletePopup(false)
+                }
             }))
-        }))
     }
     const viewDocHandler = (item) => {
         dispatch(downloadAction(customerDetail.proposalNumber, item.url, 'preview', (res) => {
@@ -173,9 +169,10 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
         })
         )
     }
-    const openDeletePopUp = (item) => {
+    const openDeletePopUp = (item, deleteDocUrl) => {
         setShowDeletePopup(true)
         setDeleteItem(item)
+        setDeleteDocUrl(deleteDocUrl)
     }
     const closeDeleteHandler = () => { }
     const deleteHandler = () => { }
@@ -206,7 +203,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
                         data={item}
                         showViewDelete={finalData[0]?.docs[0]?.url}
                         clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
-                        deleteDocHandler={() => openDeletePopUp(finalData[0]?.docs[0])}
+                        deleteDocHandler={() => openDeletePopUp(item, finalData[0]?.docs[0])}
                         viewDocHandler={() => viewDocHandler(finalData[0]?.docs[0])}
                     // proposedDocList={proposedDocList}
                     />

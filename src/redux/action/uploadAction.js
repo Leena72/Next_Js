@@ -82,43 +82,43 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
 
 
 // delete doc form filling
+export const deleteDoc =
+  (fileName, proposalNumber, name, docCatg, type, cb) => (dispatch) => { 
+    dispatch({
+          type: "LOADER_ON",
+        });
+    axios
+      .delete(
+        `${apiConstants.API_URL}proposal/document/delete?file=${fileName}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: 'Bearer' + ' ' + localStorage.getItem("accessToken"),
+            documentCategory: docCatg,
+            documentType: type,
+            partyType: name,
+            policyNo: "",
+            proposalNo: proposalNumber,
+          },
+        }
+      )
+      .then((resp) => {
+        dispatch({
+              type: "LOADER_OFF",
+            });
+        toaster("success", resp.data.message)
+        if (cb) {
+          cb(resp.data);
+        }
+      })
+      .catch((err) => {
+        dispatch({
+          type: "LOADER_OFF",
+        });
+      });
+  };
 
-export const deleteDoc = (payload, cb) => (dispatch) => { 
-  // console.log('payload', payload)
-  dispatch({
-    type: "LOADER_ON",
-  });
-  axios
-    .delete(
-      `${apiConstants.API_URL}proposal/document/delete?file=${payload.fileName}`,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          documentCategory: payload.documentCategory,
-          documentType: payload.documentType,
-          partyType: payload.partyType,
-          documentSide: "",
-          policyNo: payload.policyNo,
-          // documentNumber: '',
-          proposalNo: payload.proposalNo
-        },
-      }
-    )
-    .then((resp) => {
-      dispatch({
-        type: "LOADER_OFF",
-      });
-      if (cb) {
-        cb();
-      }
-    })
-    .catch((error) => {
-      dispatch({
-        type: "LOADER_OFF",
-      });
-      toaster("error", error.message);
-    });
-};
+
 
 // delete doc form add info
 
