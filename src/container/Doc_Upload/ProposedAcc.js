@@ -139,7 +139,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
         }
     }
 
-    const deleteDocHandler = (proposalHeader) => {
+    const deleteDocHandler = (proposalHeader) => { 
         dispatch(deleteDoc(deleteDocUrl.url, customerDetail?.proposalNumber,
             proposedDocList[0]?.name, proposalHeader?.category, proposalHeader?.indexValue, (res) => {
                 if (res.status === 'OK') {
