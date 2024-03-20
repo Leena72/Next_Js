@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { UploadDoc} from '../../component/Doc-Upload-Acc'
+import { UploadDoc } from '../../component/Doc-Upload-Acc'
 import { uploadDocument, documentsUplaod } from '../../data'
 import AccPopUp from '../../component/PopUpPage/AccPopUp'
 import AccDocModal from '../../component/PopUpPage/AccDocModal'
@@ -13,7 +13,7 @@ import PopUpPage from '@/component/PopUpPage'
 import Image from 'next/image'
 import plaholderPdf from '../../Assets/images/placeholder.png'
 import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
-const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hideSection,documentDetails }) => {
+const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hideSection, documentDetails }) => {
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
     const [idaddNon, setIdaddNon] = useState(0)
@@ -54,13 +54,13 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
         demoDoc = addNonupload?.filter(item => item.questionnaire === false)
     }
 
-    const clickHandler = (data,heading,id) => {
+    const clickHandler = (data, heading, id) => {
         setmodalHeading(data.indexValue)
         setdocumentList(data.documents)
         setProposalHeader(data)
         setopenUploadModal(!openUploadModal)
     }
-    const clickHandleraddNon = (heading,id) => {
+    const clickHandleraddNon = (heading, id) => {
         setIdaddNon(id)
         setuploadDocModal(true)
         setmodalHeading(heading)
@@ -80,14 +80,14 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
         let formData = new FormData();
         formData.append("file", file);
         let headerData
-        console.log('data-->>',proposalHeader?.category,proposalHeader?.indexValue,proposedDocList[0]?.name,customerDetail?.proposalNumber)
+        console.log('data-->>', proposalHeader?.category, proposalHeader?.indexValue, proposedDocList[0]?.name, customerDetail?.proposalNumber)
         if (label === 'form-filling') {
             headerData = {
                 documentCategory: proposalHeader?.category,
                 documentType: proposalHeader?.indexValue,
                 partyType: proposedDocList[0]?.name,
                 documentSide: "FRONT_SIDE",
-                policyNo: customerDetail?.policyNumber !== null ?customerDetail?.policyNumber:'',
+                policyNo: customerDetail?.policyNumber !== null ? customerDetail?.policyNumber : '',
                 documentNumber: "",
                 proposalNo: customerDetail?.proposalNumber
                 // documentCategory: 'Age Proof',
@@ -106,11 +106,12 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
                     setFormFillDetail(res)
                     setuploadDocModal(false)
                     setshowViewDelete(true)
+                    setfileObject(res.body)
                 }
             }))
         }
         else {
-            let idx=demoDoc.findIndex(item=>item.id===idaddNon)
+            let idx = demoDoc.findIndex(item => item.id === idaddNon)
             headerData = {
                 documentCd: demoDoc[idx].documentCd,
                 docCategoryCd: demoDoc[idx].docCategoryCd,
@@ -137,7 +138,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
         }
     }
 
-    const deleteDocHandler = () => {
+    const deleteDocHandler = () => { 
         let payload = fileObject
 
         dispatch(deleteDoc(payload, (res) => {
@@ -177,30 +178,35 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId,hid
         setPreview('')
     }
     // console.log('formFillDetail',formFillDetail)
-    console.log('proposedDocList',proposedDocList)
+    console.log('proposedDocList', proposedDocList)
     return (<>
         <ul className='nonMedListBlock'>
-            {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) =>{
-let documentPreview=Object.keys(documentDetails[title])
-let docPrev=documentPreview?.filter((ele)=>{
-console.log('documentDetails[title][ele]',item)
-  return  documentDetails[title][ele][0]?.docs[0]?.indexValue=== item.indexValue
-}
-)
+            {proposedDocList && proposedDocList[0]?.documentList?.map((item, idx) => {
+                let documentPreview = Object.keys(documentDetails[title])
+                let docPrev = documentPreview?.map((ele) => {
+                    return documentDetails[title][ele][0]
+                }
+                )
+// let finalData
+                let finalData= docPrev.filter((ele)=>ele?.indexValue === item?.indexValue)
 
-console.log('docPrev',documentDetails[title],documentPreview,docPrev)
-            return(<li key={idx}>
-                <UploadDoc
-                    label={label}
-                    data={item}
-                    showViewDelete={showViewDelete}
-                    clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
-                    deleteDocHandler={deleteDocHandler}
-                    viewDocHandler={() => viewDocHandler(item)}
-                // proposedDocList={proposedDocList}
-                />
-            </li>
-            )}
+
+                console.log('docPrev', docPrev,finalData)
+
+                // console.log('docPrev',documentDetails[title],documentPreview,docPrev)
+                return (<li key={idx}>
+                    <UploadDoc
+                        label={label}
+                        data={item}
+                        showViewDelete={finalData[0]?.docs[0]?.url}
+                        clickHandler={label === 'add-form' ? clickHandleraddNon : clickHandler}
+                        deleteDocHandler={()=>openDeletePopUp(finalData[0]?.docs[0])}
+                        viewDocHandler={() => viewDocHandler(finalData[0]?.docs[0])}
+                    // proposedDocList={proposedDocList}
+                    />
+                </li>
+                )
+            }
             )
             }
             {
@@ -312,7 +318,7 @@ console.log('docPrev',documentDetails[title],documentPreview,docPrev)
                                 //   "_blank"
                                 // )
                             }
-                            }
+                        }
                         }
                     >
                         <Image src={plaholderPdf} width='200' alt="pdf placeholder" />
@@ -324,7 +330,7 @@ console.log('docPrev',documentDetails[title],documentPreview,docPrev)
         {
             showDeletePopup && <DeletePopUpPage
                 onClose={() => setShowDeletePopup(false)}
-                deleteHandler={AddInfodeleteDocHandler}
+                deleteHandler={label === 'add-form' ? AddInfodeleteDocHandler :deleteDocHandler}
             />
         }
     </>

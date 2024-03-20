@@ -83,7 +83,7 @@ export const uploadFormAction = (headerData, fileData, cb) => (dispatch) => {
 
 // delete doc form filling
 
-export const deleteDoc = (payload, cb) => (dispatch) => {
+export const deleteDoc = (payload, cb) => (dispatch) => { 
   // console.log('payload', payload)
   dispatch({
     type: "LOADER_ON",
