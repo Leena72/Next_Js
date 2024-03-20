@@ -6,8 +6,23 @@ import DocumentUpload from '../Doc_Upload';
 
 const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
     const [openAccordion, setOpenAccordion] = useState(null)
-    let isProposerDocPresent
-    let isInsurerDocPresent
+    // health
+    const isProposerDocPresent = accDetails && accDetails?.additionalQuestionnaireListDTO?.proposerAdditionalQuestionnaireDocs.length !== 0
+    const isInsurerDocPresent = accDetails && accDetails?.additionalQuestionnaireListDTO?.insuredAdditionalQuestionnaireDocs.length !== 0
+    
+    // const isProposerDocPresentHide = accDetails && accDetails?.additionalQuestionnaireListDTO?.proposerAdditionalQuestionnaireDocs.length > 0
+    // const isInsurerDocPresentHide = accDetails && accDetails?.additionalQuestionnaireListDTO?.insuredAdditionalQuestionnaireDocs.length > 0
+   
+    //document
+    const addInsuredNonupload = accDetails && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList.every((x) => {
+        return x.questionnaire === false;
+    })
+
+    console.log('addInsuredNonupload',addInsuredNonupload)
+    // console.log('isInsurerDocPresent',  isProposerDocPresentHide,isInsurerDocPresentHide)
+
+    console.log('accDetails', accDetails)
+
     const renderElement = (data, title) => {
         const InsuredCheckData = accDetails && accDetails?.additionalInfoDocs?.primaryInsuredDocumentDetail?.quesList?.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
@@ -15,9 +30,7 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
         const proposerCheckData = accDetails && accDetails?.additionalInfoDocs?.proposerDocumentDetail?.quesList?.map((item) => {
             return data?.list.filter((val) => item?.documentCdValue?.toLowerCase() === val?.newTitle?.toLowerCase())
         });
-         isProposerDocPresent=accDetails && accDetails?.additionalQuestionnaireListDTO?.proposerAdditionalQuestionnaireDocs.length!==0
-         isInsurerDocPresent=accDetails && accDetails?.additionalQuestionnaireListDTO?.insuredAdditionalQuestionnaireDocs.length!==0
-         
+
         //  console.log('isProposerDocPresent',isProposerDocPresent)
         // console.log("checkData for medical===", data.list, InsuredCheckData.flat(), proposerCheckData.flat())
         switch (title) {
@@ -30,17 +43,17 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
                     category={accDetails.policyFor === 'OTHER' ? [{
                         id: 1,
                         heading: 'Insured',
-                        title: accDetails?.insuredName !== null ? accDetails?.insuredName  : 'INSURER'
+                        title: accDetails?.insuredName !== null ? accDetails?.insuredName : 'INSURER'
                     },
                     {
                         id: 2,
                         heading: 'Proposer',
-                        title: accDetails?.proposerName !== null ? accDetails?.proposerName  : 'PROPOSER'
+                        title: accDetails?.proposerName !== null ? accDetails?.proposerName : 'PROPOSER'
                     }] :
-                        [ {
+                        [{
                             id: 1,
                             heading: 'Insured',
-                            title: accDetails?.insuredName !== null ? accDetails?.insuredName  : 'INSURER'
+                            title: accDetails?.insuredName !== null ? accDetails?.insuredName : 'INSURER'
                         }]
                     }
                 />
@@ -60,25 +73,64 @@ const AddNonMedReq = ({ addNonMedDetail, accDetails }) => {
         <ul className='addNonMedAcc'>
             {
                 questionnaireData.map(item => {
-                    return (
-                        <li className='addNonMedAccList' key={item.id} >
-                            <Accordion2
-                                item={item}
-                                openAccordion={openAccordion}
-                                toggleAccordion={toggleAccordion}
-                                isProposerDocPresent={isProposerDocPresent}
-                                isInsurerDocPresent={isInsurerDocPresent}
-                            />
-                            {openAccordion === item.id ?
-                                <div className='show'>
-                                    {
-                                        renderElement(item, item.title)
+                    
+                    if (item.title === 'Health and Lifestyle Questionnaire') {
+                        
+                        if(isInsurerDocPresent) {
+                            return (
+                                <li className='addNonMedAccList' key={item.id} >
+
+                                    <Accordion2
+                                        item={item}
+                                        openAccordion={openAccordion}
+                                        toggleAccordion={toggleAccordion}
+                                        isProposerDocPresent={isProposerDocPresent}
+                                        isInsurerDocPresent={isInsurerDocPresent}
+                                    />
+
+                                    {openAccordion === item.id ?
+                                        <div className='show'>
+                                            {
+                                                renderElement(item, item.title)
+                                            }
+                                        </div>
+                                        : ''
                                     }
-                                </div>
-                                : ''
-                            }
-                        </li>
-                    )
+                                </li>
+                            )
+                        }
+                     else {
+                            return false
+                        }
+                    }
+                    else if (item.title === 'Documents') {
+                        if(addInsuredNonupload){
+                        return (
+                            <li className='addNonMedAccList' key={item.id} >
+
+                                <Accordion2
+                                    item={item}
+                                    openAccordion={openAccordion}
+                                    toggleAccordion={toggleAccordion}
+                                    isProposerDocPresent={isProposerDocPresent}
+                                    isInsurerDocPresent={isInsurerDocPresent}
+                                />
+
+                                {openAccordion === item.id ?
+                                    <div className='show'>
+                                        {
+                                            renderElement(item, item.title)
+                                        }
+                                    </div>
+                                    : ''
+                                }
+                            </li>
+                        )}
+                        else {
+                            return false
+                        }
+                    }
+                    
                 })
             }
         </ul>
