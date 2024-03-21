@@ -81,7 +81,7 @@ const FormFilling = ({ data, label, proposalNo, sectionId }) => {
           Nominee_Details && Nominee_Details[0],
           Health_Details && Health_Details[0]
         )
-        
+
         showElement = proposalFormList && proposalFormList?.length !== 0
           ?
           <ProposalForm
@@ -199,31 +199,56 @@ const FormFilling = ({ data, label, proposalNo, sectionId }) => {
     return istDate
   }
 
-  const renderCreateOn = (title) => {
-    // console.log('>>', title)
-    let dateStatus;
-    let propDetail;
-    let detail = accordionDetails && accordionDetails?.filter(item => {
-      return item.status === title;
-    });
+  // const renderCreateOn = (title) => {
+  //   // console.log('>>', title)
+  //   let dateStatus;
+  //   let propDetail;
+  //   let detail = accordionDetails && accordionDetails?.filter(item => {
+  //     return item.status === title;
+  //   });
 
-    dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
-    // if (dateStatus) {
-    //   let date = detail && detail[0]?.updatedOn
-    //   let newdate = renderDate(date)
-    //   return 'Completed:' + ' ' + newdate
-    // }
-    // else {
-    //   return <div>Yet to start</div>
-    // }
-    
-    if (title === 'PROPOSAL') {
-      propDetail = detail?.filter(item => {
-        return item.subStatus === 'Health_Details';
+  //   dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
+
+  //   if (title === 'PROPOSAL') {
+  //     propDetail = detail?.filter(item => {
+  //       return item.subStatus === 'Health_Details';
+  //     });
+  //     dateStatus = propDetail && propDetail[0]?.actual_status === 'COMPLETED' ? true : false
+  //     if (dateStatus) {
+  //       let date = propDetail && propDetail[0]?.updatedOn
+  //       let newdate = renderDate(date)
+  //       return 'Completed:' + ' ' + newdate
+  //     }
+  //     else {
+  //       return <div>Yet to start</div>
+  //     }
+  //   }
+
+  //   else {
+  //     dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
+  //     if (dateStatus) {
+  //       let date = detail && detail[0]?.updatedOn
+  //       let newdate = renderDate(date)
+  //       return 'Completed:' + ' ' + newdate
+  //     }
+  //     else {
+  //       return <div>Yet to start</div>
+  //     }
+  //   }
+  // }
+
+  const renderCreateOn = (title) => {
+    console.log('>>title', title)
+    let dateStatus;
+
+
+    if ((title === 'PAYMENT') || (title === 'PROPOSAL_SUBMISSION')) {
+      let detail = accordionDetails && accordionDetails?.filter(item => {
+        return item.status === title;
       });
-      dateStatus = propDetail && propDetail[0]?.actual_status === 'COMPLETED' ? true : false
+      dateStatus = detail && detail?.[0]?.actual_status === 'COMPLETED' ? true : false
       if (dateStatus) {
-        let date = propDetail && propDetail[0]?.updatedOn
+        let date = detail && detail[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }
@@ -231,8 +256,39 @@ const FormFilling = ({ data, label, proposalNo, sectionId }) => {
         return <div>Yet to start</div>
       }
     }
-
+    else if (title === 'DOCUMENT') {
+      let detail = accordionDetails && accordionDetails?.filter(item => {
+        return item.subStatus === 'Document_Details';
+      });
+      dateStatus = detail && detail?.[0]?.actual_status === 'COMPLETED' ? true : false
+      if (dateStatus) {
+        let date = detail && detail[0]?.updatedOn
+        let newdate = renderDate(date)
+        return 'Completed:' + ' ' + newdate
+      }
+      else {
+        return <div>Yet to start</div>
+      }
+    }
+    else if (title === 'PROPOSAL') {
+      let detail = accordionDetails && accordionDetails?.filter(item => {
+        return item.status === title;
+      });
+      let filterHealthProposal = detail && detail.filter(i => i.subStatus === 'Health_Details')
+      dateStatus = filterHealthProposal && filterHealthProposal?.[0]?.actual_status === 'COMPLETED' ? true : false
+      if (dateStatus) {
+        let date = filterHealthProposal && filterHealthProposal[0]?.updatedOn
+        let newdate = renderDate(date)
+        return 'Completed:' + ' ' + newdate
+      }
+      else {
+        return <div>Yet to start</div>
+      }
+    }
     else {
+      let detail = accordionDetails && accordionDetails?.filter(item => {
+        return item.status === title;
+      });
       dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
       if (dateStatus) {
         let date = detail && detail[0]?.updatedOn
@@ -243,6 +299,7 @@ const FormFilling = ({ data, label, proposalNo, sectionId }) => {
         return <div>Yet to start</div>
       }
     }
+    
   }
 
   const toggleAccordion = (id) => {
