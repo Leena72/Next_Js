@@ -154,7 +154,7 @@ export const applicationData = [
             {
                 id: 5,
                 heading: 'Document Upload',
-                title: 'PROPOSAL',
+                title: 'DOCUMENT',
                 subHeading: 'Yet to start',
                 img: img_5,
                 dummyContent: '3',
