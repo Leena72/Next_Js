@@ -34,13 +34,13 @@ const Banner = () => {
                         </div>
                         <div className='banner-card'>
                             <p>
-                                {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}{<> *</>} 
+                                {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}
                             </p>
                             <p>{'Premium to Pay(inc GST)'}</p>
                         </div>
                         <div className='banner-card'>
                             <p>
-                                {<>&#8377;</>} {renderNumber(bannerDetail?.sumAssured)}{<> **</>} 
+                                {<>&#8377;</>} {renderNumber(bannerDetail?.sumAssured)}
                             </p>
                             <p>{'Sum Assured'}</p>
                         </div>
