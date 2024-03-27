@@ -62,17 +62,6 @@
             // width: 70%;
         }
 
-        .dsclmr {
-            font-size: $font-10;
-            font-family: $font-family-OpenSanaRegular;
-            color: $white;
-
-            span {
-                display: inline-block;
-                padding-right: 15px;
-            }
-        }
-
         @include mquery(desk) {
             padding: 1.5em 1em 0 0.8em;
             width: 67%;

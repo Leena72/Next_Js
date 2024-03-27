@@ -98,23 +98,24 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
     let detail;
     let subStatusText;
     switch (heading) {
-      case 'Quote Generated':
-        detail = accordionDetails?.filter(item => {
-          return item.status === 'QUOTE';
-        });
-        showElement = detail && detail[0]?.actual_status === 'COMPLETED'
-          ?
-          <QuoteGenerated
-            quoteDetail={detail && detail[0]}
-            policyDocumentFile={policyDocuments['BI_TAG_NAME']}
-            proposalNo={accDetails?.proposalNumber}
-          />
-          :
-          <div className='blue-block-container'>
-            <p>Yet to Start</p>
-          </div>
-        return showElement
-      case 'Form Filling':
+      // case 'Quote Generated':
+      //   detail = accordionDetails?.filter(item => {
+      //     return item.status === 'QUOTE';
+      //   });
+      //   showElement = detail && detail[0]?.actual_status === 'COMPLETED'
+      //     ?
+      //     <QuoteGenerated
+      //       quoteDetail={detail && detail[0]}
+      //       policyDocumentFile={policyDocuments['BI_TAG_NAME']}
+      //       proposalNo={accDetails?.proposalNumber}
+      //     />
+      //     :
+      //     <div className='blue-block-container'>
+      //       <p>Yet to Start</p>
+      //     </div>
+      //   return showElement
+      
+        case 'Form Filling':
         return <FormFilling
           data={data.content}
           label='form-filling'
@@ -364,7 +365,7 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
                   </div>
                   <div className='acc-content'>
                     <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>
-                      {item.heading}
+                      {item.heading === 'Revised Offer'? 'Counter Offer' : item.heading}
                     </p>
                     <div className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>
                       {renderCreateOn(item.title)}

@@ -58,29 +58,7 @@ export const bannerData = [
 
 export const applicationData = [
     {
-        id: 1,
-        heading: 'Quote Generated',
-        title: 'QUOTE',
-        subHeading: 'Completed: 26 JUNE, 2023 | 09:06 PM',
-        completed: false,
-        dummyContent: 'Content here',
-        contentStatus: false,
-        active_icon: activeImg_1,
-        img: img_1,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
-    {
-        id: 2,
+        id:1 ,
         heading: 'Form Filling',
         title: 'FORM_FILLING',
         subHeading: 'Yet to start',
@@ -174,7 +152,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 3,
+        id: 2,
         heading: 'Medical Requirement',
         title: 'MEDICAL_REQUIREMENT',
         subHeading: 'Yet to start',
@@ -196,7 +174,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 4,
+        id: 3,
         heading: 'Additional Non-Medical Requirements',
         title: 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS',
         subHeading: 'Yet to start',
@@ -205,6 +183,28 @@ export const applicationData = [
         contentStatus: true,
         active_icon: activeImg_8,
         img: img_8,
+        content: [
+            {
+                id: 1,
+                heading: '',
+                subHeading: '',
+                img: '',
+                dummyContent: '',
+                contentStatus: false,
+                subContent: []
+            },
+        ]
+    },
+    {
+        id: 4,
+        heading: 'Consent For Change In The Application Details',
+        title: 'CONSENT_FOR_DATA_CHANGE',
+        subHeading: 'Yet to start',
+        completed: false,
+        dummyContent: 'Dummy Content',
+        contentStatus: false,
+        active_icon: activeImg_12,
+        img: img_12,
         content: [
             {
                 id: 1,
@@ -241,28 +241,6 @@ export const applicationData = [
     },
     {
         id: 6,
-        heading: 'Consent For Change In The Application Details',
-        title: 'CONSENT_FOR_DATA_CHANGE',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        active_icon: activeImg_12,
-        img: img_12,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
-    {
-        id: 7,
         heading: 'Payment Required',
         title: 'PAYMENT_REQUIREMENT',
         subHeading: 'Yet to start',
@@ -284,73 +262,7 @@ export const applicationData = [
         ]
     },
     {
-        id: 8,
-        heading: 'Quality Check',
-        title: 'QUALITY_CHECK',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        active_icon: activeImg_11,
-        img: img_11,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
-    {
-        id: 9,
-        heading: 'Medical Risk Verification',
-        title: 'MEDICAL_RISK_VERIFICATION',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        active_icon: activeImg_12,
-        img: img_12,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
-    {
-        id: 10,
-        heading: 'Financial and Medical Risk Verification',
-        title: 'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION',
-        subHeading: 'Yet to start',
-        completed: false,
-        dummyContent: 'Dummy Content',
-        contentStatus: false,
-        active_icon: activeImg_13,
-        img: img_13,
-        content: [
-            {
-                id: 1,
-                heading: '',
-                subHeading: '',
-                img: '',
-                dummyContent: '',
-                contentStatus: false,
-                subContent: []
-            },
-        ]
-    },
-    {
-        id: 11,
+        id: 7,
         heading: 'Policy Decision',
         title: 'POLICY_STATUS',
         subHeading: 'Yet to start',
@@ -371,6 +283,95 @@ export const applicationData = [
             },
         ]
     },
+    // {
+    //     id: 8,
+    //     heading: 'Quote Generated',
+    //     title: 'QUOTE',
+    //     subHeading: 'Completed: 26 JUNE, 2023 | 09:06 PM',
+    //     completed: false,
+    //     dummyContent: 'Content here',
+    //     contentStatus: false,
+    //     active_icon: activeImg_1,
+    //     img: img_1,
+    //     content: [
+    //         {
+    //             id: 1,
+    //             heading: '',
+    //             subHeading: '',
+    //             img: '',
+    //             dummyContent: '',
+    //             contentStatus: false,
+    //             subContent: []
+    //         },
+    //     ]
+    // },
+    // {
+    //     id: 9,
+    //     heading: 'Quality Check',
+    //     title: 'QUALITY_CHECK',
+    //     subHeading: 'Yet to start',
+    //     completed: false,
+    //     dummyContent: 'Dummy Content',
+    //     contentStatus: false,
+    //     active_icon: activeImg_11,
+    //     img: img_11,
+    //     content: [
+    //         {
+    //             id: 1,
+    //             heading: '',
+    //             subHeading: '',
+    //             img: '',
+    //             dummyContent: '',
+    //             contentStatus: false,
+    //             subContent: []
+    //         },
+    //     ]
+    // },
+    // {
+    //     id: 10,
+    //     heading: 'Medical Risk Verification',
+    //     title: 'MEDICAL_RISK_VERIFICATION',
+    //     subHeading: 'Yet to start',
+    //     completed: false,
+    //     dummyContent: 'Dummy Content',
+    //     contentStatus: false,
+    //     active_icon: activeImg_12,
+    //     img: img_12,
+    //     content: [
+    //         {
+    //             id: 1,
+    //             heading: '',
+    //             subHeading: '',
+    //             img: '',
+    //             dummyContent: '',
+    //             contentStatus: false,
+    //             subContent: []
+    //         },
+    //     ]
+    // },
+    // {
+    //     id: 11,
+    //     heading: 'Financial and Medical Risk Verification',
+    //     title: 'FINANCIAL_AND_MEDICAL_RISK_VERIFICATION',
+    //     subHeading: 'Yet to start',
+    //     completed: false,
+    //     dummyContent: 'Dummy Content',
+    //     contentStatus: false,
+    //     active_icon: activeImg_13,
+    //     img: img_13,
+    //     content: [
+    //         {
+    //             id: 1,
+    //             heading: '',
+    //             subHeading: '',
+    //             img: '',
+    //             dummyContent: '',
+    //             contentStatus: false,
+    //             subContent: []
+    //         },
+    //     ]
+    // },
+    
 ]
 
 // add non med req 
