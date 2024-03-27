@@ -68,7 +68,7 @@ const CounterPage = () => {
     else if (value2) {
       setReasonTwo(true)
       setReasonOne(false)
-      setDeclineReason("Request for reconsidering the revised offer")
+      setDeclineReason("Request for reconsidering the counter offer")
     }
   }
 
@@ -210,7 +210,7 @@ const CounterPage = () => {
             <p onClick={() => { declineHandler(true, false); }}>Not Interested to buy the policy</p>
           </div>
           <div className={`${reasonTwo ? 'declinebox-selected' : 'declinebox'}`}>
-            <p onClick={() => { declineHandler(false, true); }}>Request for reconsidering the revised offer</p>
+            <p onClick={() => { declineHandler(false, true); }}>Request for reconsidering the counter offer</p>
           </div>
         </div>
       }

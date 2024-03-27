@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { UploadDoc } from '../../component/Doc-Upload-Acc'
 import { uploadDocument, documentsUplaod } from '../../data'
+import { toaster } from '@/utils/toaster';
 import AccPopUp from '../../component/PopUpPage/AccPopUp'
 import AccDocModal from '../../component/PopUpPage/AccDocModal'
 import UploadDocModal from '../../component/PopUpPage/UploadDocModal'
@@ -32,6 +33,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
     const [preview, setPreview] = useState({ url: '', data: null })
     const customerDetail = useSelector((state) => state.customerDetailReducer)
     const [formFillDetail, setFormFillDetail] = useState('')
+    
     const dispatch = useDispatch()
 
 
@@ -79,69 +81,68 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload, uwId, hi
 
     const uploadDocHandler = (fileValue) => {
         let file = fileValue
+        let fileSize = fileValue.size
         let formData = new FormData();
         formData.append("file", file);
         let headerData
-        console.log('data-->>', proposalHeader?.category, proposalHeader?.indexValue, proposedDocList[0]?.name, customerDetail?.proposalNumber)
-        if (label === 'form-filling') {
-            headerData = {
-                documentCategory: proposalHeader?.category,
-                documentType: proposalHeader?.indexValue,
-                partyType: proposedDocList[0]?.name,
-                documentSide: "FRONT_SIDE",
-                policyNo: customerDetail?.policyNumber !== null ? customerDetail?.policyNumber : '',
-                documentNumber: "",
-                proposalNo: customerDetail?.proposalNumber
-                // documentCategory: 'Age Proof',
-                // documentType: 'PAN Card',
-                // partyType: 'OWNER',
-                // documentSide: "FRONT_SIDE",
-                // policyNo: '',
-                // documentNumber: "",
-                // proposalNo: 3111429336
-            };
-            // console.log('headerData>>',headerData,proposalHeader?.category)
-            dispatch(uploadFormAction(headerData, formData, (res) => {
-                if (res.status === 'OK') {
-                    dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
-                    }))
-                    setFormFillDetail(res)
-                    setuploadDocModal(false)
-                    setshowViewDelete(true)
-                }
-            }))
-        }
-        else {
-            let idx = demoDoc.findIndex(item => item.id === idaddNon)
-            headerData = {
-                documentCd: demoDoc[idx].documentCd,
-                docCategoryCd: demoDoc[idx].docCategoryCd,
-                docCategoryTypeCd: demoDoc[idx].docCategoryTypeCd,
-                documentType: demoDoc[idx].indexValue,
-                partyType: demoDoc[idx].partyType,
-                id: demoDoc[idx].id,
-                documentSide: demoDoc[idx].side ? demoDoc[idx].side : 'FRONT_SIDE',
-                policyNo: customerDetail?.policyNumber,
-                documentNumber: demoDoc[idx].documentNumber,
-                proposalNo: customerDetail?.proposalNumber,
-                uwId: uwId
-            };
-            dispatch(uploadAction(headerData, formData, (res) => {
-                if (res.status === 'OK') {
-                    dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+        if (fileSize <= 10485760) {
 
-                    }))
-                    setuploadDocModal(false)
-                    setshowViewDelete(true)
-                    setfileObject(res.body)
-                }
-            }))
+            if (label === 'form-filling') {
+                headerData = {
+                    documentCategory: proposalHeader?.category,
+                    documentType: proposalHeader?.indexValue,
+                    partyType: proposedDocList[0]?.name,
+                    documentSide: "FRONT_SIDE",
+                    policyNo: customerDetail?.policyNumber !== null ? customerDetail?.policyNumber : '',
+                    documentNumber: "",
+                    proposalNo: customerDetail?.proposalNumber
+                };
+                dispatch(uploadFormAction(headerData, formData, (res) => {
+                    if (res.status === 'OK') {
+                        dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+                        }))
+                        setFormFillDetail(res)
+                        setuploadDocModal(false)
+                        setshowViewDelete(true)
+                    }
+                }))
+            }
+            else {
+                let idx = demoDoc.findIndex(item => item.id === idaddNon)
+                headerData = {
+                    documentCd: demoDoc[idx].documentCd,
+                    docCategoryCd: demoDoc[idx].docCategoryCd,
+                    docCategoryTypeCd: demoDoc[idx].docCategoryTypeCd,
+                    documentType: demoDoc[idx].indexValue,
+                    partyType: demoDoc[idx].partyType,
+                    id: demoDoc[idx].id,
+                    documentSide: demoDoc[idx].side ? demoDoc[idx].side : 'FRONT_SIDE',
+                    policyNo: customerDetail?.policyNumber,
+                    documentNumber: demoDoc[idx].documentNumber,
+                    proposalNo: customerDetail?.proposalNumber,
+                    uwId: uwId
+                };
+                dispatch(uploadAction(headerData, formData, (res) => {
+                    if (res.status === 'OK') {
+                        dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+
+                        }))
+                        setuploadDocModal(false)
+                        setshowViewDelete(true)
+                        setfileObject(res.body)
+                    }
+                }))
+            }
+
+        }
+       else {
+        toaster('error','Upload .Pdf, .Eml, .Png & .Jpg only, Upto 10 MB');
         }
     }
 
-    const deleteDocHandler = (proposalHeader) => { 
+    const deleteDocHandler = (proposalHeader) => {
         dispatch(deleteDoc(deleteDocUrl.url, customerDetail?.proposalNumber,
-            proposedDocList &&proposedDocList[0]?.name, proposalHeader?.category, proposalHeader?.indexValue, (res) => {
+            proposedDocList && proposedDocList[0]?.name, proposalHeader?.category, proposalHeader?.indexValue, (res) => {
                 if (res.status === 'OK') {
                     dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
                     }))

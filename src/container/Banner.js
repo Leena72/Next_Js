@@ -45,10 +45,6 @@ const Banner = () => {
                             <p>{'Sum Assured'}</p>
                         </div>
                     </ul>
-                    <div className="dsclmr">
-                        <span>*Dummy text for one star</span>
-                        <span>**Dummy text for two star</span>
-                    </div>
                 </div>
             </div>
             <div className='banner-img'>

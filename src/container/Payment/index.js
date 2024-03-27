@@ -428,7 +428,11 @@ const Payment = (props) => {
             <div className="lnkbx">
               <span>Payment completed. <br></br>Receipts are not generated yet.</span>
             </div>
-          }       
+          }  
+          <div className="lnkbx"> 
+          <span>Your policy will be processed further subject to payment done, either offline/online
+            </span>
+            </div>     
         </li>
       </ul>
 
