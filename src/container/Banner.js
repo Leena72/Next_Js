@@ -34,9 +34,10 @@ const Banner = () => {
                         </div>
                         <div className='banner-card'>
                             <p>
-                                {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}
+                                {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}{(bannerDetail?.premiumPaymentMode !==null)
+                                ? ` / ${bannerDetail?.premiumPaymentMode}` : ''}
                             </p>
-                            <p>{'Premium to Pay(inc GST)'}</p>
+                            <p>{'Premium Payable(INR)'}</p>
                         </div>
                         <div className='banner-card'>
                             <p>
