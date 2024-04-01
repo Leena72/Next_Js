@@ -5,6 +5,10 @@ import loginImg from "../Assets/images/top_img_new.png";
 
 const Banner = () => {
     const bannerDetail = useSelector((state) => state.customerDetailReducer);
+    const premiumPaymentMode = bannerDetail?.premiumPaymentMode
+    const premiumPaymentModeLower = premiumPaymentMode?.toLowerCase();
+    const premiumPayment =  premiumPaymentMode?.charAt(0).toUpperCase() + premiumPaymentModeLower?.slice(1);
+
     const renderNumber = (num) => {
         let value = num?.toString()
             .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
@@ -34,8 +38,8 @@ const Banner = () => {
                         </div>
                         <div className='banner-card '>
                             <p>
-                                 {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}{(bannerDetail?.premiumPaymentMode !==null)
-                                ? ` / ${bannerDetail?.premiumPaymentMode}` : ''}
+                                 {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}{premiumPaymentMode!==null
+                                ? ` / ${premiumPayment}` : ''}
                             </p>
                             <p>{'Premium Payable(INR)'}</p>
                         </div>
