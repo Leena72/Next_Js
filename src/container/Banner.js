@@ -34,7 +34,7 @@ const Banner = () => {
                         </div>
                         <div className='banner-card'>
                             <p>
-                                {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}{(bannerDetail?.premiumPaymentMode !==null)
+                                 {<>&#8377;</>} {renderNumber(bannerDetail?.premium)}{(bannerDetail?.premiumPaymentMode !==null)
                                 ? ` / ${bannerDetail?.premiumPaymentMode}` : ''}
                             </p>
                             <p>{'Premium Payable(INR)'}</p>
