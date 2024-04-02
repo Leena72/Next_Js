@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from "react-redux";
 import Image from 'next/image'
 import loginImg from "../Assets/images/top_img_new.png";
+import {renderNumber} from '../utils/utils'
 
 const Banner = () => {
     const bannerDetail = useSelector((state) => state.customerDetailReducer);
@@ -9,11 +10,6 @@ const Banner = () => {
     const premiumPaymentModeLower = premiumPaymentMode?.toLowerCase();
     const premiumPayment =  premiumPaymentMode?.charAt(0).toUpperCase() + premiumPaymentModeLower?.slice(1);
 
-    const renderNumber = (num) => {
-        let value = num?.toString()
-            .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
-        return value
-    }
     return (
         <div className='banner-container'>
             <div className='banner-content'>

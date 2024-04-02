@@ -116,3 +116,11 @@ export const convertToIST = (date) => {
   const dateForm = dateFormat(formatedDate)
   return dateForm;
 }
+
+// putting commas in b/w the number 
+
+export const renderNumber = (num) => {
+  let value = num?.toString()
+      .replace(/\B(?=(?:(\d\d)+(\d)(?!\d))+(?!\d))/g, ",");
+  return value
+}

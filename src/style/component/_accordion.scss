@@ -84,7 +84,23 @@
 .acc-item {
     display: flex;
     align-items: center;
-    width: 90%;
+    width: 60%;
+    @include mquery(desk) {
+        width: 70%;
+      }
+}
+
+.paymentLabel{
+    justify-content: flex-end;
+    display: flex;
+    width: 25%;
+    font-size: $font-12;
+    // color: $label-blue;
+    font-size: $font-family-OpenSanaBold;
+    @include mquery(desk) {
+        font-size: $font-18;
+   
+    }
 }
 
 .acc-img {
