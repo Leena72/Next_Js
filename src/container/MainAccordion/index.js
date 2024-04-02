@@ -27,6 +27,23 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
   let revisedPayment = revisedOfferPayment && revisedOfferPayment[0]?.additionalInfo?.shortfallPremium
   let isRevisedPaymentLessThanZero = revisedPayment <= 0
 
+
+// opening payment acc on accepted or consent true status
+  useEffect(()=>{ 
+    let counterOfferConsentType= accDetails && accDetails?.counterOfferConsentType
+    let counterOfferConsentAction= accDetails && accDetails?.counterOfferConsentAction
+    let consentStatus= accordionDetails?.filter(item => {
+      return item.status === 'REVISED_OFFER';
+    })
+
+    console.log('consentStatus',counterOfferConsentType,counterOfferConsentAction)
+    if(counterOfferConsentAction === "true" && counterOfferConsentType==='ACCEPTED' ){
+      let id=6 // id for payment req is 6, that's why statically we are setting
+      scrollToTop(id)
+    setOpenAccordion(id)
+    }
+  },[accDetails?.counterOfferConsentType,accDetails?.counterOfferConsentAction])
+
   // accordion open based on value of currentSectionTab 
   useEffect(() => {
     let matchTitle
