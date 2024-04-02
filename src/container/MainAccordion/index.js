@@ -9,7 +9,7 @@ import FormFieldConsent from '../../component/FormFieldConsent';
 import Consent from '../Consent';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import { scrollToTop, convertToIST } from '../../utils/utils';
+import { scrollToTop, convertToIST,renderNumber } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
 import { subStatusList } from '../../data'
 
@@ -19,6 +19,13 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
   const accordionDetails = accDetails?.newgenStatusResponseDTOList
   const policyDocuments = accDetails?.policyDocuments
   const sectionId = accDetails?.currentSectionTab
+
+  // shortfall payment used in payment requirement
+  let revisedOfferPayment = accordionDetails?.filter(item => {
+    return item.status === 'REVISED_OFFER';
+  })
+  let revisedPayment = revisedOfferPayment && revisedOfferPayment[0]?.additionalInfo?.shortfallPremium
+  let isRevisedPaymentLessThanZero = revisedPayment <= 0
 
   // accordion open based on value of currentSectionTab 
   useEffect(() => {
@@ -42,14 +49,14 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
 
   // dynamic accordion shown 
   const renderList = (accordionDetails, item) => {
-    // which list acc to be shown
-    console.log(accordionDetails,item)
+    // which list acc to be shown 
+    console.log(accordionDetails, item)
     let renderItem = true // by default render 
     accordionDetails?.map((acc) => {
       if (renderItem && acc.status === 'ADDITIONAL_NON_MEDICAL_REQUIREMENTS' &&
         item.heading === 'Additional Non-Medical Requirements') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
-          || acc?.subStatus === '' || (acc?.subStatus !== 'AR' && acc?.subStatus !== 'AI') ) {
+          || acc?.subStatus === '' || (acc?.subStatus !== 'AR' && acc?.subStatus !== 'AI')) {
           renderItem = false
         }
       }
@@ -60,10 +67,15 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
           renderItem = false
         }
       }
+
       else if (renderItem && acc.status === 'PAYMENT_REQUIREMENT' &&
         item.heading === 'Payment Required') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
           || acc?.subStatus === '') {
+          renderItem = false
+        }
+        //if shortfall payment less then 0 i.e. in revised offer hide payment accordion
+        if (revisedPayment <= 0) {
           renderItem = false
         }
       }
@@ -114,8 +126,8 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
       //       <p>Yet to Start</p>
       //     </div>
       //   return showElement
-      
-        case 'Form Filling':
+
+      case 'Form Filling':
         return <FormFilling
           data={data.content}
           label='form-filling'
@@ -155,15 +167,6 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
           proposalNo={accDetails?.proposalNumber}
         />
       case 'Payment Required':
-        let revisedOfferPayment = accordionDetails?.filter(item => {
-          return item.status === 'REVISED_OFFER';
-        })
-        // let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium
-        let revisedPayment = revisedOfferPayment[0]?.additionalInfo?.shortfallPremium
-
-
-        // console.log('revisedPayment',revisedPayment)
-        // console.log('revisedOfferPayment',revisedOfferPayment[0]?.additionalInfo?.counterOfferDetails?.shortfallPremium)
 
         detail = accordionDetails?.filter(item => {
           return item.status === 'PAYMENT_REQUIREMENT';
@@ -351,7 +354,7 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
           }
           return (
             <li className={`acc-container ${openAccordion === item.id ? 'acc-after-container' : 'acc-after-container1'}`}
-              key={idx} >
+              key={idx}>
               <div className={`acc-block ${openAccordion === item.id ? 'acc-active' : 'acc-inActive'}`}
                 id={item.id} onClick={() => toggleAccordion(item.id)}>
                 <div className='acc-item'>
@@ -365,13 +368,20 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
                   </div>
                   <div className='acc-content'>
                     <p className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveText'}`}>
-                      {item.heading === 'Revised Offer'? 'Counter Offer' : item.heading}
+                      {item.heading === 'Revised Offer' ? 'Counter Offer' : item.heading}
                     </p>
                     <div className={`${openAccordion === item.id ? 'acc-activeText' : 'acc-inActiveGreyText'}`}>
                       {renderCreateOn(item.title)}
                     </div>
                   </div>
                 </div>
+                {/* {sowing payment only for payment req acc rigth side } */}
+                {item.title === 'PAYMENT_REQUIREMENT' && !isRevisedPaymentLessThanZero &&
+                  <div className={`paymentLabel ${openAccordion === item.id ? 'label-white' : 'label-blue'}`} >
+                    {<>&#8377;</>} {renderNumber(revisedPayment)}
+                  </div>
+                }
+                <div>{item.title === 'PAYMENT_REQUIREMENT' ? isRevisedPaymentLessThanZero : ''}</div>
                 <div className='acc-activeState'>
                   {
                     renderStatus(item.title)
