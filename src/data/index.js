@@ -3550,7 +3550,7 @@ export const statusApi = {
             "id": 3879363,
             "status": "ADDITIONAL_NON_MEDICAL_REQUIREMENTS",
             "subStatus": 'AR',
-            "actual_status": "CREATED",
+            "actual_status": "IN-PROGRESS",
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": null,
@@ -3572,7 +3572,7 @@ export const statusApi = {
             "id": 3879367,
             "status": "QUALITY_CHECK",
             "subStatus": 'DC',
-            "actual_status": "CREATED",
+            "actual_status": "COMPLETED",
             "updatedOn": "2023-09-11 11:51:08",
             "createdOn": "2023-09-11 06:21:08",
             "additionalInfo": {
