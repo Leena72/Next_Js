@@ -174,12 +174,11 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
         return <AddNonMedReq
           accDetails={accDetails} //whole data
           proposalNo={accDetails?.proposalNumber}
-        // addNonMedDetail={addNonMedDetail}
         />
       case 'Revised Offer':
         return <CounterPage
-        accDetails={accDetails}
-        
+          accDetails={accDetails}
+
         />
       case 'Consent For Change In The Application Details':
         return <Consent
@@ -192,15 +191,6 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
         detail = accordionDetails?.filter(item => {
           return item.status === 'PAYMENT_REQUIREMENT';
         })
-
-        // showElement = detail && detail[0]?.actual_status === 'COMPLETED'
-        //   ?
-        //   <FormFieldConsent
-        //     text='To initiate the Download the Payment Receipt'
-        //     buttonText='Click Here'
-        //     clickHandler={paymentReqHandler}
-        //   />
-        //   :
         return <Payment
           paymentValue={revisedPayment} // revised offer --shortfall premium
           accDetails={accDetails}
@@ -303,8 +293,7 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
   }
 
   const renderStatus = (title) => {
-    // show complete image on acc
-    let accStatus;
+    // show complete image on 'COMPLETED', red in 'IN-PROGRESS', grey in 'yet to start' 
     let detail;
     if (title === 'FORM_FILLING') {
       detail = accordionDetails && accordionDetails?.filter(item => {
@@ -316,8 +305,25 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
         return item.status === title;
       });
     }
-    accStatus = detail && detail[0]?.actual_status === "COMPLETED" ? true : false
-    return accStatus
+    switch (detail && detail[0]?.actual_status) {
+      case "COMPLETED":
+        return (<div className='acc-completed'>
+          <Image
+            src={right}
+            alt='icon'
+            width={100}
+            height={100}
+          />
+        </div>)
+      case "IN-PROGRESS":
+        return (
+          <div className='acc-activeRed'></div>
+        )
+      case "CREATED":
+        return (
+          <div className='acc-default'></div>
+        )
+    }
   }
 
   const renderDate = (date) => {
@@ -341,7 +347,7 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
         return 'Completed:' + ' ' + newdate
       }
       else {
-        return <div>Yet to start</div>
+        return <div>{detail && detail[0]?.actual_status}</div>
       }
     }
     else {
@@ -352,11 +358,10 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
         return 'Completed:' + ' ' + newdate
       }
       else {
-        return <div>Yet to start</div>
+        return <div>{detail && detail[0]?.actual_status}</div>
       }
     }
   }
-  const paymentReqHandler = () => { }
 
   const toggleAccordion = (id) => {
     if (id === 'POLICY_DOWNLOAD_DOC') {
@@ -406,20 +411,6 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
                 <div className='acc-activeState'>
                   {
                     renderStatus(item.title)
-                      ?
-                      <div className='acc-completed'>
-                        <Image
-                          src={right}
-                          alt='icon'
-                          width={100}
-                          height={100}
-                        />
-                      </div>
-                      :
-                      openAccordion === item.id ?
-                        <div className='acc-activeRed'></div>
-                        :
-                        <div className='acc-default'></div>
                   }
                 </div>
               </div>
