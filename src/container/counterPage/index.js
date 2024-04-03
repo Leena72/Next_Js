@@ -13,7 +13,7 @@ import { downloadData } from '../../data'
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 import { toaster } from "../../utils/toaster"
 
-const CounterPage = () => {
+const CounterPage = ({accDetails}) => {
   const dispatch = useDispatch()
   const [inputValue, setInputValue] = useState('');
   const [showOtp, setShowOtp] = useState(false);
@@ -123,7 +123,6 @@ const CounterPage = () => {
       dispatch(downloadAction(proposalNo, file))
     }
   }
-  console.log('inputValue',inputValue)
   return (
     <div className='card-body'>
       <div className="rvsd_dwnld_outr">
@@ -132,7 +131,8 @@ const CounterPage = () => {
           <span className="lnktxtbx" onClick={() => downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
-      {customerDetail?.counterOfferCount < 3 &&
+      {(customerDetail?.counterOfferCount < 3 || accDetails?.counterOfferConsentAction !=='true') &&
+
         <div>
           <div className='mb-2 rvsd-conatiner'>
             <div className='rvsd_blk'>
