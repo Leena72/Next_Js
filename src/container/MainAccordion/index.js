@@ -9,7 +9,7 @@ import FormFieldConsent from '../../component/FormFieldConsent';
 import Consent from '../Consent';
 import CounterPage from '../counterPage';
 import Payment from '../../container/Payment';
-import { scrollToTop, convertToIST,renderNumber } from '../../utils/utils';
+import { scrollToTop, convertToIST, renderNumber } from '../../utils/utils';
 import QuoteGenerated from "../../component/QuoteGenerated/index"
 import { subStatusList } from '../../data'
 
@@ -27,22 +27,23 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
   let revisedPayment = revisedOfferPayment && revisedOfferPayment[0]?.additionalInfo?.shortfallPremium
   let isRevisedPaymentLessThanZero = revisedPayment <= 0
 
-
-// opening payment acc on accepted or consent true status
-  useEffect(()=>{ 
-    let counterOfferConsentType= accDetails && accDetails?.counterOfferConsentType
-    let counterOfferConsentAction= accDetails && accDetails?.counterOfferConsentAction
-    let consentStatus= accordionDetails?.filter(item => {
+  let counterOfferConsentType = accDetails && accDetails?.counterOfferConsentType
+  let counterOfferConsentAction = accDetails && accDetails?.counterOfferConsentAction
+  // opening payment acc on accepted or consent true status
+  useEffect(() => {
+    let consentStatus = accordionDetails && accordionDetails?.filter(item => {
       return item.status === 'REVISED_OFFER';
     })
+    let actualConsentStatus = consentStatus && consentStatus[0]?.actual_status
 
-    console.log('consentStatus',counterOfferConsentType,counterOfferConsentAction)
-    if(counterOfferConsentAction === "true" && counterOfferConsentType==='ACCEPTED' ){
-      let id=6 // id for payment req is 6, that's why statically we are setting
+    if (counterOfferConsentAction === "true" && counterOfferConsentType === 'ACCEPTED' &&
+      actualConsentStatus === 'COMPLETED'
+    ) {
+      let id = 6 // id for payment req is 6, that's why statically we are setting
       scrollToTop(id)
-    setOpenAccordion(id)
+      setOpenAccordion(id)
     }
-  },[accDetails?.counterOfferConsentType,accDetails?.counterOfferConsentAction])
+  }, [accDetails?.counterOfferConsentType, accDetails?.counterOfferConsentAction])
 
   // accordion open based on value of currentSectionTab 
   useEffect(() => {
@@ -92,7 +93,7 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
           renderItem = false
         }
         //if shortfall payment less then 0 i.e. in revised offer hide payment accordion
-        if (revisedPayment <= 0) {
+        if (revisedPayment <= 0 || counterOfferConsentType !== 'ACCEPTED') {
           renderItem = false
         }
       }
@@ -176,7 +177,10 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
         // addNonMedDetail={addNonMedDetail}
         />
       case 'Revised Offer':
-        return <CounterPage />
+        return <CounterPage
+        accDetails={accDetails}
+        
+        />
       case 'Consent For Change In The Application Details':
         return <Consent
           accDetails={accDetails}
