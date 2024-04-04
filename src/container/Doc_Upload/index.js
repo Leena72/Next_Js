@@ -29,10 +29,12 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem,doc
     }
     else if (label === 'add-form') {
         //insured
+        
         addInsuredNonupload = addDocUpload && addDocUpload?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList
         docInsuredQuesList = addInsuredNonupload && addInsuredNonupload?.filter(item => item.questionnaire === false)
         // proposer
         addNonupload = addDocUpload?.additionalInfoDocs?.proposerDocumentDetail?.ServiceDocumentList
+        
         docQuesList = addNonupload?.filter(item => item.questionnaire === false)
         uwId = addDocUpload?.additionalInfoDocs?.uwId
 
@@ -48,12 +50,15 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem,doc
     const toggleInsAccordion = (id) => {
         setOpenInAcc(openInAcc === id ? null : id)
     }
-    const renderElement = (title, documentList) => {
+    const renderElement = (title, documentList) => { 
         return <ProposedAcc
             label={label}
             title={title}
             formFillDocDownload={formFillDocDownload}
-            addNonupload={documentList}
+            addNonupload={addNonupload} // proposer
+            // addNonupload1={documentList} // document list
+            addNonupload1={title==='INSURER'? addInsuredNonupload:  addNonupload} // document list
+            addInsuredNonupload={addInsuredNonupload} //insurer
             uwId={uwId}
             hideSection={!addNonMedDocLock}
             documentDetails={documentDetails}
@@ -144,40 +149,68 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem,doc
                                             }
                                         </li>)
                                 }
+                                
                             })
                             :
-                            listItem?.map((item, idx) =>
-                            (
-                                <li className='nonMedList' key={idx}>
-                                    <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
-                                        <div className='block-heading'>
-                                            {/* {(item.title === 'INSURER' ? accDetails?.insuredName : 'INSURER')
-                                                        ||
-                                                        (item.title === 'PROPOSER' ? accDetails?.proposerName : 'PROPOSER')
-                                                    } */}
-                                            {
-                                                renderTitle(item.title)
-                                            }
+                            listItem?.map((item, idx) =>{
+                                if(item.title==='INSURER' && (addInsuredNonupload?.length >0 || addInsuredNonupload !==null  )){
+                               return (
+                                    <li className='nonMedList' key={idx}>
+                                        <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
+                                            <div className='block-heading'>
+                                                {
+                                                    renderTitle(item.title)
+                                                }
+                                            </div>
+                                            <div className='acc-active-icon '>
+                                                <Image
+                                                    className={openInAcc === idx ? 'upArrow' : ''}
+                                                    src={dwnArrow}
+                                                    alt='icon'
+                                                />
+                                            </div>
                                         </div>
-                                        <div className='acc-active-icon '>
-                                            <Image
-                                                className={openInAcc === idx ? 'upArrow' : ''}
-                                                src={dwnArrow}
-                                                alt='icon'
-                                            />
-                                        </div>
-                                    </div>
-                                    {openInAcc === idx ?
-                                        <div className='show'>
-                                            {
-                                                renderElement('INSURER', docInsuredQuesList)
-                                            }
-                                        </div>
-                                        :
-                                        ''
-                                    }
-                                </li>)
-                            )
+                                        {openInAcc === idx ?
+                                            <div className='show'>
+                                                {
+                                                    renderElement(item.title)
+                                                }
+                                            </div>
+                                            :
+                                            ''
+                                        }
+                                    </li>)
+                                }
+                                else if(item.title==='PROPOSER' && (addNonupload?.length>0 || addNonupload !==null ) ){
+                                    return (
+                                         <li className='nonMedList' key={idx}>
+                                             <div className='non-block-heading ' onClick={() => toggleInsAccordion(idx)}>
+                                                 <div className='block-heading'>
+                                                     {
+                                                         renderTitle(item.title)
+                                                     }
+                                                 </div>
+                                                 <div className='acc-active-icon '>
+                                                     <Image
+                                                         className={openInAcc === idx ? 'upArrow' : ''}
+                                                         src={dwnArrow}
+                                                         alt='icon'
+                                                     />
+                                                 </div>
+                                             </div>
+                                             {openInAcc === idx ?
+                                                 <div className='show'>
+                                                     {
+                                                         renderElement(item.title)
+                                                     }
+                                                 </div>
+                                                 :
+                                                 ''
+                                             }
+                                         </li>)
+                                     }
+                            })
+                            
                         }
 
                         {/* --- */}
