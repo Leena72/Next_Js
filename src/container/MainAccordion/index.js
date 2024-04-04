@@ -343,9 +343,9 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
     // console.log('subStatusText', subStatusList[0].customerPortal, substatus)
     if (title === 'FORM_FILLING') {
       let proposalSub = accordionDetails && accordionDetails?.filter(item => {
-       return item.customerPortal === 'PROPOSAL_SUBMISSION';
+       return item.status === 'PROPOSAL_SUBMISSION';
       });
-      console.log('proposalSub',proposalSub)
+      // console.log('proposalSub',proposalSub)
       // dateStatus = proposalSub && proposalSub[0]?.actual_status === 'COMPLETED' ? true : false
       if (proposalSub && proposalSub[0]?.actual_status === 'COMPLETED') {
         let date = proposalSub[0]?.updatedOn

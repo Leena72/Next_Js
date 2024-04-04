@@ -16,9 +16,9 @@ import plaholderPdf from '../../Assets/images/placeholder.png'
 import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
 
 const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload1,addNonupload,addInsuredNonupload,uwId, hideSection, documentDetails }) => {
-  console.log('addNonupload1',addNonupload1
-  ,addNonupload,addNonupload,addInsuredNonupload,addInsuredNonupload.length >0
-  )
+//   console.log('addNonupload1',addNonupload1
+//   ,addNonupload,addNonupload,addInsuredNonupload,addInsuredNonupload.length >0
+//   )
 
     const [openUploadModal, setopenUploadModal] = useState(false)
     const [modalHeading, setmodalHeading] = useState('')
