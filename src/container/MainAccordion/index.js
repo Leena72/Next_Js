@@ -333,32 +333,46 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
 
   const renderCreateOn = (title) => {
     let dateStatus;
+    let subStatus;
     let detail = accordionDetails && accordionDetails?.filter(item => {
       return item.status === title;
     });
+    // substatus list
+    let detailStatus = detail && detail[0]?.subStatus
+    let substatus = subStatusList.filter(i => i.status === detailStatus)
+    // console.log('subStatusText', subStatusList[0].customerPortal, substatus)
     if (title === 'FORM_FILLING') {
       let proposalSub = accordionDetails && accordionDetails?.filter(item => {
-        return item.status === 'PROPOSAL_SUBMISSION';
+       return item.customerPortal === 'PROPOSAL_SUBMISSION';
       });
-      dateStatus = proposalSub && proposalSub[0]?.actual_status === 'COMPLETED' ? true : false
-      if (dateStatus) {
+      console.log('proposalSub',proposalSub)
+      // dateStatus = proposalSub && proposalSub[0]?.actual_status === 'COMPLETED' ? true : false
+      if (proposalSub && proposalSub[0]?.actual_status === 'COMPLETED') {
         let date = proposalSub[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }
-      else {
-        return <div>{detail && detail[0]?.actual_status}</div>
+      else if (proposalSub && proposalSub[0]?.actual_status === 'IN-PROGRESS') {
+        return <div>{subStatusList[0].customerPortal}</div>
+      }
+      else if (proposalSub && proposalSub[0]?.actual_status === 'CREATED'
+        || proposalSub && proposalSub[0]?.actual_status === '' || proposalSub && proposalSub[0]?.actual_status === null) {
+        return <div>Yet to Start</div>
       }
     }
     else {
-      dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
-      if (dateStatus) {
+      // dateStatus = detail && detail[0]?.actual_status === 'COMPLETED' ? true : false
+      if (detail && detail[0]?.actual_status === 'COMPLETED') {
         let date = detail && detail[0]?.updatedOn
         let newdate = renderDate(date)
         return 'Completed:' + ' ' + newdate
       }
-      else {
-        return <div>{detail && detail[0]?.actual_status}</div>
+      else if (detail && detail[0]?.actual_status === 'IN-PROGRESS') {
+        return <div>{subStatusList[0].customerPortal}</div>
+      }
+      else if (detail && detail[0]?.actual_status === 'CREATED' || detail && detail[0]?.actual_status === '' ||
+      detail && detail[0]?.actual_status === null ) {
+        return <div>Yet to Start</div>
       }
     }
   }
