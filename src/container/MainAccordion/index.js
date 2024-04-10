@@ -100,7 +100,7 @@ const MainAccordion = ({ data, toggleOnPolicyDownload }) => {
       else if (renderItem && acc.status === 'QUALITY_CHECK' &&
         item.heading === 'Consent For Change In The Application Details') {
         if (acc?.subStatus === null || acc?.subStatus === undefined
-          || acc?.subStatus === '' || acc?.subStatus !== 'DC') {
+          || acc?.subStatus === '' || (acc?.subStatus !== 'DC' && acc?.subStatus !== 'UD')) {
           renderItem = false
         }
       }
