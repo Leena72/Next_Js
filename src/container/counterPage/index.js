@@ -131,8 +131,10 @@ const CounterPage = ({accDetails}) => {
           <span className="lnktxtbx" onClick={() => downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
-      {(customerDetail?.counterOfferCount < 3 || accDetails?.counterOfferConsentAction !=='true') &&
-
+      {(
+        // customerDetail?.counterOfferCount < 3 
+      // || 
+      accDetails?.counterOfferConsentAction !=='true') && 
         <div>
           <div className='mb-2 rvsd-conatiner'>
             <div className='rvsd_blk'>
