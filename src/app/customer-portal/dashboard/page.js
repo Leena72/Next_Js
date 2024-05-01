@@ -1,7 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< Updated upstream
 import withAuth from '../../../utils/withAuth';
 import Banner from '../../../container/Banner';
 import MainAccordion from '../../../container/MainAccordion';
@@ -11,17 +10,6 @@ import Image from 'next/image'
 import dwnArrow from "../../../Assets/images/dwn-arw.png";
 import { dashboardAction } from '../../../redux/action/dashboardAction'
 import { scrollToTop } from '../../../utils/utils';
-=======
-import Image from 'next/image'
-import dwnArrow from "@/Assets/images/dwn-arw.png";
-import Banner from '@/container/Banner';
-import MainAccordion from '@/container/MainAccordion';
-import Accordion3 from '@/component/Accordion/Accordion3';
-import withAuth from '@/utils/withAuth';
-import { applicationData, downloadData, statusApi } from '@/data'
-import { dashboardAction } from '@/redux/action/dashboardAction'
-import { scrollToTop } from '@/utils/utils';
->>>>>>> Stashed changes
 
 
 const Dashboard = () => {
