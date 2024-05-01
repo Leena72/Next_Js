@@ -63,7 +63,7 @@ const Login = () => {
       proposalNo:val
     }))
   }
-  console.log('loginState',loginState);
+  // console.log('loginState',loginState);
 
   const dobPanHandler = (e) => {
     let val = e.target.value;
@@ -152,8 +152,8 @@ const Login = () => {
                 value={proposalNo}
                 name='proposalNo'
                 placeholder='xxxxxxxxxx'
-                // changeHandler={proposalHandler}
-                changeHandler={(e)=>setLoginState({proposalNo:e.target.value})}
+                changeHandler={proposalHandler}
+                // changeHandler={(e)=>setLoginState({proposalNo:e.target.value})}
 
               />
             </div>
