@@ -182,21 +182,30 @@ const CounterPage = ({ accDetails }) => {
           <span className="lnktxtbx" onClick={() => downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
-      {/* {(customerDetail?.counterOfferCount < 3 || accDetails?.counterOfferConsentAction !=='true') && */}
-
-      <div>
-        <div className='mb-2 rvsd-conatiner'>
-          <div className='rvsd_blk'>
-            <div className='list'>
-              <Input
-                type='radio'
-                value='Accept the revised offer'
-                name='counterReason'
-                changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
-                checked={
-                  inputValue.counterReason === "Accept the revised offer"
-                }
-              />
+      {(
+        // customerDetail?.counterOfferCount < 3 
+      // || 
+      accDetails?.counterOfferConsentAction !=='true') && 
+        <div>
+          <div className='mb-2 rvsd-conatiner'>
+            <div className='rvsd_blk'>
+              <div className='list'>
+                <Input
+                  type='radio'
+                  value='Accept the revised offer'
+                  name='counterReason'
+                  changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
+                  checked={
+                    inputValue.counterReason === "Accept the revised offer"
+                  }
+                />
+              </div>
+              <div className='label'>Accept the revised offer</div>
+            </div>
+            <div className='rvsd_blk-tooltip'>
+              <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
+                <span className="tooltiptext">Check the counter offer letter and revised benefit illustration for your revised offer and if you are ok then please select this option to provide consent via OTP</span>
+              </span>
             </div>
             <div className='label'>Accept the revised offer</div>
           </div>

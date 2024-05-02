@@ -62,7 +62,7 @@ const Consent = ({ accDetails, accordionDetails, proposalNo }) => {
             data={data.detail}
             title={title}
             label={label}
-            consentData={label !== 'QuestionnaireDetails' ? Object.entries(addConsentInfo[label]) : addConsentInfo[label]}
+            consentData={label !== 'QuestionnaireDetails' ? addConsentInfo && Object.entries(addConsentInfo[label]) : addConsentInfo && addConsentInfo[label]}
         />
     }
     const clickHandler = () => { }

@@ -41,11 +41,11 @@ const ConsentLayout = ({ accDetails, data, title, label, consentData }) => {
     // health questionnaire 
     const renderElement = (title) => {
         // console.log('consentData>>', consentData)
-        let detail = title === 'Insured' ? Object.entries(consentData.insuredQuestionDetails).slice(0,6) :
-            Object.entries(consentData.proposerQuestionDetails).slice(0,6)
+        let detail = title === 'Insured' ? consentData && Object.entries(consentData.insuredQuestionDetails).slice(0,6) :
+        consentData && Object.entries(consentData.proposerQuestionDetails).slice(0,6)
             // console.log('detail',detail)
         const renderData = <div className='consent-ques-blk'>{
-            detail.map((item, id) => {
+            detail && detail.map((item, id) => {
                 return (<div className='consent-ques-ans' key={id}>
                     <div className='consent-ques'>
                         {id + 1}{'. '}{item[0]}
@@ -92,7 +92,7 @@ const ConsentLayout = ({ accDetails, data, title, label, consentData }) => {
                     </thead>
                     <tbody>
                         {
-                            consentData.map((item, idx) => {
+                            consentData && consentData.map((item, idx) => {
                                 return (
                                     <tr
                                         key={idx}
