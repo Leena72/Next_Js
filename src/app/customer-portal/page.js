@@ -1,55 +1,69 @@
 'use client';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from 'next/navigation';
 import { loginHandler } from '@/redux/action/login-action';
 import Image from 'next/image'
-import { useRouter } from 'next/navigation';
+import loginImg from "@/Assets/images/prfress_img.png";
 import Input from '@/component/Input';
 import Button from '@/component/Button';
-import loginImg from "../../Assets/images/prfress_img.png";
 import SsoLogin from '@/component/sso';
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch()
+  const showLoader = useSelector((state) => state.loaderReducer);
+
+  const [loginState, setLoginState] = useState({
+    proposalNo: null,
+    DOB: null,
+    PAN: null,
+    isDob: false,
+    disabled: true,
+    ssoTrue: true
+  });
+
   const [proposalNo, setProposalNo] = useState('')
   const [DOB, setDOB] = useState('')
   const [PAN, setPAN] = useState('')
   const [isDob, setIsDob] = useState(false)
   const [disabled, setdisabled] = useState(true)
-  const dispatch = useDispatch()
-  const showLoader = useSelector((state) => state.loaderReducer);
   const [ssoTrue, ssoIdSet] = useState(true)
+
   useEffect(() => {
     const panReg = /^([A-Z]){5}([0-9]){4}([A-Z]){1}?$/;
     if (typeof document !== "undefined" && typeof window !== "undefined") {
-    const urlParams = new URLSearchParams(window.location.search);
-    const ssoid = urlParams.get('ssoid')
-    console.log('ssoid>>',ssoid,urlParams)
-    if (ssoid) {
-      ssoIdSet(true)
-    } else {
-      ssoIdSet(false)
-      if ((DOB.length === 10 || panReg.test(PAN)) && (proposalNo.length >= 10)) {
-        setdisabled(false)
-      }
-      else {
-        setdisabled(true)
+      const urlParams = new URLSearchParams(window.location.search);
+      const ssoid = urlParams.get('ssoid')
+      console.log('ssoid>>', ssoid, urlParams)
+      if (ssoid) {
+        ssoIdSet(true)
+      } else {
+        ssoIdSet(false)
+        if ((DOB.length === 10 || panReg.test(PAN)) && (proposalNo.length >= 10)) {
+          setdisabled(false)
+        }
+        else {
+          setdisabled(true)
+        }
       }
     }
-  }
 
   }, [DOB, PAN, proposalNo])
 
   const proposalHandler = (e) => {
     let val = e.target.value
     const re = /^[0-9\-/]+$/;
-    // if (!isNaN(val)) {
     if (val.length >= 21) {
       return false
     }
     setProposalNo(e.target.value)
-    // }
+    setLoginState(prevState => ({
+      ...prevState,
+      proposalNo:val
+    }))
   }
+  // console.log('loginState',loginState);
 
   const dobPanHandler = (e) => {
     let val = e.target.value;
@@ -104,7 +118,7 @@ const Login = () => {
   }
 
   const clickHandler = () => {
-    dispatch(loginHandler(proposalNo, isDob ? DOB : PAN,isDob, () => {
+    dispatch(loginHandler(proposalNo, isDob ? DOB : PAN, isDob, () => {
       router.push('/customer-portal/dashboard');
     }))
   }
@@ -139,6 +153,7 @@ const Login = () => {
                 name='proposalNo'
                 placeholder='xxxxxxxxxx'
                 changeHandler={proposalHandler}
+                
               />
             </div>
             <div className='login-content'>
