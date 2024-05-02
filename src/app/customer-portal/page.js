@@ -153,8 +153,7 @@ const Login = () => {
                 name='proposalNo'
                 placeholder='xxxxxxxxxx'
                 changeHandler={proposalHandler}
-                // changeHandler={(e)=>setLoginState({proposalNo:e.target.value})}
-
+                
               />
             </div>
             <div className='login-content'>
