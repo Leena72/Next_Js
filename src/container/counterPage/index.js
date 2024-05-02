@@ -182,10 +182,9 @@ const CounterPage = ({ accDetails }) => {
           <span className="lnktxtbx" onClick={() => downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
-      {(
-        // customerDetail?.counterOfferCount < 3 
-      // || 
-      accDetails?.counterOfferConsentAction !=='true') && 
+      {
+     accDetails?.counterOfferConsentAction !=='true' && 
+     <div>
         <div>
           <div className='mb-2 rvsd-conatiner'>
             <div className='rvsd_blk'>
@@ -279,7 +278,7 @@ const CounterPage = ({ accDetails }) => {
           </div>
         </div>
       </div>
-      {/* } */}
+       }
       <div
         className="overlay__popup_nw"
         style={{ display: overlay ? "block" : "none" }}
