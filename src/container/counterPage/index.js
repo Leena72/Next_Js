@@ -6,13 +6,19 @@ import otpCross from "../../Assets/images/otp-cross-icon.png"
 import thankYou from "../../Assets/images/thank-you-bg.png";
 import questionMark from "../../Assets/images/qstn.png"
 import Image from 'next/image';
+import uplImg from "../../Assets/images/upload_btn.png";
+import previewImg from "../../Assets/images/preview.png"
+import deleteImg from "../../Assets/images/delete.png"
 import { downloadAction } from '../../redux/action/downloadAction';
 import { dashboardAction } from '@/redux/action/dashboardAction'
 import UploadDocModal from '../../component/PopUpPage/UploadDocModal'
 import { downloadData } from '../../data'
 import { sendOTPAction, verifyOTPAction } from '../../redux/action/OTPAction'
 import { toaster } from "../../utils/toaster"
-import { uploadAction } from '../../redux/action/uploadAction'
+import { uploadAction, deleteDoc } from '../../redux/action/uploadAction'
+import PopUpPage from '@/component/PopUpPage'
+import DeletePopUpPage from '../../component/PopUpPage/DeletePopUp'
+
 
 
 const CounterPage = ({ accDetails }) => {
@@ -30,10 +36,21 @@ const CounterPage = ({ accDetails }) => {
   const [overlay, setOverlay] = useState(false);
   const [refId, setRefId] = useState();
   const [revisedAction, serevisedActiont] = useState('')
+  const [preview, setPreview] = useState({ url: '', data: null })
+  const [showDeletePopup, setShowDeletePopup] = useState(false)
 
   const customerDetail = useSelector((state) => state.customerDetailReducer);
   const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments)
+  const reconsiderDoc = customerDetail?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList
+  const proposedDocList = customerDetail?.requiredDocuments?.list[0]?.name
 
+  console.log('reconsiderDoc', reconsiderDoc[0].url, customerDetail?.proposalNumber)
+
+  const imageStyle = {
+    marginRight: '8px',
+    width: '20px',
+    height: '20px'
+  }
   useEffect(() => {
     if (declineReason || (!declineReason && inputValue
       // && inputValue.counterReason !== 'Request for reconsidering the counter offer'
@@ -174,120 +191,233 @@ const CounterPage = ({ accDetails }) => {
     }
   }
 
+  const viewDocHandler = (url) => {
+    console.log('customerDetail.proposalNumber', customerDetail.proposalNumber)
+    dispatch(downloadAction(customerDetail.proposalNumber, url, 'preview', (res) => {
+      if (res.indexOf('blob') > -1) {
+        setPreview({ url: res, data: '' })
+      }
+    }))
+  }
+  const deleteDocHandler = (data) => {
+    dispatch(deleteDoc(data.url, customerDetail?.proposalNumber,
+      proposedDocList, data?.docCategoryCd, data?.indexValue, (res) => {
+        if (res.status === 'OK') {
+          dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+          }))
+          setShowDeletePopup(false)
+        }
+      }))
+  }
+  const closeHandler = () => {
+    setPreview('')
+  }
+  const openDeletePopUp = () => {
+    setShowDeletePopup(true)
+
+  }
   return (
     <div className='card-body'>
       <div className="rvsd_dwnld_outr">
-        <div className="rvsd_dwnld" >Please download the below documents to check your revised offer <br /><br />
+        <div className="rvsd_dwnld" >Please download the below documents to check your revised offer </div>
+        <div>
           <span className="lnktxtbx" onClick={() => downloadHandler('REVISED_OFFER_DOC')}>Counter Offer Letter</span>
           <span className="lnktxtbx" onClick={() => downloadHandler('REVISED_BI_DOC')}>Revised Benefit Illustration</span>
         </div>
       </div>
+      {/* Reconsider doc */}
       {
-     accDetails?.counterOfferConsentAction !=='true' && 
-     <div>
+        (customerDetail?.counterOfferConsentAction === "true" &&
+          customerDetail?.counterOfferConsentType === "RECONSIDER_COUNTER_OFFER")
+        &&
+        <div className="rvsd_dwnld_outr">
+          <div className="rvsd_dwnld" >Reconsidering document</div>
+          <div className='recon-btn'>
+            <a className='view-img-link'
+              onClick={() => viewDocHandler(reconsiderDoc[0].url)}
+            >
+              <Image
+                src={previewImg}
+                alt='uplImg'
+                style={imageStyle}
+              />
+            </a>
+            <a className='view-img-link'
+              onClick={() => openDeletePopUp()}
+            >
+              <Image
+                src={deleteImg}
+                alt='uplImg'
+                style={imageStyle}
+              />
+            </a>
+          </div>
+        </div>
+      }
+      {/* View Reconsider doc   */}
+      {
+        preview && preview.url && <PopUpPage
+          heading={preview?.data.indexValue}
+          onClose={closeHandler}
+        >
+          <div className="img-thumbnail-view">
+            {
+              preview?.url.indexOf(".pdf") < 0 ?
+                <Image
+                  src={
+                    preview.url
+                  }
+                  alt="img"
+                  height='300'
+                  width='300'
+                />
+                :
+                (<button
+                  className="open-pdf-btn"
+                  onClick={() => {
+                    //const downloadFile = (blob, fileName) => {
+                    // const blob = new Blob(
+                    //     this.state.previewImg,
+                    //     {
+                    //         type: "application/pdf",
+                    //     }
+                    // );
+                    if (typeof window !== "undefined" && typeof document !== 'undefined') {
+                      const fileName = "myDocument.pdf";
+                      const link = document?.createElement("a");
+                      // create a blobURI pointing to our Blob
+                      link.href = preview.url; //URL.createObjectURL(previewList[currentImgIndex]?.src);
+                      link.download = fileName;
+                      // some browser needs the anchor to be in the doc
+                      document?.body.append(link);
+                      link.click();
+                      link.remove();
+                      // in case the Blob uses a lot of memory
+                      setTimeout(
+                        () => URL.revokeObjectURL(link.href),
+                        7000
+                      );
+                      // };
+                      // window.open(
+                      //   window.URL.createObjectURL(new Blob(previewList[currentImgIndex]?.src, {type: "pdf"})),
+                      //  // window.URL.createObjectURL(previewList[currentImgIndex]?.src),
+                      //   "_blank"
+                      // )
+                    }
+                  }
+                  }
+                >
+                  <Image src={plaholderPdf} width='200' alt="pdf placeholder" />
+                </button>
+                )
+            }
+          </div>
+        </PopUpPage>
+      }
+      {/* Delete Reconsider doc  */}
+      {
+        showDeletePopup && <DeletePopUpPage
+          onClose={() => setShowDeletePopup(false)}
+          deleteHandler={() => deleteDocHandler(reconsiderDoc[0])}
+        />
+      }
+      {/* Options */}
+      {
+        accDetails?.counterOfferConsentAction !== 'true' &&
         <div>
+          <div>
+            <div className='mb-2 rvsd-conatiner'>
+              <div className='rvsd_blk'>
+                <div className='list'>
+                  <Input
+                    type='radio'
+                    value='Accept the revised offer'
+                    name='counterReason'
+                    changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
+                    checked={
+                      inputValue.counterReason === "Accept the revised offer"
+                    }
+                  />
+                </div>
+                <div className='label'>Accept the revised offer</div>
+              </div>
+              <div className='rvsd_blk-tooltip'>
+                <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
+                  <span className="tooltiptext">Check the counter offer letter and revised benefit illustration for your revised offer and if you are ok then please select this option to provide consent via OTP</span>
+                </span>
+              </div>
+            </div>
+          </div>
           <div className='mb-2 rvsd-conatiner'>
             <div className='rvsd_blk'>
               <div className='list'>
                 <Input
                   type='radio'
-                  value='Accept the revised offer'
+                  value='Adjust the Sum Assured to match Existing Premium'
                   name='counterReason'
                   changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
                   checked={
-                    inputValue.counterReason === "Accept the revised offer"
+                    inputValue.counterReason === "Adjust the Sum Assured to match Existing Premium"
                   }
                 />
               </div>
-              <div className='label'>Accept the revised offer</div>
+              <div className='label'>Adjust the Sum Assured to match Existing Premium</div>
             </div>
             <div className='rvsd_blk-tooltip'>
               <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-                <span className="tooltiptext">Check the counter offer letter and revised benefit illustration for your revised offer and if you are ok then please select this option to provide consent via OTP</span>
+                <span className="tooltiptext">Select this option and provide OTP consent if you want to adjust your insurance cover and keep the premium same as what you have already paid.</span>
+              </span>
+            </div>
+          </div>
+          <div className='mb-2 rvsd-conatiner'>
+            <div className='rvsd_blk'>
+              <div className='list display_flex'>
+                <Input
+                  type='radio'
+                  value='Decline the revised offer'
+                  name='counterReason'
+                  changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
+                  checked={
+                    inputValue.counterReason === "Decline the revised offer"
+                  }
+                />
+              </div>
+              <div className='label'>Decline the revised offer</div>
+            </div>
+            <div className='rvsd_blk-tooltip'>
+              <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
+                <span className="tooltiptext">If you are not ok with the revised offer as either you are no more interested to buy this plan or you want to request for a reconsideration (proof required for the reason for reconsideration). OTP consent is required</span>
+              </span>
+            </div>
+          </div>
+          <div className='mb-2 rvsd-conatiner'>
+            <div className='rvsd_blk'>
+              <div className='list display_flex'>
+                <Input
+                  type='radio'
+                  value='Request for reconsidering the counter offer'
+                  name='counterReason'
+                  changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
+                  checked={
+                    inputValue.counterReason === "Request for reconsidering the counter offer"
+                  }
+                />
+              </div>
+              <div className='label'>Request for reconsidering the counter offer</div>
+            </div>
+            <div className='rvsd_blk-tooltip'>
+              <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
+                <span className="tooltiptext">Request for reconsidering the counter offer</span>
               </span>
             </div>
           </div>
         </div>
-        <div className='mb-2 rvsd-conatiner'>
-          <div className='rvsd_blk'>
-            <div className='list'>
-              <Input
-                type='radio'
-                value='Adjust the Sum Assured to match Existing Premium'
-                name='counterReason'
-                changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
-                checked={
-                  inputValue.counterReason === "Adjust the Sum Assured to match Existing Premium"
-                }
-              />
-            </div>
-            <div className='label'>Adjust the Sum Assured to match Existing Premium</div>
-          </div>
-          <div className='rvsd_blk-tooltip'>
-            <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-              <span className="tooltiptext">Select this option and provide OTP consent if you want to adjust your insurance cover and keep the premium same as what you have already paid.</span>
-            </span>
-          </div>
-        </div>
-        <div className='mb-2 rvsd-conatiner'>
-          <div className='rvsd_blk'>
-            <div className='list display_flex'>
-              <Input
-                type='radio'
-                value='Decline the revised offer'
-                name='counterReason'
-                changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
-                checked={
-                  inputValue.counterReason === "Decline the revised offer"
-                }
-              />
-            </div>
-            <div className='label'>Decline the revised offer</div>
-          </div>
-          <div className='rvsd_blk-tooltip'>
-            <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-              <span className="tooltiptext">If you are not ok with the revised offer as either you are no more interested to buy this plan or you want to request for a reconsideration (proof required for the reason for reconsideration). OTP consent is required</span>
-            </span>
-          </div>
-        </div>
-        <div className='mb-2 rvsd-conatiner'>
-          <div className='rvsd_blk'>
-            <div className='list display_flex'>
-              <Input
-                type='radio'
-                value='Request for reconsidering the counter offer'
-                name='counterReason'
-                changeHandler={(e) => changeHandler(e.target.name, e.target.value)}
-                checked={
-                  inputValue.counterReason === "Request for reconsidering the counter offer"
-                }
-              />
-            </div>
-            <div className='label'>Request for reconsidering the counter offer</div>
-          </div>
-          <div className='rvsd_blk-tooltip'>
-            <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-              <span className="tooltiptext">Request for reconsidering the counter offer</span>
-            </span>
-          </div>
-        </div>
-      </div>
-       }
+      }
       <div
         className="overlay__popup_nw"
         style={{ display: overlay ? "block" : "none" }}
       ></div>
-
-      {/* {declineCounter &&
-        <div className="box-wrap">
-          <div className={`${reasonOne ? 'declinebox-selected' : 'declinebox'}`}>
-            <p onClick={() => { declineHandler(true, false); }}>Not Interested to buy the policy</p>
-          </div>
-          <div className={`${reasonTwo ? 'declinebox-selected' : 'declinebox'}`}>
-            <p onClick={() => { declineHandler(false, true); }}>Request for reconsidering the counter offer</p>
-          </div>
-        </div>
-      } */}
+      {/* OTP */}
       {showOtp &&
         <div className={`header-otp-popup popupcmn ${showOtp && 'active'}`} >
           <div className="header-otp-popup-head">
@@ -315,7 +445,7 @@ const CounterPage = ({ accDetails }) => {
           </div>
         </div>
       }
-
+      {/* Thank you page */}
       {showThankyou &&
         <div className={`popupcmn_otpthnks popupcmn ${showThankyou && 'active'}`}>
           <div className="header-otp-popup-head-thank-you">
@@ -336,6 +466,7 @@ const CounterPage = ({ accDetails }) => {
           </div>
         </div>
       }
+      {/* Upload doc */}
 
       {showUploadModal && <UploadDocModal
         heading={`Upload`}
