@@ -111,7 +111,7 @@ const UploadDocModal = (props) => {
                             Add more
                         </div>
                         } */}
-                        <div className='dcmnt_upload_msg'>Upload .Pdf, .Eml, .Png & .Jpg only, Upto 10 MB</div>
+                        <div className='dcmnt_upload_msg'>Upload .Pdf, .Png & .Jpg only, Upto 10 MB</div>
 
                         <Button
                             buttonText={'SUBMIT'}

@@ -140,7 +140,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload1,addNonup
 
         }
        else {
-        toaster('error','Upload .Pdf, .Eml, .Png & .Jpg only, Upto 10 MB');
+        toaster('error','Upload .Pdf, .Png & .Jpg only, Upto 10 MB');
         }
     }
 

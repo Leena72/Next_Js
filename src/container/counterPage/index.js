@@ -206,12 +206,6 @@ const CounterPage = ({ accDetails }) => {
                 <span className="tooltiptext">Check the counter offer letter and revised benefit illustration for your revised offer and if you are ok then please select this option to provide consent via OTP</span>
               </span>
             </div>
-            <div className='label'>Accept the revised offer</div>
-          </div>
-          <div className='rvsd_blk-tooltip'>
-            <span className="tooltipbx"><Image src={questionMark} width="14" height="14" alt="" />
-              <span className="tooltiptext">Check the counter offer letter and revised benefit illustration for your revised offer and if you are ok then please select this option to provide consent via OTP</span>
-            </span>
           </div>
         </div>
         <div className='mb-2 rvsd-conatiner'>
