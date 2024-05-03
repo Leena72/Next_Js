@@ -44,7 +44,7 @@ const CounterPage = ({ accDetails }) => {
   const reconsiderDoc = customerDetail?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList
   const proposedDocList = customerDetail?.requiredDocuments?.list[0]?.name
 
-  console.log('reconsiderDoc', reconsiderDoc[0].url, customerDetail?.proposalNumber)
+  // console.log('reconsiderDoc', reconsiderDoc?.[0]?.url,customerDetail?.proposalNumber)
 
   const imageStyle = {
     marginRight: '8px',
@@ -234,7 +234,7 @@ const CounterPage = ({ accDetails }) => {
           <div className="rvsd_dwnld" >Reconsidering document</div>
           <div className='recon-btn'>
             <a className='view-img-link'
-              onClick={() => viewDocHandler(reconsiderDoc[0].url)}
+              onClick={() => viewDocHandler(reconsiderDoc?.[0]?.url)}
             >
               <Image
                 src={previewImg}
@@ -318,7 +318,7 @@ const CounterPage = ({ accDetails }) => {
       {
         showDeletePopup && <DeletePopUpPage
           onClose={() => setShowDeletePopup(false)}
-          deleteHandler={() => deleteDocHandler(reconsiderDoc[0])}
+          deleteHandler={() => deleteDocHandler(reconsiderDoc?.[0])}
         />
       }
       {/* Options */}
