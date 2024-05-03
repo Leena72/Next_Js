@@ -33,11 +33,17 @@ const CounterPage = ({ accDetails }) => {
   const [showThankyou, setShowThankyou] = useState();
   const [showUploadModal, setShowUploadModal] = useState(false);
 
+  const [uploadTrue, setUploadTrue] = useState(false);
+  const [hidereconsiderBtn, sethidereconsiderBtn] = useState(false);
+
+
   const [overlay, setOverlay] = useState(false);
   const [refId, setRefId] = useState();
   const [revisedAction, serevisedActiont] = useState('')
   const [preview, setPreview] = useState({ url: '', data: null })
   const [showDeletePopup, setShowDeletePopup] = useState(false)
+  const [showSubmitBtn, setShowSubmitBtn] = useState(false)
+
 
   const customerDetail = useSelector((state) => state.customerDetailReducer);
   const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments)
@@ -52,11 +58,18 @@ const CounterPage = ({ accDetails }) => {
     height: '20px'
   }
   useEffect(() => {
+
     if (declineReason || (!declineReason && inputValue
-      // && inputValue.counterReason !== 'Request for reconsidering the counter offer'
+      && inputValue.counterReason !== 'Request for reconsidering the counter offer'
     )) {
       sendOtp();
       setOverlay(true)
+      sethidereconsiderBtn(false)
+      setShowSubmitBtn(false)
+    }
+    if (inputValue.counterReason === 'Request for reconsidering the counter offer') {
+      setShowUploadModal(true)
+      sethidereconsiderBtn(false)
     }
   }, [declineReason, inputValue])
 
@@ -134,18 +147,12 @@ const CounterPage = ({ accDetails }) => {
     let fileName = [documentList['REVISED_OFFER_DOC'], documentList['REVISED_BI_DOC']]
 
     dispatch(verifyOTPAction(data, proposalNo, fileName, (resp) => {
-      // console.log('resp', resp)
       setOtp("")
       setShowOtp(false);
-      if (inputValue.counterReason === 'Request for reconsidering the counter offer') {
-        setShowUploadModal(true)
-      }
-      else {
-        setShowThankyou(true)
-        dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
-        }))
-        window.location.reload();
-      }
+      setShowThankyou(true)
+      dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
+      }))
+      window.location.reload();
     }))
   }
 
@@ -183,7 +190,10 @@ const CounterPage = ({ accDetails }) => {
       dispatch(uploadAction(headerData, formData, (res) => {
         if (res.status === 'OK') {
           setShowUploadModal(false)
-          setShowThankyou(true)
+          // setShowThankyou(true)
+          setShowSubmitBtn(true)
+          setUploadTrue(true)
+          sethidereconsiderBtn(true)
           dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
           }))
         }
@@ -206,6 +216,9 @@ const CounterPage = ({ accDetails }) => {
           dispatch(dashboardAction(customerDetail.proposalNumber, (res) => {
           }))
           setShowDeletePopup(false)
+          setUploadTrue(false)
+
+          setShowUploadModal(false)
         }
       }))
   }
@@ -215,6 +228,11 @@ const CounterPage = ({ accDetails }) => {
   const openDeletePopUp = () => {
     setShowDeletePopup(true)
 
+  }
+  const reconsiderSubmitBtn = () => {
+    // setShowOtp(true)
+    sendOtp();
+    // setOverlay(true)
   }
   return (
     <div className='card-body'>
@@ -226,13 +244,17 @@ const CounterPage = ({ accDetails }) => {
         </div>
       </div>
       {/* Reconsider doc */}
+
       {
-        (customerDetail?.counterOfferConsentAction === "true" &&
-          customerDetail?.counterOfferConsentType === "RECONSIDER_COUNTER_OFFER")
-        &&
+
+        hidereconsiderBtn &&
+        //   &&
+        //   (customerDetail?.counterOfferConsentAction === "true" &&
+        // customerDetail?.counterOfferConsentType === "RECONSIDER_COUNTER_OFFER")
+
         <div className="rvsd_dwnld_outr">
           <div className="rvsd_dwnld" >Reconsidering document</div>
-          <div className='recon-btn'>
+          {uploadTrue ? <div className='recon-btn'>
             <a className='view-img-link'
               onClick={() => viewDocHandler(reconsiderDoc?.[0]?.url)}
             >
@@ -252,8 +274,24 @@ const CounterPage = ({ accDetails }) => {
               />
             </a>
           </div>
+            :
+            <div className='recon-btn'>
+              <a className='upl-img-link'
+                onClick={() => setShowUploadModal(true)}
+              >
+                <Image
+                  src={uplImg}
+                  alt='uplImg'
+                  style={imageStyle}
+                />
+              </a>
+            </div>
+          }
         </div>
+
       }
+
+
       {/* View Reconsider doc   */}
       {
         preview && preview.url && <PopUpPage
@@ -442,6 +480,16 @@ const CounterPage = ({ accDetails }) => {
           />
           <div className='header-reject-popup-content-fot'>
             <button onClick={submitHandler} className="sbmt_btn">Submit</button>
+          </div>
+        </div>
+      }
+      {showSubmitBtn &&
+        <div className="rvsd_dwnld_outr">
+          <div>
+            <button className={'blue-button'}
+              onClick={reconsiderSubmitBtn}
+              disabled={!uploadTrue}
+            >Submit</button>
           </div>
         </div>
       }
