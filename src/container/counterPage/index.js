@@ -48,7 +48,7 @@ const CounterPage = ({ accDetails }) => {
   const customerDetail = useSelector((state) => state.customerDetailReducer);
   const documentList = useSelector((state) => state.customerDetailReducer?.policyDocuments)
   const reconsiderDoc = customerDetail?.additionalInfoDocs?.primaryInsuredDocumentDetail?.ServiceDocumentList
-  const proposedDocList = customerDetail?.requiredDocuments?.list[0]?.name
+  const proposedDocList = customerDetail?.requiredDocuments?.list?.[0]?.name
 
   // console.log('reconsiderDoc', reconsiderDoc?.[0]?.url,customerDetail?.proposalNumber)
 
