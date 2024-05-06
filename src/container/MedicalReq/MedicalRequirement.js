@@ -12,7 +12,7 @@ const MedicalRequirement = ({ accDetails }) => {
         <ul className='card-body med-body'>
             {list.map(() => {
                 return (
-                    <li className='rvsd_dwnld_outr med-card'>
+                    <li className='rvsd_dwnld_outr med-card' key={'1'}>
                         <div className="rvsd_dwnld" >TPA Status 
                             <span>  </span><span>-</span>
                         </div>
