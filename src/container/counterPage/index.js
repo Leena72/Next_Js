@@ -244,7 +244,21 @@ const CounterPage = ({ accDetails }) => {
         </div>
       </div>
       {/* Reconsider doc */}
-
+      {(customerDetail?.counterOfferConsentAction === "true" &&
+        customerDetail?.counterOfferConsentType === "RECONSIDER_COUNTER_OFFER")
+        &&
+        <div className='recon-btn'>
+          <a className='view-img-link'
+            onClick={() => viewDocHandler(reconsiderDoc?.[0]?.url)}
+          >
+            <Image
+              src={previewImg}
+              alt='uplImg'
+              style={imageStyle}
+            />
+          </a>
+        </div>
+      }
       {
 
         hidereconsiderBtn &&
