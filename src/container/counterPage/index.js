@@ -247,7 +247,10 @@ const CounterPage = ({ accDetails }) => {
       {(customerDetail?.counterOfferConsentAction === "true" &&
         customerDetail?.counterOfferConsentType === "RECONSIDER_COUNTER_OFFER")
         &&
-        <div className='recon-btn'>
+
+        
+          <div className="rvsd_dwnld_outr">
+          <div className="rvsd_dwnld" >Reconsidering document</div>
           <a className='view-img-link'
             onClick={() => viewDocHandler(reconsiderDoc?.[0]?.url)}
           >
@@ -258,6 +261,7 @@ const CounterPage = ({ accDetails }) => {
             />
           </a>
         </div>
+     
       }
       {
 
