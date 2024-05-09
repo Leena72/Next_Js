@@ -53,6 +53,11 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload1,addNonup
                 return item.name === 'OWNER';
             })
         }
+        else if (title === 'JOINTLIFE') {
+            proposedDocList = formFillDocDownload?.list?.filter(item => {
+                return item.name === 'JOINTLIFE';
+            })
+        }
         setproposedDocList(proposedDocList)
     }, [formFillDocDownload?.list, title])
 
@@ -199,7 +204,7 @@ const ProposedAcc = ({ label, title, formFillDocDownload, addNonupload1,addNonup
                 let finalData = docPrev.filter((ele) => ele?.indexValue === item?.indexValue)
 
 
-                console.log('docPrev', docPrev, finalData)
+                console.log('docPrev', docPrev, finalData,item)
 
                 // console.log('docPrev',documentDetails[title],documentPreview,docPrev)
                 return (<li key={idx}>

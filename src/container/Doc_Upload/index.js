@@ -50,11 +50,11 @@ const DocumentUpload = ({ label, formFillDocDownload, addDocUpload, listItem,doc
     const toggleInsAccordion = (id) => {
         setOpenInAcc(openInAcc === id ? null : id)
     }
-    const renderElement = (title, documentList) => { 
+    const renderElement = (title, documentList) => {  
         return <ProposedAcc
             label={label}
             title={title}
-            formFillDocDownload={formFillDocDownload}
+            formFillDocDownload={formFillDocDownload} //accDetails?.requiredDocuments
             addNonupload={addNonupload} // proposer
             // addNonupload1={documentList} // document list
             addNonupload1={title==='INSURER'? addInsuredNonupload:  addNonupload} // document list
