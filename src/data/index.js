@@ -4900,26 +4900,26 @@ export const subStatusList = [
     },
     {
         'status': 'PD',
-        'agentView': 'Policy Declined ',
+        'agentView': 'Policy declined ',
         'customerPortal': 'Policy declined'
 
     },
     {
         'status': 'PP',
-        'agentView': 'Policy Postponed ',
-        'customerPortal': 'policy postponed'
+        'agentView': 'Policy postponed ',
+        'customerPortal': 'Policy postponed'
 
     },
     {
         'status': 'PR',
         'agentView': 'Policy rejected ',
-        'customerPortal': 'policy rejected'
+        'customerPortal': 'Policy rejected'
 
     },
     {
         'status': 'PC',
         'agentView': 'Policy cancelled ',
-        'customerPortal': 'Policy in WIP for dispatch'
+        'customerPortal': 'Policy cancelled '
 
     },
     {
