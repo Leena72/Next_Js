@@ -1,3 +1,9 @@
+import Card from "@/Components/Card/page";
+
 export default function Page() {
-    return <h1>Hello, Home page!</h1>
-  }
+  return (
+    <div className="container">
+      <Card />
+    </div>
+  );
+}
