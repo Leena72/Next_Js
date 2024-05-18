@@ -1,3 +1,5 @@
 export default function Footer() {
-    return <h1>Footer</h1>
+    return <div className="footer">
+© 2024 Next Js. All Rights Reserved. May 18 2024
+    </div>
   }
