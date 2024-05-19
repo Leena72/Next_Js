@@ -11,9 +11,7 @@ export default function Card() {
             <h1 className="card-title">{item.title}</h1>
             <div className="card-detail">
               <p>{item.author}</p>
-              <p>{item.date_published
-              // .split("-").reverse().join("-")
-            }
+              <p>{item.date_published.split("-").reverse().join("-")}
               </p>
             </div>
             <div className="card-summary">

@@ -26,7 +26,7 @@ function Blog({ params }) {
           <h1 className="blog-title">{title}</h1>
           <div className="blog-detail">
             <p>{author}</p>
-            <p>{date_published}</p>
+            <p>{date_published.split("-").reverse().join("-")}</p>
           </div>
           <div className="blog-summary">
             <p>{content}</p>
