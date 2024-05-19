@@ -14,9 +14,10 @@
     padding: 5em 0;
 }
 
+
 // button
 
-.readmore {
+.link-btn {
   font-size: 14px;
   cursor: pointer;
   color: blue;
@@ -34,6 +35,12 @@
   padding: 2em;
   position: fixed;
   top: 0;
+  display: flex;
+  justify-content: space-between;
+
+  h1{
+    font-size: 16px;
+  }
 
   ul{
     list-style-type: none;
@@ -96,6 +103,43 @@
     }
   }
 }
+
+// blog style
+
+.blog-body {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    .blog {
+      padding: 1.5em;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+  
+      .blog-title {
+        font-size: 20px;
+      }
+      .blog-detail {
+        display: flex;
+        justify-content: space-between;
+  
+        p {
+          font-size: 16px;
+          &:nth-of-type(1) {
+          }
+          &:nth-of-type(2) {
+          }
+        }
+      }
+      .blog-summary {
+        display: flex;
+        justify-content: space-between;
+        p {
+          font-size: 14px;
+        }
+      }
+    }
+  }
 
 // footer
 .footer {

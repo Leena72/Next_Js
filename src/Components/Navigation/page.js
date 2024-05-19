@@ -4,13 +4,7 @@ import { navLinks } from "../../Constant/data";
 export default function Navigation() {
   return (
     <div className="navigation">
-      {/* <Link
-        href={{
-          pathname: "/about",
-        }}
-      >
-        About
-      </Link> */}
+      <h1>Next Js</h1>
       <ul className=".nav-list">
         {navLinks.map((link, index) => {
           return (

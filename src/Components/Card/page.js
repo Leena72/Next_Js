@@ -21,19 +21,16 @@ export default function Card() {
             </div>
             <div className="card-summary">
               <p>{item.content}</p>
-              {/* <Button 
-              className={'readmore'}
-              clickHandler={()=>readMoreHandler(item)}
-              buttonText={'Read more'}
-              /> */}
-              {/* <Link href={`/blog`}>Read more</Link> */}
-              <Link
-                href={{
-                  pathname: "/blog",
-                  query: item, // the data
-                }}
+             
+              <Link 
+            //   href={`/blog/${item.id}` }
+            className="link-btn"
+            href={{
+                pathname: `/blog/${item.id}`,
+                query: item
+              }}
               >
-                Read More
+               Read more
               </Link>
             </div>
           </li>
