@@ -50,15 +50,18 @@ body{
     list-style-type: none;
     display: flex;
     justify-content: flex-end;
-    a{
-      text-decoration: none;
-    }
+   
     li{
         font-size: 18px;;
         padding-left:0.6250em;
         color: black;
-        &:hover{
-          color: #f66c3b;
+       
+        a{
+          text-decoration: none;
+          color: #000;
+          &:hover{
+            color: #f66c3b;
+          }
         }
     }
   }

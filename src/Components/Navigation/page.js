@@ -8,9 +8,14 @@ export default function Navigation() {
       <ul className=".nav-list">
         {navLinks.map((link, index) => {
           return (
-              <Link href={link.path}>
-                <li key={index}>{link.name}</li>
-              </Link> 
+              // <Link href={link.path}>
+              //   <li key={index}>{link.name}</li>
+              // </Link> 
+              <li key={index}>
+                <Link href={link.path}>
+                {link.name}
+                </Link>
+              </li>
           );
         })} 
       </ul>
