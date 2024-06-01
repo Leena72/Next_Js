@@ -51,6 +51,7 @@ export default function AddBlog() {
           placeholder="Enter Title"
           className="input-text"
           name="title"
+          value={data.title}
           onChange={(e) => changeHandler(e)}
         />
         <input
@@ -58,6 +59,7 @@ export default function AddBlog() {
           placeholder="Enter Description"
           className="input-text"
           name="description"
+          value={data.description}
           onChange={(e) => changeHandler(e)}
         />
         <input
@@ -65,6 +67,7 @@ export default function AddBlog() {
           placeholder="Created At"
           className="input-text"
           name="createdAt"
+          value={data.createdAt}
           onChange={(e) => changeHandler(e)}
         />
         <input
@@ -72,6 +75,7 @@ export default function AddBlog() {
           placeholder="Updated At"
           className="input-text"
           name="updatedAt"
+          value={data.updatedAt}
           onChange={(e) => changeHandler(e)}
         />
         <Button
