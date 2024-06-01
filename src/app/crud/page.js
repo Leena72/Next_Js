@@ -10,12 +10,21 @@ export default function About() {
   let [blogList, setBlogList] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/blogs")
+    fetch("http://localhost:8080/api/blogs",{cache:"no-cache"})
       .then((response) => response.json())
       .then((data) => setBlogList(data.result));
   }, []);
-  const editHandler = () => {};
-  const deleteHandler = () => {};
+
+  const deleteHandler = async (blogId) => {
+    let response = await fetch("http://localhost:8080/api/blogs/" + blogId, {
+      method: "delete",
+    });
+    response = await response.json();
+    if (response.result) {
+      alert("Blog deleted successfully");
+      router.push("/crud")
+    }
+  };
 
   return (
     <>
@@ -42,12 +51,14 @@ export default function About() {
                   <Button
                     className="link-btn"
                     buttonText={"Edit"}
-                    clickHandler={() => router.push("/crud/editBlog/"+item._id)}
+                    clickHandler={() =>
+                      router.push("/crud/editBlog/" + item._id)
+                    }
                   />
                   <Button
                     className="link-btn"
                     buttonText={"Delete"}
-                    clickHandler={deleteHandler}
+                    clickHandler={() => deleteHandler(item._id)}
                   />
                 </div>
               </li>

@@ -21,3 +21,13 @@ export async function GET(request, content) {
   const result = await Blog.findById(record);
   return NextResponse.json({ result, success: true });
 }
+
+
+// delete specific record
+export async function DELETE(request, content) {
+  const blogId = content.params.blogId;
+  const record = { _id: blogId };
+  await mongoose.connect(connectionStr);
+  const result = await Blog.deleteOne(record);
+  return NextResponse.json({ result, success: true });
+}
