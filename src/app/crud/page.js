@@ -46,7 +46,10 @@ export default function About() {
           blogList.map((item, idx) => {
             return (
               <li key={idx}>
-                <div className="list-title">{item.title}</div>
+                <div className="list-title">
+                  <p>{item.title}</p>
+                  <p>{item.description}</p>
+                </div>
                 <div className="list-btn">
                   <Button
                     className="link-btn"

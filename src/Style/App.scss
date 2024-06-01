@@ -200,6 +200,7 @@ body {
   li {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     border: none;
     background-color: $light-input-orange;
     padding: 10px;
@@ -216,7 +217,16 @@ body {
       }
     }
     .list-title{
-      font-size: 16px;
+      p{
+        &:nth-of-type(1){
+          font-size: 16px;
+          font-weight: bold;
+          padding-bottom: 5px;
+        }
+        &:nth-of-type(2){
+          font-size: 12px;
+        }
+      }
     }
   }
 }
