@@ -1,43 +1,31 @@
+import { title } from "process";
+
 export const navLinks = [
   { name: "Home", path: "/" },
   {
     name: "About",
     path: "/about",
   },
-  // {
-  //   name: "Blog",
-  //   path: "/blog/",
-  // }
+  {
+    name: "CRUD",
+    path: "/crud",
+  },
 ];
 
 export const about = [
   {
     id: 1,
-    title: "Create a project using create-next-app.",
+    session: "1st and 2nd",
+    title: "Create Project",
+    detail:
+      "Create a project using create-next-app. Implementing Pages home, about, blog with global layout.Read more button. Navigation route. Dynamic Routing.",
   },
   {
     id: 2,
-    title: "Create home, about, and blog pages with a global layout system/structure",
-  },
-  {
-    id: 3,
-    title: "Create a navigation route to these pages (create a navigation array)",
-  },
-  {
-    id: 4,
-    title: "Develop a listing (cards) on the blog page with a Read More button",
-  },
-  {
-    id: 5,
-    title: "Each card will display a title, author, published date, and a summary up to 20 characters followed by... When a user clicks on Read More it will redirect to the blog detail page"
-  },
-  {
-    id: 6,
-    title: "Implement dynamic routing to navigate to the blog detail page"
-  },
-  {
-    id: 7,
-    title: "Add a back button to return to the previous page."
+    session: "3rd and 4th",
+    title: "CRUD Application",
+    detail:
+      "Extend the Blog Application shared in Session 2 by implementing CRUD operations, object modeling, JWT authentication, and proper data fetching/rendering techniques.",
   },
 ];
 

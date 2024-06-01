@@ -14,20 +14,7 @@ export default function About() {
         buttonText={"Back"}
       />
       <div className="about-detail">
-        <h1>Next Js Application</h1>
-        <p>Following are the tasks:</p>
-        <ul>
-          {about.map((item) => {
-            return (
-              <li key={item.id}>
-                <p>
-                  {item.title} - {item.session}
-                </p>
-                <p>{item.detail}</p>
-              </li>
-            );
-          })}
-        </ul>
+        <h1>CRUD Application</h1>
       </div>
     </>
   );
