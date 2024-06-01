@@ -25,6 +25,12 @@ export default function AddBlog() {
     result = await result.json();
     if (result.success) {
       alert("New blog added");
+      setData({
+        title: "",
+        description: "",
+        createdAt: "",
+        updatedAt: "",
+      })
     }
   };
 //   console.log("data", data);
