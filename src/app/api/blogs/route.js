@@ -4,8 +4,22 @@ import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  await mongoose.connect(connectionStr);
-  const data = await Blog.find();
+  let data = [];
+  try {
+    await mongoose.connect(connectionStr);
+    data = await Blog.find();
+  } catch (error) {
+    data = { success: false };
+  }
+
   console.log("data", data);
-  return NextResponse.json({ result: data });
+  return NextResponse.json({ result: data, success: true });
+}
+
+export async function POST(request) {
+  const payload = await request.json();
+  await mongoose.connect(connectionStr);
+  let blog = new Blog(payload);
+  const result = await blog.save();
+  return NextResponse.json({ result, success: true });
 }
