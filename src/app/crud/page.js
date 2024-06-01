@@ -14,8 +14,6 @@ export default function About() {
       .then((response) => response.json())
       .then((data) => setBlogList(data.result));
   }, []);
-
-  console.log("blogList", blogList);
   const editHandler = () => {};
   const deleteHandler = () => {};
 
@@ -44,7 +42,7 @@ export default function About() {
                   <Button
                     className="link-btn"
                     buttonText={"Edit"}
-                    clickHandler={editHandler}
+                    clickHandler={() => router.push("/crud/editBlog/"+item._id)}
                   />
                   <Button
                     className="link-btn"

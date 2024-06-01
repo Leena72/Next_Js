@@ -1,39 +1,57 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/Components/Button/page";
 
-export default function AddBlog() {
+export default function EditBlog(props) {
   const router = useRouter();
+  let [blog, setBlog] = useState(null);
+
   const [data, setData] = useState({
     title: "",
     description: "",
     createdAt: "",
     updatedAt: "",
   });
+  useEffect(() => {
+    getBlogDetail();
+  }, []);
+
+  const getBlogDetail = async () => {
+    let blogData = await fetch(
+      "http://localhost:8080/api/blogs/" + props.params.editBlog
+    );
+    blogData = await blogData.json();
+    if (blogData.success) {
+      let result = blogData.result;
+      setData({
+        // ...data,
+        title: result.title,
+        description: result.description,
+        createdAt: result.createdAt,
+        updatedAt: result.updatedAt,
+      });
+    }
+  };
 
   const changeHandler = (e) => {
     let name = e.target.name;
     let value = e.target.value;
     setData({ ...data, [name]: value });
   };
-  const addBlogHandler = async () => {
-    let result = await fetch("http://localhost:8080/api/blogs", {
-      method: "POST",
-      body: JSON.stringify(data),
-    });
-    result = await result.json();
-    if (result.success) {
-      alert("New blog added");
-      setData({
-        title: "",
-        description: "",
-        createdAt: "",
-        updatedAt: "",
-      })
+  const editBlogHandler = async () => {
+    let response = await fetch(
+      "http://localhost:8080/api/blogs/" + props.params.editBlog,
+      {
+        method: "PUT",
+        body: JSON.stringify(data),
+      }
+    );
+    response = await response.json();
+    if (response.result) {
+      alert("Blog updated");
     }
   };
-
   return (
     <>
       <Button
@@ -42,7 +60,7 @@ export default function AddBlog() {
         buttonText={"Back"}
       />
       <div className="about-detail">
-        <h1>Add Blog Form</h1>
+        <h1>Edit Blog Form</h1>
       </div>
       <div className="add-blog-form">
         <input
@@ -79,8 +97,8 @@ export default function AddBlog() {
         />
         <Button
           className="addBtn"
-          buttonText={"Add Blog"}
-          clickHandler={addBlogHandler}
+          buttonText={"Edit Blog"}
+          clickHandler={editBlogHandler}
         />
       </div>
     </>

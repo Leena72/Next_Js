@@ -3,6 +3,7 @@ import { Blog } from "@/lib/model/blog";
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
 
+// get api data
 export async function GET() {
   let data = [];
   try {
@@ -11,11 +12,10 @@ export async function GET() {
   } catch (error) {
     data = { success: false };
   }
-
-  // console.log("data", data);
   return NextResponse.json({ result: data, success: true });
 }
 
+// add data
 export async function POST(request) {
   const payload = await request.json();
   await mongoose.connect(connectionStr);
