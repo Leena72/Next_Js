@@ -12,7 +12,7 @@ export async function GET() {
     data = { success: false };
   }
 
-  console.log("data", data);
+  // console.log("data", data);
   return NextResponse.json({ result: data, success: true });
 }
 

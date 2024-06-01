@@ -12,7 +12,7 @@ function Blog({ params }) {
   let content = searchParams.get("content");
 
   const id = params.id;
-  console.log("blog", params, title, author);
+  // console.log("blog", params, title, author);
   return (
     <>
       <Button 
