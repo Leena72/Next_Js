@@ -5,8 +5,8 @@
 }
 
 $white: #fff;
-$black: #000;
-$light-orange: #fff6f3;
+$black: #0f172a;
+$light-orange: #ffffff;
 $light-input-orange: #ffdfd4;
 $orange: #f66c3b;
 
@@ -125,11 +125,13 @@ body {
 
     .card-title {
       font-size: 20px;
+    color: $black;
+
     }
     .card-detail {
       display: flex;
       justify-content: space-between;
-
+color: #475569;
       p {
         font-size: 16px;
         &:nth-of-type(1) {
