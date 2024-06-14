@@ -27,6 +27,13 @@ export const about = [
     detail:
       "Extend the Blog Application shared in Session 2 by implementing CRUD operations, object modeling, JWT authentication, and proper data fetching/rendering techniques.",
   },
+  {
+    id: 3,
+    session: "5th",
+    title: "Performance Optimization",
+    detail:
+      "Extended Blog Application: Performance Optimization and Secure Authentication.",
+  },
 ];
 
 export const card_data = [
