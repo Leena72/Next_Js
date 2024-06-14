@@ -10,6 +10,10 @@ export const navLinks = [
     name: "CRUD",
     path: "/crud",
   },
+  {
+    name: "Performance",
+    path: "/performance",
+  },
 ];
 
 export const about = [

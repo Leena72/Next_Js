@@ -1,10 +1,9 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
 import Button from "@/Components/Button/page";
-import { about } from "../../Constant/data";
 import { useEffect, useState } from "react";
 
-export default function About() {
+export default function Crud() {
   const router = useRouter();
 
   let [blogList, setBlogList] = useState(null);
