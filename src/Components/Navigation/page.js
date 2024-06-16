@@ -11,7 +11,6 @@ export default function Navigation() {
       <ul className="nav-list">
         {navLinks.map((link, index) => {
           if(link.name !=='Home'){
-            console.log('link.path',link.path)
           return (
               <li key={index}>
                 <Link href={link.path} className={`${router.pathname === link.path && 'active'}`}>

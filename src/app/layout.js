@@ -11,8 +11,6 @@ import Navigation from "@/Components/Navigation/page";
 };
 
 export default function RootLayout({ children }) {
-  // const router = useRouter();
-// console.log('router.pathname ===',router.pathname)
   return (
     <html lang="en">
       <body>
