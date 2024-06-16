@@ -21,9 +21,10 @@ body {
 }
 
 .main-body {
-  padding: 5em 0;
   margin: auto;
-  width: 90%;
+  width: 100%;
+  display: flex;
+  padding-top: 5em;
 }
 
 // button
@@ -36,17 +37,34 @@ body {
   border: none;
 }
 
+// header
+
+.header{
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  top: 0;
+  background: white;
+  z-index: 11;
+  a{
+    text-decoration: none;
+    font-size: 30px;
+    color: black;
+    cursor: pointer;
+  }
+}
 // navigation
 
 .navigation {
-  width: 100%;
-  text-align: end;
-  background: $white;
+  width: 20%;
+  text-align: start;
   padding: 1.5em;
-  position: fixed;
+  position: relative;
   top: 0;
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
+  z-index: 1;
 
   h1 {
     font-size: 22px;
@@ -54,12 +72,12 @@ body {
 
   ul {
     list-style-type: none;
-    display: flex;
-    justify-content: flex-end;
+    position: fixed;
+    width: 16%;
 
     li {
       font-size: 18px;
-      padding-left: 0.625em;
+      padding: 10px;
       color: $black;
 
       a {
@@ -72,6 +90,11 @@ body {
     }
   }
 }
+
+.content-block{
+  width: 80%;
+}
+
 // about
 .about-detail {
   h1 {
@@ -103,10 +126,11 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   .card {
     list-style: none;
-    width: calc(100% / 3);
+    // width: calc(100% / 3);
+    width: 30%;
     height: 175px;
     border: 1px solid $white;
     background: $white;
@@ -274,4 +298,28 @@ color: #475569;
   padding: 2em;
   position: fixed;
   bottom: 0;
+}
+
+// paralax effecct
+
+.parallax {
+  background-image: url('../Assets/nextjs.jpeg');
+  height:50vh;
+  width: 100%;
+  background-attachment: fixed;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.9;
+}
+
+.show{
+  display: block !important;
+}
+.hide{
+  display: none !important;
+}
+
+.active{
+  color: $orange;
 }

@@ -1,24 +1,26 @@
+'use client';
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { navLinks } from "../../Constant/data";
 
 export default function Navigation() {
+  const router = useRouter();
+
   return (
-    <div className="navigation">
-      <h1>Next Js</h1>
-      <ul className=".nav-list">
+
+      <ul className="nav-list">
         {navLinks.map((link, index) => {
+          if(link.name !=='Home'){
+            console.log('link.path',link.path)
           return (
-              // <Link href={link.path}>
-              //   <li key={index}>{link.name}</li>
-              // </Link> 
               <li key={index}>
-                <Link href={link.path}>
+                <Link href={link.path} className={`${router.pathname === link.path && 'active'}`}>
                 {link.name}
                 </Link>
               </li>
           );
+        }
         })} 
       </ul>
-    </div>
   );
 }
