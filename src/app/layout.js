@@ -3,7 +3,15 @@
 import "@/Style/App.scss";
 import Header from "@/Components/Header/page";
 import Footer from "@/Components/Footer/page";
-import Navigation from "@/Components/Navigation/page";
+// import Navigation from "@/Components/Navigation/page";
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { Roboto } from 'next/font/google'
+
+const roboto = Roboto({
+  weight: '400',
+  subsets: ['latin'],
+})
 
  export const metadata = {
   title: "Next.js",
@@ -11,15 +19,21 @@ import Navigation from "@/Components/Navigation/page";
 };
 
 export default function RootLayout({ children }) {
+
+  const Navigation = dynamic(() => import("@/Components/Navigation/page"), {
+    suspense: true,
+  });
   return (
     <html lang="en">
-      <body>
+      <body className={roboto.className}>
         <Header />
         {/* <div className={`parallax ${router.pathname === "/" ? 'show':'hide'}`}></div> */}
         <div className="main-body">
+        <Suspense fallback={<div>Loading...</div>}>
           <div className="navigation">
             <Navigation />
           </div>
+          </Suspense>
           <div className="content-block">{children}</div>
         </div>
         <Footer />

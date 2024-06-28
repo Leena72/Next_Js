@@ -1,7 +1,8 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import nextjsImg from "@/Assets/nextjs.jpeg";
 import Button from "@/Components/Button/page";
-import { useEffect, useState } from "react";
 
 export default function Performance() {
   const router = useRouter();
@@ -15,7 +16,9 @@ export default function Performance() {
       <div className="about-detail">
         <h1>Performance Optimization</h1>
       </div>
-      
+      <div className="image">
+        <Image src={nextjsImg} alt="Next js" />
+      </div>
     </>
   );
 }
