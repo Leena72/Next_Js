@@ -36,7 +36,7 @@ export const about = [
     session: "5th",
     title: "Performance Optimization",
     detail:
-      "Extended Blog Application: Performance Optimization and Secure Authentication.",
+      "Extended Blog Application: Performance Optimization and Secure Authentication. Image/Font Optimization, Lazy loading, Memoization, Revalidate path/tags, Dynamic imports",
   },
 ];
 
